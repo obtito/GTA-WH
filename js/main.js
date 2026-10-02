@@ -226,6 +226,7 @@ step('装配玩法与 HUD', () => {
     onToggleTour: () => hud.setTour(true),
   });
   game = new Game(scene, camera, hud);
+  window.__hud = hud;      // 供 tools/tour.mjs 等验收脚本调用
 });
 step('烘焙环境光照', () => {
   try {
