@@ -9,6 +9,7 @@ import { buildLandmarks, landmarkSites } from './landmarks.js';
 import { buildBridges } from './bridges.js';
 import { createEnvironment } from './environment.js';
 import { initHUD } from './hud.js';
+import { buildMetro, buildFerry } from './transit.js';
 import { Game, MODE_NAME } from './game.js';
 import { setEnvIntensity, mergeStaticMeshes } from './lib.js';
 import { sunState, lerp, clamp, toV2, toLonLat } from './geo.js';
@@ -25,7 +26,7 @@ const elSpeedBox = $('#speedBox');
 
 /* ==================== 全局 ==================== */
 let renderer, scene, camera, controls, sky, sunLight, hemi, moonLight, stars;
-let waterMat, waterGroup, roads, city, trees, cars, bridges, landmarks, lights, beacon;
+let waterMat, waterGroup, roads, city, trees, cars, bridges, landmarks, lights, beacon, metro, ferry;
 let game, hud;
 let env = null;
 let timeHours = 15, autoTime = false;
@@ -145,6 +146,7 @@ function applyTime(hours) {
   landmarks?.setNight(s.night);
   lights?.setNight(s.night);
   bridges?.setNight(s.night);
+  metro?.setNight(s.night);
 
   scene.fog.color.copy(FOG_DAY.clone().lerp(FOG_NIGHT, clamp(s.night + s.dusk * 0.5, 0, 1)));
   scene.fog.far = lerp(16000, 9000, s.night);
@@ -171,6 +173,8 @@ step('铺设主干道网', () => {
 });
 step('精建 16 处地标', () => {
   landmarks = buildLandmarks();
+  const merged = mergeStaticMeshes(landmarks.group);
+  console.log(`[GTA-WH] 地标合批: ${merged.before} → ${merged.after} 个 mesh(${merged.tris} 三角形)`);
   scene.add(landmarks.group);
 });
 step('架设五座大桥', () => {
@@ -194,6 +198,10 @@ step('放行车流与路灯', () => {
   lights = buildStreetLights(roads.centerlines);
   scene.add(lights.group);
   console.log(`[GTA-WH] 路灯: ${lights.count}`);
+  metro = buildMetro();
+  scene.add(metro.group);
+  ferry = buildFerry();
+  scene.add(ferry.group);
   // 绿地中心塔顶航空障碍灯(红,闪烁)
   const [gx, gz] = toV2(114.3366, 30.6152);
   beacon = new THREE.Mesh(
@@ -260,8 +268,10 @@ function animate() {
   // 玩法
   game?.update(dt, nightK, controls);
 
-  // 桥上列车
+  // 桥上列车 / 轻轨 / 轮渡
   for (const u of bridges?.updates || []) u(dt);
+  metro?.update(dt);
+  ferry?.update(dt);
 
   // 塔顶航空障碍灯闪烁
   if (beacon) beacon.visible = (clock.elapsedTime % 1.6) < 0.9;
