@@ -10,6 +10,7 @@ import { buildBridges } from './bridges.js';
 import { createEnvironment } from './environment.js';
 import { initHUD } from './hud.js';
 import { buildMetro, buildFerry } from './transit.js';
+import { loadGLB } from './assets.js';
 import { Game, MODE_NAME } from './game.js';
 import { setEnvIntensity, mergeStaticMeshes } from './lib.js';
 import { sunState, lerp, clamp, toV2, toLonLat } from './geo.js';
@@ -234,6 +235,16 @@ step('烘焙环境光照', () => {
     scene.environment = env.update(timeHours);
   } catch (e) { console.warn('环境烘焙不可用:', e); }
 });
+step('装载外部 GLB 资产', async () => {
+  // 演示:three.js 官方示例资产 ferrari.glb(Draco 压缩,验证 GLTFLoader+DRACO 管线)
+  const car = await loadGLB('./assets/ferrari.glb', { rot: 0.65 });
+  if (car) {
+    const [sx, sz] = toV2(114.2830, 30.5760);
+    car.position.set(sx + 14, Math.max(terrainHeight(sx + 14, sz - 6), 0) + 0.02, sz - 6);
+    scene.add(car);
+    console.log('[GTA-WH] GLB 资产:ferrari.glb 已装载');
+  }
+});
 
 function step(name, fn) { BUILD_STEPS.push([name, fn]); }
 
@@ -241,7 +252,7 @@ async function build() {
   for (let i = 0; i < BUILD_STEPS.length; i++) {
     loadText.textContent = BUILD_STEPS[i][0] + '……';
     await new Promise((r) => setTimeout(r, 16));
-    BUILD_STEPS[i][1]();
+    await BUILD_STEPS[i][1]();
     loadBar.style.width = `${((i + 1) / BUILD_STEPS.length) * 100}%`;
   }
   applyTime(timeHours);

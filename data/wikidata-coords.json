@@ -1,0 +1,306 @@
+{
+  "crs": "WGS84 (EPSG:4326)",
+  "source": "Wikidata coordinate location (P625) via the MediaWiki Action API",
+  "license": "Wikidata facts are CC0; keep attribution in data/ATTRIBUTION.md",
+  "core_bbox": {
+    "lon": [
+      114.15,
+      114.5
+    ],
+    "lat": [
+      30.42,
+      30.72
+    ]
+  },
+  "count": 36,
+  "landmarks": [
+    {
+      "qid": "Q10890788",
+      "name": "光谷广场",
+      "name_en": "Guanggu Square",
+      "desc": null,
+      "lat": 30.50556,
+      "lon": 114.39861
+    },
+    {
+      "qid": "Q1711196",
+      "name": "华中科技大学",
+      "name_en": "Huazhong University of Science and Technology",
+      "desc": null,
+      "lat": 30.51,
+      "lon": 114.41
+    },
+    {
+      "qid": "Q10913488",
+      "name": "古琴臺",
+      "name_en": "Lute Platform",
+      "desc": null,
+      "lat": 30.556667,
+      "lon": 114.258333
+    },
+    {
+      "qid": "Q10949510",
+      "name": "宝通寺",
+      "name_en": "Baotong Temple",
+      "desc": null,
+      "lat": 30.533167,
+      "lon": 114.335361
+    },
+    {
+      "qid": "Q5616939",
+      "name": "归元寺",
+      "name_en": "Guiyuan Temple",
+      "desc": null,
+      "lat": 30.548082,
+      "lon": 114.254673
+    },
+    {
+      "qid": "Q7267796",
+      "name": "晴川桥",
+      "name_en": "Qingchuan Bridge",
+      "desc": null,
+      "lat": 30.5661,
+      "lon": 114.279
+    },
+    {
+      "qid": "Q11090196",
+      "name": "晴川閣",
+      "name_en": "Qingchuan Pavilion",
+      "desc": null,
+      "lat": 30.558671,
+      "lon": 114.279798
+    },
+    {
+      "qid": "Q11088377",
+      "name": "曇華林",
+      "name_en": "Tanhualin",
+      "desc": null,
+      "lat": 30.551639,
+      "lon": 114.311561
+    },
+    {
+      "qid": "Q10920407",
+      "name": "楚河汉街站",
+      "name_en": "Chuhe Hanjie Station",
+      "desc": "Subway station in Wuhan, China",
+      "lat": 30.556202,
+      "lon": 114.335818
+    },
+    {
+      "qid": "Q5959771",
+      "name": "武昌站",
+      "name_en": "Wuchang railway station",
+      "desc": null,
+      "lat": 30.531313,
+      "lon": 114.311773
+    },
+    {
+      "qid": "Q339291",
+      "name": "武昌起义",
+      "name_en": "Wuchang Uprising",
+      "desc": null,
+      "lat": 30.539248,
+      "lon": 114.305856
+    },
+    {
+      "qid": "Q845631",
+      "name": "武汉东湖",
+      "name_en": "East Lake",
+      "desc": null,
+      "lat": 30.566667,
+      "lon": 114.383333
+    },
+    {
+      "qid": "Q11124442",
+      "name": "武汉二七长江大桥",
+      "name_en": "Erqi Yangtze River Bridge",
+      "desc": null,
+      "lat": 30.6275,
+      "lon": 114.341944
+    },
+    {
+      "qid": "Q1108197",
+      "name": "武汉大学",
+      "name_en": "Wuhan University",
+      "desc": null,
+      "lat": 30.540833,
+      "lon": 114.361111
+    },
+    {
+      "qid": "Q11124688",
+      "name": "武汉杨泗港长江大桥",
+      "name_en": "Yangsigang Yangtze River Bridge",
+      "desc": null,
+      "lat": 30.510278,
+      "lon": 114.256667
+    },
+    {
+      "qid": "Q11124693",
+      "name": "武汉欢乐谷",
+      "name_en": "Happy Valley Wuhan",
+      "desc": null,
+      "lat": 30.591944,
+      "lon": 114.387222
+    },
+    {
+      "qid": "Q8039078",
+      "name": "武汉白沙洲长江大桥",
+      "name_en": "Wuhan Baishazhou Yangtze River Bridge",
+      "desc": null,
+      "lat": 30.49,
+      "lon": 114.236111
+    },
+    {
+      "qid": "Q584376",
+      "name": "武汉站",
+      "name_en": "Wuhan railway station",
+      "desc": null,
+      "lat": 30.60967,
+      "lon": 114.41898
+    },
+    {
+      "qid": "Q143235",
+      "name": "武汉绿地中心",
+      "name_en": "Wuhan Greenland Center",
+      "desc": null,
+      "lat": 30.585942,
+      "lon": 114.317475
+    },
+    {
+      "qid": "Q11124749",
+      "name": "武汉长江二桥",
+      "name_en": "Second Wuhan Yangtze River Bridge",
+      "desc": null,
+      "lat": 30.605152,
+      "lon": 114.320165
+    },
+    {
+      "qid": "Q8039097",
+      "name": "武汉长江大桥",
+      "name_en": "Wuhan Yangtze River Bridge",
+      "desc": null,
+      "lat": 30.552201,
+      "lon": 114.282787
+    },
+    {
+      "qid": "Q11124752",
+      "name": "武汉长江隧道",
+      "name_en": "Wuhan Yangtze River Tunnel",
+      "desc": null,
+      "lat": 30.579167,
+      "lon": 114.307222
+    },
+    {
+      "qid": "Q11124760",
+      "name": "武汉鹦鹉洲长江大桥",
+      "name_en": "Yingwuzhou Yangtze River Bridge",
+      "desc": null,
+      "lat": 30.5308,
+      "lon": 114.2794
+    },
+    {
+      "qid": "Q1194029",
+      "name": "武漢體育中心",
+      "name_en": "Wuhan Sports Center",
+      "desc": null,
+      "lat": 30.502313,
+      "lon": 114.166253
+    },
+    {
+      "qid": "Q1208250",
+      "name": "汉口",
+      "name_en": "Hankou",
+      "desc": null,
+      "lat": 30.581179,
+      "lon": 114.272597
+    },
+    {
+      "qid": "Q1010546",
+      "name": "汉口站",
+      "name_en": "Hankou railway station",
+      "desc": null,
+      "lat": 30.62043,
+      "lon": 114.24984
+    },
+    {
+      "qid": "Q11134644",
+      "name": "江汉桥",
+      "name_en": null,
+      "desc": null,
+      "lat": 30.564722,
+      "lon": 114.261667
+    },
+    {
+      "qid": "Q11140408",
+      "name": "沙湖 (武汉)",
+      "name_en": "Shahu",
+      "desc": null,
+      "lat": 30.56667,
+      "lon": 114.35
+    },
+    {
+      "qid": "Q4391403",
+      "name": "湖北省博物馆",
+      "name_en": "Hubei Provincial Museum",
+      "desc": null,
+      "lat": 30.563889,
+      "lon": 114.358889
+    },
+    {
+      "qid": "Q15178654",
+      "name": "湖北省图书馆",
+      "name_en": "Hubei Provincial Library",
+      "desc": null,
+      "lat": 30.55864,
+      "lon": 114.3241
+    },
+    {
+      "qid": "Q217684",
+      "name": "盘龙城遗址",
+      "name_en": "Panlongcheng",
+      "desc": null,
+      "lat": 30.694444,
+      "lon": 114.265556
+    },
+    {
+      "qid": "Q58089387",
+      "name": "磨山",
+      "name_en": "Mount Mo",
+      "desc": "武汉东湖风景区一部分之磨山景区",
+      "lat": 30.551175,
+      "lon": 114.417914
+    },
+    {
+      "qid": "Q17040884",
+      "name": "起义门",
+      "name_en": "Uprising Gate",
+      "desc": null,
+      "lat": 30.52821,
+      "lon": 114.30194
+    },
+    {
+      "qid": "Q30946741",
+      "name": "辛亥革命博物馆",
+      "name_en": "Revolution Museum",
+      "desc": null,
+      "lat": 30.539722,
+      "lon": 114.300278
+    },
+    {
+      "qid": "Q462372",
+      "name": "黄鹤楼",
+      "name_en": "Tower of the Yellow Crane",
+      "desc": null,
+      "lat": 30.546944,
+      "lon": 114.296944
+    },
+    {
+      "qid": "Q1407294",
+      "name": "龟山电视塔",
+      "name_en": "Tortoise Mountain TV Tower",
+      "desc": null,
+      "lat": 30.558156,
+      "lon": 114.275083
+    }
+  ]
+}

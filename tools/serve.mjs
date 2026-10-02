@@ -17,6 +17,10 @@ const TYPES = {
   '.png': 'image/png',
   '.jpg': 'image/jpeg',
   '.svg': 'image/svg+xml',
+  '.glb': 'model/gltf-binary',
+  '.gltf': 'model/gltf+json',
+  '.wasm': 'application/wasm',
+  '.bin': 'application/octet-stream',
 };
 
 http.createServer((req, res) => {
