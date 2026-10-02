@@ -41,8 +41,9 @@ FEATURED = {
     "Q5959771": "武昌站", "Q584376": "武汉站", "Q15178654": "湖北省图书馆",
     "Q124921010": "武汉琴台音乐厅", "Q875573": "汉江", "Q8039078": "白沙洲长江大桥",
     "Q11124688": "杨泗港长江大桥", "Q11124442": "二七长江大桥", "Q8039087": "天兴洲长江大桥",
-    "Q11124752": "武汉长江隧道", "Q118144566": None, "Q107295339": "汉江湾桥",
+    "Q11124752": "武汉长江隧道", "Q107295339": "汉江湾桥",
     "Q60995269": "武汉汉水铁路桥", "Q24836268": "武汉长江公铁隧道",
+    "Q1208250": "汉口", "Q11746": "武汉市", "Q5616939": "归元寺",
 }
 
 CATEGORY_BY_KIND = [
@@ -84,8 +85,38 @@ def categorise(qid, kinds):
     return "其它"
 
 
+# --- 地理窗口:分层,而不是一刀切 -------------------------------------------
+# 一层窗口不够用。天河机场(30.775)在主城区窗口外但确实是武汉的;磨山镇
+# (34.80/118.15,江苏徐州)在任何武汉窗口外,是同名误收。所以改成:
+#   主城区 INNER > 市域 OUTER > 其它,再按 rank、precision 排序;
+#   最后用"到城市原点的距离"硬判定是否越区,越区的一律不进渲染。
+CENTER = (30.5931, 114.3054)      # 武汉城市原点(两江交汇 / 江汉路一带)
+REGION_RADIUS_KM = 60.0           # 超出此半径视为同名误收或非武汉实体
+
+BBOX_INNER = (114.10, 30.40, 114.55, 30.72)   # 主城区
+BBOX_OUTER = (113.95, 30.25, 114.75, 31.05)   # 市域(含天河机场、阳逻等)
+
+# P518 "applies to part" values seen on river coordinates.
+PART_LABELS = {"Q1233637": "河口", "Q7376362": "河源"}
+
+
+def _zone(lat, lon):
+    if BBOX_INNER[0] < lon < BBOX_INNER[2] and BBOX_INNER[1] < lat < BBOX_INNER[3]:
+        return 0
+    if BBOX_OUTER[0] < lon < BBOX_OUTER[2] and BBOX_OUTER[1] < lat < BBOX_OUTER[3]:
+        return 1
+    return 2
+
+
+def _km_from_center(lat, lon):
+    mlat = (lat + CENTER[0]) / 2
+    dlat = (lat - CENTER[0]) * M_PER_DEG
+    dlon = (lon - CENTER[1]) * M_PER_DEG * math.cos(math.radians(mlat))
+    return math.hypot(dlat, dlon) / 1000.0
+
+
 def best_coordinate(claims):
-    """Pick the most trustworthy P625 statement actually available."""
+    """Pick the most trustworthy P625 statement, preferring the Wuhan area."""
     candidates = []
     for claim in claims.get("P625", []):
         mainsnak = claim.get("mainsnak", {})
@@ -102,19 +133,34 @@ def best_coordinate(claims):
                     dv = snak.get("datavalue", {})
                     if isinstance(dv.get("value"), dict) and dv["value"].get("id"):
                         sources.append(f'{prop}:{dv["value"]["id"]}')
+        parts = []
+        for snaks in (claim.get("qualifiers") or {}).get("P518", []):
+            dv = snaks.get("datavalue", {})
+            if isinstance(dv.get("value"), dict) and dv["value"].get("id"):
+                parts.append(PART_LABELS.get(dv["value"]["id"], dv["value"]["id"]))
+        lat, lon = payload["latitude"], payload["longitude"]
         candidates.append({
-            "lat": payload["latitude"],
-            "lon": payload["longitude"],
+            "lat": lat,
+            "lon": lon,
             "precision": payload.get("precision"),
             "rank": claim.get("rank", "normal"),
             "sources": sources,
+            "applies_to": parts,
+            "_zone": _zone(lat, lon),
+            "_km": _km_from_center(lat, lon),
         })
+    total = len(candidates)
     if not candidates:
         return None, 0
     order = {"preferred": 0, "normal": 1, "deprecated": 2}
-    candidates.sort(key=lambda c: (order.get(c["rank"], 1), c["precision"] or 9))
-    return candidates[0], len([c for c in claims.get("P625", [])
-                               if c.get("mainsnak", {}).get("datavalue", {}).get("type") == "globecoordinate"])
+    # 窗口层级优先,其次 rank,其次 precision;同等条件下离城市原点更近的取胜。
+    pool = sorted(candidates, key=lambda c: (c["_zone"], order.get(c["rank"], 1),
+                                             c["precision"] or 9, c["_km"]))
+    best = pool[0]
+    best["outside_window"] = best["_zone"] > 0
+    best["out_of_region"] = best["_km"] > REGION_RADIUS_KM
+    best["km_from_center"] = round(best["_km"], 1)
+    return best, total
 
 
 def numeric_claims(item, prop):
@@ -137,6 +183,7 @@ def numeric_claims(item, prop):
 def load_entities():
     merged = {}
     patterns = (
+        "artifacts/claims/b*.json",
         "artifacts/entities/b*.json",
         "artifacts/wikidata/p*.json",
         "artifacts/wikidata/e*.json",
@@ -192,11 +239,30 @@ def main():
             "rank": coord["rank"],
             "length_m": length,
             "height_m": height,
-            "sources": [labels.get(s, s) for s in dict.fromkeys(coord["sources"])],
+            "applies_to": coord["applies_to"],
+            "outside_window": coord["outside_window"],
+            "out_of_region": coord["out_of_region"],
+            "km_from_center": coord["km_from_center"],
+            # sources arrive as "P143:Q30239"; the label cache is keyed by bare QID.
+            "sources": [labels.get(s.rsplit(":", 1)[-1], s) for s in dict.fromkeys(coord["sources"])],
         })
+        half = rows[-1]["half_range_m"]
+        unlabelled = rows[-1]["name"] == qid
+        if coord["out_of_region"]:
+            # 同名误收或非武汉实体(例:江苏的磨山镇、长江源头的青海坐标)。
+            # 留档但不渲染,也不参与精度统计,否则会把统计口径拉爆。
+            rows[-1]["usability"] = "out_of_region"
+        elif half > 1000 or (unlabelled and half > 150):
+            rows[-1]["usability"] = "unusable"      # degree-level coordinate, do not render
+        elif half > 150:
+            rows[-1]["usability"] = "coarse"        # good for a district, not for a footprint
+        else:
+            rows[-1]["usability"] = "ok"
 
-    rows.sort(key=lambda r: (not r["featured"], r["half_range_m"], r["name"]))
-    stats = [r["half_range_m"] for r in rows]
+    order_us = {"ok": 0, "coarse": 1, "unusable": 2, "out_of_region": 3}
+    rows.sort(key=lambda r: (not r["featured"], order_us[r["usability"]],
+                             r["half_range_m"], r["name"]))
+    stats = [r["half_range_m"] for r in rows if r["usability"] in ("ok", "coarse")]
     payload = {
         "crs": "WGS84 (EPSG:4326)",
         "source": "Wikidata coordinate location (P625); rank-filtered, precision preserved",
@@ -213,6 +279,15 @@ def main():
             "max": max(stats) if stats else None,
         },
         "featured_count": sum(1 for r in rows if r["featured"]),
+        "usability_counts": {
+            key: sum(1 for r in rows if r["usability"] == key)
+            for key in ("ok", "coarse", "unusable", "out_of_region")
+        },
+        "region": {
+            "center": {"lat": CENTER[0], "lon": CENTER[1]},
+            "radius_km": REGION_RADIUS_KM,
+            "note": "out_of_region 条目为同名误收或非武汉实体,已隔离,不参与精度统计",
+        },
         "landmarks": rows,
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)

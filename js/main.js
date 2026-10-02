@@ -36,6 +36,15 @@ const clock = new THREE.Clock();
 const BUILD_STAMP = new Date().toISOString().slice(11, 19);
 const BUILD_STEPS = [];
 
+/* Sketchfab 武汉真实地标楼群(Void.com,CC-BY,按实测高度归一化放置) */
+const REAL_TOWERS = [
+  { id: 'greenland-real', dir: 'wuhan-greenland-center', lon: 114.3366, lat: 30.6152, h: 475, r: 80, replace: 'lm:greenland' },
+  { id: 'wuhan-center', dir: 'wuhan-center', lon: 114.3295, lat: 30.4925, h: 438, r: 75 },
+  { id: 'ctf-finance', dir: 'wuhan-ctf-finance', lon: 114.3420, lat: 30.6120, h: 400, r: 70 },
+  { id: 'shipping-center', dir: 'wuhan-shipping-center', lon: 114.3490, lat: 30.6230, h: 236, r: 65 },
+  { id: 'panhai-times', dir: 'wuhan-panhai-times', lon: 114.3085, lat: 30.5955, h: 200, r: 60 },
+];
+
 /* ==================== 渲染器 / 场景 ==================== */
 function initRenderer() {
   renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: 'high-performance' });
@@ -185,7 +194,9 @@ step('架设五座大桥', () => {
   scene.add(bridges.group);
 });
 step('生成三镇城市体块', () => {
-  const sites = landmarkSites();
+  const sites = [...landmarkSites()];
+  // Sketchfab 真实地标楼的占地排他(见 assets/models/)
+  for (const s of REAL_TOWERS) sites.push({ id: s.id, ...toV2(s.lon, s.lat), r: s.r });
   city = buildCity({ exclusions: sites });
   scene.add(city.group);
   console.log(`[GTA-WH] 城市: ${city.count} 栋建筑`);
@@ -237,7 +248,30 @@ step('烘焙环境光照', () => {
     scene.environment = env.update(timeHours);
   } catch (e) { console.warn('环境烘焙不可用:', e); }
 });
-step('装载外部 GLB 资产', async () => {
+step('装载 Sketchfab 真实地标楼群', async () => {
+  for (const t of REAL_TOWERS) {
+    const g = await loadGLB(`./assets/models/${t.dir}/scene.gltf`);
+    if (!g) { console.warn(`[GTA-WH] 真楼缺失:${t.dir}`); continue; }
+    // 归一化到实测高度,底面贴地,水平居中
+    const box = new THREE.Box3().setFromObject(g);
+    const scale = t.h / Math.max(box.max.y - box.min.y, 0.01);
+    g.scale.setScalar(scale);
+    g.updateMatrixWorld(true);
+    const b2 = new THREE.Box3().setFromObject(g);
+    const [x, z] = toV2(t.lon, t.lat);
+    const gy = Math.max(terrainHeight(x, z), 0);
+    g.position.set(x - (b2.max.x + b2.min.x) / 2, gy - b2.min.y, z - (b2.max.z + b2.min.z) / 2);
+    scene.add(g);
+    // 替换程序化版本(隐藏绿地中心的 Lathe 模型,保留 POI 数据)
+    if (t.replace) {
+      const sub = landmarks.group.getObjectByName(t.replace);
+      if (sub) sub.visible = false;
+    }
+    console.log(`[GTA-WH] 真实地标:${t.dir}(${t.h} m,Void.com CC-BY)`);
+  }
+});
+
+step('装载 Kenney 车辆与街头停车', async () => {
   // 玩家座驾换装 Kenney Car Kit(CC0)
   await game?.vehicle.upgradeBody(loadGLB, './assets/cars/sedan-sports.glb');
   console.log('[GTA-WH] 玩家车:Kenney sedan-sports(CC0)');

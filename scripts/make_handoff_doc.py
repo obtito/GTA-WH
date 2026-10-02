@@ -54,7 +54,11 @@ def main() -> None:
         "- 机器可读：`data/wikidata-coords.json`",
         "- 两江中心线：`data/hydro-centerlines.json`",
         f"- 坐标精度 ±（Wikidata 分辨率的一半）：最小 {dist['min']} m，"
-        f"中位 {dist['median']} m，p90 {dist['p90']} m，最大 {dist['max']} m",
+        f"中位 {dist['median']} m，p90 {dist['p90']} m，最大 {dist['max']} m"
+        "（已剔除度级粗坐标）",
+        f"- 可用性：`usability=ok` {coords['usability_counts']['ok']} 条、"
+        f"`coarse` {coords['usability_counts']['coarse']} 条、"
+        f"`unusable`（已剔除度级坐标）{coords['usability_counts']['unusable']} 条",
         "",
         "> 由 `scripts/build_coords_v2.py` + `scripts/make_handoff_doc.py` 生成，请勿手改。",
         "",
@@ -81,7 +85,7 @@ def main() -> None:
     for r in rows:
         if not r["featured"]:
             continue
-        lines.append(f'| {r["name"]} | {r["lat"]:.5f} | {r["lon"]:.5f} | ±{r["half_range_m"]:.0f} | '
+        lines.append(f'| {r["name"]} | {r["lat"]:.5f} | {r["lon"]:.5f} | ±{r["half_range_m"]:.1f} | '
                      f'{r["category"]} | [{r["qid"]}](https://www.wikidata.org/wiki/{r["qid"]}) |')
     lines.append("")
 

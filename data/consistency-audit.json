@@ -1,0 +1,278 @@
+{
+  "method": "以 build_hydro.py 由桥梁/隧道坐标拟合的长江、汉江中心线为基准,计算每个地标到中心线的垂距。非过江类地标若落在航道半宽内,判定为坐标或实体错误;过江类工程若离所属河道轴线超过 400 m,同样存疑。",
+  "channel_half_width_m": {
+    "长江": 700.0,
+    "汉江": 250.0
+  },
+  "in_channel_count": 12,
+  "in_channel": [
+    {
+      "qid": "Q68532830",
+      "name": "1998武汉公交爆炸案",
+      "category": "其它",
+      "river": "长江",
+      "distance_to_axis_m": 21.6,
+      "channel_half_width_m": 700.0,
+      "lat": 30.552778,
+      "lon": 114.283333,
+      "half_range_m": 15.4,
+      "featured": false
+    },
+    {
+      "qid": "Q2038907",
+      "name": "武汉会战",
+      "category": "其它",
+      "river": "汉江",
+      "distance_to_axis_m": 136.6,
+      "channel_half_width_m": 250.0,
+      "lat": 30.5667,
+      "lon": 114.267,
+      "half_range_m": 556.6,
+      "featured": false
+    },
+    {
+      "qid": "Q17414606",
+      "name": "Phoenix Towers (China)",
+      "category": "建筑",
+      "river": "汉江",
+      "distance_to_axis_m": 136.6,
+      "channel_half_width_m": 250.0,
+      "lat": 30.5667,
+      "lon": 114.267,
+      "half_range_m": 580.7,
+      "featured": false
+    },
+    {
+      "qid": "Q125835726",
+      "name": "汉口义勇消防联合会旧址",
+      "category": "建筑",
+      "river": "汉江",
+      "distance_to_axis_m": 156.5,
+      "channel_half_width_m": 250.0,
+      "lat": 30.573862,
+      "lon": 114.274917,
+      "half_range_m": 0.1,
+      "featured": false
+    },
+    {
+      "qid": "Q124921010",
+      "name": "武汉琴台音乐厅",
+      "category": "文化场馆",
+      "river": "汉江",
+      "distance_to_axis_m": 247.7,
+      "channel_half_width_m": 250.0,
+      "lat": 30.56303,
+      "lon": 114.25686,
+      "half_range_m": 0.6,
+      "featured": true
+    },
+    {
+      "qid": "Q28832330",
+      "name": "Q28832330",
+      "category": "其它",
+      "river": "长江",
+      "distance_to_axis_m": 497.8,
+      "channel_half_width_m": 700.0,
+      "lat": 30.65637,
+      "lon": 114.41154,
+      "half_range_m": 0.6,
+      "featured": false
+    },
+    {
+      "qid": "Q11090196",
+      "name": "晴川阁",
+      "category": "文物古迹",
+      "river": "长江",
+      "distance_to_axis_m": 558.3,
+      "channel_half_width_m": 700.0,
+      "lat": 30.558671,
+      "lon": 114.279798,
+      "half_range_m": 0.1,
+      "featured": true
+    },
+    {
+      "qid": "Q105772963",
+      "name": "Chinese destroyer Xi'an",
+      "category": "其它",
+      "river": "长江",
+      "distance_to_axis_m": 591.5,
+      "channel_half_width_m": 700.0,
+      "lat": 30.579446,
+      "lon": 114.295896,
+      "half_range_m": 0.6,
+      "featured": false
+    },
+    {
+      "qid": "Q143235",
+      "name": "武汉绿地中心",
+      "category": "建筑",
+      "river": "长江",
+      "distance_to_axis_m": 641.3,
+      "channel_half_width_m": 700.0,
+      "lat": 30.585942,
+      "lon": 114.317475,
+      "half_range_m": 0.1,
+      "featured": true
+    },
+    {
+      "qid": "Q106707190",
+      "name": "Chinese submarine Changcheng 303",
+      "category": "其它",
+      "river": "长江",
+      "distance_to_axis_m": 643.7,
+      "channel_half_width_m": 700.0,
+      "lat": 30.580295,
+      "lon": 114.296387,
+      "half_range_m": 0.6,
+      "featured": false
+    },
+    {
+      "qid": "Q14017706",
+      "name": "天兴乡",
+      "category": "其它",
+      "river": "长江",
+      "distance_to_axis_m": 678.6,
+      "channel_half_width_m": 700.0,
+      "lat": 30.669,
+      "lon": 114.41456,
+      "half_range_m": 5813.1,
+      "featured": false
+    },
+    {
+      "qid": "Q106592979",
+      "name": "Chinese frigate Huaiyin",
+      "category": "其它",
+      "river": "长江",
+      "distance_to_axis_m": 684.4,
+      "channel_half_width_m": 700.0,
+      "lat": 30.580958,
+      "lon": 114.296867,
+      "half_range_m": 0.6,
+      "featured": false
+    }
+  ],
+  "suspect_crossing_count": 11,
+  "suspect_crossings": [
+    {
+      "qid": "Q130263571",
+      "name": "长丰桥",
+      "category": "桥梁",
+      "expected_river": "长江",
+      "distance_to_axis_m": 13010.0,
+      "distance_to_other_rivers_m": {
+        "长江": 13010.0,
+        "汉江": 0.2
+      }
+    },
+    {
+      "qid": "Q10913499",
+      "name": "古田桥",
+      "category": "桥梁",
+      "expected_river": "长江",
+      "distance_to_axis_m": 10007.0,
+      "distance_to_other_rivers_m": {
+        "长江": 10007.0,
+        "汉江": 2.9
+      }
+    },
+    {
+      "qid": "Q15935286",
+      "name": "知音桥",
+      "category": "桥梁",
+      "expected_river": "长江",
+      "distance_to_axis_m": 7248.4,
+      "distance_to_other_rivers_m": {
+        "长江": 7248.4,
+        "汉江": 7.9
+      }
+    },
+    {
+      "qid": "Q118144566",
+      "name": "三道河铁路桥",
+      "category": "桥梁",
+      "expected_river": "长江",
+      "distance_to_axis_m": 6868.9,
+      "distance_to_other_rivers_m": {
+        "长江": 6868.9,
+        "汉江": 16624.3
+      }
+    },
+    {
+      "qid": "Q17498607",
+      "name": "沌口长江大桥",
+      "category": "桥梁",
+      "expected_river": "长江",
+      "distance_to_axis_m": 6644.2,
+      "distance_to_other_rivers_m": {
+        "长江": 6644.2,
+        "汉江": 15920.5
+      }
+    },
+    {
+      "qid": "Q118144594",
+      "name": "二道河铁路桥",
+      "category": "桥梁",
+      "expected_river": "长江",
+      "distance_to_axis_m": 5461.8,
+      "distance_to_other_rivers_m": {
+        "长江": 5461.8,
+        "汉江": 15087.5
+      }
+    },
+    {
+      "qid": "Q140986327",
+      "name": "Cross Han river tunnel of Wuhan Metro line 12",
+      "category": "隧道",
+      "expected_river": "长江",
+      "distance_to_axis_m": 5411.0,
+      "distance_to_other_rivers_m": {
+        "长江": 5411.0,
+        "汉江": 3.4
+      }
+    },
+    {
+      "qid": "Q17163750",
+      "name": "青山长江大桥",
+      "category": "桥梁",
+      "expected_river": "长江",
+      "distance_to_axis_m": 4517.3,
+      "distance_to_other_rivers_m": {
+        "长江": 4517.3,
+        "汉江": 21924.6
+      }
+    },
+    {
+      "qid": "Q140961672",
+      "name": "墨水湖大桥",
+      "category": "桥梁",
+      "expected_river": "长江",
+      "distance_to_axis_m": 4377.7,
+      "distance_to_other_rivers_m": {
+        "长江": 4377.7,
+        "汉江": 3526.3
+      }
+    },
+    {
+      "qid": "Q140986232",
+      "name": "Cross Han river tunnel of Wuhan Metro line 6",
+      "category": "隧道",
+      "expected_river": "长江",
+      "distance_to_axis_m": 2856.6,
+      "distance_to_other_rivers_m": {
+        "长江": 2856.6,
+        "汉江": 0.1
+      }
+    },
+    {
+      "qid": "Q125923274",
+      "name": "保寿桥",
+      "category": "桥梁",
+      "expected_river": "长江",
+      "distance_to_axis_m": 1899.0,
+      "distance_to_other_rivers_m": {
+        "长江": 1899.0,
+        "汉江": 37.0
+      }
+    }
+  ]
+}

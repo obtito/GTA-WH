@@ -10,6 +10,11 @@
 | `vendor/three.module.js` 等 | three.js r160 | MIT | Copyright © 2010-2024 three.js authors |
 | `vendor/GLTFLoader.js` / `DRACOLoader.js` / `utils/BufferGeometryUtils.js` | three.js r160 examples | MIT | 同上 |
 | Draco 解码器 `assets/draco/` | google/draco | Apache-2.0 | Copyright © 2017 Google Draco Authors |
+| `assets/models/wuhan-greenland-center/` | [wuhan-greenland-center](https://sketchfab.com/3d-models/wuhan-greenland-center-795a3cec308d44a985dacfda99239a3e) by **Void**(Sketchfab) | CC Attribution | 保留本表即视为署名 |
+| `assets/models/wuhan-center/` | [wuhan-center](https://sketchfab.com/3d-models/wuhan-center-413eb58cc89c4423bf51ce63c2ab1393) by **Void**(Sketchfab) | CC Attribution | 保留本表即视为署名 |
+| `assets/models/wuhan-ctf-finance/` | [wuhan-ctf-finance](https://sketchfab.com/3d-models/wuhanctf-finance-center-ae06b8933f7e4b5fb749425afb2e454e) by **Void**(Sketchfab) | CC Attribution | 保留本表即视为署名 |
+| `assets/models/wuhan-shipping-center/` | [wuhan-shipping-center](https://sketchfab.com/3d-models/wuhan-yangtze-river-shipping-center-fc4c62c332234ef6abffac9d87e4bc2f) by **Void**(Sketchfab) | CC Attribution | 保留本表即视为署名 |
+| `assets/models/wuhan-panhai-times/` | [wuhan-panhai-times](https://sketchfab.com/3d-models/wuhan-pan-hai-times-center-landmark-tower-c5dfa1384c0b4ae3a08a49e2ed7ae2e4) by **Void**(Sketchfab) | CC Attribution | 保留本表即视为署名 |
 
 ## 新增资产守则
 
