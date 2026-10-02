@@ -13,7 +13,8 @@ const LAKE_POLYS = LAKES.map((l) => toV2List(l.pts));
 const ROAD_LINES = ROADS.map((r) => ({ w: r.w, pts: toV2List(r.pts) }));
 
 /* ============ 掩膜:水/山/路/地标占地之上不生成建筑 ============ */
-function blocked(x, z, exclusions) {
+function blocked(x, z, exclusions, osmBox) {
+  if (osmBox && x >= osmBox.minX && x <= osmBox.maxX && z >= osmBox.minZ && z <= osmBox.maxZ) return true;
   if (distToPolyline(x, z, RIVER_PTS) < RIVER.halfWidth + 30) return true;
   for (const b of BRANCH_PTS) if (distToPolyline(x, z, b.pts) < b.hw + 25) return true;
   for (const p of LAKE_POLYS) if (pointInPolygon(x, z, p)) return true;
@@ -71,7 +72,7 @@ function patchUV(m, texK = 1) {
 }
 
 /* ============ 建筑 ============ */
-export function buildCity({ exclusions = [], seed = 20261001 } = {}) {
+export function buildCity({ exclusions = [], seed = 20261001, osmBox = null } = {}) {
   const rand = makeRandom(seed);
   const facade = makeFacadeTexture();
   const windowsTex = makeWindowTexture();
@@ -129,7 +130,7 @@ export function buildCity({ exclusions = [], seed = 20261001 } = {}) {
         // 四边形内才生成(区外切掉)
         const [wx, wz] = toWorld(lx, lz);
         if (!pointInPolygon(wx, wz, poly)) continue;
-        if (blocked(wx, wz, exclusions)) continue;
+        if (blocked(wx, wz, exclusions, osmBox)) continue;
         const x = wx, z = wz;
 
         const r = Math.hypot(lx, lz) / maxR;

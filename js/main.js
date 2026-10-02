@@ -5,6 +5,7 @@ import { OrbitControls } from 'three/addons/OrbitControls.js';
 import { Sky } from 'three/addons/Sky.js';
 import { buildGround, buildMountains, createWaterMaterial, buildWater, buildRoads, terrainHeight } from './world.js';
 import { buildCity, buildTrees, buildCars, buildStreetLights } from './city.js';
+import { buildOsmCity, buildOsmRoads, OSM_BOX } from './city-osm.js';
 import { buildLandmarks, landmarkSites } from './landmarks.js';
 import { buildBridges } from './bridges.js';
 import { createEnvironment } from './environment.js';
@@ -29,6 +30,13 @@ const elSpeedBox = $('#speedBox');
 /* ==================== 全局 ==================== */
 let renderer, scene, camera, controls, sky, sunLight, hemi, moonLight, stars;
 let waterMat, waterGroup, roads, city, trees, cars, bridges, landmarks, lights, beacon, metro, ferry;
+let osmCity = null, driveLines = null;
+// OSM 覆盖区的场景坐标盒(供程序化城市避让)
+const OSM_BOX_SCENE = (() => {
+  const [x0, z0] = toV2(OSM_BOX.lon0, OSM_BOX.lat1);
+  const [x1, z1] = toV2(OSM_BOX.lon1, OSM_BOX.lat0);
+  return { minX: x0, maxX: x1, minZ: z0, maxZ: z1 };
+})();
 let game, hud;
 let env = null;
 let timeHours = 15, autoTime = false;
@@ -154,6 +162,7 @@ function applyTime(hours) {
   }
 
   nightK = s.night;
+  osmCity?.setNight(s.night);
   lastSunDir.set(s.dir.x, s.dir.y, s.dir.z);
   for (const m of realTowerMats) m.emissiveIntensity = nightK * 0.34;   // 真楼夜间亮化
   city?.setNight(s.night);
@@ -196,13 +205,36 @@ step('架设五座大桥', () => {
   bridges = buildBridges();
   scene.add(bridges.group);
 });
+step('装载 OSM 真实城市', async () => {
+  try {
+    const [bRes, rRes] = await Promise.all([
+      fetch('./data/osm/buildings.json'),
+      fetch('./data/osm/roads.json'),
+    ]);
+    if (!bRes.ok || !rRes.ok) throw new Error(`buildings:${bRes.status} roads:${rRes.status}`);
+    const [buildings, osmRoads] = await Promise.all([bRes.json(), rRes.json()]);
+    osmCity = await buildOsmCity(buildings);
+    scene.add(osmCity.group);
+    console.log(`[GTA-WH] OSM 真实建筑: ${osmCity.count} 栋(ODbL)`);
+    const osmR = buildOsmRoads(osmRoads);
+    scene.add(osmR.group);
+    // 手绘路网在 OSM 覆盖区内隐藏(OSM 路网替代;中心线走廊保留供行驶)
+    roads.group.visible = false;
+    driveLines = osmR.centerlines.length ? osmR.centerlines : roads.centerlines;
+    console.log(`[GTA-WH] OSM 路网: ${osmR.centerlines.length} 条`);
+  } catch (e) {
+    console.warn('[GTA-WH] OSM 数据不可用,使用程序化城市:', e.message);
+    driveLines = roads.centerlines;
+  }
+});
 step('生成三镇城市体块', () => {
   const sites = [...landmarkSites()];
   // Sketchfab 真实地标楼的占地排他(见 assets/models/)
   for (const s of REAL_TOWERS) sites.push({ id: s.id, ...toV2(s.lon, s.lat), r: s.r });
-  city = buildCity({ exclusions: sites });
+  // OSM 覆盖区内不再程序化生成(真实建筑已就位)
+  city = buildCity({ exclusions: sites, osmBox: osmCity ? OSM_BOX_SCENE : null });
   scene.add(city.group);
-  console.log(`[GTA-WH] 城市: ${city.count} 栋建筑`);
+  console.log(`[GTA-WH] 程序化补充建筑: ${city.count} 栋${osmCity ? '(OSM 框外)' : ''}`);
 });
 step('栽种行道树与樱花', () => {
   trees = buildTrees({ exclusions: landmarkSites() });
@@ -210,9 +242,9 @@ step('栽种行道树与樱花', () => {
   console.log(`[GTA-WH] 树木: ${trees.count}`);
 });
 step('放行车流与路灯', async () => {
-  cars = await buildCars(roads.centerlines, 170);
+  cars = await buildCars(driveLines || roads.centerlines, 170);
   scene.add(cars.group);
-  lights = buildStreetLights(roads.centerlines);
+  lights = buildStreetLights(driveLines || roads.centerlines);
   scene.add(lights.group);
   console.log(`[GTA-WH] 路灯: ${lights.count}`);
   metro = buildMetro();
