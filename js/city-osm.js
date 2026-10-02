@@ -87,16 +87,24 @@ export async function buildOsmCity(buildings) {
   const concRough = loadTexture('./assets/textures/rough_concrete_rough_2k.jpg', { srgb: false });
 
   const buckets = {
-    concrete: { pos: [], nor: [], uv: [], idx: [] },
-    glass: { pos: [], nor: [], uv: [], idx: [] },
-    civic: { pos: [], nor: [], uv: [], idx: [] },
-    lowrise: { pos: [], nor: [], uv: [], idx: [] },
+    concrete: { pos: [], nor: [], uv: [], idx: [], col: [] },
+    glass: { pos: [], nor: [], uv: [], idx: [], col: [] },
+    civic: { pos: [], nor: [], uv: [], idx: [], col: [] },
+    lowrise: { pos: [], nor: [], uv: [], idx: [], col: [] },
   };
+  // 城市色彩系统:立面真实色板 + 深色屋顶系(告别白模)
+  const FACADE_PALETTE = {
+    concrete: ['#cfcabb', '#c2bbab', '#b6b2a4', '#d6cec0', '#aca69a', '#bdb3a0'],
+    glass: ['#8fa8bc', '#7d9cb4', '#a3b8c6', '#6f92aa', '#88a2b8'],
+    civic: ['#d8cfc0', '#cfc4b2', '#c2b49e', '#d4c8b4'],
+    lowrise: ['#c4917a', '#b5836e', '#cf9d86', '#a87862', '#d0a184'],
+  };
+  const ROOF_PALETTE = ['#565a60', '#6b6560', '#75706a', '#4e5560', '#7d766e', '#5f6168', '#8a8378'];
   const materials = {
-    concrete: new THREE.MeshStandardMaterial({ color: 0xcfd2cd, map: facade, normalMap: concNor, roughnessMap: concRough, emissiveMap: windowsTex, emissive: new THREE.Color('#ffc98a'), emissiveIntensity: 0, roughness: 0.6, metalness: 0.15, normalScale: new THREE.Vector2(0.5, 0.5) }),
-    glass: new THREE.MeshStandardMaterial({ color: 0xaec8d4, map: facade, normalMap: concNor, emissiveMap: windowsTex, emissive: new THREE.Color('#c8dcf0'), emissiveIntensity: 0, roughness: 0.25, metalness: 0.55, normalScale: new THREE.Vector2(0.3, 0.3) }),
-    civic: new THREE.MeshStandardMaterial({ color: 0xd9d2c2, map: facade, emissiveMap: windowsTex, emissive: new THREE.Color('#ffd9a0'), emissiveIntensity: 0, roughness: 0.85, metalness: 0.05 }),
-    lowrise: new THREE.MeshStandardMaterial({ color: 0xcaa488, map: brick || facade, emissiveMap: windowsTex, emissive: new THREE.Color('#ffc98a'), emissiveIntensity: 0, roughness: 0.9, metalness: 0.02 }),
+    concrete: new THREE.MeshStandardMaterial({ color: 0xffffff, vertexColors: true, map: facade, normalMap: concNor, roughnessMap: concRough, emissiveMap: windowsTex, emissive: new THREE.Color('#ffc98a'), emissiveIntensity: 0, roughness: 0.6, metalness: 0.15, normalScale: new THREE.Vector2(0.5, 0.5) }),
+    glass: new THREE.MeshStandardMaterial({ color: 0xffffff, vertexColors: true, map: facade, normalMap: concNor, emissiveMap: windowsTex, emissive: new THREE.Color('#c8dcf0'), emissiveIntensity: 0, roughness: 0.25, metalness: 0.55, normalScale: new THREE.Vector2(0.3, 0.3) }),
+    civic: new THREE.MeshStandardMaterial({ color: 0xffffff, vertexColors: true, map: facade, emissiveMap: windowsTex, emissive: new THREE.Color('#ffd9a0'), emissiveIntensity: 0, roughness: 0.85, metalness: 0.05 }),
+    lowrise: new THREE.MeshStandardMaterial({ color: 0xffffff, vertexColors: true, map: brick || facade, emissiveMap: windowsTex, emissive: new THREE.Color('#ffc98a'), emissiveIntensity: 0, roughness: 0.9, metalness: 0.02 }),
   };
   for (const m of Object.values(materials)) registerEnv(m, 0.7);
 
@@ -122,8 +130,12 @@ export async function buildOsmCity(buildings) {
     if (area > 30000) h = Math.min(h, 15);
 
     const gy = Math.max(terrainHeight(pts[0][0], pts[0][1]), 0);
-    const B = buckets[bucketOf(b.t || {})];
-    const base = B.pos.length / 3;
+    const bk = bucketOf(b.t || {});
+    const B = buckets[bk];
+    // 本建筑色彩(立面桶色板 × 明度微差;屋顶深色系)
+    const fp = FACADE_PALETTE[bk];
+    const fc = new THREE.Color(fp[(rand() * fp.length) | 0]).multiplyScalar(0.88 + rand() * 0.24);
+    const rc = new THREE.Color(ROOF_PALETTE[(rand() * ROOF_PALETTE.length) | 0]).multiplyScalar(0.9 + rand() * 0.2);
 
     // 侧面:每边一 Quad,UV 按世界尺寸(u=累计长/3.5m 一格,v=h/3.2 一层)
     let acc = 0;
@@ -137,18 +149,51 @@ export async function buildOsmCity(buildings) {
       B.pos.push(x1, gy, z1, x2, gy, z2, x2, gy + h, z2, x1, gy + h, z1);
       B.nor.push(nx, 0, nz, nx, 0, nz, nx, 0, nz, nx, 0, nz);
       B.uv.push(u0, 0, u1, 0, u1, v1, u0, v1);
+      for (let k = 0; k < 4; k++) B.col.push(fc.r, fc.g, fc.b);
       B.idx.push(vi, vi + 1, vi + 2, vi, vi + 2, vi + 3);
       acc += len;
     }
-    // 屋顶:三角化(three ShapeUtils;轮廓需闭合且去尾点)
+    // 屋顶:三角化(three ShapeUtils)+ 深色屋顶顶点色 + 设备块
+    let cx = 0, cz = 0;
+    const roofRing = pts.slice(0, -1);
     try {
-      const contour = pts.slice(0, -1).map(([x, z]) => new THREE.Vector2(x, z));
+      const contour = roofRing.map(([x, z]) => new THREE.Vector2(x, z));
+      for (const p of contour) { cx += p.x; cz += p.y; }
+      cx /= contour.length; cz /= contour.length;
       const tris = THREE.ShapeUtils.triangulateShape(contour, []);
       const vi = B.pos.length / 3;
       for (const p of contour) B.pos.push(p.x, gy + h, p.y);
-      for (let i = 0; i < contour.length; i++) { B.nor.push(0, 1, 0); B.uv.push(contour[i].x / 8, contour[i].y / 8); }
+      for (let i = 0; i < contour.length; i++) {
+        B.nor.push(0, 1, 0);
+        B.uv.push(contour[i].x / 8, contour[i].y / 8);
+        B.col.push(rc.r, rc.g, rc.b);
+      }
       for (const t of tris) B.idx.push(vi + t[0], vi + t[2], vi + t[1]);
     } catch { /* 自交多边形跳过屋顶 */ }
+    // 屋顶设备块(机房/水箱):中大型建筑 40%
+    if (area > 220 && h > 11 && rand() < 0.4) {
+      const bh = 2.2 + rand() * 1.6, bw = Math.min(6, Math.sqrt(area) * 0.18);
+      const q = [[-bw, -bw], [bw, -bw], [bw, bw], [-bw, bw]];
+      const vBottom = [], vTop = [];
+      for (const [ox, oz] of q) {
+        vBottom.push(B.pos.length / 3);
+        B.pos.push(cx + ox, gy + h, cz + oz);
+        B.nor.push(0, 1, 0); B.uv.push(0, 0);
+        B.col.push(rc.r * 1.15, rc.g * 1.15, rc.b * 1.15);
+      }
+      for (const [ox, oz] of q) {
+        vTop.push(B.pos.length / 3);
+        B.pos.push(cx + ox, gy + h + bh, cz + oz);
+        B.nor.push(0, 1, 0); B.uv.push(0, 0);
+        B.col.push(rc.r * 0.85, rc.g * 0.85, rc.b * 0.85);
+      }
+      B.idx.push(vBottom[0], vBottom[1], vBottom[2], vBottom[0], vBottom[2], vBottom[3]);
+      B.idx.push(vTop[2], vTop[1], vTop[0], vTop[3], vTop[2], vTop[0]);
+      for (let e = 0; e < 4; e++) {
+        const a = e, b2 = (e + 1) % 4;
+        B.idx.push(vBottom[a], vTop[a], vTop[b2], vBottom[a], vTop[b2], vBottom[b2]);
+      }
+    }
     count++;
   }
 
@@ -160,6 +205,7 @@ export async function buildOsmCity(buildings) {
     geo.setAttribute('position', new THREE.Float32BufferAttribute(B.pos, 3));
     geo.setAttribute('normal', new THREE.Float32BufferAttribute(B.nor, 3));
     geo.setAttribute('uv', new THREE.Float32BufferAttribute(B.uv, 2));
+    geo.setAttribute('color', new THREE.Float32BufferAttribute(B.col, 3));
     geo.setIndex(B.idx);
     geo.computeBoundingSphere();
     const mesh = new THREE.Mesh(geo, materials[key]);
