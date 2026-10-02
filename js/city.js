@@ -3,7 +3,7 @@
 import * as THREE from 'three';
 import { toV2, toV2List, makeRandom, clamp, pointInPolygon, distToPolyline } from './geo.js';
 import { DISTRICTS, RIVER, LAKES, ROADS } from './data.js';
-import { mat, makeFacadeTexture, makeWindowTexture, makeBrickTexture, patchMaterial, instancedBoxes, registerEnv } from './lib.js';
+import { mat, loadTexture, makeFacadeTexture, makeWindowTexture, makeBrickTexture, patchMaterial, instancedBoxes, registerEnv } from './lib.js';
 import { terrainHeight } from './world.js';
 
 const RIVER_PTS = toV2List(RIVER.pts);
@@ -42,8 +42,9 @@ const STYLES = {
 };
 const STYLE_CELL = { lifen: 46, republican: 52, skyline: 105, modern: 82, oldtown: 50, wuchang: 52, glass: 92, campus: 72, whu: 58, redsteel: 74 };
 
-/** 逐实例 UV 重映射:同一张贴图按楼体宽高取不同区域 */
-function patchUV(m) {
+/** 逐实例 UV 重映射:同一张贴图按楼体宽高取不同区域;
+ *  法线/粗糙度/凹凸贴图按额外倍率加密(照片纹理的物理尺寸 ≠ 窗格尺寸) */
+function patchUV(m, texK = 1) {
   patchMaterial(m, 'aUv', (shader) => {
     shader.vertexShader = 'attribute vec4 aUv;\n' + shader.vertexShader.replace(
       '#include <uv_vertex>',
@@ -53,6 +54,15 @@ function patchUV(m) {
       #endif
       #ifdef USE_EMISSIVEMAP
         vEmissiveMapUv = vEmissiveMapUv * aUv.zw + aUv.xy;
+      #endif
+      #ifdef USE_NORMALMAP
+        vNormalMapUv = vNormalMapUv * aUv.zw * ${texK.toFixed(2)} + aUv.xy;
+      #endif
+      #ifdef USE_ROUGHNESSMAP
+        vRoughnessMapUv = vRoughnessMapUv * aUv.zw * ${texK.toFixed(2)} + aUv.xy;
+      #endif
+      #ifdef USE_BUMPMAP
+        vBumpMapUv = vBumpMapUv * aUv.zw + aUv.xy;
       #endif`
     );
   });
@@ -66,12 +76,26 @@ export function buildCity({ exclusions = [], seed = 20261001 } = {}) {
   const windowsTex = makeWindowTexture();
   const brickTex = makeBrickTexture();
 
+  // 照片级 CC0 贴图(Poly Haven / three.js 示例,见 docs/ATTRIBUTION.md)
+  const brickDiff = loadTexture('./assets/textures/brick_diffuse.jpg');
+  const brickBump = loadTexture('./assets/textures/brick_bump.jpg', { srgb: false });
+  const concDiff = loadTexture('./assets/textures/rough_concrete_diff_2k.jpg');
+  const concNor = loadTexture('./assets/textures/rough_concrete_nor_gl_2k.jpg', { srgb: false });
+  const concRough = loadTexture('./assets/textures/rough_concrete_rough_2k.jpg', { srgb: false });
+
   const group = new THREE.Group();
   group.name = 'city';
 
   const buckets = {};
-  const details = { cap: [], antenna: [], pitch: [] };
+  const details = { cap: [], antenna: [], pitch: [], parapet: [], tank: [], ac: [], shop: [], crown: [] };
   const mats = { wall: [], roof: [], misc: [] };
+  let shopMatRef = null;
+
+  /** 局部坐标(相对建筑中心,含旋转)→ 世界坐标 */
+  const local = (x, z, lx, lz, rot) => {
+    const c = Math.cos(rot), s = Math.sin(rot);
+    return [x + lx * c - lz * s, z + lx * s + lz * c];
+  };
 
   for (const d of DISTRICTS) {
     const style = STYLES[d.style] || STYLES.modern;
@@ -150,6 +174,48 @@ export function buildCity({ exclusions = [], seed = 20261001 } = {}) {
         if (hMeters > 90 && rand() > 0.5) {
           details.antenna.push({ x, z, y: ground + hShaft, h: 6 + rand() * 18 });
         }
+
+        /* ---- 立面与屋顶细节件(治"方块感":女儿墙/水箱/空调外机/商铺基座/楼冠) ---- */
+        const hTop = ground + hShaft;
+        // 女儿墙:顶面四边矮墙
+        if (hShaft > 15) {
+          const pw = 0.9;
+          for (const [ex, ez, rw, rd] of [
+            [0, -(fd / 2 - 0.2), fw, 0.4], [0, fd / 2 - 0.2, fw, 0.4],
+            [-(fw / 2 - 0.2), 0, 0.4, fd], [fw / 2 - 0.2, 0, 0.4, fd],
+          ]) {
+            const [px, pz] = local(x, z, ex, ez, yRot);
+            details.parapet.push({ x: px, z: pz, y: hTop, w: rw, h: pw, d: rd, rot: yRot, tint: '#ffffff', shade: 0.92 });
+          }
+        }
+        // 屋顶水箱/电梯机房
+        if (rand() < 0.62) {
+          const [tx, tz] = local(x, z, (rand() - 0.5) * fw * 0.4, (rand() - 0.5) * fd * 0.4, yRot);
+          const tw = Math.min(fw, fd) * (0.2 + rand() * 0.14);
+          details.tank.push({ x: tx, z: tz, y: hTop, w: tw, h: 2.0 + rand() * 1.8, d: tw * 0.85, rot: yRot + (rand() - 0.5) * 0.3 });
+        }
+        // 空调外机:立面悬挂(低层建筑为主)
+        if (hShaft < 60 && fw > 8) {
+          const n = 2 + Math.floor(rand() * 4);
+          for (let k = 0; k < n; k++) {
+            const side = Math.floor(rand() * 4);
+            const hy = ground + 3 + rand() * (hShaft - 5);
+            const lx = side < 2 ? 0 : (side === 2 ? fw / 2 + 0.3 : -fw / 2 - 0.3);
+            const lz = side === 0 ? fd / 2 + 0.3 : side === 1 ? -fd / 2 - 0.3 : (rand() - 0.5) * fd * 0.7;
+            const lxx = side < 2 ? (rand() - 0.5) * fw * 0.7 : lx;
+            const [ax, az] = local(x, z, lxx, lz, yRot);
+            details.ac.push({ x: ax, z: az, y: hy, w: 1.15, h: 0.8, d: 0.5, rot: yRot + (side >= 2 ? Math.PI / 2 : 0) });
+          }
+        }
+        // 商铺基座:临街底层深色 storefront 带
+        if (hShaft > 18) {
+          const sh = Math.min(4.4, hShaft * 0.24);
+          details.shop.push({ x, z, y: ground, w: fw + 0.3, h: sh, d: fd + 0.3, rot: yRot, tint: '#3a3f46', shade: 1 });
+        }
+        // 楼冠:高层顶部收分冠部
+        if (hMeters > 60 && rand() < 0.35) {
+          details.crown.push({ x, z, y: hTop, w: fw * 0.72, h: 2.6 + rand() * 3.2, d: fd * 0.72, rot: yRot });
+        }
       }
     }
   }
@@ -160,24 +226,37 @@ export function buildCity({ exclusions = [], seed = 20261001 } = {}) {
   for (const [styleKey, bucket] of Object.entries(buckets)) {
     if (!bucket.items.length) continue;
     const st = STYLES[styleKey];
-    const map = st.brick ? brickTex : facade;
+    // 贴图策略:砖构风格用照片砖纹(diffuse+bump);其余用程序窗格 + 照片混凝土法线/粗糙度
+    let map, extra = {};
+    if (st.brick && brickDiff) {
+      map = brickDiff;
+      extra = brickBump ? { bumpMap: brickBump, bumpScale: 0.35 } : {};
+    } else {
+      map = facade;
+      if (concNor) extra = { normalMap: concNor, ...(concRough ? { roughnessMap: concRough } : {}), normalScale: new THREE.Vector2(0.55, 0.55) };
+    }
     const sideMat = new THREE.MeshStandardMaterial({
       color: new THREE.Color(st.side),
       map, emissiveMap: windowsTex,
       emissive: new THREE.Color('#ffc98a'),
       emissiveIntensity: 0,
       roughness: st.rough, metalness: st.metal,
+      ...extra,
     });
-    patchUV(sideMat);
+    patchUV(sideMat, st.brick ? 1 : 3.5);
     registerEnv(sideMat, st.env);
-    const roofMat = new THREE.MeshStandardMaterial({ color: new THREE.Color(st.roof), roughness: 0.95, metalness: 0.05 });
+    const roofMat = new THREE.MeshStandardMaterial({
+      color: new THREE.Color(st.roof), roughness: 0.95, metalness: 0.05,
+      ...(concNor && !st.brick ? { normalMap: concNor, normalScale: new THREE.Vector2(0.3, 0.3) } : {}),
+    });
+    patchUV(roofMat, 3.5);
     registerEnv(roofMat, st.env * 0.55);
     const darkMat = new THREE.MeshStandardMaterial({ color: new THREE.Color('#5a5f63'), roughness: 1 });
     registerEnv(darkMat, st.env * 0.5);
     const materials = [sideMat, sideMat, roofMat, darkMat, sideMat, sideMat];
     mats.wall.push(sideMat); mats.roof.push(roofMat); mats.misc.push(darkMat);
 
-    const uvOpts = { uvU: st.brick ? 9 : 28, uvV: st.brick ? 6 : 24 };
+    const uvOpts = { uvU: st.brick ? 2.6 : 28, uvV: st.brick ? 2.6 : 24 };
     const mesh = instancedBoxes(bucket.items, materials, uvOpts);
     mesh.name = 'buildings:' + styleKey;
     group.add(mesh);
@@ -227,6 +306,57 @@ export function buildCity({ exclusions = [], seed = 20261001 } = {}) {
     group.add(m); meshes.push(m);
     mats.misc.push(capMat);
   }
+  // 女儿墙(浅色混凝土,同楼体色系)
+  if (details.parapet.length) {
+    const pm = new THREE.MeshStandardMaterial({ color: 0xb8bcc0, roughness: 0.9 });
+    registerEnv(pm, 0.5);
+    const m = instancedBoxes(details.parapet, pm, { uvU: 8, uvV: 1 });
+    m.name = 'parapets';
+    group.add(m); meshes.push(m);
+    mats.misc.push(pm);
+  }
+  // 屋顶水箱/机房(银灰金属)
+  if (details.tank.length) {
+    const tm = new THREE.MeshStandardMaterial({ color: 0x9aa2a8, roughness: 0.55, metalness: 0.45 });
+    registerEnv(tm, 0.8);
+    const m = instancedBoxes(details.tank, tm, { uvU: 4, uvV: 3 });
+    m.name = 'tanks';
+    group.add(m); meshes.push(m);
+    mats.misc.push(tm);
+  }
+  // 空调外机(米白塑料壳)
+  if (details.ac.length) {
+    const am = new THREE.MeshStandardMaterial({ color: 0xd8d5cc, roughness: 0.65 });
+    registerEnv(am, 0.5);
+    const m = instancedBoxes(details.ac, am, { uvU: 1.2, uvV: 0.8 });
+    m.name = 'acUnits';
+    m.castShadow = false;
+    group.add(m); meshes.push(m);
+    mats.misc.push(am);
+  }
+  // 商铺基座(深色 storefront,夜间亮一条)
+  if (details.shop.length) {
+    const sm = new THREE.MeshStandardMaterial({
+      color: 0x2e3238, roughness: 0.6,
+      emissive: new THREE.Color('#ffb85e'), emissiveIntensity: 0,
+    });
+    sm.userData.shopGlow = true;
+    registerEnv(sm, 0.7);
+    const m = instancedBoxes(details.shop, sm, { uvU: 12, uvV: 4 });
+    m.name = 'shopBases';
+    group.add(m); meshes.push(m);
+    mats.misc.push(sm);
+    shopMatRef = sm;
+  }
+  // 楼冠
+  if (details.crown.length) {
+    const cm = new THREE.MeshStandardMaterial({ color: 0xa9b0b6, roughness: 0.5, metalness: 0.35 });
+    registerEnv(cm, 0.9);
+    const m = instancedBoxes(details.crown, cm, { uvU: 10, uvV: 4 });
+    m.name = 'crowns';
+    group.add(m); meshes.push(m);
+    mats.misc.push(cm);
+  }
   // 天线
   if (details.antenna.length) {
     const antMat = new THREE.MeshStandardMaterial({ color: 0x7b8288, roughness: 0.6, metalness: 0.4 });
@@ -249,6 +379,7 @@ export function buildCity({ exclusions = [], seed = 20261001 } = {}) {
   /* 夜间灯光 */
   function setNight(k) {
     for (const b of allBuckets) b.sideMat.emissiveIntensity = k * (STYLES[b.styleKey]?.emissive ?? 0.7);
+    if (shopMatRef) shopMatRef.emissiveIntensity = k * 1.8;   // 底层商铺灯带
   }
 
   return {

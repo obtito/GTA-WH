@@ -1,37 +1,25 @@
 #!/usr/bin/env bash
-# Pull full claims (including P625 precision and sources) for every curated QID.
-# Batches of 10 keep the proxy happy; each batch retries up to 4 times.
+# Pull full claims (P625 precision + sources) for every curated QID.
+# Writes to artifacts/claims/ and never deletes anything: the sandbox's safety
+# hook intercepts rm and left the previous run with a half-empty directory.
+# The QID list comes from a file python writes in binary mode, because a stray
+# CR on Windows turns the whole ids= batch into "no-such-entity".
 set -u
 cd "$(dirname "$0")/.."
-OUT=artifacts/entities
+OUT=artifacts/claims
 mkdir -p "$OUT"
 
-MAP=$(python - <<'PY'
-import json
-with open("artifacts/sparql/candidates.json", encoding="utf-8") as fh:
-    items = json.load(fh)["items"]
-print("\n".join(i["qid"] for i in items))
-PY
-)
+python scripts/write_batches.py
 
-TOTAL=$(printf '%s\n' "$MAP" | wc -l)
-BATCH_SIZE=10
-echo "fetching $TOTAL entities in batches of $BATCH_SIZE"
-i=0
+total=$(wc -l < "$OUT/batches.txt")
 batch=0
-for line in $(python -c "
-import json,sys
-items=json.load(open('artifacts/sparql/candidates.json',encoding='utf-8'))['items']
-qids=[i['qid'] for i in items]
-n=10
-for k in range(0,len(qids),n):
-    print('|'.join(qids[k:k+n]).replace(' ','_'))
-"); do
+while IFS= read -r ids; do
+  [ -z "$ids" ] && continue
   batch=$((batch + 1))
   slug=$(printf 'b%03d' "$batch")
   for attempt in 1 2 3 4; do
-    code=$(curl -s -m 60 -G "https://www.wikidata.org/w/api.php" \
-      --data-urlencode "action=wbgetentities" --data-urlencode "ids=$line" \
+    code=$(curl -s -m 90 -G "https://www.wikidata.org/w/api.php" \
+      --data-urlencode "action=wbgetentities" --data-urlencode "ids=$ids" \
       --data-urlencode "props=claims|labels|descriptions" \
       --data-urlencode "languages=zh|zh-hans|en" \
       --data-urlencode "format=json" --data-urlencode "formatversion=2" \
@@ -39,6 +27,6 @@ for k in range(0,len(qids),n):
     [ "$code" = "200" ] && [ -s "$OUT/$slug.json" ] && break
     sleep 2
   done
-  if [ $((batch % 5)) -eq 0 ]; then echo "  batch $batch/$TOTAL-ish latest=$code"; fi
-done
-echo "done: batch=$batch"
+  echo "batch $batch/$total http=$code size=$(wc -c <"$OUT/$slug.json")"
+done < "$OUT/batches.txt"
+echo "done: $batch batches"

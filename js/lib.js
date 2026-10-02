@@ -28,6 +28,18 @@ export function mat(hex, opts = {}) {
   return m;
 }
 
+/* ---------------- 照片级贴图加载(Poly Haven CC0,assets/textures/) ---------------- */
+let _texLoader = null;
+export function loadTexture(url, { srgb = true, aniso = 4 } = {}) {
+  if (typeof document === 'undefined') return null;
+  if (!_texLoader) _texLoader = new THREE.TextureLoader();
+  const t = _texLoader.load(url);
+  t.wrapS = t.wrapT = THREE.RepeatWrapping;
+  if (srgb) t.colorSpace = THREE.SRGBColorSpace;
+  t.anisotropy = aniso;
+  return t;
+}
+
 /* ---------------- 程序化贴图 ---------------- */
 function canvas(size) {
   const c = document.createElement('canvas');

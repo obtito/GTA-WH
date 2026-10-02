@@ -91,8 +91,8 @@ export class Vehicle {
     const gy = groundY(nx, nz, this.mesh.position.y);
     this.mesh.position.set(nx, lerp(this.mesh.position.y, Math.max(gy, this.inWater ? 0.55 : gy), 1 - Math.pow(0.0001, dt)), nz);
     this.mesh.rotation.y = dir + this.drift * 0.9;
-    // 车身侧倾 + 俯仰(手感)
-    this.mesh.rotation.z = lerp(this.mesh.rotation.z, -this.steer * clamp(Math.abs(this.speed) / 40, 0, 1) * 0.09, 1 - Math.pow(0.001, dt));
+    // 车身侧倾(向外倾)+ 俯仰(手感)
+    this.mesh.rotation.z = lerp(this.mesh.rotation.z, this.steer * clamp(Math.abs(this.speed) / 40, 0, 1) * 0.09, 1 - Math.pow(0.001, dt));
     this.mesh.rotation.x = lerp(this.mesh.rotation.x, clamp((this.speed - this.lastSpeed || 0) * 0.02, -0.06, 0.06), 0.1);
     this.lastSpeed = this.speed;
 

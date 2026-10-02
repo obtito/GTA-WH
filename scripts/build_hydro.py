@@ -208,16 +208,31 @@ def build_river(name, anchors):
     errors = leave_one_out(ordered, vertical)
     values = sorted(errors)
     median = values[len(values) // 2]
-    for item, err in zip(ordered, errors):
+    for i, (item, err) in enumerate(zip(ordered, errors)):
         item["loo_error_m"] = round(err, 1)
-        item["flag"] = "suspect" if err > max(300.0, 3.0 * median) else "ok"
+        endpoint = i == 0 or i == len(ordered) - 1
+        item["position"] = "endpoint" if endpoint else "interior"
+        # Removing an end anchor forces the LOO fit to extrapolate, so a large
+        # number out there says more about extrapolation than about the datum.
+        if not endpoint and err > max(300.0, 3.0 * median):
+            item["flag"] = "suspect_coordinate"
+        elif err > max(300.0, 3.0 * median):
+            item["flag"] = "endpoint_extrapolation"
+        else:
+            item["flag"] = "ok"
 
+    reliable = [a for a in ordered if a["flag"] != "suspect_coordinate"]
+    _, reliable_curve, _ = make_curve(reliable, vertical)
     polyline = thin(curve)
-    print(f"  {name}: 锚点 {len(ordered)}  留一交叉验证 median={median:.0f} m  "
-          f"p90={values[int(len(values)*0.9)]:.0f} m  max={values[-1]:.0f} m")
-    suspects = [a["name"] for a in ordered if a["flag"] == "suspect"]
+    polyline_reliable = thin(reliable_curve)
+
+    confirmed = [a["loo_error_m"] for a in ordered if a["flag"] == "ok"]
+    print(f"  {name}: 锚点 {len(ordered)}（可靠 {len(reliable)}）"
+          f"  可靠点留一 median={sorted(confirmed)[len(confirmed)//2]:.0f} m  "
+          f"max={max(confirmed):.0f} m")
+    suspects = [a["name"] for a in ordered if a["flag"] == "suspect_coordinate"]
     if suspects:
-        print(f"      存疑坐标（偏差显著大于其余）：{suspects}")
+        print(f"      存疑坐标（已单独出可靠版）：{suspects}")
 
     return {
         "name": name,
@@ -231,6 +246,7 @@ def build_river(name, anchors):
             "max": round(values[-1], 1),
         },
         "polyline": polyline,
+        "polyline_reliable": polyline_reliable,
     }
 
 
