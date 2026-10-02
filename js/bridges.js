@@ -377,16 +377,44 @@ function buildArchBridge(br, group) {
   return { br, info, deckY };
 }
 
+/* ==================== 桥体夜景灯带 ==================== */
+/** 沿桥面两侧拉两串暖光点(灯柱间距 24 m,用小实例块) */
+function deckLights(info, deckY, roadW, group, lightAgg) {
+  const items = [];
+  for (const side of [-1, 1]) {
+    const off = (roadW / 2 - 0.6) * side;
+    const n = Math.floor(info.L / 24);
+    for (let i = 0; i <= n; i++) {
+      const t = i / n;
+      const x = info.ax + info.dx * info.L * t + info.px * off;
+      const z = info.az + info.dz * info.L * t + info.pz * off;
+      items.push({ x, z, y: deckY(t) + 1.5, w: 0.5, h: 1.4, d: 0.5, rot: Math.atan2(info.dx, info.dz) });
+    }
+  }
+  const lm = mat('#ffe2a8', { emissive: '#ffcf82', emissiveIntensity: 0.06, rough: 0.4 });
+  lm.userData.nightGlow = 3.6;
+  lightAgg.push(lm);
+  const mesh = instancedBoxes(items, lm, { uvU: 2, uvV: 2 });
+  if (mesh) { mesh.castShadow = false; group.add(mesh); }
+}
+
 /* ==================== 汇总 ==================== */
 export function buildBridges() {
   const group = new THREE.Group();
   group.name = 'bridges';
   const updates = [];
+  const lightMats = [];
   for (const br of BRIDGES) {
+    const info = axisInfo(br);
+    const deckY = makeDeckY(br, info);
     if (br.kind === 'truss') buildTrussBridge(br, group, updates);
     else if (br.kind === 'cablestayed') buildCableStayed(br, group);
     else if (br.kind === 'suspension3') buildSuspension3(br, group);
     else if (br.kind === 'arch') buildArchBridge(br, group);
+    deckLights(info, deckY, br.kind === 'truss' ? 22 : 26, group, lightMats);
   }
-  return { group, updates };
+  return {
+    group, updates,
+    setNight(k) { for (const m of lightMats) m.emissiveIntensity = 0.06 + k * 3.6; },
+  };
 }

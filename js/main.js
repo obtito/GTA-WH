@@ -4,7 +4,7 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/OrbitControls.js';
 import { Sky } from 'three/addons/Sky.js';
 import { buildGround, buildMountains, createWaterMaterial, buildWater, buildRoads, terrainHeight } from './world.js';
-import { buildCity, buildTrees, buildCars } from './city.js';
+import { buildCity, buildTrees, buildCars, buildStreetLights } from './city.js';
 import { buildLandmarks, landmarkSites } from './landmarks.js';
 import { buildBridges } from './bridges.js';
 import { createEnvironment } from './environment.js';
@@ -25,7 +25,7 @@ const elSpeedBox = $('#speedBox');
 
 /* ==================== 全局 ==================== */
 let renderer, scene, camera, controls, sky, sunLight, hemi, moonLight, stars;
-let waterMat, waterGroup, roads, city, trees, cars, bridges, landmarks;
+let waterMat, waterGroup, roads, city, trees, cars, bridges, landmarks, lights, beacon;
 let game, hud;
 let env = null;
 let timeHours = 15, autoTime = false;
@@ -143,6 +143,8 @@ function applyTime(hours) {
   city?.setNight(s.night);
   cars?.setNight(s.night);
   landmarks?.setNight(s.night);
+  lights?.setNight(s.night);
+  bridges?.setNight(s.night);
 
   scene.fog.color.copy(FOG_DAY.clone().lerp(FOG_NIGHT, clamp(s.night + s.dusk * 0.5, 0, 1)));
   scene.fog.far = lerp(16000, 9000, s.night);
@@ -186,19 +188,31 @@ step('栽种行道树与樱花', () => {
   scene.add(trees.group);
   console.log(`[GTA-WH] 树木: ${trees.count}`);
 });
-step('放行车流', () => {
+step('放行车流与路灯', () => {
   cars = buildCars(roads.centerlines, 170);
   scene.add(cars.group);
+  lights = buildStreetLights(roads.centerlines);
+  scene.add(lights.group);
+  console.log(`[GTA-WH] 路灯: ${lights.count}`);
+  // 绿地中心塔顶航空障碍灯(红,闪烁)
+  const [gx, gz] = toV2(114.3366, 30.6152);
+  beacon = new THREE.Mesh(
+    new THREE.SphereGeometry(3.2, 10, 8),
+    new THREE.MeshBasicMaterial({ color: 0xff2020 }),
+  );
+  beacon.position.set(gx, Math.max(terrainHeight(gx, gz), 0) + 468, gz);
+  scene.add(beacon);
 });
 step('装配玩法与 HUD', () => {
   hud = initHUD({
     onGoto: (item) => {
-      // 观察模式飞到地标
+      // 观察模式飞到地标(按建筑高度自适应取景:高楼看远,小景看近)
       game.setMode('orbit', true);
       const [x, z] = toV2(item.lon, item.lat);
-      const y = Math.max(terrainHeight(x, z), 0) + (item.heightM || 20) * 1.6 + 60;
-      camera.position.set(x - y * 0.85, y, z + y * 0.85);
-      controls.target.set(x, Math.max(terrainHeight(x, z), 0) + (item.heightM || 20) * 0.5, z);
+      const h = item.heightM || 20;
+      const dist = h > 200 ? h * 2.2 : h * 2.8 + 90;
+      camera.position.set(x - dist * 0.72, Math.max(terrainHeight(x, z), 0) + h * 0.8 + 26, z + dist * 0.78);
+      controls.target.set(x, Math.max(terrainHeight(x, z), 0) + h * 0.45, z);
       controls.update();
     },
     onToggleTour: () => hud.setTour(true),
@@ -248,6 +262,9 @@ function animate() {
 
   // 桥上列车
   for (const u of bridges?.updates || []) u(dt);
+
+  // 塔顶航空障碍灯闪烁
+  if (beacon) beacon.visible = (clock.elapsedTime % 1.6) < 0.9;
 
   // 车流
   cars?.update(dt);

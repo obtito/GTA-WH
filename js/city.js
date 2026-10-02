@@ -3,7 +3,7 @@
 import * as THREE from 'three';
 import { toV2, toV2List, makeRandom, clamp, pointInPolygon, distToPolyline } from './geo.js';
 import { DISTRICTS, RIVER, LAKES, ROADS } from './data.js';
-import { makeFacadeTexture, makeWindowTexture, makeBrickTexture, patchMaterial, instancedBoxes, registerEnv } from './lib.js';
+import { mat, makeFacadeTexture, makeWindowTexture, makeBrickTexture, patchMaterial, instancedBoxes, registerEnv } from './lib.js';
 import { terrainHeight } from './world.js';
 
 const RIVER_PTS = toV2List(RIVER.pts);
@@ -359,6 +359,47 @@ export function buildTrees({ exclusions = [], seed = 4242 } = {}) {
   trunk.castShadow = crown.castShadow = true;
   group.add(trunk, crown);
   return { group, count: n, mats: [trunkMat, crownMat] };
+}
+
+/* ============ 路灯(主干道,夜间点亮) ============ */
+export function buildStreetLights(centerlines, seed = 777) {
+  const rand = makeRandom(seed);
+  const group = new THREE.Group();
+  group.name = 'streetlights';
+  const poles = [], heads = [];
+  for (const l of centerlines) {
+    if (l.w < 24) continue;
+    const pts = l.pts;
+    for (let i = 1; i < pts.length; i++) {
+      const [ax, az] = pts[i - 1], [bx, bz] = pts[i];
+      const d = Math.hypot(bx - ax, bz - az);
+      const n = Math.floor(d / 48);
+      const dx = (bx - ax) / d, dz = (bz - az) / d;
+      for (let k = 0; k < n; k++) {
+        const t = (k + 0.5) / n;
+        const side = ((i + k) % 2 === 0) ? 1 : -1;         // 两侧交替
+        const off = (l.w / 2 + 1.5) * side;
+        const x = ax + (bx - ax) * t - dz * off;
+        const z = az + (bz - az) * t + dx * off;
+        const gy = Math.max(terrainHeight(x, z), 0);
+        poles.push({ x, z, y: gy, w: 0.22, h: 9.5, d: 0.22 });
+        heads.push({ x: x + dz * off * -0.12, z: z - dx * off * -0.12, y: gy + 9.3, w: 1.6, h: 0.5, d: 0.8 });
+      }
+    }
+  }
+  const poleMat = mat('#4d5256', { rough: 0.7, metal: 0.3 });
+  const poleMesh = instancedBoxes(poles, poleMat, { uvU: 4, uvV: 9 });
+  if (poleMesh) { poleMesh.castShadow = false; group.add(poleMesh); }
+
+  const headMat = mat('#fff1c8', { emissive: '#ffdf9e', emissiveIntensity: 0.05, rough: 0.4 });
+  headMat.userData.nightGlow = 3.4;
+  const headMesh = instancedBoxes(heads, headMat, { uvU: 2, uvV: 2 });
+  if (headMesh) { headMesh.castShadow = false; group.add(headMesh); }
+
+  return {
+    group, count: poles.length,
+    setNight(k) { headMat.emissiveIntensity = 0.05 + k * 3.4; },
+  };
 }
 
 /* ============ 车流 ============ */
