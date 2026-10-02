@@ -39,6 +39,7 @@
 | Apache-2.0 | 建筑/路网数据  | [OpenStreetMap](https://www.openstreetmap.org) 经 Overpass API 提取(核心区 114.22–114.42°E, 30.50–30.64°N) | **ODbL 1.0** | © OpenStreetMap contributors;再分发需同许可署名 |
 | Copyright © 2017 Google Draco Authors |
 | 建筑/路网数据  | [OpenStreetMap](https://www.openstreetmap.org) 经 Overpass API 提取(核心区 114.22–114.42°E, 30.50–30.64°N) | **ODbL 1.0** | © OpenStreetMap contributors;再分发需同许可署名 |
+| 建筑/路网数据 `data/osm/` | [OpenStreetMap](https://www.openstreetmap.org) 经 Overpass API 提取(核心区 114.22-114.42E, 30.50-30.64N) | ODbL 1.0 | (c) OpenStreetMap contributors;再分发需同许可署名 |
 | `assets/models/wuhan-greenland-center/` | 建筑/路网数据  | [OpenStreetMap](https://www.openstreetmap.org) 经 Overpass API 提取(核心区 114.22–114.42°E, 30.50–30.64°N) | **ODbL 1.0** | © OpenStreetMap contributors;再分发需同许可署名 |
 | [wuhan-greenland-center](https://sketchfab.com/3d-models/wuhan-greenland-center-795a3cec308d44a985dacfda99239a3e) by **Void**(Sketchfab) | 建筑/路网数据  | [OpenStreetMap](https://www.openstreetmap.org) 经 Overpass API 提取(核心区 114.22–114.42°E, 30.50–30.64°N) | **ODbL 1.0** | © OpenStreetMap contributors;再分发需同许可署名 |
 | CC Attribution | 建筑/路网数据  | [OpenStreetMap](https://www.openstreetmap.org) 经 Overpass API 提取(核心区 114.22–114.42°E, 30.50–30.64°N) | **ODbL 1.0** | © OpenStreetMap contributors;再分发需同许可署名 |
