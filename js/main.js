@@ -39,8 +39,8 @@ const BUILD_STEPS = [];
 
 /* Sketchfab 武汉真实地标楼群(Void.com,CC-BY,按实测高度归一化放置) */
 const REAL_TOWERS = [
-  { id: 'greenland-real', dir: 'wuhan-greenland-center', lon: 114.3366, lat: 30.6152, h: 475, r: 80, replace: 'lm:greenland' },
-  { id: 'wuhan-center', dir: 'wuhan-center', lon: 114.3295, lat: 30.4925, h: 438, r: 75 },
+  { id: 'greenland-real', dir: 'wuhan-greenland-center', lon: 114.317475, lat: 30.585942, h: 475.6, r: 80, replace: 'lm:greenland' },  // Q143235 ±0.3m
+  { id: 'wuhan-center', dir: 'wuhan-center', lon: 114.239670, lat: 30.596650, h: 438, r: 75 },  // Q2484373 ±1.1m 王家墩CBD
   { id: 'ctf-finance', dir: 'wuhan-ctf-finance', lon: 114.3420, lat: 30.6120, h: 400, r: 70 },
   { id: 'shipping-center', dir: 'wuhan-shipping-center', lon: 114.3490, lat: 30.6230, h: 236, r: 65 },
   { id: 'panhai-times', dir: 'wuhan-panhai-times', lon: 114.3085, lat: 30.5955, h: 200, r: 60 },

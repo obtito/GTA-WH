@@ -15,6 +15,8 @@
 | `assets/models/wuhan-ctf-finance/` | [wuhan-ctf-finance](https://sketchfab.com/3d-models/wuhanctf-finance-center-ae06b8933f7e4b5fb749425afb2e454e) by **Void**(Sketchfab) | CC Attribution | 保留本表即视为署名 |
 | `assets/models/wuhan-shipping-center/` | [wuhan-shipping-center](https://sketchfab.com/3d-models/wuhan-yangtze-river-shipping-center-fc4c62c332234ef6abffac9d87e4bc2f) by **Void**(Sketchfab) | CC Attribution | 保留本表即视为署名 |
 | `assets/models/wuhan-panhai-times/` | [wuhan-panhai-times](https://sketchfab.com/3d-models/wuhan-pan-hai-times-center-landmark-tower-c5dfa1384c0b4ae3a08a49e2ed7ae2e4) by **Void**(Sketchfab) | CC Attribution | 保留本表即视为署名 |
+| `assets/models/yellow-crane-tower/` | [Yellow Crane Tower](https://sketchfab.com/3d-models/yellow-crane-tower-8d56b5d7f23246be91da35b7a33328fe) by **CUNO/jiannibang**(Sketchfab,摄影测量 144 张照片重建) | CC-BY 4.0 | 保留本表即视为署名 |
+| `assets/models/tongling-railway-bridge/` | [铜陵长江公铁大桥](https://sketchfab.com/3d-models/c29ea5437cfd4569ad86fbefcc64d15b) by **hello123D**(Sketchfab) | CC-BY 4.0 | 保留本表即视为署名(改造为武汉长江大桥样式) |
 
 ## 新增资产守则
 

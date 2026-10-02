@@ -28,7 +28,7 @@ console.log('== 桥面高程查询(bridgeHeightAt) ==');
 {
   const { group: bg } = buildBridges();
   // 长江大桥跨中桥面应约 deckH
-  const [mx, mz] = toV2(114.2772, 30.5494);
+  const [mx, mz] = toV2(114.282787, 30.552201);
   const y = bridgeHeightAt(mx, mz);
   ok(y != null && y > 15 && y < 40, `长江大桥跨中桥面 y=${y?.toFixed(1)} m(期望 ~26)`);
   // 远离桥面应为 null

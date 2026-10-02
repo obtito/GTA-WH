@@ -70,8 +70,9 @@ console.log('== 4. 地标不落水 ==');
     const dHan = distToPolyline(x, z, hanPts);
     const inLake = lakePolys.some((p) => pointInPolygon(x, z, p));
     const onWater = dMain < 600 || dHan < 150 || inLake;
-    // 江滩例外:它就在江边
+    // 临江建筑例外:汉口江滩(滨江公园)与晴川阁(禹功矶,立在水线高台上)
     if (lm.id === 'hankoujiangtan') { ok(dMain < 900 && dMain > 300, `江滩贴岸(距江心 ${Math.round(dMain)} m)`); continue; }
+    if (lm.id === 'qingchuan') { ok(dMain < 650 && dMain > 450, `晴川阁临江矶头(距江心 ${Math.round(dMain)} m)`); continue; }
     ok(!onWater, `地标 ${lm.name} 在陆地上(距长江 ${Math.round(dMain)} m,汉江 ${Math.round(dHan)} m,湖内=${inLake})`);
   }
 }
