@@ -4,6 +4,7 @@ import * as THREE from 'three';
 import { toV2, toV2List, makeRandom, clamp, pointInPolygon, distToPolyline } from './geo.js';
 import { DISTRICTS, RIVER, LAKES, ROADS } from './data.js';
 import { mat, loadTexture, makeFacadeTexture, makeWindowTexture, makeBrickTexture, patchMaterial, instancedBoxes, registerEnv } from './lib.js';
+import { loadMergedGLB } from './assets.js';
 import { terrainHeight } from './world.js';
 
 const RIVER_PTS = toV2List(RIVER.pts);
@@ -533,31 +534,27 @@ export function buildStreetLights(centerlines, seed = 777) {
   };
 }
 
-/* ============ 车流 ============ */
-export function buildCars(centerlines, count = 160, seed = 999) {
+/* ============ 车流(Kenney CC0 车模实例化;加载失败回退方块) ============ */
+export async function buildCars(centerlines, count = 170, seed = 999) {
   const rand = makeRandom(seed);
   const lines = centerlines.filter((l) => l.w >= 24);
-  if (!lines.length) return { group: new THREE.Group(), update: () => {}, setNight: () => {} };
-  const geo = new THREE.BoxGeometry(1, 1, 1);
-  const carMat = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.35, metalness: 0.35 });
-  registerEnv(carMat, 1.25);
-  const mesh = new THREE.InstancedMesh(geo, carMat, count);
-  mesh.frustumCulled = false;
-  const cars = [];
-  const palette = ['#d8dde3', '#3b4250', '#8d3a33', '#2f5b8b', '#c9a227', '#37474f', '#6b7280'];
-  const col = new THREE.Color();
-  const dirs = [];
-  for (let i = 0; i < count; i++) {
-    const li = (rand() * lines.length) | 0;
-    dirs.push(rand() > 0.5 ? 1 : -1);
-    cars.push({
-      li, t: rand(), speed: 0,
-      lane: (rand() > 0.5 ? 1 : -1) * (lines[li].w * 0.22),
-    });
-    col.set(palette[(rand() * palette.length) | 0]);
-    mesh.setColorAt(i, col);
+  const group = new THREE.Group();
+  group.name = 'cars';
+  if (!lines.length) return { group, update: () => {}, setNight: () => {} };
+
+  // 车模:合并 GLB → 单几何实例化
+  const MODELS = ['./assets/cars/sedan.glb', './assets/cars/taxi.glb', './assets/cars/suv.glb',
+    './assets/cars/van.glb', './assets/cars/police.glb', './assets/cars/hatchback-sports.glb'];
+  const models = [];
+  for (const u of MODELS) {
+    const m = await loadMergedGLB(u);
+    if (!m) continue;
+    // 归一化:4.6 m 长,底面贴 0
+    m.geometry.computeBoundingBox();
+    const bb = m.geometry.boundingBox;
+    const len = Math.max(bb.max.z - bb.min.z, bb.max.x - bb.min.x, 0.01);
+    models.push({ ...m, s: 4.6 / len, offY: -bb.min.y * (4.6 / len) });
   }
-  if (mesh.instanceColor) mesh.instanceColor.needsUpdate = true;
 
   const meta = lines.map((l) => {
     const lens = [];
@@ -566,15 +563,61 @@ export function buildCars(centerlines, count = 160, seed = 999) {
       const d = Math.hypot(l.pts[i][0] - l.pts[i - 1][0], l.pts[i][1] - l.pts[i - 1][1]);
       lens.push(d); total += d;
     }
-    // 路面高度剖面(buildRoads 已逐点算好,含堤式抬升)
     const ys = l.ys || l.pts.map(([x, z]) => Math.max(terrainHeight(x, z), 0) + 0.15);
     return { pts: l.pts, ys, lens, total };
   });
-  for (let i = 0; i < count; i++) {
-    cars[i].speed = (14 + rand() * 11) / meta[cars[i].li].total * dirs[i];   // 14–25 m/s
-  }
 
   const dummy = new THREE.Object3D();
+  const cars = [];
+  let meshes = [];
+  const boxMat = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.35, metalness: 0.35 });
+  registerEnv(boxMat, 1.25);
+  const palette = ['#d8dde3', '#3b4250', '#8d3a33', '#2f5b8b', '#c9a227', '#37474f', '#6b7280'];
+
+  if (models.length) {
+    // 每车型一个 InstancedMesh,车辆轮流分配
+    const perModel = Math.ceil(count / models.length);
+    meshes = models.map((m, mi) => {
+      const im = new THREE.InstancedMesh(m.geometry, m.material, perModel);
+      im.frustumCulled = false;
+      im.castShadow = true;
+      im.userData = { s: m.s, offY: m.offY, used: 0 };
+      group.add(im);
+      return im;
+    });
+    for (let i = 0; i < count; i++) {
+      const li = (rand() * lines.length) | 0;
+      const mi = i % models.length;
+      cars.push({
+        li, t: rand(),
+        speed: (14 + rand() * 11) / meta[li].total * (rand() > 0.5 ? 1 : -1),
+        lane: (rand() > 0.5 ? 1 : -1) * (lines[li].w * 0.22),
+        mesh: meshes[mi], idx: meshes[mi].userData.used++,
+      });
+    }
+    for (const im of meshes) im.count = im.userData.used;
+  } else {
+    // 回退:方块车流
+    const geo = new THREE.BoxGeometry(1, 1, 1);
+    const im = new THREE.InstancedMesh(geo, boxMat, count);
+    im.frustumCulled = false;
+    group.add(im);
+    meshes = [im];
+    const col = new THREE.Color();
+    for (let i = 0; i < count; i++) {
+      const li = (rand() * lines.length) | 0;
+      cars.push({
+        li, t: rand(),
+        speed: (14 + rand() * 11) / meta[li].total * (rand() > 0.5 ? 1 : -1),
+        lane: (rand() > 0.5 ? 1 : -1) * (lines[li].w * 0.22),
+        mesh: im, idx: i, box: true,
+      });
+      col.set(palette[(rand() * palette.length) | 0]);
+      im.setColorAt(i, col);
+    }
+    if (im.instanceColor) im.instanceColor.needsUpdate = true;
+  }
+
   function sample(m, t, offset) {
     let target = (((t % 1) + 1) % 1) * m.total;
     for (let i = 0; i < m.lens.length; i++) {
@@ -593,27 +636,31 @@ export function buildCars(centerlines, count = 160, seed = 999) {
   }
 
   function update(dt) {
-    for (let i = 0; i < count; i++) {
+    for (let i = 0; i < cars.length; i++) {
       const c = cars[i];
       c.t += c.speed * dt;
       const m = meta[c.li];
       const [x, z, ang, y] = sample(m, c.t, c.lane);
-      dummy.position.set(x, y + 0.75, z);
+      const ud = c.mesh.userData;
+      if (c.box) {
+        dummy.position.set(x, y + 0.75, z);
+        dummy.scale.set(1.8, 1.5, 4.6);
+      } else {
+        dummy.position.set(x, y + ud.offY, z);
+        dummy.scale.setScalar(ud.s);
+      }
       dummy.rotation.set(0, ang, 0);
-      dummy.scale.set(1.8, 1.5, 4.6);
       dummy.updateMatrix();
-      mesh.setMatrixAt(i, dummy.matrix);
+      c.mesh.setMatrixAt(c.idx, dummy.matrix);
     }
-    mesh.instanceMatrix.needsUpdate = true;
+    for (const im of meshes) im.instanceMatrix.needsUpdate = true;
   }
 
   function setNight(k) {
-    carMat.emissive = new THREE.Color(0xffd9a0);
-    carMat.emissiveIntensity = k * 0.55;
+    boxMat.emissive = new THREE.Color(0xffd9a0);
+    boxMat.emissiveIntensity = k * 0.55;
+    // Kenney 车模无自发光;夜间由路灯/车灯环境承担
   }
 
-  const group = new THREE.Group();
-  group.name = 'cars';
-  group.add(mesh);
-  return { group, update, setNight, count, mats: [carMat] };
+  return { group, update, setNight, count, mats: [boxMat] };
 }

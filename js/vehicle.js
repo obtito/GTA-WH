@@ -44,7 +44,10 @@ export function buildCarMesh(bodyColor = '#c9412e') {
 /* ---------- 车辆控制 ---------- */
 export class Vehicle {
   constructor(scene, x, z, heading = 0) {
-    this.mesh = buildCarMesh();
+    // mesh 为常驻容器:先放程序化车占位,upgradeBody() 可异步换 GLB 车模
+    this.mesh = new THREE.Group();
+    this.body = buildCarMesh();
+    this.mesh.add(this.body);
     this.mesh.position.set(x, groundY(x, z), z);
     this.mesh.rotation.y = heading;
     scene.add(this.mesh);
@@ -54,6 +57,26 @@ export class Vehicle {
     this.wheelSpin = 0;
     this.drift = 0;
     this.inWater = false;
+    this.hasGLB = false;
+  }
+
+  /** 换装 GLB 车模(Kenney Car Kit CC0):归一化到 4.6 m 长、底面贴地 */
+  async upgradeBody(loadGLB, url) {
+    const g = await loadGLB(url);
+    if (!g) return false;
+    const box = new THREE.Box3().setFromObject(g);
+    const len = Math.max(box.max.z - box.min.z, box.max.x - box.min.x, 0.01);
+    g.scale.setScalar(4.6 / len);
+    g.updateMatrixWorld(true);
+    const b2 = new THREE.Box3().setFromObject(g);
+    g.position.y -= b2.min.y;
+    g.position.x -= (b2.max.x + b2.min.x) / 2;
+    g.position.z -= (b2.max.z + b2.min.z) / 2;
+    this.mesh.remove(this.body);
+    this.body = g;
+    this.mesh.add(g);
+    this.hasGLB = true;
+    return true;
   }
 
   update(dt, input, nightK) {
@@ -96,14 +119,30 @@ export class Vehicle {
     this.mesh.rotation.x = lerp(this.mesh.rotation.x, clamp((this.speed - this.lastSpeed || 0) * 0.02, -0.06, 0.06), 0.1);
     this.lastSpeed = this.speed;
 
-    // 车轮滚动
-    this.wheelSpin += this.speed * dt / 0.34;
-    for (const w of this.mesh.userData.wheels) w.rotation.x = this.wheelSpin;
+    // 车轮滚动(程序化车体才有独立轮子;GLB 车模轮子随模型静止)
+    if (this.body.userData.wheels) {
+      this.wheelSpin += this.speed * dt / 0.34;
+      for (const w of this.body.userData.wheels) w.rotation.x = this.wheelSpin;
+    }
 
-    // 夜间车灯
-    const hm = this.mesh.userData.headMat, tm = this.mesh.userData.tailMat;
-    hm.emissiveIntensity = 0.1 + nightK * 3.2;
-    tm.emissiveIntensity = 0.1 + nightK * 2.6;
+    // 夜间车灯(GLB 车体无 emissive 车灯时,在车头/车尾追加两个发光小盒)
+    const hm = this.body.userData.headMat, tm = this.body.userData.tailMat;
+    if (hm && tm) {
+      hm.emissiveIntensity = 0.1 + nightK * 3.2;
+      tm.emissiveIntensity = 0.1 + nightK * 2.6;
+    } else if (this.hasGLB && !this._glbLights) {
+      this._glbLights = true;
+      const mk = (z, color) => {
+        const m2 = mat(color, { emissive: color, emissiveIntensity: 0.1 });
+        m2.userData.nightGlow = 3.0;
+        put(this.body, UNIT.box, m2, { pos: [0, 0.75, z], scale: [1.5, 0.14, 0.08] });
+        return m2;
+      };
+      this._hm2 = mk(2.25, '#fff4d8');
+      this._tm2 = mk(-2.25, '#c01808');
+    }
+    if (this._hm2) this._hm2.emissiveIntensity = 0.1 + nightK * 3.0;
+    if (this._tm2) this._tm2.emissiveIntensity = 0.1 + nightK * 2.4;
 
     return this.speed;
   }

@@ -195,8 +195,8 @@ step('栽种行道树与樱花', () => {
   scene.add(trees.group);
   console.log(`[GTA-WH] 树木: ${trees.count}`);
 });
-step('放行车流与路灯', () => {
-  cars = buildCars(roads.centerlines, 170);
+step('放行车流与路灯', async () => {
+  cars = await buildCars(roads.centerlines, 170);
   scene.add(cars.group);
   lights = buildStreetLights(roads.centerlines);
   scene.add(lights.group);
@@ -238,14 +238,31 @@ step('烘焙环境光照', () => {
   } catch (e) { console.warn('环境烘焙不可用:', e); }
 });
 step('装载外部 GLB 资产', async () => {
-  // 演示:three.js 官方示例资产 ferrari.glb(Draco 压缩,验证 GLTFLoader+DRACO 管线)
-  const car = await loadGLB('./assets/ferrari.glb', { rot: 0.65 });
-  if (car) {
-    const [sx, sz] = toV2(114.2830, 30.5760);
-    car.position.set(sx + 14, Math.max(terrainHeight(sx + 14, sz - 6), 0) + 0.02, sz - 6);
-    scene.add(car);
-    console.log('[GTA-WH] GLB 资产:ferrari.glb 已装载');
+  // 玩家座驾换装 Kenney Car Kit(CC0)
+  await game?.vehicle.upgradeBody(loadGLB, './assets/cars/sedan-sports.glb');
+  console.log('[GTA-WH] 玩家车:Kenney sedan-sports(CC0)');
+  // 沿江大道静态停车:不同 Kenney 车型贴路缘
+  const [ax, az] = toV2(114.2860, 30.5752);
+  const parked = ['sedan.glb', 'taxi.glb', 'suv.glb', 'police.glb', 'van.glb', 'hatchback-sports.glb', 'truck.glb', 'race.glb'];
+  for (let i = 0; i < parked.length; i++) {
+    const t = i / parked.length;
+    const px = ax + Math.cos(0.65) * t * 900;
+    const pz = az - Math.sin(0.65) * t * 900;
+    const g = await loadGLB('./assets/cars/' + parked[i], { rot: 0.65 });
+    if (!g) continue;
+    const box = new THREE.Box3().setFromObject(g);
+    const len = Math.max(box.max.z - box.min.z, box.max.x - box.min.x, 0.01);
+    g.scale.setScalar(4.6 / len);
+    g.updateMatrixWorld(true);
+    const b2 = new THREE.Box3().setFromObject(g);
+    g.position.set(
+      px - (b2.max.x + b2.min.x) / 2,
+      Math.max(terrainHeight(px, pz), 0) - b2.min.y,
+      pz - (b2.max.z + b2.min.z) / 2,
+    );
+    scene.add(g);
   }
+  console.log(`[GTA-WH] 路边停车:${parked.length} 台 Kenney 车`);
 });
 
 function step(name, fn) { BUILD_STEPS.push([name, fn]); }

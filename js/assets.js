@@ -68,3 +68,48 @@ export function preloadGLB(url) {
   if (cache.has(url)) return Promise.resolve();
   return getLoader().loadAsync(url).then((g) => cache.set(url, g.scene)).catch(() => {});
 }
+
+/**
+ * 合并 GLB 为单几何+单材质(供 InstancedMesh 车流复用)。
+ * 返回 { geometry, material } 或 null。Kenney 车用单张 colormap,合并后材质无损。
+ */
+export async function loadMergedGLB(url) {
+  const root = await loadGLB(url);
+  if (!root) return null;
+  // 收集网格 → 手动拼接(避免 mergeStaticMeshes 的多材质分桶)
+  const geos = [];
+  let material = null;
+  root.updateMatrixWorld(true);
+  root.traverse((o) => {
+    if (!o.isMesh || !o.geometry?.attributes?.position) return;
+    const g = o.geometry.index ? o.geometry.toNonIndexed() : o.geometry.clone();
+    if (!g.attributes.normal) g.computeVertexNormals();
+    if (!g.attributes.uv) g.setAttribute('uv', new THREE.BufferAttribute(new Float32Array(g.attributes.position.count * 2), 2));
+    g.applyMatrix4(o.matrixWorld);
+    geos.push(g);
+    material = material || o.material;
+  });
+  if (!geos.length) return null;
+  // 拼接 position/normal/uv
+  let total = 0;
+  for (const g of geos) total += g.attributes.position.count;
+  const pos = new Float32Array(total * 3), nor = new Float32Array(total * 3), uv = new Float32Array(total * 2);
+  let vo = 0;
+  for (const g of geos) {
+    const p = g.attributes.position, n = g.attributes.normal, t = g.attributes.uv;
+    for (let i = 0; i < p.count; i++) {
+      const o3 = (vo + i) * 3, o2 = (vo + i) * 2;
+      pos[o3] = p.getX(i); pos[o3 + 1] = p.getY(i); pos[o3 + 2] = p.getZ(i);
+      nor[o3] = n.getX(i); nor[o3 + 1] = n.getY(i); nor[o3 + 2] = n.getZ(i);
+      uv[o2] = t.getX(i); uv[o2 + 1] = t.getY(i);
+    }
+    vo += p.count;
+    g.dispose();
+  }
+  const geo = new THREE.BufferGeometry();
+  geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+  geo.setAttribute('normal', new THREE.BufferAttribute(nor, 3));
+  geo.setAttribute('uv', new THREE.BufferAttribute(uv, 2));
+  geo.computeBoundingSphere();
+  return { geometry: geo, material };
+}

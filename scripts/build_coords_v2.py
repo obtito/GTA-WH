@@ -117,6 +117,23 @@ def best_coordinate(claims):
                                if c.get("mainsnak", {}).get("datavalue", {}).get("type") == "globecoordinate"])
 
 
+def numeric_claims(item, prop):
+    """Best (ranked, non-deprecated) numeric value for a property, e.g. P2043 length."""
+    order = {"preferred": 0, "normal": 1, "deprecated": 2}
+    found = []
+    for claim in (item.get("claims") or {}).get(prop, []):
+        if claim.get("rank") == "deprecated":
+            continue
+        dv = claim.get("mainsnak", {}).get("datavalue", {})
+        value = dv.get("value")
+        if isinstance(value, dict) and value.get("amount") is not None:
+            found.append((order.get(claim.get("rank", "normal"), 1), value["amount"]))
+    if not found:
+        return None
+    found.sort()
+    return found[0][1]
+
+
 def load_entities():
     merged = {}
     patterns = (
@@ -158,6 +175,8 @@ def main():
         desc = (item.get("descriptions") or {}).get("zh", {}).get("value") \
             or (item.get("descriptions") or {}).get("en", {}).get("value")
         precision_m = round((coord["precision"] or 0.0001) * M_PER_DEG, 1)
+        length = numeric_claims(item, "P2043")
+        height = numeric_claims(item, "P2048")  # height above sea level / structure height
         rows.append({
             "qid": qid,
             "name": FEATURED.get(qid) or label_zh or label_en or qid,
@@ -171,6 +190,8 @@ def main():
             "featured": qid in FEATURED,
             "coordinate_claims": n_claims,
             "rank": coord["rank"],
+            "length_m": length,
+            "height_m": height,
             "sources": [labels.get(s, s) for s in dict.fromkeys(coord["sources"])],
         })
 
