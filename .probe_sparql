@@ -1,0 +1,28 @@
+{
+  "head" : {
+    "vars" : [ "item", "itemLabel" ]
+  },
+  "results" : {
+    "bindings" : [ {
+      "item" : {
+        "type" : "uri",
+        "value" : "http://www.wikidata.org/entity/Q516"
+      },
+      "itemLabel" : {
+        "xml:lang" : "zh",
+        "type" : "literal",
+        "value" : "里昂市政厅"
+      }
+    }, {
+      "item" : {
+        "type" : "uri",
+        "value" : "http://www.wikidata.org/entity/Q23149"
+      },
+      "itemLabel" : {
+        "xml:lang" : "zh",
+        "type" : "literal",
+        "value" : "中国通商银行大楼"
+      }
+    } ]
+  }
+}

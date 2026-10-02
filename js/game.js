@@ -43,6 +43,9 @@ export class Game {
       if (k === ' ') e.preventDefault();
     });
     window.addEventListener('keyup', (e) => { this.keys[e.key.toLowerCase()] = false; });
+    // 切窗/失焦清空按键:否则切走时按住的键在回来后卡死
+    window.addEventListener('blur', () => { this.keys = {}; });
+    document.addEventListener('visibilitychange', () => { if (document.hidden) this.keys = {}; });
     // 鼠标:观察/步行/无人机视角转(拖拽)
     const cv = this.camera.domElement ?? document.querySelector('#scene');
     cv.addEventListener('pointerdown', (e) => { this.dragging = true; });
@@ -70,7 +73,12 @@ export class Game {
       this.player.mesh.visible = true;
       this.camYaw = this.vehicle.heading;
     }
-    if (m === 'orbit') this.orbitSave = null;
+    if (m === 'fly') {
+      // 从当前相机朝向接管无人机视角,避免瞬移回开场方向
+      const e = new THREE.Euler().setFromQuaternion(this.camera.quaternion, 'YXZ');
+      this.fly.yaw = e.y;
+      this.fly.pitch = Math.max(-1.2, Math.min(1.2, e.x));
+    }
     if (!silent) this.hud?.modeTip(`${MODE_NAME[m]}${m === 'drive' ? ' · WASD 驾驶' : m === 'walk' ? ' · WASD 行走' : m === 'fly' ? ' · WASD+QE 飞行' : ' · 拖拽环视'}`);
   }
 
@@ -91,7 +99,7 @@ export class Game {
       throttle: (k['w'] ? 1 : 0) + (k['s'] ? -1 : 0),
       steer: (k['a'] ? 1 : 0) + (k['d'] ? -1 : 0),
       brake: !!k[' '],
-      drift: !!k['shift'],
+      drift: !!k[' '],          // 手刹漂移(Space);Shift 只做加速,两者解耦
       boost: !!k['shift'],
       jump: !!k[' '],
       fwd: !!k['w'], back: !!k['s'], left: !!k['a'], right: !!k['d'],
@@ -124,8 +132,7 @@ export class Game {
     } else if (this.mode === 'fly') {
       this.fly.update(dt, inp, this.camera);
       this._pos = this.camera.position;
-      const e = new THREE.Euler().setFromQuaternion(this.camera.quaternion, 'YXZ');
-      this._heading = -e.y + Math.PI;
+      this._heading = this.fly.yaw + Math.PI;   // yaw=朝向的水平角,地图北=-z:箭头角 = yaw+π 对齐 minimap 坐标系
     } else {
       this._pos = controls.target;
       this._heading = this.camYaw;

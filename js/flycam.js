@@ -26,8 +26,8 @@ export class FlyCam {
     if (input.right) p.addScaledVector(right, speed * dt);
     if (input.up) p.y += speed * 0.7 * dt;
     if (input.down) p.y -= speed * 0.7 * dt;
-    // 最低不穿地
-    const gy = groundY(p.x, p.z) + 2;
+    // 最低不穿地(带高度上下文:桥下飞行不会被桥面走廊抬升)
+    const gy = groundY(p.x, p.z, p.y) + 2;
     if (p.y < gy) p.y = gy;
     p.y = clamp(p.y, 2, 2500);
     camera.rotation.set(0, 0, 0);

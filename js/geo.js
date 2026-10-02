@@ -228,7 +228,9 @@ export const easeInOutCubic = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 
 
 /* ---------------- 太阳(实时光照与 IBL 共用唯一来源) ---------------- */
 
-/** 给定钟点求太阳状态。f:0=6:00 日出,1=18:00 日落;dir 为单位向量(+Y 朝天) */
+/** 给定钟点求太阳状态。f:0=6:00 日出,1=18:00 日落;dir 为单位向量(+Y 朝天)
+ *  场景罗盘:北 = −Z、南 = +Z、东 = +X。太阳早东(az 90°)→午南(180°)→晚西(270°),
+ *  故 z = −cos(az):正午 z=+1(正南)✓ */
 export function sunState(hours) {
   const f = (((hours - 6) % 24) + 24) % 24 / 12;
   const azimuth = 90 + f * 180;
@@ -239,7 +241,7 @@ export function sunState(hours) {
     f,
     azimuth,
     elevation,
-    dir: { x: ce * Math.sin(azimuth * DEG), y: Math.sin(elevation * DEG), z: ce * Math.cos(azimuth * DEG) },
+    dir: { x: ce * Math.sin(azimuth * DEG), y: Math.sin(elevation * DEG), z: -ce * Math.cos(azimuth * DEG) },
     day: clamp(Math.sin(f * Math.PI), 0, 1),
     night: clamp((8 - elevation) / 22, 0, 1),
     dusk: Math.pow(clamp(1 - Math.abs(elevation) / 22, 0, 1), 1.6),

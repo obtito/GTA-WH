@@ -53,13 +53,14 @@ export class Player {
       this.heading = Math.atan2(mx, mz);
     }
 
-    // 水域:游泳(贴水面),不能进深水中心太远——速度已降
-    this.swimming = isWater(nx, nz);
-    const gy = groundY(nx, nz);
+    // 水域:游泳(贴水面;桥面上下文用当前身高判定)
+    this.swimming = isWater(nx, nz, this.mesh.position.y);
+    const gy = groundY(nx, nz, this.mesh.position.y);
     const floor = this.swimming ? 0.9 : gy;
 
-    // 跳跃/重力
-    if (input.jump && this.vy === 0 && !this.swimming) this.vy = 5.2;
+    // 跳跃/重力(着地判定用容差,下坡沿面 vy 会被即时清零,不会累积导致跳不起来)
+    const grounded = this.mesh.position.y <= floor + 0.12 && this.vy <= 0;
+    if (input.jump && grounded && !this.swimming) this.vy = 5.2;
     this.vy -= 14 * dt;
     let y = this.mesh.position.y + this.vy * dt;
     if (y <= floor) { y = floor; this.vy = 0; }
@@ -83,14 +84,24 @@ export class Player {
     return { moving, speed };
   }
 
-  /** 第三人称跟随相机(带肩部偏移) */
+  /** 第三人称跟随相机(俯仰控制视线高度,复用临时向量,防穿地) */
   applyCamera(camera, dt, camYaw, camPitch) {
-    const dist = 7.5, height = 3.0 + Math.sin(camPitch) * 3;
+    const dist = 7.5 - camPitch * 2.5;
     const cx = this.mesh.position.x - Math.sin(camYaw) * dist;
     const cz = this.mesh.position.z - Math.cos(camYaw) * dist;
-    const cy = this.mesh.position.y + height;
+    const cy = this.mesh.position.y + 3.0;
     const k = 1 - Math.pow(0.0003, dt);
-    camera.position.lerp(new THREE.Vector3(cx, cy, cz), k);
-    camera.lookAt(this.mesh.position.x, this.mesh.position.y + 1.5, this.mesh.position.z);
+    _v1.set(cx, cy, cz);
+    camera.position.lerp(_v1, k);
+    const camGround = groundY(camera.position.x, camera.position.z, camera.position.y);
+    if (camera.position.y < camGround + 1.2) camera.position.y = camGround + 1.2;
+    // 视线随俯仰抬升/下压(负=俯视)
+    camera.lookAt(
+      this.mesh.position.x,
+      this.mesh.position.y + 1.5 + camPitch * 6,
+      this.mesh.position.z,
+    );
   }
 }
+
+const _v1 = new THREE.Vector3();

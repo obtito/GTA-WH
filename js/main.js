@@ -117,6 +117,7 @@ function initRenderer() {
 /* ==================== 昼夜 ==================== */
 const FOG_DAY = new THREE.Color('#c8d8e6');
 const FOG_NIGHT = new THREE.Color('#101826');
+const lastSunDir = new THREE.Vector3(0.5, 0.8, 0.3);
 
 function applyTime(hours) {
   const s = sunState(hours);
@@ -142,6 +143,7 @@ function applyTime(hours) {
   }
 
   nightK = s.night;
+  lastSunDir.set(s.dir.x, s.dir.y, s.dir.z);
   city?.setNight(s.night);
   cars?.setNight(s.night);
   landmarks?.setNight(s.night);
@@ -279,6 +281,12 @@ function animate() {
 
   // 玩法
   game?.update(dt, nightK, controls);
+
+  // 阴影盒跟随玩家(静态时间下 applyTime 不跑,这里每帧保持太阳相对位置)
+  if (game?._pos && sunLight) {
+    sunLight.target.position.copy(game._pos);
+    sunLight.position.copy(game._pos).addScaledVector(lastSunDir, 1800);
+  }
 
   // 桥上列车 / 轻轨 / 轮渡
   for (const u of bridges?.updates || []) u(dt);

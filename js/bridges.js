@@ -15,10 +15,12 @@ function axisInfo(br) {
   return { ax, az, bx, bz, dx: dx / L, dz: dz / L, px: -dz / L, pz: dx / L, L };
 }
 
-/** 桥面高度剖面:t=0/1 端点接地,approach 段 smoothstep 爬升到 deckH */
+/** 桥面高度剖面:t=0/1 端点接岸(水上端点至少 3.5 m,避免引桥端插水),approach 段 smoothstep 爬升到 deckH */
 function makeDeckY(br, info) {
-  const y0 = Math.max(terrainHeight(info.ax, info.az), 2);
-  const y1 = Math.max(terrainHeight(info.bx, info.bz), 2);
+  const water0 = Math.max(terrainHeight(info.ax, info.az), 0) < 1;      // 端点在水域/岸边
+  const water1 = Math.max(terrainHeight(info.bx, info.bz), 0) < 1;
+  const y0 = Math.max(terrainHeight(info.ax, info.az), water0 ? 3.5 : 2);
+  const y1 = Math.max(terrainHeight(info.bx, info.bz), water1 ? 3.5 : 2);
   const top = br.deckH;
   const app = br.approach ?? 0.16;
   return (t) => {

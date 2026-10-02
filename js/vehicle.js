@@ -66,15 +66,15 @@ export class Vehicle {
       const s = Math.sign(this.speed);
       this.speed -= s * Math.min(Math.abs(this.speed), 24 * dt);
     }
-    // 阻力
-    this.speed *= 1 - (0.35 + Math.abs(this.speed) * 0.006) * dt;
+    // 阻力(系数使极速可逼近标称值)
+    this.speed *= 1 - (0.12 + Math.abs(this.speed) * 0.0022) * dt;
     this.speed = clamp(this.speed, -12, MAX);
 
-    // 转向:速度越低转向越灵;高速压低
+    // 转向:heading 增大 = 顺时针(朝南时 +x 东 = 左)→ A(steer=+1)左转 ✓
     const steerAuth = 2.6 / (1 + Math.abs(this.speed) * 0.045);
     const steerInput = input.steer * (input.drift ? 1.9 : 1);
     this.steer = lerp(this.steer, steerInput, 1 - Math.pow(0.0008, dt));
-    this.heading -= this.steer * steerAuth * dt * clamp(Math.abs(this.speed) / 4, 0, 1) * Math.sign(this.speed || 1);
+    this.heading += this.steer * steerAuth * dt * clamp(Math.abs(this.speed) / 4, 0, 1) * Math.sign(this.speed || 1);
     // 漂移侧滑(视觉朝向滞后)
     const targetDrift = input.drift ? this.steer * 0.5 : 0;
     this.drift = lerp(this.drift, targetDrift, 1 - Math.pow(0.001, dt));
@@ -84,17 +84,12 @@ export class Vehicle {
     const nx = this.mesh.position.x + Math.sin(dir) * this.speed * dt;
     const nz = this.mesh.position.z + Math.cos(dir) * this.speed * dt;
 
-    // 水域:大幅减速并推回
-    this.inWater = isWater(nx, nz) && bridgeHeightAt(nx, nz) == null;
-    let fx = nx, fz = nz;
-    if (this.inWater) {
-      this.speed *= 0.4;
-      fx = this.mesh.position.x + Math.sin(dir) * this.speed * dt * 0.2;
-      fz = this.mesh.position.z + Math.cos(dir) * this.speed * dt * 0.2;
-    }
+    // 水域:限速涉水(一次性限幅,不随帧率叠加锁死),可倒车退回岸上
+    this.inWater = isWater(nx, nz, this.mesh.position.y);
+    if (this.inWater) this.speed = clamp(this.speed, -3, 3);
 
-    const gy = groundY(fx, fz);
-    this.mesh.position.set(fx, lerp(this.mesh.position.y, gy, 1 - Math.pow(0.0001, dt)), fz);
+    const gy = groundY(nx, nz, this.mesh.position.y);
+    this.mesh.position.set(nx, lerp(this.mesh.position.y, Math.max(gy, this.inWater ? 0.55 : gy), 1 - Math.pow(0.0001, dt)), nz);
     this.mesh.rotation.y = dir + this.drift * 0.9;
     // 车身侧倾 + 俯仰(手感)
     this.mesh.rotation.z = lerp(this.mesh.rotation.z, -this.steer * clamp(Math.abs(this.speed) / 40, 0, 1) * 0.09, 1 - Math.pow(0.001, dt));
@@ -113,16 +108,22 @@ export class Vehicle {
     return this.speed;
   }
 
-  /** 追尾相机 */
+  /** 追尾相机(复用临时向量,避免每帧 GC) */
   applyCamera(camera, dt) {
     const back = 9 + Math.abs(this.speed) * 0.14;
     const cx = this.mesh.position.x - Math.sin(this.heading) * back;
     const cz = this.mesh.position.z - Math.cos(this.heading) * back;
     const cy = this.mesh.position.y + 3.6 + Math.abs(this.speed) * 0.02;
     const k = 1 - Math.pow(0.0005, dt);
-    camera.position.lerp(new THREE.Vector3(cx, cy, cz), k);
+    _v1.set(cx, cy, cz);
+    camera.position.lerp(_v1, k);
+    // 相机不穿地/不穿桥面
+    const camGround = groundY(camera.position.x, camera.position.z, camera.position.y);
+    if (camera.position.y < camGround + 1.6) camera.position.y = camGround + 1.6;
     const lx = this.mesh.position.x + Math.sin(this.heading) * 10;
     const lz = this.mesh.position.z + Math.cos(this.heading) * 10;
     camera.lookAt(lx, this.mesh.position.y + 1.6, lz);
   }
 }
+
+const _v1 = new THREE.Vector3();

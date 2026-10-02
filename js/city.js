@@ -435,7 +435,9 @@ export function buildCars(centerlines, count = 160, seed = 999) {
       const d = Math.hypot(l.pts[i][0] - l.pts[i - 1][0], l.pts[i][1] - l.pts[i - 1][1]);
       lens.push(d); total += d;
     }
-    return { pts: l.pts, lens, total };
+    // 路面高度剖面(buildRoads 已逐点算好,含堤式抬升)
+    const ys = l.ys || l.pts.map(([x, z]) => Math.max(terrainHeight(x, z), 0) + 0.15);
+    return { pts: l.pts, ys, lens, total };
   });
   for (let i = 0; i < count; i++) {
     cars[i].speed = (14 + rand() * 11) / meta[cars[i].li].total * dirs[i];   // 14–25 m/s
@@ -451,11 +453,12 @@ export function buildCars(centerlines, count = 160, seed = 999) {
         const dx = bx - ax, dz = bz - az;
         const len = Math.hypot(dx, dz) || 1;
         const x = ax + dx * f, z = az + dz * f;
-        return [x + (-dz / len) * offset, z + (dx / len) * offset, Math.atan2(dx, dz)];
+        const y = m.ys[i] + (m.ys[i + 1] - m.ys[i]) * f;
+        return [x + (-dz / len) * offset, z + (dx / len) * offset, Math.atan2(dx, dz), y];
       }
       target -= m.lens[i];
     }
-    return [0, 0, 0];
+    return [0, 0, 0, 0];
   }
 
   function update(dt) {
@@ -463,8 +466,8 @@ export function buildCars(centerlines, count = 160, seed = 999) {
       const c = cars[i];
       c.t += c.speed * dt;
       const m = meta[c.li];
-      const [x, z, ang] = sample(m, c.t, c.lane);
-      dummy.position.set(x, terrainHeight(x, z) + 0.9, z);
+      const [x, z, ang, y] = sample(m, c.t, c.lane);
+      dummy.position.set(x, y + 0.75, z);
       dummy.rotation.set(0, ang, 0);
       dummy.scale.set(1.8, 1.5, 4.6);
       dummy.updateMatrix();

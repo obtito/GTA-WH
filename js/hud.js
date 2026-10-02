@@ -6,7 +6,7 @@ const CAT_COLOR = {};
 for (const c of CATEGORIES) CAT_COLOR[c.key] = c.color;
 
 /* ---------- 地图静态层(水系/道路,一次绘制) ---------- */
-const MAP_SPAN = 31000;                       // 静态层覆盖 ±15.5 km
+const MAP_SPAN = 33000;                       // 静态层覆盖 ±16.5 km(罩满 32 km 地面)
 function buildStaticLayer(size) {
   const c = document.createElement('canvas');
   c.width = c.height = size;
@@ -134,11 +134,13 @@ export function initHUD({ onGoto, onToggleTour }) {
     showPOI(hit.id);
     renderList();
     if (tourActive) {
-      const step = TOUR.steps[tourStep];
-      if (step && step.poi === hit.id) {
+      // 跳步兼容:提前打卡了未来步骤的 POI 时,任务指针直接越过它(否则永久卡死)
+      let step = TOUR.steps[tourStep];
+      while (step && visited.has(step.poi)) {
         tourStep++;
-        renderTour();
+        step = TOUR.steps[tourStep];
       }
+      renderTour();
     }
     toast(`📍 已打卡:${hit.name}(${visited.size}/${pois.length})`);
     return hit;
