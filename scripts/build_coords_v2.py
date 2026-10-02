@@ -66,7 +66,17 @@ CATEGORY_BY_KIND = [
     ({"山", "丘", "島嶼"}, "自然地形"),
     ({"地鐵", "地铁"}, "轨道交通"),
     ({"区（市辖区）", "副省级市", "大城市", "人類聚居地", "城市", "地级市"}, "行政区划"),
+    # 军舰改成的博物馆。它们本来就停在水里,单独归类,免得被"水域穿模"检查误判。
+    ({"博物館船", "導彈驅逐艦", "潛艇", "guided missile frigate", "preserved watercraft",
+      "军舰", "驅逐艦", "巡防艦"}, "舰船"),
 ]
+
+# 不是"地方"的实体:战役、事件、未建成方案、以及一些几何概念。
+# 它们带着坐标混进来,一旦进渲染就是幽灵地标,单独隔离。
+NON_PLACE_KINDS = {
+    "戰役", "战役", "武装冲突", "战争", "公交车爆炸", "爆炸", "事件",
+    "计划中建筑物或结构", "拟建建筑物", "角", "地角",
+}
 
 
 def load_kinds():
@@ -252,6 +262,9 @@ def main():
             # 同名误收或非武汉实体(例:江苏的磨山镇、长江源头的青海坐标)。
             # 留档但不渲染,也不参与精度统计,否则会把统计口径拉爆。
             rows[-1]["usability"] = "out_of_region"
+        elif NON_PLACE_KINDS & set(kinds.get(qid, [])):
+            # 战役 / 事件 / 未建成方案 / 几何概念:不是可以站上去的地方。
+            rows[-1]["usability"] = "not_a_place"
         elif half > 1000 or (unlabelled and half > 150):
             rows[-1]["usability"] = "unusable"      # degree-level coordinate, do not render
         elif half > 150:
@@ -259,7 +272,7 @@ def main():
         else:
             rows[-1]["usability"] = "ok"
 
-    order_us = {"ok": 0, "coarse": 1, "unusable": 2, "out_of_region": 3}
+    order_us = {"ok": 0, "coarse": 1, "unusable": 2, "out_of_region": 3, "not_a_place": 4}
     rows.sort(key=lambda r: (not r["featured"], order_us[r["usability"]],
                              r["half_range_m"], r["name"]))
     stats = [r["half_range_m"] for r in rows if r["usability"] in ("ok", "coarse")]
@@ -281,7 +294,7 @@ def main():
         "featured_count": sum(1 for r in rows if r["featured"]),
         "usability_counts": {
             key: sum(1 for r in rows if r["usability"] == key)
-            for key in ("ok", "coarse", "unusable", "out_of_region")
+            for key in ("ok", "coarse", "unusable", "out_of_region", "not_a_place")
         },
         "region": {
             "center": {"lat": CENTER[0], "lon": CENTER[1]},

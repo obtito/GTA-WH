@@ -1,0 +1,79 @@
+{
+  "source": "OpenStreetMap via Photon (komoot), WGS84",
+  "note": "Wikidata 缺项的补充坐标;delta_m 是渲染器原坐标与 OSM 的偏差",
+  "count": 6,
+  "results": [
+    {
+      "name": "蛇山",
+      "status": "found",
+      "renderer_lon": 114.3,
+      "renderer_lat": 30.5425,
+      "osm_lon": 114.304015,
+      "osm_lat": 30.54561,
+      "osm_name": "蛇山",
+      "osm_key": "natural",
+      "osm_value": "peak",
+      "delta_m": 517.7
+    },
+    {
+      "name": "凤凰山",
+      "status": "found",
+      "renderer_lon": 114.306,
+      "renderer_lat": 30.549,
+      "osm_lon": 114.298426,
+      "osm_lat": 30.556203,
+      "osm_name": "凤凰山",
+      "osm_key": "natural",
+      "osm_value": "peak",
+      "delta_m": 1081.8
+    },
+    {
+      "name": "喻家山",
+      "status": "found",
+      "renderer_lon": 114.408,
+      "renderer_lat": 30.528,
+      "osm_lon": 114.412583,
+      "osm_lat": 30.522814,
+      "osm_name": "喻家山",
+      "osm_key": "natural",
+      "osm_value": "peak",
+      "delta_m": 725.5
+    },
+    {
+      "name": "江汉路步行街",
+      "status": "found",
+      "renderer_lon": 114.2869,
+      "renderer_lat": 30.5805,
+      "osm_lon": 114.283628,
+      "osm_lat": 30.585245,
+      "osm_name": "江汉路步行街",
+      "osm_key": "highway",
+      "osm_value": "pedestrian",
+      "delta_m": 614.3
+    },
+    {
+      "name": "汉口江滩",
+      "status": "found",
+      "renderer_lon": 114.293,
+      "renderer_lat": 30.5835,
+      "osm_lon": 114.317666,
+      "osm_lat": 30.619334,
+      "osm_name": "汉口江滩绿道",
+      "osm_key": "highway",
+      "osm_value": "cycleway",
+      "delta_m": 4636.6
+    },
+    {
+      "name": "汉秀剧场",
+      "status": "found",
+      "renderer_lon": 114.3386,
+      "renderer_lat": 30.559,
+      "osm_lon": 114.342494,
+      "osm_lat": 30.554159,
+      "osm_name": "汉秀剧场",
+      "osm_key": "amenity",
+      "osm_value": "theatre",
+      "delta_m": 655.5
+    }
+  ]
+}

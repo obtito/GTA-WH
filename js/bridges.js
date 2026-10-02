@@ -101,7 +101,9 @@ function buildTrussBridge(br, group, updates) {
   const steelDark = mat('#6d7278', { rough: 0.6, metal: 0.45 });
 
   // 上层公路桥面
-  group.add(deckRibbon(info, pts, roadW, 1.8, '#4a4d52'));
+  const roadDeck = deckRibbon(info, pts, roadW, 1.8, '#4a4d52');
+  roadDeck.name = 'yb-road-deck';
+  group.add(roadDeck);
   // 下层铁路桥面(y-8)
   const railPts = pts.map(([x, y, z]) => [x, y - 8, z]);
   group.add(deckRibbon(info, railPts, 16, 1.2, '#3d4045'));
@@ -145,7 +147,7 @@ function buildTrussBridge(br, group, updates) {
     }
   }
   const truss = instancedBoxes(trussItems, steel, { uvU: 20, uvV: 20 });
-  if (truss) group.add(truss);
+  if (truss) { truss.name = 'yb-truss'; group.add(truss); }
 
   // 桥墩:主段等距 8 墩,从水面抬到下弦
   const pierMat = mat('#9aa0a4', { rough: 0.9 });
@@ -159,7 +161,7 @@ function buildTrussBridge(br, group, updates) {
     piers.push({ x, z, y: top, w: 12.5, h: 1.8, d: 28, rot: Math.atan2(info.dx, info.dz) + Math.PI / 2 });  // 墩帽
   }
   const pierMesh = instancedBoxes(piers, pierMat, { uvU: 30, uvV: 30 });
-  if (pierMesh) group.add(pierMesh);
+  if (pierMesh) { pierMesh.name = 'yb-piers'; group.add(pierMesh); }
 
   // 桥头堡:两端塔楼 + 绿色攒尖顶(历史风貌标志)
   const gateMat = mat('#b8b2a2', { rough: 0.85 });

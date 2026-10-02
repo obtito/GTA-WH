@@ -7,15 +7,16 @@
   "accuracy_distribution_m": {
     "min": 0.0,
     "median": 1.6,
-    "p90": 55.6,
+    "p90": 15.4,
     "max": 927.6
   },
   "featured_count": 42,
   "usability_counts": {
-    "ok": 290,
-    "coarse": 30,
+    "ok": 288,
+    "coarse": 28,
     "unusable": 7,
-    "out_of_region": 2
+    "out_of_region": 2,
+    "not_a_place": 4
   },
   "region": {
     "center": {
@@ -2930,7 +2931,7 @@
       "lon": 114.295896,
       "precision_m": 1.1,
       "half_range_m": 0.6,
-      "category": "其它",
+      "category": "舰船",
       "featured": false,
       "coordinate_claims": 1,
       "rank": "normal",
@@ -2952,7 +2953,7 @@
       "lon": 114.296867,
       "precision_m": 1.1,
       "half_range_m": 0.6,
-      "category": "其它",
+      "category": "舰船",
       "featured": false,
       "coordinate_claims": 1,
       "rank": "normal",
@@ -2974,7 +2975,7 @@
       "lon": 114.296387,
       "precision_m": 1.1,
       "half_range_m": 0.6,
-      "category": "其它",
+      "category": "舰船",
       "featured": false,
       "coordinate_claims": 1,
       "rank": "normal",
@@ -3124,30 +3125,6 @@
       "outside_window": false,
       "out_of_region": false,
       "km_from_center": 21.7,
-      "sources": [
-        "瑞典語維基百科"
-      ],
-      "usability": "ok"
-    },
-    {
-      "qid": "Q28832330",
-      "name": "Q28832330",
-      "name_en": null,
-      "desc": "point in People's Republic of China",
-      "lat": 30.65637,
-      "lon": 114.41154,
-      "precision_m": 1.1,
-      "half_range_m": 0.6,
-      "category": "其它",
-      "featured": false,
-      "coordinate_claims": 1,
-      "rank": "normal",
-      "length_m": null,
-      "height_m": null,
-      "applies_to": [],
-      "outside_window": false,
-      "out_of_region": false,
-      "km_from_center": 12.4,
       "sources": [
         "瑞典語維基百科"
       ],
@@ -5762,28 +5739,6 @@
       "usability": "ok"
     },
     {
-      "qid": "Q68532830",
-      "name": "1998武汉公交爆炸案",
-      "name_en": "1998 Wuhan bus bomb attack",
-      "desc": "自杀式无差别袭击平民的暴力刑事案件",
-      "lat": 30.552778,
-      "lon": 114.283333,
-      "precision_m": 30.9,
-      "half_range_m": 15.4,
-      "category": "其它",
-      "featured": false,
-      "coordinate_claims": 1,
-      "rank": "normal",
-      "length_m": null,
-      "height_m": null,
-      "applies_to": [],
-      "outside_window": false,
-      "out_of_region": false,
-      "km_from_center": 5.0,
-      "sources": [],
-      "usability": "ok"
-    },
-    {
       "qid": "Q83554667",
       "name": "2019冠狀病毒病中國大陸封鎖措施",
       "name_en": "COVID-19 lockdown in China",
@@ -6720,30 +6675,6 @@
       "usability": "coarse"
     },
     {
-      "qid": "Q2038907",
-      "name": "武汉会战",
-      "name_en": "Battle of Wuhan",
-      "desc": "国民政府组织领导的反抗日本侵略者的大型会战",
-      "lat": 30.5667,
-      "lon": 114.267,
-      "precision_m": 1113.2,
-      "half_range_m": 556.6,
-      "category": "其它",
-      "featured": false,
-      "coordinate_claims": 1,
-      "rank": "normal",
-      "length_m": null,
-      "height_m": null,
-      "applies_to": [],
-      "outside_window": false,
-      "out_of_region": false,
-      "km_from_center": 4.7,
-      "sources": [
-        "法語維基百科"
-      ],
-      "usability": "coarse"
-    },
-    {
       "qid": "Q5969811",
       "name": "武汉工程大学",
       "name_en": "Wuhan Institute of Technology",
@@ -7100,30 +7031,6 @@
       "km_from_center": 4.9,
       "sources": [
         "日語維基百科"
-      ],
-      "usability": "coarse"
-    },
-    {
-      "qid": "Q17414606",
-      "name": "Phoenix Towers (China)",
-      "name_en": "Phoenix Towers (China)",
-      "desc": "proposed skyscrapers in Wuhan, China",
-      "lat": 30.5667,
-      "lon": 114.267,
-      "precision_m": 1161.4,
-      "half_range_m": 580.7,
-      "category": "建筑",
-      "featured": false,
-      "coordinate_claims": 1,
-      "rank": "normal",
-      "length_m": null,
-      "height_m": null,
-      "applies_to": [],
-      "outside_window": false,
-      "out_of_region": false,
-      "km_from_center": 4.7,
-      "sources": [
-        "法語維基百科"
       ],
       "usability": "coarse"
     },
@@ -7544,6 +7451,100 @@
       "km_from_center": 590.5,
       "sources": [],
       "usability": "out_of_region"
+    },
+    {
+      "qid": "Q28832330",
+      "name": "Q28832330",
+      "name_en": null,
+      "desc": "point in People's Republic of China",
+      "lat": 30.65637,
+      "lon": 114.41154,
+      "precision_m": 1.1,
+      "half_range_m": 0.6,
+      "category": "其它",
+      "featured": false,
+      "coordinate_claims": 1,
+      "rank": "normal",
+      "length_m": null,
+      "height_m": null,
+      "applies_to": [],
+      "outside_window": false,
+      "out_of_region": false,
+      "km_from_center": 12.4,
+      "sources": [
+        "瑞典語維基百科"
+      ],
+      "usability": "not_a_place"
+    },
+    {
+      "qid": "Q68532830",
+      "name": "1998武汉公交爆炸案",
+      "name_en": "1998 Wuhan bus bomb attack",
+      "desc": "自杀式无差别袭击平民的暴力刑事案件",
+      "lat": 30.552778,
+      "lon": 114.283333,
+      "precision_m": 30.9,
+      "half_range_m": 15.4,
+      "category": "其它",
+      "featured": false,
+      "coordinate_claims": 1,
+      "rank": "normal",
+      "length_m": null,
+      "height_m": null,
+      "applies_to": [],
+      "outside_window": false,
+      "out_of_region": false,
+      "km_from_center": 5.0,
+      "sources": [],
+      "usability": "not_a_place"
+    },
+    {
+      "qid": "Q2038907",
+      "name": "武汉会战",
+      "name_en": "Battle of Wuhan",
+      "desc": "国民政府组织领导的反抗日本侵略者的大型会战",
+      "lat": 30.5667,
+      "lon": 114.267,
+      "precision_m": 1113.2,
+      "half_range_m": 556.6,
+      "category": "其它",
+      "featured": false,
+      "coordinate_claims": 1,
+      "rank": "normal",
+      "length_m": null,
+      "height_m": null,
+      "applies_to": [],
+      "outside_window": false,
+      "out_of_region": false,
+      "km_from_center": 4.7,
+      "sources": [
+        "法語維基百科"
+      ],
+      "usability": "not_a_place"
+    },
+    {
+      "qid": "Q17414606",
+      "name": "Phoenix Towers (China)",
+      "name_en": "Phoenix Towers (China)",
+      "desc": "proposed skyscrapers in Wuhan, China",
+      "lat": 30.5667,
+      "lon": 114.267,
+      "precision_m": 1161.4,
+      "half_range_m": 580.7,
+      "category": "建筑",
+      "featured": false,
+      "coordinate_claims": 1,
+      "rank": "normal",
+      "length_m": null,
+      "height_m": null,
+      "applies_to": [],
+      "outside_window": false,
+      "out_of_region": false,
+      "km_from_center": 4.7,
+      "sources": [
+        "法語維基百科"
+      ],
+      "usability": "not_a_place"
     }
   ]
 }

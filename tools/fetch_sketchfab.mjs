@@ -18,6 +18,8 @@ const MODELS = [
   { uid: 'ae06b8933f7e4b5fb749425afb2e454e', name: 'wuhan-ctf-finance', note: '周大福金融中心(9.5k 面)' },
   { uid: 'fc4c62c332234ef6abffac9d87e4bc2f', name: 'wuhan-shipping-center', note: '长江航运中心(18.7k 面)' },
   { uid: 'c5dfa1384c0b4ae3a08a49e2ed7ae2e4', name: 'wuhan-panhai-times', note: '泛海时代中心(7.4k 面)' },
+  { uid: '8d56b5d7f23246be91da35b7a33328fe', name: 'yellow-crane-tower', note: '黄鹤楼摄影测量(177k 面)' },
+  { uid: 'c29ea5437cfd4569ad86fbefcc64d15b', name: 'tongling-railway-bridge', note: '铜陵长江公铁大桥(245k 面)' },
 ];
 
 const ATTR = [];

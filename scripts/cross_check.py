@@ -233,7 +233,7 @@ def main():
     payload = json.loads(COORDS.read_text(encoding="utf-8"))
     index = {}
     for r in payload["landmarks"]:
-        if r["usability"] == "out_of_region":
+        if r["usability"] in ("out_of_region", "not_a_place"):
             continue
         index[r["name"]] = r
         if r.get("name_en"):
@@ -318,14 +318,14 @@ def main():
         "best_hypothesis": best,
         "bearing_coherence_R": coherence,
         "verdict": (
-            "取点误差为主,不是坐标系偏移" if coherence < 0.7 and best == "H0_both_wgs84"
-            else f"{best} 更优,需进一步确认基准面"
+            "取点误差为主，不是坐标系偏移" if coherence < 0.7 and best == "H0_both_wgs84"
+            else f"{best} 更优，需进一步确认基准面"
         ),
         "advice": (
             "不要做整体 GCJ-02 反解——方向不一致、反解后残差更大。"
-            "正确做法是逐点替换成 Wikidata 坐标,并保留 half_range_m 作为置信度。"
+            "正确做法是逐点替换成 Wikidata 坐标，并保留 half_range_m 作为置信度。"
             if coherence < 0.7 else
-            "存在系统性偏移,先统一基准面再逐点校核。"
+            "存在系统性偏移，先统一基准面再逐点校核。"
         ),
     }
     out = {

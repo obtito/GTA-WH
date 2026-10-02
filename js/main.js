@@ -14,6 +14,7 @@ import { loadGLB } from './assets.js';
 import { Game, MODE_NAME } from './game.js';
 import { setEnvIntensity, mergeStaticMeshes } from './lib.js';
 import { sunState, lerp, clamp, toV2, toLonLat } from './geo.js';
+import { BRIDGES } from './data.js';
 
 /* ==================== DOM ==================== */
 const $ = (s) => document.querySelector(s);
@@ -127,6 +128,7 @@ function initRenderer() {
 const FOG_DAY = new THREE.Color('#c8d8e6');
 const FOG_NIGHT = new THREE.Color('#101826');
 const lastSunDir = new THREE.Vector3(0.5, 0.8, 0.3);
+const realTowerMats = [];          // Sketchfab 真楼的夜间亮化材质
 
 function applyTime(hours) {
   const s = sunState(hours);
@@ -153,6 +155,7 @@ function applyTime(hours) {
 
   nightK = s.night;
   lastSunDir.set(s.dir.x, s.dir.y, s.dir.z);
+  for (const m of realTowerMats) m.emissiveIntensity = nightK * 0.34;   // 真楼夜间亮化
   city?.setNight(s.night);
   cars?.setNight(s.night);
   landmarks?.setNight(s.night);
@@ -262,6 +265,20 @@ step('装载 Sketchfab 真实地标楼群', async () => {
     const gy = Math.max(terrainHeight(x, z), 0);
     g.position.set(x - (b2.max.x + b2.min.x) / 2, gy - b2.min.y, z - (b2.max.z + b2.min.z) / 2);
     scene.add(g);
+    // 夜间亮化:emissiveMap 复用漫反射贴图,入夜整楼透出暖光(窗格纹理即亮纹)
+    g.traverse((o) => {
+      if (!o.isMesh || !o.material) return;
+      const list = Array.isArray(o.material) ? o.material : [o.material];
+      for (const m of list) {
+        if (m.map && !m.userData.lit) {
+          m.emissive = new THREE.Color('#b08a52');
+          m.emissiveMap = m.map;
+          m.emissiveIntensity = 0;
+          m.userData.lit = true;
+          realTowerMats.push(m);
+        }
+      }
+    });
     // 替换程序化版本(隐藏绿地中心的 Lathe 模型,保留 POI 数据)
     if (t.replace) {
       const sub = landmarks.group.getObjectByName(t.replace);
@@ -269,6 +286,75 @@ step('装载 Sketchfab 真实地标楼群', async () => {
     }
     console.log(`[GTA-WH] 真实地标:${t.dir}(${t.h} m,Void.com CC-BY)`);
   }
+});
+
+step('黄鹤楼摄影测量模型(替换程序化版)', async () => {
+  const g = await loadGLB('./assets/models/yellow-crane-tower/scene.gltf');
+  if (!g) { console.warn('[GTA-WH] 黄鹤楼模型缺失,保留程序化版'); return; }
+  // 归一化:主楼+台基按 ~57 m(楼 51.4 + 台基),底面贴地(蛇山顶)
+  const box = new THREE.Box3().setFromObject(g);
+  const scale = 57 / Math.max(box.max.y - box.min.y, 0.01);
+  g.scale.setScalar(scale);
+  g.updateMatrixWorld(true);
+  const b2 = new THREE.Box3().setFromObject(g);
+  const [x, z] = toV2(114.3011, 30.5433);
+  const gy = Math.max(terrainHeight(x, z), 0);
+  g.position.set(x - (b2.max.x + b2.min.x) / 2, gy - b2.min.y, z - (b2.max.z + b2.min.z) / 2);
+  // 夜间金顶泛光
+  g.traverse((o) => {
+    if (o.isMesh && o.material && !Array.isArray(o.material) && o.material.map && !o.material.userData.lit) {
+      o.material.emissive = new THREE.Color('#8a6222');
+      o.material.emissiveMap = o.material.map;
+      o.material.emissiveIntensity = 0;
+      o.material.userData.lit = true;
+      realTowerMats.push(o.material);
+    }
+  });
+  scene.add(g);
+  const sub = landmarks.group.getObjectByName('lm:huanghelou');
+  if (sub) sub.visible = false;
+  console.log('[GTA-WH] 黄鹤楼:摄影测量模型(CUNO/jiannibang,CC-BY,177k 面)');
+});
+
+step('铜陵公铁大桥改造为武汉长江大桥', async () => {
+  const g = await loadGLB('./assets/models/tongling-railway-bridge/scene.gltf');
+  if (!g) { console.warn('[GTA-WH] 铜陵桥模型缺失,保留程序化大桥'); return; }
+  // 对齐桥轴:长轴归一到 1670 m,旋转到 大桥 bearing,桥中点对齐
+  const box = new THREE.Box3().setFromObject(g);
+  const lenX = box.max.x - box.min.x, lenZ = box.max.z - box.min.z;
+  const modelLen = Math.max(lenX, lenZ);
+  const alongX = lenX >= lenZ;
+  const scale = 1670 / Math.max(modelLen, 0.01);
+  g.scale.setScalar(scale);
+  g.updateMatrixWorld(true);
+  const b2 = new THREE.Box3().setFromObject(g);
+  // 桥面高对齐 deckH=26:桁架桥桥面约在整体高度上部 60% 处
+  const h2 = b2.max.y - b2.min.y;
+  const deckInModel = b2.min.y + h2 * 0.58;
+  const BR = BRIDGES.find((b) => b.id === 'yangtzebridge');
+  const [ax, az] = toV2(...BR.axis[0]);
+  const [bx, bz] = toV2(...BR.axis[1]);
+  const cx = (ax + bx) / 2, cz = (az + bz) / 2;
+  const bearing = Math.atan2(bx - ax, bz - az);
+  g.rotation.y = bearing + (alongX ? Math.PI / 2 : 0);
+  g.position.set(cx - (b2.max.x + b2.min.x) / 2, 26 - deckInModel, cz - (b2.max.z + b2.min.z) / 2);
+  // 夜间灯化
+  g.traverse((o) => {
+    if (o.isMesh && o.material && !Array.isArray(o.material) && o.material.map && !o.material.userData.lit) {
+      o.material.emissive = new THREE.Color('#7a5a2e');
+      o.material.emissiveMap = o.material.map;
+      o.material.emissiveIntensity = 0;
+      o.material.userData.lit = true;
+      realTowerMats.push(o.material);
+    }
+  });
+  scene.add(g);
+  // 隐藏程序化桁架/桥墩(保留行驶桥面、桥头堡、下层列车、灯带)
+  for (const name of ['yb-truss', 'yb-piers']) {
+    const m = bridges.group.getObjectByName(name);
+    if (m) m.visible = false;
+  }
+  console.log('[GTA-WH] 长江大桥:铜陵公铁大桥模型改造(hello123D,CC-BY,245k 面)');
 });
 
 step('装载 Kenney 车辆与街头停车', async () => {
