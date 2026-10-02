@@ -1,0 +1,176 @@
+/* GTA-WH · 玻璃拟态 UI(自 GTA-NJ 风格适配,江城金主色) */
+:root {
+  --gold: #d8a940;
+  --gold-dim: #a17c2f;
+  --ink: #14161a;
+  --panel: rgba(16, 20, 26, 0.72);
+  --panel-border: rgba(216, 169, 64, 0.25);
+  --text: #e8e4d8;
+  --text-dim: #9a968a;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 100%; height: 100%; overflow: hidden; background: #0a0c10; }
+body {
+  font-family: "PingFang SC", "Microsoft YaHei", "Segoe UI", sans-serif;
+  color: var(--text);
+  user-select: none;
+}
+#app { position: fixed; inset: 0; }
+#scene { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+
+/* ---------- 加载 ---------- */
+#loading {
+  position: absolute; inset: 0; z-index: 100;
+  background: radial-gradient(ellipse at 50% 40%, #1c2230 0%, #0a0c10 75%);
+  display: flex; align-items: center; justify-content: center;
+  transition: opacity .6s ease; pointer-events: none;
+}
+#loading.done { opacity: 0; }
+.load-box { text-align: center; }
+.load-title {
+  font-size: 64px; letter-spacing: 28px; margin-left: 28px;
+  font-weight: 700; color: var(--gold);
+  text-shadow: 0 0 40px rgba(216, 169, 64, 0.4);
+}
+.load-sub { font-size: 12px; letter-spacing: 4px; color: var(--text-dim); margin: 10px 0 30px; }
+.load-bar { width: 320px; height: 3px; background: rgba(255,255,255,0.08); margin: 0 auto; overflow: hidden; }
+.load-bar i { display: block; height: 100%; width: 0; background: var(--gold); transition: width .3s ease; }
+.load-text { margin-top: 14px; font-size: 12px; color: var(--text-dim); }
+
+/* ---------- 面板通用 ---------- */
+.panel {
+  position: absolute; z-index: 10;
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: 10px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 6px 30px rgba(0,0,0,0.35);
+}
+.hidden { display: none !important; }
+
+/* ---------- 顶栏 ---------- */
+#topbar {
+  top: 14px; left: 14px; right: 14px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 14px;
+}
+.brand { display: flex; align-items: center; gap: 12px; }
+.brand-mark {
+  width: 40px; height: 40px; border-radius: 8px;
+  background: linear-gradient(135deg, var(--gold), #8a6524);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; font-weight: 700; color: #1c1503;
+}
+.brand-txt h1 { font-size: 16px; letter-spacing: 2px; }
+.brand-txt p { font-size: 11px; color: var(--text-dim); margin-top: 2px; }
+.top-actions { display: flex; align-items: center; gap: 10px; }
+
+#clockWrap { display: flex; align-items: center; gap: 8px; padding: 4px 10px; border-radius: 6px; background: rgba(255,255,255,0.05); }
+#clockVal { font-variant-numeric: tabular-nums; font-size: 13px; color: var(--gold); width: 44px; }
+#timeSlider { width: 160px; accent-color: var(--gold); }
+
+.btn {
+  border: 1px solid var(--panel-border); border-radius: 6px;
+  background: rgba(216,169,64,0.12); color: var(--text);
+  font-size: 12px; padding: 6px 14px; cursor: pointer; letter-spacing: 1px;
+  transition: background .15s ease;
+}
+.btn:hover { background: rgba(216,169,64,0.28); }
+.btn.ghost { background: rgba(255,255,255,0.04); }
+.btn.small { padding: 3px 8px; font-size: 11px; }
+
+/* ---------- 任务条 ---------- */
+#tourBar {
+  top: 76px; left: 50%; transform: translateX(-50%);
+  width: 460px; padding: 10px 16px;
+}
+.tour-head { display: flex; justify-content: space-between; align-items: center; font-size: 13px; }
+#tourName { color: var(--gold); letter-spacing: 2px; }
+.chip {
+  font-size: 11px; padding: 1px 8px; border-radius: 8px;
+  background: rgba(216,169,64,0.18); color: var(--gold);
+}
+#tourBrief { font-size: 12px; color: var(--text-dim); margin: 6px 0 8px; }
+.tour-bar { height: 2px; background: rgba(255,255,255,0.1); }
+.tour-bar i { display: block; height: 100%; background: var(--gold); transition: width .4s ease; }
+
+/* ---------- 地标列表 ---------- */
+#listPanel { top: 76px; right: 14px; width: 250px; max-height: 62vh; display: flex; flex-direction: column; }
+.panel-head {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 10px 14px; font-size: 13px; letter-spacing: 2px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.chip-count { font-size: 11px; color: var(--text-dim); }
+.list-body { overflow-y: auto; padding: 6px; flex: 1; }
+.list-body::-webkit-scrollbar { width: 4px; }
+.list-body::-webkit-scrollbar-thumb { background: rgba(216,169,64,0.3); border-radius: 2px; }
+.lm-item {
+  display: flex; align-items: center; gap: 8px;
+  padding: 7px 10px; border-radius: 6px; cursor: pointer;
+  font-size: 12px; transition: background .12s ease;
+}
+.lm-item:hover { background: rgba(255,255,255,0.07); }
+.lm-item.active { background: rgba(216,169,64,0.15); }
+.lm-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+.lm-name { flex: 1; }
+.lm-gone { opacity: 0.45; }
+.panel-foot { padding: 8px; border-top: 1px solid rgba(255,255,255,0.08); text-align: center; }
+
+/* ---------- POI 卡片 ---------- */
+#poiCard { right: 14px; bottom: 14px; width: 320px; padding: 14px 16px; }
+.poi-head { display: flex; align-items: center; gap: 8px; }
+.poi-head h2 { font-size: 17px; flex: 1; letter-spacing: 1px; }
+#poiCat { flex-shrink: 0; }
+#poiClose { border: none; background: none; color: var(--text-dim); cursor: pointer; font-size: 13px; }
+.poi-tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }
+.poi-tags span {
+  font-size: 10px; padding: 2px 8px; border-radius: 3px;
+  background: rgba(255,255,255,0.08); color: var(--text-dim);
+}
+#poiDesc { font-size: 12px; line-height: 1.7; color: #cfcabb; }
+.poi-spec { margin-top: 10px; max-height: 160px; overflow-y: auto; }
+.poi-spec::-webkit-scrollbar { width: 4px; }
+.poi-spec::-webkit-scrollbar-thumb { background: rgba(216,169,64,0.3); }
+.poi-spec table { width: 100%; border-collapse: collapse; font-size: 11px; }
+.poi-spec td { padding: 3px 4px; border-bottom: 1px solid rgba(255,255,255,0.06); color: var(--text-dim); vertical-align: top; }
+.poi-spec td:first-child { color: var(--gold-dim); white-space: nowrap; width: 72px; }
+.poi-actions { margin-top: 12px; display: flex; gap: 8px; }
+
+/* ---------- 小地图 ---------- */
+#mapWrap { position: absolute; left: 14px; bottom: 14px; z-index: 10; }
+#minimap {
+  border-radius: 10px; border: 1px solid var(--panel-border);
+  background: rgba(10, 14, 18, 0.85);
+  box-shadow: 0 6px 30px rgba(0,0,0,0.4);
+  transition: width .2s ease, height .2s ease;
+}
+#speedBox {
+  position: absolute; left: 260px; bottom: 8px;
+  padding: 6px 12px; font-size: 20px; font-variant-numeric: tabular-nums;
+}
+#speedBox small { font-size: 10px; color: var(--text-dim); margin-left: 4px; }
+
+/* ---------- 模式提示 ---------- */
+#modeTip {
+  left: 50%; bottom: 70px; transform: translateX(-50%);
+  padding: 8px 18px; font-size: 13px; letter-spacing: 2px;
+  color: var(--gold); opacity: 0.92;
+}
+
+/* ---------- 帮助 ---------- */
+#helpPanel { top: 76px; left: 14px; width: 330px; padding: 14px 16px; }
+#helpPanel h3 { font-size: 13px; letter-spacing: 3px; color: var(--gold); margin-bottom: 10px; }
+.help-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.help-table td { padding: 4px 6px; border-bottom: 1px solid rgba(255,255,255,0.06); color: var(--text-dim); }
+.help-table td:first-child { color: var(--text); white-space: nowrap; width: 92px; }
+.help-note { margin-top: 10px; font-size: 10px; color: var(--text-dim); }
+
+/* ---------- 状态栏 ---------- */
+#statusbar {
+  position: absolute; right: 14px; top: 74px; z-index: 5;
+  display: flex; gap: 14px; font-size: 10px; color: var(--text-dim);
+  font-variant-numeric: tabular-nums;
+}

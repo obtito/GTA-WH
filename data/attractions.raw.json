@@ -1,0 +1,225 @@
+[
+  {
+    "query": "黄鹤楼",
+    "qid": "Q462372",
+    "label_zh": "黄鹤楼",
+    "label_en": "Tower of the Yellow Crane",
+    "lat": 30.54694444,
+    "lon": 114.29694444
+  },
+  {
+    "query": "东湖 (武汉市)",
+    "qid": "-1",
+    "label_zh": null,
+    "label_en": null,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "query": "武汉大学",
+    "qid": "Q1108197",
+    "label_zh": "武汉大学",
+    "label_en": "Wuhan University",
+    "lat": 30.540833333333,
+    "lon": 114.36111111111
+  },
+  {
+    "query": "湖北省博物馆",
+    "qid": "Q4391403",
+    "label_zh": "湖北省博物馆",
+    "label_en": "Hubei Provincial Museum",
+    "lat": 30.56388889,
+    "lon": 114.35888889
+  },
+  {
+    "query": "武汉长江大桥",
+    "qid": null,
+    "lat": null,
+    "lon": null,
+    "note": "truncated"
+  },
+  {
+    "query": "江汉关",
+    "qid": "-1",
+    "label_zh": null,
+    "label_en": null,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "query": "归元寺",
+    "qid": "Q5616939",
+    "label_zh": "归元寺",
+    "label_en": "Guiyuan Temple",
+    "lat": 30.548082,
+    "lon": 114.254673
+  },
+  {
+    "query": "晴川阁",
+    "qid": "-1",
+    "label_zh": null,
+    "label_en": null,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "query": "古琴台",
+    "qid": "-1",
+    "label_zh": null,
+    "label_en": null,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "query": "楚河汉街",
+    "qid": "Q5115162",
+    "label_zh": "楚河汉街",
+    "label_en": "Chu River and Han Street",
+    "lat": null,
+    "lon": null
+  },
+  {
+    "query": "武汉绿地中心",
+    "qid": "Q143235",
+    "label_zh": "武汉绿地中心",
+    "label_en": "Wuhan Greenland Center",
+    "lat": 30.585941666666667,
+    "lon": 114.317475
+  },
+  {
+    "query": "光谷广场",
+    "qid": "Q10890788",
+    "label_zh": "光谷广场",
+    "label_en": "Guanggu Square",
+    "lat": 30.50556,
+    "lon": 114.39861
+  },
+  {
+    "query": "龟山电视塔",
+    "qid": "Q1407294",
+    "label_zh": "龟山电视塔",
+    "label_en": "Tortoise Mountain TV Tower",
+    "lat": 30.558156,
+    "lon": 114.275083
+  },
+  {
+    "query": "辛亥革命博物馆",
+    "qid": "Q30946741",
+    "label_zh": "辛亥革命博物馆",
+    "label_en": "Revolution Museum",
+    "lat": 30.539722222222224,
+    "lon": 114.30027777777778
+  },
+  {
+    "query": "起义门",
+    "qid": "Q17040884",
+    "label_zh": "起义门",
+    "label_en": "Uprising Gate",
+    "lat": 30.52821,
+    "lon": 114.30194
+  },
+  {
+    "query": "中山公园 (武汉)",
+    "qid": "-1",
+    "label_zh": null,
+    "label_en": null,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "query": "解放公园 (武汉)",
+    "qid": "-1",
+    "label_zh": null,
+    "label_en": null,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "query": "昙华林",
+    "qid": "Q11088377",
+    "label_zh": "曇華林",
+    "label_en": "Tanhualin",
+    "lat": 30.55163889,
+    "lon": 114.31156111
+  },
+  {
+    "query": "户部巷",
+    "qid": "Q11075451",
+    "label_zh": "户部巷",
+    "label_en": "Hubu Xiang",
+    "lat": null,
+    "lon": null
+  },
+  {
+    "query": "首义广场",
+    "qid": "-1",
+    "label_zh": null,
+    "label_en": null,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "query": "宝通寺",
+    "qid": "Q10949510",
+    "label_zh": "宝通寺",
+    "label_en": "Baotong Temple",
+    "lat": 30.533167,
+    "lon": 114.335361
+  },
+  {
+    "query": "长春观",
+    "qid": "Q18925717",
+    "label_zh": "长春观",
+    "label_en": null,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "query": "卓刀泉寺",
+    "qid": "-1",
+    "label_zh": null,
+    "label_en": null,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "query": "武汉站",
+    "qid": "Q584376",
+    "label_zh": "武汉站",
+    "label_en": "Wuhan railway station",
+    "lat": 30.60967,
+    "lon": 114.41898
+  },
+  {
+    "query": "汉口站",
+    "qid": "Q1010546",
+    "label_zh": "汉口站",
+    "label_en": "Hankou railway station",
+    "lat": 30.62043,
+    "lon": 114.24984
+  },
+  {
+    "query": "武昌站",
+    "qid": "Q5959771",
+    "label_zh": "武昌站",
+    "label_en": "Wuchang railway station",
+    "lat": 30.531313,
+    "lon": 114.311773
+  },
+  {
+    "query": "武汉天河国际机场",
+    "qid": "Q601091",
+    "label_zh": "武漢天河國際機場",
+    "label_en": "Wuhan Tianhe International Airport",
+    "lat": 30.77484,
+    "lon": 114.21739
+  },
+  {
+    "query": "鹦鹉洲长江大桥",
+    "qid": "-1",
+    "label_zh": null,
+    "label_en": null,
+    "lat": null,
+    "lon": null
+  }
+]
