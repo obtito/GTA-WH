@@ -4,7 +4,9 @@ import { toV2, makeRandom } from './geo.js';
 import { loadGLB } from './assets.js';
 import { groundY } from './ground.js';
 
-const CHARS = ['./assets/npc/Barbarian.glb', './assets/npc/Knight.glb', './assets/npc/Rogue.glb'];
+const CHARS = ['./assets/npc/Barbarian.glb', './assets/npc/Knight.glb', './assets/npc/Mage.glb', './assets/npc/Rogue.glb', './assets/npc/Druid.glb'];
+// KayKit 2.0:动画独立成包(Rig_Medium 骨架通用)
+const ANIM_PACKS = ['./assets/npc/anims/Rig_Medium_General.glb', './assets/npc/anims/Rig_Medium_MovementBasic.glb'];
 
 /**
  * @param centerlines OSM 路网中心线(含 ys 路面高度)
@@ -63,15 +65,16 @@ export async function buildNPCs(centerlines, count = 60) {
     npcs.push(npc);
   }
 
-  // 动画剪辑:从任意一个加载实例里拿(three 的 AnimationClip 可跨实例用)
-  // 由于 loadGLB 返回的 root 未必带 animations(我们包装丢了),这里重新取一次拿 clips
+  // 动画剪辑:从独立动画包取(KayKit 2.0 动画与角色分离,Rig_Medium 骨架互通)
   let clips = [];
   try {
     const { GLTFLoader } = await import('three/addons/GLTFLoader.js');
     const loader = new GLTFLoader();
-    const g = await loader.loadAsync(CHARS[0]);
-    clips = g.animations || [];
-  } catch {}
+    for (const url of ANIM_PACKS) {
+      const g = await loader.loadAsync(url);
+      clips.push(...(g.animations || []));
+    }
+  } catch (e) { console.warn('[GTA-WH] 动画包加载失败:', e.message); }
 
   const actions = new Map();
   for (const npc of npcs) {
