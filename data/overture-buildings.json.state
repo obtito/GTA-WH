@@ -1,0 +1,14 @@
+{
+  "last_release": "2026-09-23.1",
+  "last_run": "2026-10-03T00:25:07.594297+00:00",
+  "theme": "buildings",
+  "type": "building",
+  "bbox": {
+    "xmin": 114.22,
+    "ymin": 30.5,
+    "xmax": 114.42,
+    "ymax": 30.64
+  },
+  "backend": "geojson",
+  "output": "C:\\Users\\Administrator\\Desktop\\GTA-WH\\data\\overture-buildings.json"
+}

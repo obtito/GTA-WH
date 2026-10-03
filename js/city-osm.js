@@ -79,6 +79,50 @@ function bucketOf(tags) {
  * @returns { group, count }
  */
 export async function buildOsmCity(buildings) {
+  // 优先:构建期烘焙的 Overture 全量二进制(data/city.bin,零构建成本)
+  try {
+    const [bin, meta] = await Promise.all([
+      fetch('./data/city.bin').then((r) => r.arrayBuffer()),
+      fetch('./data/city-meta.json').then((r) => r.json()),
+    ]);
+    const dv = new DataView(bin);
+    let o = 0;
+    const group = new THREE.Group();
+    group.name = 'osm-city';
+    const mats = {
+      concrete: new THREE.MeshStandardMaterial({ color: 0xffffff, vertexColors: true, map: makeFacadeTexture(), normalMap: loadTexture('./assets/textures/rough_concrete_nor_gl_2k.jpg', { srgb: false }), emissiveMap: makeWindowTexture(), emissive: new THREE.Color('#ffc98a'), emissiveIntensity: 0, roughness: 0.6, metalness: 0.15, normalScale: new THREE.Vector2(0.5, 0.5) }),
+      glass: new THREE.MeshStandardMaterial({ color: 0xffffff, vertexColors: true, map: makeFacadeTexture(), normalMap: loadTexture('./assets/textures/rough_concrete_nor_gl_2k.jpg', { srgb: false }), emissiveMap: makeWindowTexture(), emissive: new THREE.Color('#c8dcf0'), emissiveIntensity: 0, roughness: 0.25, metalness: 0.55, normalScale: new THREE.Vector2(0.3, 0.3) }),
+      civic: new THREE.MeshStandardMaterial({ color: 0xffffff, vertexColors: true, map: makeFacadeTexture(), emissiveMap: makeWindowTexture(), emissive: new THREE.Color('#ffd9a0'), emissiveIntensity: 0, roughness: 0.85, metalness: 0.05 }),
+      lowrise: new THREE.MeshStandardMaterial({ color: 0xffffff, vertexColors: true, map: loadTexture('./assets/textures/brick_diffuse.jpg') || makeFacadeTexture(), emissiveMap: makeWindowTexture(), emissive: new THREE.Color('#ffc98a'), emissiveIntensity: 0, roughness: 0.9, metalness: 0.02 }),
+    };
+    for (const m of Object.values(mats)) registerEnv(m, 0.7);
+    const matList = Object.values(mats);
+    for (const [k, b] of Object.entries(meta.buckets)) {
+      const v = b.vCount, ni = b.iCount;
+      const pos = new Float32Array(bin, o, v * 3); o += v * 12;
+      const nor = new Float32Array(bin, o, v * 3); o += v * 12;
+      const uv = new Float32Array(bin, o, v * 2); o += v * 8;
+      const col = new Uint8Array(bin, o, v * 3); o += v * 3;
+      const idx = new Uint32Array(bin, o, ni); o += ni * 4;
+      const geo = new THREE.BufferGeometry();
+      geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+      geo.setAttribute('normal', new THREE.BufferAttribute(nor, 3));
+      geo.setAttribute('uv', new THREE.BufferAttribute(uv, 2));
+      geo.setAttribute('color', new THREE.BufferAttribute(col, 3, true));
+      geo.setIndex(new THREE.BufferAttribute(idx, 1));
+      geo.computeBoundingSphere();
+      const mesh = new THREE.Mesh(geo, mats[k]);
+      mesh.name = 'bake:' + k;
+      mesh.castShadow = true;
+      mesh.receiveShadow = true;
+      mesh.material.side = THREE.DoubleSide;
+      group.add(mesh);
+    }
+    console.log(`[GTA-WH] 烘焙城市: ${meta.count} 栋(Overture,110MB 零拷贝)`);
+    return { group, count: meta.count, mats: matList, setNight(kk) { for (const m of matList) m.emissiveIntensity = kk * 0.85; } };
+  } catch (e) {
+    console.warn('[GTA-WH] city.bin 不可用,回退 OSM JSON 挤出:', e.message);
+  }
   const rand = makeRandom(20261003);
   const facade = makeFacadeTexture();
   const windowsTex = makeWindowTexture();
