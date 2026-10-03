@@ -1,0 +1,98 @@
+[
+  {
+    "name": ".gitattributes",
+    "path": ".gitattributes",
+    "sha": "583468bbdfddbbbba17bae48755adbaff4422c4b",
+    "size": 475,
+    "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/contents/.gitattributes?ref=main",
+    "html_url": "https://github.com/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/blob/main/.gitattributes",
+    "git_url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/583468bbdfddbbbba17bae48755adbaff4422c4b",
+    "download_url": "https://raw.githubusercontent.com/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/main/.gitattributes",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/contents/.gitattributes?ref=main",
+      "git": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/583468bbdfddbbbba17bae48755adbaff4422c4b",
+      "html": "https://github.com/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/blob/main/.gitattributes"
+    }
+  },
+  {
+    "name": ".gitignore",
+    "path": ".gitignore",
+    "sha": "68462ed9a0ae3e81134e94afa6fa03b9d65b63dd",
+    "size": 35,
+    "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/contents/.gitignore?ref=main",
+    "html_url": "https://github.com/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/blob/main/.gitignore",
+    "git_url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/68462ed9a0ae3e81134e94afa6fa03b9d65b63dd",
+    "download_url": "https://raw.githubusercontent.com/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/main/.gitignore",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/contents/.gitignore?ref=main",
+      "git": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/68462ed9a0ae3e81134e94afa6fa03b9d65b63dd",
+      "html": "https://github.com/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/blob/main/.gitignore"
+    }
+  },
+  {
+    "name": "LICENSE.txt",
+    "path": "LICENSE.txt",
+    "sha": "a311fe646973aa7da11458c3cbfefbb4c671f857",
+    "size": 828,
+    "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/contents/LICENSE.txt?ref=main",
+    "html_url": "https://github.com/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/blob/main/LICENSE.txt",
+    "git_url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/a311fe646973aa7da11458c3cbfefbb4c671f857",
+    "download_url": "https://raw.githubusercontent.com/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/main/LICENSE.txt",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/contents/LICENSE.txt?ref=main",
+      "git": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/a311fe646973aa7da11458c3cbfefbb4c671f857",
+      "html": "https://github.com/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/blob/main/LICENSE.txt"
+    }
+  },
+  {
+    "name": "README.md",
+    "path": "README.md",
+    "sha": "7bde6b0f7d2c3e18a2afa2af934fe63a18d456a4",
+    "size": 2095,
+    "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/contents/README.md?ref=main",
+    "html_url": "https://github.com/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/blob/main/README.md",
+    "git_url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/7bde6b0f7d2c3e18a2afa2af934fe63a18d456a4",
+    "download_url": "https://raw.githubusercontent.com/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/main/README.md",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/contents/README.md?ref=main",
+      "git": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/7bde6b0f7d2c3e18a2afa2af934fe63a18d456a4",
+      "html": "https://github.com/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/blob/main/README.md"
+    }
+  },
+  {
+    "name": "addons",
+    "path": "addons",
+    "sha": "a21e5338894cc9ea8335bd46c5829445bc9449e7",
+    "size": 0,
+    "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/contents/addons?ref=main",
+    "html_url": "https://github.com/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/tree/main/addons",
+    "git_url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/trees/a21e5338894cc9ea8335bd46c5829445bc9449e7",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/contents/addons?ref=main",
+      "git": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/trees/a21e5338894cc9ea8335bd46c5829445bc9449e7",
+      "html": "https://github.com/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/tree/main/addons"
+    }
+  },
+  {
+    "name": "icon.png",
+    "path": "icon.png",
+    "sha": "8ac0c91acf42f45949512a4e8dbbd74c299746cf",
+    "size": 848631,
+    "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/contents/icon.png?ref=main",
+    "html_url": "https://github.com/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/blob/main/icon.png",
+    "git_url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/8ac0c91acf42f45949512a4e8dbbd74c299746cf",
+    "download_url": "https://raw.githubusercontent.com/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/main/icon.png",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/contents/icon.png?ref=main",
+      "git": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/8ac0c91acf42f45949512a4e8dbbd74c299746cf",
+      "html": "https://github.com/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/blob/main/icon.png"
+    }
+  }
+]

@@ -22,6 +22,7 @@
 | `assets/models/wuhan-ctf-finance/` | [Wuhan CTF Finance Center](https://sketchfab.com/3d-models/wuhanctf-finance-center-ae06b8933f7e4b5fb749425afb2e454e) by **Void**(9.5k 面) | CC-BY 4.0 | 保留本表即视为署名 |
 | `assets/models/wuhan-shipping-center/` | [Wuhan Yangtze River Shipping Center](https://sketchfab.com/3d-models/wuhan-yangtze-river-shipping-center-fc4c62c332234ef6abffac9d87e4bc2f) by **Void**(18.7k 面) | CC-BY 4.0 | 保留本表即视为署名 |
 | `assets/models/wuhan-panhai-times/` | [Wuhan Pan Hai Times Center](https://sketchfab.com/3d-models/wuhan-pan-hai-times-center-landmark-tower-c5dfa1384c0b4ae3a08a49e2ed7ae2e4) by **Void**(7.4k 面) | CC-BY 4.0 | 保留本表即视为署名 |
+| `assets/npc/` + `assets/props/`(角色 / 街道小品) | [KayKit Character Pack](https://kaylousberg.com) & [City Builder Bits](https://kaylousberg.com) by Kay Lousberg | CC0 1.0 | 无需署名 |
 | `assets/cars/*.glb` + `Textures/colormap.png`(20 台车) | [Kenney Car Kit](https://kenney.nl/assets/car-kit),经 [shorepine/kenney](https://github.com/shorepine/kenney) 镜像 | **CC0 1.0** | 无需署名,仍致谢 Kenney |
 
 ## 贴图 / 代码

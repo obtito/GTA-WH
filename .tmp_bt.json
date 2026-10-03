@@ -1,0 +1,2471 @@
+{
+  "sha": "63976910ca04d16f0fc531b9c614244be8128713",
+  "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/trees/63976910ca04d16f0fc531b9c614244be8128713",
+  "tree": [
+    {
+      "path": ".gitattributes",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "583468bbdfddbbbba17bae48755adbaff4422c4b",
+      "size": 475,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/583468bbdfddbbbba17bae48755adbaff4422c4b"
+    },
+    {
+      "path": ".gitignore",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "68462ed9a0ae3e81134e94afa6fa03b9d65b63dd",
+      "size": 35,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/68462ed9a0ae3e81134e94afa6fa03b9d65b63dd"
+    },
+    {
+      "path": "LICENSE.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a311fe646973aa7da11458c3cbfefbb4c671f857",
+      "size": 828,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/a311fe646973aa7da11458c3cbfefbb4c671f857"
+    },
+    {
+      "path": "README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7bde6b0f7d2c3e18a2afa2af934fe63a18d456a4",
+      "size": 2095,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/7bde6b0f7d2c3e18a2afa2af934fe63a18d456a4"
+    },
+    {
+      "path": "addons",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "a21e5338894cc9ea8335bd46c5829445bc9449e7",
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/trees/a21e5338894cc9ea8335bd46c5829445bc9449e7"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "ac06fc18c262b987302e5cbba39707b5226fccf0",
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/trees/ac06fc18c262b987302e5cbba39707b5226fccf0"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "1862114e55f2e973f1c055a418095c359fcf0f99",
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/trees/1862114e55f2e973f1c055a418095c359fcf0f99"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/LICENSE.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a311fe646973aa7da11458c3cbfefbb4c671f857",
+      "size": 828,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/a311fe646973aa7da11458c3cbfefbb4c671f857"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx(unity)",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "f00caeadbefcc903d8d73cd00c644b34e7a787ea",
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/trees/f00caeadbefcc903d8d73cd00c644b34e7a787ea"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx(unity)/base.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "19fc69f9fbbeba972b80959cf119e16d4ae7cee2",
+      "size": 19564,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/19fc69f9fbbeba972b80959cf119e16d4ae7cee2"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx(unity)/bench.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fe3ca587186ae4d4946ac35e66641e09dc4c9ae4",
+      "size": 19420,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/fe3ca587186ae4d4946ac35e66641e09dc4c9ae4"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx(unity)/box_A.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a97e8ce1e5f629d3117d72001cb51ff662869f1d",
+      "size": 19164,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/a97e8ce1e5f629d3117d72001cb51ff662869f1d"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx(unity)/box_B.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0508971b1fe47f24310d2877836d335b6453d752",
+      "size": 18988,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/0508971b1fe47f24310d2877836d335b6453d752"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx(unity)/building_A.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ee2c4350b301c2c5dba4912d0a60d479dff42159",
+      "size": 40444,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/ee2c4350b301c2c5dba4912d0a60d479dff42159"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx(unity)/building_A_withoutBase.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0977d35ebfc5d9adf837606aff133f6458deab08",
+      "size": 29388,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/0977d35ebfc5d9adf837606aff133f6458deab08"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx(unity)/building_B.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "541015f44e3953b6ad14e5282d8e4f1c05948290",
+      "size": 46188,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/541015f44e3953b6ad14e5282d8e4f1c05948290"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx(unity)/building_B_withoutBase.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "76a462e6af7c5990c01ecc44911d9f72336cb03a",
+      "size": 32076,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/76a462e6af7c5990c01ecc44911d9f72336cb03a"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx(unity)/building_C.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e8cbfe34441aa5728b656fc8a07a09202291d06c",
+      "size": 44652,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/e8cbfe34441aa5728b656fc8a07a09202291d06c"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx(unity)/building_C_withoutBase.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "96eec51fdf795dbf1be0e6fde8ef2bceff746fcf",
+      "size": 33916,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/96eec51fdf795dbf1be0e6fde8ef2bceff746fcf"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx(unity)/building_D.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7de4c250143f4743d55b4a6b1d01a395e15e3ec2",
+      "size": 45804,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/7de4c250143f4743d55b4a6b1d01a395e15e3ec2"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx(unity)/building_D_withoutBase.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "607751e52fe4dd1a6f40ca1d9afa1105bd79e874",
+      "size": 37900,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/607751e52fe4dd1a6f40ca1d9afa1105bd79e874"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx(unity)/building_E.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "60f77d4fddd2cad4ba39c5ee72c671f478966ad6",
+      "size": 52236,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/60f77d4fddd2cad4ba39c5ee72c671f478966ad6"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx(unity)/building_E_withoutBase.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "042f36c37d58ce58307366c29324f08eac7fcbf2",
+      "size": 40412,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/042f36c37d58ce58307366c29324f08eac7fcbf2"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx(unity)/building_F.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3c7db7079686da82dbabfcb093a415cdfcc0549b",
+      "size": 51116,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/3c7db7079686da82dbabfcb093a415cdfcc0549b"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx(unity)/building_F_withoutBase.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "48e38f13b66220b9928e160430d76bb549990173",
+      "size": 43260,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/48e38f13b66220b9928e160430d76bb549990173"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx(unity)/building_G.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dd59c963a6d249471a641b6eeb802598b1878d92",
+      "size": 62716,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/dd59c963a6d249471a641b6eeb802598b1878d92"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx(unity)/building_G_withoutBase.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "24f517402e0f30e0b1e1a778743fdf1165483b18",
+      "size": 42844,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/24f517402e0f30e0b1e1a778743fdf1165483b18"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx(unity)/building_H.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c9575b6203ed49bb96b558c2d32ee9757ebdd683",
+      "size": 65388,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/c9575b6203ed49bb96b558c2d32ee9757ebdd683"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx(unity)/building_H_withoutBase.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "593bf147d67ec2db00119d5bae91234250b01186",
+      "size": 48028,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/593bf147d67ec2db00119d5bae91234250b01186"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx(unity)/bush.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e12c3589aacaee53511607bb5840e390e82fb90b",
+      "size": 20620,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/e12c3589aacaee53511607bb5840e390e82fb90b"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx(unity)/car_hatchback.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "743c69c0d93bd93c3d70bbab10e79b1a53390f92",
+      "size": 62604,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/743c69c0d93bd93c3d70bbab10e79b1a53390f92"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx(unity)/car_police.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b1f12e80d6f76b450c9c8636d9a26371290d65d1",
+      "size": 66092,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/b1f12e80d6f76b450c9c8636d9a26371290d65d1"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx(unity)/car_sedan.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d155f506fe56714aeb4234f68d8990f34c08c93b",
+      "size": 63532,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/d155f506fe56714aeb4234f68d8990f34c08c93b"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx(unity)/car_stationwagon.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7ed022f1ea7c3d7ca9b7340cc1eb890dd99edae4",
+      "size": 63740,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/7ed022f1ea7c3d7ca9b7340cc1eb890dd99edae4"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx(unity)/car_taxi.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cf1a294f631533c684de4b743173e07d7933843b",
+      "size": 64908,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/cf1a294f631533c684de4b743173e07d7933843b"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx(unity)/citybits_texture.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ffffc8998d30b32bdfa6761f33c87bcdfd0ba07f",
+      "size": 19885,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/ffffc8998d30b32bdfa6761f33c87bcdfd0ba07f"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx(unity)/dumpster.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "46385f14eb7219b936e3ff91c8490ae89c061e3f",
+      "size": 21820,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/46385f14eb7219b936e3ff91c8490ae89c061e3f"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx(unity)/firehydrant.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9fea9b1bccbd04256631023d7d4fa1b577093d0d",
+      "size": 23404,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/9fea9b1bccbd04256631023d7d4fa1b577093d0d"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx(unity)/road_corner.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fb8cd09a90ddf0d8206434f3c1717a8ed8c2734d",
+      "size": 22300,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/fb8cd09a90ddf0d8206434f3c1717a8ed8c2734d"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx(unity)/road_corner_curved.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2f4675ea55567a56cc94ab5b2cab09b9412d120c",
+      "size": 23228,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/2f4675ea55567a56cc94ab5b2cab09b9412d120c"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx(unity)/road_junction.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1155a52c8bf8bfcdcd5aa2dee1bc0b60c011b17f",
+      "size": 22476,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/1155a52c8bf8bfcdcd5aa2dee1bc0b60c011b17f"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx(unity)/road_straight.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f39a41b304c70f661c98b1dcf2a0736f7c30fcf0",
+      "size": 19612,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/f39a41b304c70f661c98b1dcf2a0736f7c30fcf0"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx(unity)/road_straight_crossing.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ddecd071cb47205844b2444972b0e538db2cd30a",
+      "size": 19772,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/ddecd071cb47205844b2444972b0e538db2cd30a"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx(unity)/road_tsplit.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "09b8acb4612f4ca572bba73dfe29f8b79794f867",
+      "size": 21628,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/09b8acb4612f4ca572bba73dfe29f8b79794f867"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx(unity)/streetlight.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a3f190a1e4dbcd8df7d75f3ceb0c4c05c2a2fae6",
+      "size": 23932,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/a3f190a1e4dbcd8df7d75f3ceb0c4c05c2a2fae6"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx(unity)/trafficlight_A.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5e749f24c0b31f9b6ad45a5432a66ac7375423d1",
+      "size": 33532,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/5e749f24c0b31f9b6ad45a5432a66ac7375423d1"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx(unity)/trafficlight_B.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a478fc0304f2c3e55a76e361fc39e383c1326455",
+      "size": 37772,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/a478fc0304f2c3e55a76e361fc39e383c1326455"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx(unity)/trafficlight_C.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2716986db6cf4be6c8d2b8932d51b8a806e56fcd",
+      "size": 32204,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/2716986db6cf4be6c8d2b8932d51b8a806e56fcd"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx(unity)/trash_A.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ab38e6069e89e1a6db7598f01736a79cf7218dff",
+      "size": 19068,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/ab38e6069e89e1a6db7598f01736a79cf7218dff"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx(unity)/trash_B.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6ade2e3340df17ea1c8fab1b832663d10b58984f",
+      "size": 19116,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/6ade2e3340df17ea1c8fab1b832663d10b58984f"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx(unity)/watertower.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e7bee2d2a7c741b828f72fe1152354b56b4e270a",
+      "size": 22364,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/e7bee2d2a7c741b828f72fe1152354b56b4e270a"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "c741909ef737228a1c16258787be2f6faf40a2ba",
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/trees/c741909ef737228a1c16258787be2f6faf40a2ba"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx/base.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8f38ee2d943c440f5d2d91b252eaf0ec8dbfecfe",
+      "size": 19452,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/8f38ee2d943c440f5d2d91b252eaf0ec8dbfecfe"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx/bench.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "388dc404c83aa21b26adf84eb0a490b67605e24c",
+      "size": 19404,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/388dc404c83aa21b26adf84eb0a490b67605e24c"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx/box_A.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "88f5c6a20abf12c523ec77f5d0c17e01e703e6e9",
+      "size": 19196,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/88f5c6a20abf12c523ec77f5d0c17e01e703e6e9"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx/box_B.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5b0a58315f6bd9f2c4f5e34b240af49ae8c98d9c",
+      "size": 19004,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/5b0a58315f6bd9f2c4f5e34b240af49ae8c98d9c"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx/building_A.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fa406d1c0e39cd8c50e8136d9be419615db76df0",
+      "size": 39820,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/fa406d1c0e39cd8c50e8136d9be419615db76df0"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx/building_A_withoutBase.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "126a98890c269e837362f41f3cfe5b2ae45a3ab0",
+      "size": 29020,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/126a98890c269e837362f41f3cfe5b2ae45a3ab0"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx/building_B.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c3d1d0313cdb80558406ac53eae04a7ba9e02b69",
+      "size": 45644,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/c3d1d0313cdb80558406ac53eae04a7ba9e02b69"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx/building_B_withoutBase.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "68f924d432a0cee47e4155fbdfc964b8334799b7",
+      "size": 31724,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/68f924d432a0cee47e4155fbdfc964b8334799b7"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx/building_C.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "309c389a397dc43b32467532bed0f242c1b074b6",
+      "size": 43644,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/309c389a397dc43b32467532bed0f242c1b074b6"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx/building_C_withoutBase.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5795ba31df52f1eed8ce73818f6313c348ff319e",
+      "size": 33468,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/5795ba31df52f1eed8ce73818f6313c348ff319e"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx/building_D.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ec77039b63487d6b10f89f5243007835437b2649",
+      "size": 44700,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/ec77039b63487d6b10f89f5243007835437b2649"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx/building_D_withoutBase.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3bf14506c726082dbc2f8b6055bb89fb3404e1d4",
+      "size": 37148,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/3bf14506c726082dbc2f8b6055bb89fb3404e1d4"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx/building_E.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "042771ee61a0667f09e8eb25799f5f0fde86e352",
+      "size": 51436,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/042771ee61a0667f09e8eb25799f5f0fde86e352"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx/building_E_withoutBase.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2021e6233c520bc869973d0f8436027274f38d9c",
+      "size": 39884,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/2021e6233c520bc869973d0f8436027274f38d9c"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx/building_F.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b544b0a784da44068b83f84b8b31017b54c9d747",
+      "size": 50316,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/b544b0a784da44068b83f84b8b31017b54c9d747"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx/building_F_withoutBase.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8b805a895a551ff6a5b1c90d4f907f63eeca8c62",
+      "size": 42588,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/8b805a895a551ff6a5b1c90d4f907f63eeca8c62"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx/building_G.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b83d4df8b65453cae15d8f0a7e8e64787d3a9f00",
+      "size": 61372,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/b83d4df8b65453cae15d8f0a7e8e64787d3a9f00"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx/building_G_withoutBase.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a3a0fdc82a6c3a149f1b34b0703a56942519d977",
+      "size": 42044,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/a3a0fdc82a6c3a149f1b34b0703a56942519d977"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx/building_H.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "308862b4a95f3a58497256a878c503b357017892",
+      "size": 63852,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/308862b4a95f3a58497256a878c503b357017892"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx/building_H_withoutBase.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "996bba789bb35787ac2e7715c12e9da1efb308ad",
+      "size": 47180,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/996bba789bb35787ac2e7715c12e9da1efb308ad"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx/bush.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9956303be3303707a930c85255d59fc50570ca13",
+      "size": 20684,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/9956303be3303707a930c85255d59fc50570ca13"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx/car_hatchback.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "23824fa4c9e6b4a4f0a4d2ae1f8b35029ae3a21b",
+      "size": 62444,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/23824fa4c9e6b4a4f0a4d2ae1f8b35029ae3a21b"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx/car_police.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "28dc94088591a96197c18373af59824f90005212",
+      "size": 65948,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/28dc94088591a96197c18373af59824f90005212"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx/car_sedan.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "485272c510bf3f5959f1406320ea167be9380f26",
+      "size": 63452,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/485272c510bf3f5959f1406320ea167be9380f26"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx/car_stationwagon.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "66c4f4bb57c73590ac424eb0f20a3da37ac42c8f",
+      "size": 63564,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/66c4f4bb57c73590ac424eb0f20a3da37ac42c8f"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx/car_taxi.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9d7f19ce03cf35ff51dcca5c2b58f18c90b29cf3",
+      "size": 64780,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/9d7f19ce03cf35ff51dcca5c2b58f18c90b29cf3"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx/citybits_texture.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ffffc8998d30b32bdfa6761f33c87bcdfd0ba07f",
+      "size": 19885,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/ffffc8998d30b32bdfa6761f33c87bcdfd0ba07f"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx/dumpster.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6311dafa7707be26549fe99a73028062ab494b5c",
+      "size": 21788,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/6311dafa7707be26549fe99a73028062ab494b5c"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx/firehydrant.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9248a984135d71fefead46c76bb578d4b0fea8c6",
+      "size": 23084,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/9248a984135d71fefead46c76bb578d4b0fea8c6"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx/road_corner.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4048b96a47efcf31f041eca769d472f46bb895a8",
+      "size": 22012,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/4048b96a47efcf31f041eca769d472f46bb895a8"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx/road_corner_curved.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5de483b2979338032dcce6f981b9881ac7e97233",
+      "size": 22796,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/5de483b2979338032dcce6f981b9881ac7e97233"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx/road_junction.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "18760d737b621a0e45afeec3d92c8dc90013289a",
+      "size": 22028,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/18760d737b621a0e45afeec3d92c8dc90013289a"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx/road_straight.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8ddb9c330b43562999a6edf1d5b1c0df79235f00",
+      "size": 19580,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/8ddb9c330b43562999a6edf1d5b1c0df79235f00"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx/road_straight_crossing.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "46c589e43dbeafaec07fae0bae65d9b8e92d20f6",
+      "size": 19740,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/46c589e43dbeafaec07fae0bae65d9b8e92d20f6"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx/road_tsplit.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0dc75b2fa78747ffeede9286ff48e610b0f798da",
+      "size": 21260,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/0dc75b2fa78747ffeede9286ff48e610b0f798da"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx/streetlight.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "83074885db9564ca160a7d86d106db35910f5b0a",
+      "size": 23900,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/83074885db9564ca160a7d86d106db35910f5b0a"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx/trafficlight_A.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a5ea58ac7ccf4f855d564173d428e421e90fad4f",
+      "size": 33180,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/a5ea58ac7ccf4f855d564173d428e421e90fad4f"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx/trafficlight_B.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3c629ed030d15d0fb143350ff9d70effc9788987",
+      "size": 37548,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/3c629ed030d15d0fb143350ff9d70effc9788987"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx/trafficlight_C.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9701beaf769d920011ce8b8446ca5bb99bcc8a62",
+      "size": 32060,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/9701beaf769d920011ce8b8446ca5bb99bcc8a62"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx/trash_A.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2e2a43d2c9c2c95b4b57fe97a164e316a683b3cc",
+      "size": 19116,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/2e2a43d2c9c2c95b4b57fe97a164e316a683b3cc"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx/trash_B.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "12e181fe5134de652748aea97eb12f68c8617a70",
+      "size": 19164,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/12e181fe5134de652748aea97eb12f68c8617a70"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/fbx/watertower.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e47cc11c66e887191b7dc791676f1db983465f81",
+      "size": 22108,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/e47cc11c66e887191b7dc791676f1db983465f81"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "81f89794b8a67f0d37389b50aab11362a6fa22e0",
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/trees/81f89794b8a67f0d37389b50aab11362a6fa22e0"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/base.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a570cfcacd0eb1c4019bf82459faba42fd514a0f",
+      "size": 3432,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/a570cfcacd0eb1c4019bf82459faba42fd514a0f"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/base.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "422da3dc6e8d5c9ab9670aee4a02043261be7c0f",
+      "size": 2953,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/422da3dc6e8d5c9ab9670aee4a02043261be7c0f"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/bench.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "58206243d5cadf202aca63ba2e667ab13c8dc9aa",
+      "size": 2824,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/58206243d5cadf202aca63ba2e667ab13c8dc9aa"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/bench.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "33a9bcdac5c62f6c8faaa20140d91e671d313d8f",
+      "size": 3024,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/33a9bcdac5c62f6c8faaa20140d91e671d313d8f"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/box_A.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0fe36d68df94f6df6e8a8d85810086fa10b6fcdd",
+      "size": 2240,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/0fe36d68df94f6df6e8a8d85810086fa10b6fcdd"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/box_A.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2a11c9307305ee989ed60faa2b504fd6d47e77e2",
+      "size": 3044,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/2a11c9307305ee989ed60faa2b504fd6d47e77e2"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/box_B.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8fe76a9badc74eb502c4de4e1442f12d2822b7ba",
+      "size": 1336,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/8fe76a9badc74eb502c4de4e1442f12d2822b7ba"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/box_B.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4acb5382fd5c66915f52f744a81e87ade7cbe639",
+      "size": 3044,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/4acb5382fd5c66915f52f744a81e87ade7cbe639"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/building_A.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bdada5abd0bf5d5e42d22b9fad38b5cb49e24efd",
+      "size": 49512,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/bdada5abd0bf5d5e42d22b9fad38b5cb49e24efd"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/building_A.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "71c203c264e37be2e8529459e99d077c4b22b1e4",
+      "size": 2980,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/71c203c264e37be2e8529459e99d077c4b22b1e4"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/building_A_withoutBase.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6dda292475d096b2c42a3dd3da0fc9aea063c667",
+      "size": 28820,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/6dda292475d096b2c42a3dd3da0fc9aea063c667"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/building_A_withoutBase.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dc14b26f831eab7be10fe18e24e0aa0caccfe3f5",
+      "size": 3083,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/dc14b26f831eab7be10fe18e24e0aa0caccfe3f5"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/building_B.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "75181a9f8054bfc8283777500fd265b80c847cdc",
+      "size": 65468,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/75181a9f8054bfc8283777500fd265b80c847cdc"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/building_B.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d5b0f1226e6681d286fd08254674a8b32e8227b0",
+      "size": 2980,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/d5b0f1226e6681d286fd08254674a8b32e8227b0"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/building_B_withoutBase.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dacd24dde33924add6bd1052e3b78beee4fa879a",
+      "size": 38844,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/dacd24dde33924add6bd1052e3b78beee4fa879a"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/building_B_withoutBase.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c7081043ff943e9bb6c67a8f54697d402dcb9ac5",
+      "size": 3089,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/c7081043ff943e9bb6c67a8f54697d402dcb9ac5"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/building_C.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "33bd9d066770547efe8a8111a0e3b66e9e62606f",
+      "size": 61512,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/33bd9d066770547efe8a8111a0e3b66e9e62606f"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/building_C.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bbf598cecffaddf2967984c243580c6b0d5947de",
+      "size": 2979,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/bbf598cecffaddf2967984c243580c6b0d5947de"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/building_C_withoutBase.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7bc0a52903a0c74ed69c69171a5e595e1ff73d53",
+      "size": 43548,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/7bc0a52903a0c74ed69c69171a5e595e1ff73d53"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/building_C_withoutBase.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b473145dd56e847ca8a9c55f5acc7effd0e083bf",
+      "size": 3089,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/b473145dd56e847ca8a9c55f5acc7effd0e083bf"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/building_D.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "df374b2813bf0751c11b2ead3914adb525c8d739",
+      "size": 69812,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/df374b2813bf0751c11b2ead3914adb525c8d739"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/building_D.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2ab9582b037fa1fc9b7793747d3a7af24c1ab3ee",
+      "size": 2996,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/2ab9582b037fa1fc9b7793747d3a7af24c1ab3ee"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/building_D_withoutBase.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0f903ea3400c9139b0268e21d57f961be4fd6383",
+      "size": 55680,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/0f903ea3400c9139b0268e21d57f961be4fd6383"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/building_D_withoutBase.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1e53f64a2e902d6ab57f4d55534986e511ff03a0",
+      "size": 3090,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/1e53f64a2e902d6ab57f4d55534986e511ff03a0"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/building_E.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "40118a605505bcf197d53a16a3b90d26a8331560",
+      "size": 84840,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/40118a605505bcf197d53a16a3b90d26a8331560"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/building_E.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "62b60e8f3cafad09616a4ee3a1216e3024a55200",
+      "size": 3014,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/62b60e8f3cafad09616a4ee3a1216e3024a55200"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/building_E_withoutBase.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b13561470f4543916d9e1c859511b0533b868e34",
+      "size": 62084,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/b13561470f4543916d9e1c859511b0533b868e34"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/building_E_withoutBase.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dea52f810d66920ea579d692b73041a0754e62fd",
+      "size": 3090,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/dea52f810d66920ea579d692b73041a0754e62fd"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/building_F.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "981c1c0a74578c43a3cfae4adbc5643eb44baf32",
+      "size": 84272,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/981c1c0a74578c43a3cfae4adbc5643eb44baf32"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/building_F.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "026f02ee23ca1371ce0ac48089f7523cd92cbacd",
+      "size": 3014,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/026f02ee23ca1371ce0ac48089f7523cd92cbacd"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/building_F_withoutBase.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2a3abfbe4d6db19a0adec79766dfd4043c3e26c4",
+      "size": 71192,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/2a3abfbe4d6db19a0adec79766dfd4043c3e26c4"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/building_F_withoutBase.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d2ac77c5535e1748775a969a04b342b1505ed6fa",
+      "size": 3090,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/d2ac77c5535e1748775a969a04b342b1505ed6fa"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/building_G.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "475c93530d26b148c667e8de6ba4ac7a4cc3534c",
+      "size": 103708,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/475c93530d26b148c667e8de6ba4ac7a4cc3534c"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/building_G.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "02fdeef750541c3de1084d543ec35b69e679e353",
+      "size": 3016,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/02fdeef750541c3de1084d543ec35b69e679e353"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/building_G_withoutBase.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e258cd07e9928af4c1c659bb2e04e7cf0bfb968d",
+      "size": 68880,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/e258cd07e9928af4c1c659bb2e04e7cf0bfb968d"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/building_G_withoutBase.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "245d521089ccee38d7c94736a8fd1da224a71397",
+      "size": 3090,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/245d521089ccee38d7c94736a8fd1da224a71397"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/building_H.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8164d880e3a43d25c072698ac3845c950284728f",
+      "size": 118064,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/8164d880e3a43d25c072698ac3845c950284728f"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/building_H.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "679cf7f68cad82e2916384af6fb7d4439b646077",
+      "size": 3016,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/679cf7f68cad82e2916384af6fb7d4439b646077"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/building_H_withoutBase.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e38fba2069b475539ea9ad9673881b178585583f",
+      "size": 86880,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/e38fba2069b475539ea9ad9673881b178585583f"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/building_H_withoutBase.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f5e7ddbaebdf5df62c1d1a7501f84410eb09f1d0",
+      "size": 3089,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/f5e7ddbaebdf5df62c1d1a7501f84410eb09f1d0"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/bush.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "911f09225654a17c006857bd8469c6f06e536ba8",
+      "size": 3056,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/911f09225654a17c006857bd8469c6f06e536ba8"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/bush.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9de86fe3219a8ac27fe0ddc3e534ed509ebfd753",
+      "size": 3022,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/9de86fe3219a8ac27fe0ddc3e534ed509ebfd753"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/car_hatchback.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bc3fab7c8cf250a7c016765713aaa587ce42dcca",
+      "size": 53564,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/bc3fab7c8cf250a7c016765713aaa587ce42dcca"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/car_hatchback.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0a01d2ab394731ae5d568cb607f8b880d5be4478",
+      "size": 10952,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/0a01d2ab394731ae5d568cb607f8b880d5be4478"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/car_police.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9eac5131ed3598700497aca767250375c27da559",
+      "size": 62168,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/9eac5131ed3598700497aca767250375c27da559"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/car_police.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "33a81f37d210a0f00d1bdd4e05bdf465c693c01e",
+      "size": 10937,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/33a81f37d210a0f00d1bdd4e05bdf465c693c01e"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/car_sedan.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ba412b85495e0a56947635821056eb8c273cf3da",
+      "size": 55332,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/ba412b85495e0a56947635821056eb8c273cf3da"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/car_sedan.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8e1439b3357ba9ffa021406533979734137aecc2",
+      "size": 10928,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/8e1439b3357ba9ffa021406533979734137aecc2"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/car_stationwagon.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d4e69afcb7b4c9cb74dbcb22dde1618fd5e0f5bc",
+      "size": 56172,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/d4e69afcb7b4c9cb74dbcb22dde1618fd5e0f5bc"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/car_stationwagon.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fafd35e970e41edb71dfa125d1cdca5fd369df3c",
+      "size": 10970,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/fafd35e970e41edb71dfa125d1cdca5fd369df3c"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/car_taxi.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3fdb8ba4a68e3def9fb4f6c6804ed04f325340cf",
+      "size": 58704,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/3fdb8ba4a68e3def9fb4f6c6804ed04f325340cf"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/car_taxi.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "266c1113a22f85ee6851b5dab6a89fc51726f4f8",
+      "size": 10924,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/266c1113a22f85ee6851b5dab6a89fc51726f4f8"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/citybits_texture.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ffffc8998d30b32bdfa6761f33c87bcdfd0ba07f",
+      "size": 19885,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/ffffc8998d30b32bdfa6761f33c87bcdfd0ba07f"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/dumpster.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6f1f74dd58e92214f0875697f22af3705e0e6277",
+      "size": 8180,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/6f1f74dd58e92214f0875697f22af3705e0e6277"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/dumpster.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0f48c93bcc5659801ab264d8211b6144463d0454",
+      "size": 3033,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/0f48c93bcc5659801ab264d8211b6144463d0454"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/firehydrant.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "225042935b68b3961e03cd4cf051de53a5ddcdd4",
+      "size": 8056,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/225042935b68b3961e03cd4cf051de53a5ddcdd4"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/firehydrant.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fabafe7abc5d096b70b308a6452054fcc0f8ad5d",
+      "size": 3067,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/fabafe7abc5d096b70b308a6452054fcc0f8ad5d"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/road_corner.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b60be05a8a88c19a11ba1deac0cd127a82783865",
+      "size": 7408,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/b60be05a8a88c19a11ba1deac0cd127a82783865"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/road_corner.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7fb1cb178b0ab95b890a3ff00aa731f838a0fc35",
+      "size": 2971,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/7fb1cb178b0ab95b890a3ff00aa731f838a0fc35"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/road_corner_curved.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "402d772507f521a9dbafb8d4247c28491eb38c49",
+      "size": 7976,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/402d772507f521a9dbafb8d4247c28491eb38c49"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/road_corner_curved.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b9fb3227e8be27167d7b8a15d340813f11ac9e80",
+      "size": 2986,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/b9fb3227e8be27167d7b8a15d340813f11ac9e80"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/road_junction.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "543d659413988fd8719b3a830a981dfb2f230e62",
+      "size": 9724,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/543d659413988fd8719b3a830a981dfb2f230e62"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/road_junction.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e923f12a5d826d67a82d22286596481d5427cb83",
+      "size": 2992,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/e923f12a5d826d67a82d22286596481d5427cb83"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/road_straight.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "96be0b882cad22166a3ec456d171dbc1f2b6203c",
+      "size": 3676,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/96be0b882cad22166a3ec456d171dbc1f2b6203c"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/road_straight.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c20a74e205206f497941816a98b3f75859bc9896",
+      "size": 2974,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/c20a74e205206f497941816a98b3f75859bc9896"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/road_straight_crossing.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "43e72886904f870c9d80e48066fd32c1132d9086",
+      "size": 4096,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/43e72886904f870c9d80e48066fd32c1132d9086"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/road_straight_crossing.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "37d7cd00be4404a948aedba574c28f7f1d711ae5",
+      "size": 2992,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/37d7cd00be4404a948aedba574c28f7f1d711ae5"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/road_tsplit.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0e6b545008bcc42f4ca767a99ea36838acaafdc1",
+      "size": 7548,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/0e6b545008bcc42f4ca767a99ea36838acaafdc1"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/road_tsplit.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e71965addb4ccae5e940fa73a7891c4c1bef7ceb",
+      "size": 2971,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/e71965addb4ccae5e940fa73a7891c4c1bef7ceb"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/streetlight.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0fa33cc8584b11fbdd8c83484d84a32830fc0e0a",
+      "size": 7136,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/0fa33cc8584b11fbdd8c83484d84a32830fc0e0a"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/streetlight.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0a35577350736d1c3e30fd68caba0a21c1a4168a",
+      "size": 3067,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/0a35577350736d1c3e30fd68caba0a21c1a4168a"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/trafficlight_A.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8b61e1c4058797f528c9c59f4b00bb46f8382c85",
+      "size": 30664,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/8b61e1c4058797f528c9c59f4b00bb46f8382c85"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/trafficlight_A.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e0c75d0582f31d13f6c62df545478f3c64c3df02",
+      "size": 3079,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/e0c75d0582f31d13f6c62df545478f3c64c3df02"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/trafficlight_B.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c02721ee05b3f12b4e08f526140e93ad4b607e27",
+      "size": 35592,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/c02721ee05b3f12b4e08f526140e93ad4b607e27"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/trafficlight_B.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "be7efedbccfd132e98973aedefd6f4a22c2f44bb",
+      "size": 3078,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/be7efedbccfd132e98973aedefd6f4a22c2f44bb"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/trafficlight_C.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b76641f43ec4b02a0eda10a130a03c6ca3a58ac2",
+      "size": 24136,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/b76641f43ec4b02a0eda10a130a03c6ca3a58ac2"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/trafficlight_C.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d2eb14a8fe5fdabf400f0d2950b4d68a83d21860",
+      "size": 3074,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/d2eb14a8fe5fdabf400f0d2950b4d68a83d21860"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/trash_A.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8e90c81f720054f249d4b96ee703451d5c083062",
+      "size": 620,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/8e90c81f720054f249d4b96ee703451d5c083062"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/trash_A.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e702ccd391bb3575b287d86863b98bb466f3c9f9",
+      "size": 3029,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/e702ccd391bb3575b287d86863b98bb466f3c9f9"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/trash_B.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c22a98901177075961d8f8200005eaedbeeaaafa",
+      "size": 620,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/c22a98901177075961d8f8200005eaedbeeaaafa"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/trash_B.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2c3541223b11e434f60a83ffb315422b63b3cf33",
+      "size": 3033,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/2c3541223b11e434f60a83ffb315422b63b3cf33"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/watertower.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "92358a1edf3dc7903e1a8658af06d1b893c8cea2",
+      "size": 8268,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/92358a1edf3dc7903e1a8658af06d1b893c8cea2"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/gltf/watertower.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "67ba59b73f0975a0ef823970da67f1b69d4cfdb9",
+      "size": 3065,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/67ba59b73f0975a0ef823970da67f1b69d4cfdb9"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "f19b905280ce3649bc6a435de70939925ab4bf5c",
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/trees/f19b905280ce3649bc6a435de70939925ab4bf5c"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/base.mtl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f89fe4cb83ffdaf39883e4c6ba62a80f976147bb",
+      "size": 282,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/f89fe4cb83ffdaf39883e4c6ba62a80f976147bb"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/base.obj",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e9c8fd70b2d8f655285037881fa5e1fdf04ad210",
+      "size": 4063,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/e9c8fd70b2d8f655285037881fa5e1fdf04ad210"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/bench.mtl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f89fe4cb83ffdaf39883e4c6ba62a80f976147bb",
+      "size": 282,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/f89fe4cb83ffdaf39883e4c6ba62a80f976147bb"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/bench.obj",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b662cc1c390c6fb6c818962de6ae8b2954abd17c",
+      "size": 3407,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/b662cc1c390c6fb6c818962de6ae8b2954abd17c"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/box_A.mtl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f89fe4cb83ffdaf39883e4c6ba62a80f976147bb",
+      "size": 282,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/f89fe4cb83ffdaf39883e4c6ba62a80f976147bb"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/box_A.obj",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "819a9110773d007f1f9ef4d40dd7652da59e3053",
+      "size": 2687,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/819a9110773d007f1f9ef4d40dd7652da59e3053"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/box_B.mtl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f89fe4cb83ffdaf39883e4c6ba62a80f976147bb",
+      "size": 282,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/f89fe4cb83ffdaf39883e4c6ba62a80f976147bb"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/box_B.obj",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5b2fe337fa1c51c6c39cbfaa2486776fc86bbb82",
+      "size": 1741,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/5b2fe337fa1c51c6c39cbfaa2486776fc86bbb82"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/building_A.mtl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f89fe4cb83ffdaf39883e4c6ba62a80f976147bb",
+      "size": 282,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/f89fe4cb83ffdaf39883e4c6ba62a80f976147bb"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/building_A.obj",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "873ab55b9acaec01337bfe1db0fbd6758a68b5b8",
+      "size": 65003,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/873ab55b9acaec01337bfe1db0fbd6758a68b5b8"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/building_A_withoutBase.mtl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f89fe4cb83ffdaf39883e4c6ba62a80f976147bb",
+      "size": 282,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/f89fe4cb83ffdaf39883e4c6ba62a80f976147bb"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/building_A_withoutBase.obj",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "690dc3096d601214295fc0eb0f6f567f7e4b0900",
+      "size": 34828,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/690dc3096d601214295fc0eb0f6f567f7e4b0900"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/building_B.mtl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f89fe4cb83ffdaf39883e4c6ba62a80f976147bb",
+      "size": 282,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/f89fe4cb83ffdaf39883e4c6ba62a80f976147bb"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/building_B.obj",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9439c399305d98544a0657328fc3294ec7074d93",
+      "size": 85022,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/9439c399305d98544a0657328fc3294ec7074d93"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/building_B_withoutBase.mtl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f89fe4cb83ffdaf39883e4c6ba62a80f976147bb",
+      "size": 282,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/f89fe4cb83ffdaf39883e4c6ba62a80f976147bb"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/building_B_withoutBase.obj",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "038f9329b9ef8b08a6c76a1693e7b06d5edf7cdb",
+      "size": 46192,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/038f9329b9ef8b08a6c76a1693e7b06d5edf7cdb"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/building_C.mtl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f89fe4cb83ffdaf39883e4c6ba62a80f976147bb",
+      "size": 282,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/f89fe4cb83ffdaf39883e4c6ba62a80f976147bb"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/building_C.obj",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dc882183309408f3b270ebafda8226d15528628b",
+      "size": 80430,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/dc882183309408f3b270ebafda8226d15528628b"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/building_C_withoutBase.mtl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f89fe4cb83ffdaf39883e4c6ba62a80f976147bb",
+      "size": 282,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/f89fe4cb83ffdaf39883e4c6ba62a80f976147bb"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/building_C_withoutBase.obj",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "98996630ac4bc8af13c13f02064176f6087acd06",
+      "size": 52031,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/98996630ac4bc8af13c13f02064176f6087acd06"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/building_D.mtl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f89fe4cb83ffdaf39883e4c6ba62a80f976147bb",
+      "size": 282,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/f89fe4cb83ffdaf39883e4c6ba62a80f976147bb"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/building_D.obj",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ebeec2af982d935653cf1fb7b42bceca0b68958b",
+      "size": 88374,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/ebeec2af982d935653cf1fb7b42bceca0b68958b"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/building_D_withoutBase.mtl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f89fe4cb83ffdaf39883e4c6ba62a80f976147bb",
+      "size": 282,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/f89fe4cb83ffdaf39883e4c6ba62a80f976147bb"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/building_D_withoutBase.obj",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d69b7f9e3ef53d12aa33cb62c6acc5ad34eb7be6",
+      "size": 66944,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/d69b7f9e3ef53d12aa33cb62c6acc5ad34eb7be6"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/building_E.mtl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f89fe4cb83ffdaf39883e4c6ba62a80f976147bb",
+      "size": 282,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/f89fe4cb83ffdaf39883e4c6ba62a80f976147bb"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/building_E.obj",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2f853d1d2bcbc95b9178664ba5d0fba8d605662b",
+      "size": 108507,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/2f853d1d2bcbc95b9178664ba5d0fba8d605662b"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/building_E_withoutBase.mtl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f89fe4cb83ffdaf39883e4c6ba62a80f976147bb",
+      "size": 282,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/f89fe4cb83ffdaf39883e4c6ba62a80f976147bb"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/building_E_withoutBase.obj",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ed978187fe72564fa2a0b32cff0620c4e44fe351",
+      "size": 76336,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/ed978187fe72564fa2a0b32cff0620c4e44fe351"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/building_F.mtl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f89fe4cb83ffdaf39883e4c6ba62a80f976147bb",
+      "size": 282,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/f89fe4cb83ffdaf39883e4c6ba62a80f976147bb"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/building_F.obj",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "07445d85f499ef3d881b94a9d95330197d99bef4",
+      "size": 108065,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/07445d85f499ef3d881b94a9d95330197d99bef4"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/building_F_withoutBase.mtl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f89fe4cb83ffdaf39883e4c6ba62a80f976147bb",
+      "size": 282,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/f89fe4cb83ffdaf39883e4c6ba62a80f976147bb"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/building_F_withoutBase.obj",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a11d784fb42b8e90694235d3741ea7c917f5317d",
+      "size": 86541,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/a11d784fb42b8e90694235d3741ea7c917f5317d"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/building_G.mtl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f89fe4cb83ffdaf39883e4c6ba62a80f976147bb",
+      "size": 282,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/f89fe4cb83ffdaf39883e4c6ba62a80f976147bb"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/building_G.obj",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "005d7edb5a21e3c74cbc5f26e1d351d9446fcabd",
+      "size": 138177,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/005d7edb5a21e3c74cbc5f26e1d351d9446fcabd"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/building_G_withoutBase.mtl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f89fe4cb83ffdaf39883e4c6ba62a80f976147bb",
+      "size": 282,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/f89fe4cb83ffdaf39883e4c6ba62a80f976147bb"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/building_G_withoutBase.obj",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "edec6ff58435da144346bd011a3de419de7f9917",
+      "size": 83813,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/edec6ff58435da144346bd011a3de419de7f9917"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/building_H.mtl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f89fe4cb83ffdaf39883e4c6ba62a80f976147bb",
+      "size": 282,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/f89fe4cb83ffdaf39883e4c6ba62a80f976147bb"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/building_H.obj",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a47ab499f1f1eff94444c4d50c326104ea7887de",
+      "size": 152172,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/a47ab499f1f1eff94444c4d50c326104ea7887de"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/building_H_withoutBase.mtl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f89fe4cb83ffdaf39883e4c6ba62a80f976147bb",
+      "size": 282,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/f89fe4cb83ffdaf39883e4c6ba62a80f976147bb"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/building_H_withoutBase.obj",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f496ef9c3e1d3c12f84ecb0f0c6063ba1062458c",
+      "size": 105715,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/f496ef9c3e1d3c12f84ecb0f0c6063ba1062458c"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/bush.mtl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f89fe4cb83ffdaf39883e4c6ba62a80f976147bb",
+      "size": 282,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/f89fe4cb83ffdaf39883e4c6ba62a80f976147bb"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/bush.obj",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6c565014098ab9a16518ef890e780a03afa69b80",
+      "size": 5162,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/6c565014098ab9a16518ef890e780a03afa69b80"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/car_hatchback.mtl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f89fe4cb83ffdaf39883e4c6ba62a80f976147bb",
+      "size": 282,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/f89fe4cb83ffdaf39883e4c6ba62a80f976147bb"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/car_hatchback.obj",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7c3e1fc9235e8824c06439ec22119119d778d766",
+      "size": 49761,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/7c3e1fc9235e8824c06439ec22119119d778d766"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/car_hatchback_wheel_front_left.mtl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f89fe4cb83ffdaf39883e4c6ba62a80f976147bb",
+      "size": 282,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/f89fe4cb83ffdaf39883e4c6ba62a80f976147bb"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/car_hatchback_wheel_front_left.obj",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "71e815d57a4ae47cf2dcc306411c7b6709e383b8",
+      "size": 9733,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/71e815d57a4ae47cf2dcc306411c7b6709e383b8"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/car_hatchback_wheel_front_right.mtl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f89fe4cb83ffdaf39883e4c6ba62a80f976147bb",
+      "size": 282,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/f89fe4cb83ffdaf39883e4c6ba62a80f976147bb"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/car_hatchback_wheel_front_right.obj",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "02b0140070f628494e8944dc6f7263b5ae8fdbb6",
+      "size": 9837,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/02b0140070f628494e8944dc6f7263b5ae8fdbb6"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/car_hatchback_wheel_rear_left.mtl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f89fe4cb83ffdaf39883e4c6ba62a80f976147bb",
+      "size": 282,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/f89fe4cb83ffdaf39883e4c6ba62a80f976147bb"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/car_hatchback_wheel_rear_left.obj",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a18e74485fea08565fbfa8f0a498368e6c4127ee",
+      "size": 9803,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/a18e74485fea08565fbfa8f0a498368e6c4127ee"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/car_hatchback_wheel_rear_right.mtl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f89fe4cb83ffdaf39883e4c6ba62a80f976147bb",
+      "size": 282,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/f89fe4cb83ffdaf39883e4c6ba62a80f976147bb"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/car_hatchback_wheel_rear_right.obj",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "734abb6c8b3a455c37d29dd309f10589479e7138",
+      "size": 9905,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/734abb6c8b3a455c37d29dd309f10589479e7138"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/car_police.mtl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f89fe4cb83ffdaf39883e4c6ba62a80f976147bb",
+      "size": 282,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/f89fe4cb83ffdaf39883e4c6ba62a80f976147bb"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/car_police.obj",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e9851b20cbf2685a693e45ff46fa2972f7f189fe",
+      "size": 59496,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/e9851b20cbf2685a693e45ff46fa2972f7f189fe"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/car_police_wheel_front_left.mtl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f89fe4cb83ffdaf39883e4c6ba62a80f976147bb",
+      "size": 282,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/f89fe4cb83ffdaf39883e4c6ba62a80f976147bb"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/car_police_wheel_front_left.obj",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2b4b79d39f60fb23a5df1fbec3dc071044d2965d",
+      "size": 9724,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/2b4b79d39f60fb23a5df1fbec3dc071044d2965d"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/car_police_wheel_front_right.mtl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f89fe4cb83ffdaf39883e4c6ba62a80f976147bb",
+      "size": 282,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/f89fe4cb83ffdaf39883e4c6ba62a80f976147bb"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/car_police_wheel_front_right.obj",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "41f5e06b6f59b176617a6eac36101743ee30f0a7",
+      "size": 9831,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/41f5e06b6f59b176617a6eac36101743ee30f0a7"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/car_police_wheel_rear_left.mtl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f89fe4cb83ffdaf39883e4c6ba62a80f976147bb",
+      "size": 282,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/f89fe4cb83ffdaf39883e4c6ba62a80f976147bb"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/car_police_wheel_rear_left.obj",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d660c61545d7c6828078d65641229d50f21e6474",
+      "size": 9799,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/d660c61545d7c6828078d65641229d50f21e6474"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/car_police_wheel_rear_right.mtl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f89fe4cb83ffdaf39883e4c6ba62a80f976147bb",
+      "size": 282,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/f89fe4cb83ffdaf39883e4c6ba62a80f976147bb"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/car_police_wheel_rear_right.obj",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "77d6422a18c49aa06ff47bb3b5538afb0d1b86d8",
+      "size": 9899,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/77d6422a18c49aa06ff47bb3b5538afb0d1b86d8"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/car_sedan.mtl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f89fe4cb83ffdaf39883e4c6ba62a80f976147bb",
+      "size": 282,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/f89fe4cb83ffdaf39883e4c6ba62a80f976147bb"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/car_sedan.obj",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ec042052ed8945d761fbf8cf06139ea8efae0789",
+      "size": 51998,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/ec042052ed8945d761fbf8cf06139ea8efae0789"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/car_sedan_wheel_front_left.mtl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f89fe4cb83ffdaf39883e4c6ba62a80f976147bb",
+      "size": 282,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/f89fe4cb83ffdaf39883e4c6ba62a80f976147bb"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/car_sedan_wheel_front_left.obj",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7993df04903fa0821b93c41218c8e5763ccd3b96",
+      "size": 9722,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/7993df04903fa0821b93c41218c8e5763ccd3b96"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/car_sedan_wheel_front_right.mtl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f89fe4cb83ffdaf39883e4c6ba62a80f976147bb",
+      "size": 282,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/f89fe4cb83ffdaf39883e4c6ba62a80f976147bb"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/car_sedan_wheel_front_right.obj",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bcd696e6c62402fdd88592b0258f424828b699bc",
+      "size": 9829,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/bcd696e6c62402fdd88592b0258f424828b699bc"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/car_sedan_wheel_rear_left.mtl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f89fe4cb83ffdaf39883e4c6ba62a80f976147bb",
+      "size": 282,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/f89fe4cb83ffdaf39883e4c6ba62a80f976147bb"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/car_sedan_wheel_rear_left.obj",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d4498926dcf13d1a02ffb59949371b68ae291626",
+      "size": 9797,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/d4498926dcf13d1a02ffb59949371b68ae291626"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/car_sedan_wheel_rear_right.mtl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f89fe4cb83ffdaf39883e4c6ba62a80f976147bb",
+      "size": 282,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/f89fe4cb83ffdaf39883e4c6ba62a80f976147bb"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/car_sedan_wheel_rear_right.obj",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f4df642b45a5c7607d2f4844d5b9467b6862f560",
+      "size": 9897,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/f4df642b45a5c7607d2f4844d5b9467b6862f560"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/car_stationwagon.mtl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f89fe4cb83ffdaf39883e4c6ba62a80f976147bb",
+      "size": 282,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/f89fe4cb83ffdaf39883e4c6ba62a80f976147bb"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/car_stationwagon.obj",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0d9e7833a19929caa641041d615d7df7f965e93d",
+      "size": 53046,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/0d9e7833a19929caa641041d615d7df7f965e93d"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/car_stationwagon_wheel_front_left.mtl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f89fe4cb83ffdaf39883e4c6ba62a80f976147bb",
+      "size": 282,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/f89fe4cb83ffdaf39883e4c6ba62a80f976147bb"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/car_stationwagon_wheel_front_left.obj",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e6976181e6465c0f28605b577d77b6ee218fbe86",
+      "size": 9739,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/e6976181e6465c0f28605b577d77b6ee218fbe86"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/car_stationwagon_wheel_front_right.mtl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f89fe4cb83ffdaf39883e4c6ba62a80f976147bb",
+      "size": 282,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/f89fe4cb83ffdaf39883e4c6ba62a80f976147bb"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/car_stationwagon_wheel_front_right.obj",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ad0d991edc8579674136d3c1498ff82c6abf8c4f",
+      "size": 9843,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/ad0d991edc8579674136d3c1498ff82c6abf8c4f"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/car_stationwagon_wheel_rear_left.mtl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f89fe4cb83ffdaf39883e4c6ba62a80f976147bb",
+      "size": 282,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/f89fe4cb83ffdaf39883e4c6ba62a80f976147bb"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/car_stationwagon_wheel_rear_left.obj",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "729483d631d05d8621bde0eb62112bc470d44461",
+      "size": 9809,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/729483d631d05d8621bde0eb62112bc470d44461"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/car_stationwagon_wheel_rear_right.mtl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f89fe4cb83ffdaf39883e4c6ba62a80f976147bb",
+      "size": 282,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/f89fe4cb83ffdaf39883e4c6ba62a80f976147bb"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/car_stationwagon_wheel_rear_right.obj",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0d33bcbd874db3259dbfcd1b49d20a6f7bc86e67",
+      "size": 9911,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/0d33bcbd874db3259dbfcd1b49d20a6f7bc86e67"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/car_taxi.mtl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f89fe4cb83ffdaf39883e4c6ba62a80f976147bb",
+      "size": 282,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/f89fe4cb83ffdaf39883e4c6ba62a80f976147bb"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/car_taxi.obj",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "89a14b5bf4eb59e17f16fe4a779f5a7ef916ea62",
+      "size": 55632,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/89a14b5bf4eb59e17f16fe4a779f5a7ef916ea62"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/car_taxi_wheel_front_left.mtl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f89fe4cb83ffdaf39883e4c6ba62a80f976147bb",
+      "size": 282,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/f89fe4cb83ffdaf39883e4c6ba62a80f976147bb"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/car_taxi_wheel_front_left.obj",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6f79f0417da0b7414bb6591b208ca87d37a52f74",
+      "size": 9723,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/6f79f0417da0b7414bb6591b208ca87d37a52f74"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/car_taxi_wheel_front_right.mtl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f89fe4cb83ffdaf39883e4c6ba62a80f976147bb",
+      "size": 282,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/f89fe4cb83ffdaf39883e4c6ba62a80f976147bb"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/car_taxi_wheel_front_right.obj",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5fc50da79c65cbd2aa8e824a434a180227e51a88",
+      "size": 9827,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/5fc50da79c65cbd2aa8e824a434a180227e51a88"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/car_taxi_wheel_rear_left.mtl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f89fe4cb83ffdaf39883e4c6ba62a80f976147bb",
+      "size": 282,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/f89fe4cb83ffdaf39883e4c6ba62a80f976147bb"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/car_taxi_wheel_rear_left.obj",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "55620eb2fbc09506039b9a49e77ab5657574c99a",
+      "size": 9793,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/55620eb2fbc09506039b9a49e77ab5657574c99a"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/car_taxi_wheel_rear_right.mtl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f89fe4cb83ffdaf39883e4c6ba62a80f976147bb",
+      "size": 282,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/f89fe4cb83ffdaf39883e4c6ba62a80f976147bb"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/car_taxi_wheel_rear_right.obj",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d6bb90be9e2da76cb6c878452230af1357d1b88a",
+      "size": 9870,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/d6bb90be9e2da76cb6c878452230af1357d1b88a"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/citybits_texture.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ffffc8998d30b32bdfa6761f33c87bcdfd0ba07f",
+      "size": 19885,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/ffffc8998d30b32bdfa6761f33c87bcdfd0ba07f"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/dumpster.mtl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f89fe4cb83ffdaf39883e4c6ba62a80f976147bb",
+      "size": 282,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/f89fe4cb83ffdaf39883e4c6ba62a80f976147bb"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/dumpster.obj",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "74b9ec142d752c3fe51d4a64715375478e52ef10",
+      "size": 9549,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/74b9ec142d752c3fe51d4a64715375478e52ef10"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/firehydrant.mtl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f89fe4cb83ffdaf39883e4c6ba62a80f976147bb",
+      "size": 282,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/f89fe4cb83ffdaf39883e4c6ba62a80f976147bb"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/firehydrant.obj",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "81f1f3358584f0a0580ef310c8f01d53cc397a96",
+      "size": 12360,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/81f1f3358584f0a0580ef310c8f01d53cc397a96"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/road_corner.mtl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f89fe4cb83ffdaf39883e4c6ba62a80f976147bb",
+      "size": 282,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/f89fe4cb83ffdaf39883e4c6ba62a80f976147bb"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/road_corner.obj",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c8826cd0735c42b37a1e3d7a81a5106f79ca55a9",
+      "size": 10191,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/c8826cd0735c42b37a1e3d7a81a5106f79ca55a9"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/road_corner_curved.mtl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f89fe4cb83ffdaf39883e4c6ba62a80f976147bb",
+      "size": 282,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/f89fe4cb83ffdaf39883e4c6ba62a80f976147bb"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/road_corner_curved.obj",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "18b29b6f8d7311b2430f2921bed38f61c3119b4f",
+      "size": 11595,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/18b29b6f8d7311b2430f2921bed38f61c3119b4f"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/road_junction.mtl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f89fe4cb83ffdaf39883e4c6ba62a80f976147bb",
+      "size": 282,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/f89fe4cb83ffdaf39883e4c6ba62a80f976147bb"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/road_junction.obj",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3a3f031e8ddece1203c22f37b6e8d30a2a900796",
+      "size": 12441,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/3a3f031e8ddece1203c22f37b6e8d30a2a900796"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/road_straight.mtl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f89fe4cb83ffdaf39883e4c6ba62a80f976147bb",
+      "size": 282,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/f89fe4cb83ffdaf39883e4c6ba62a80f976147bb"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/road_straight.obj",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d3c6e6845b7690a3077bbaa54af542dfdc12c4e5",
+      "size": 4264,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/d3c6e6845b7690a3077bbaa54af542dfdc12c4e5"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/road_straight_crossing.mtl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f89fe4cb83ffdaf39883e4c6ba62a80f976147bb",
+      "size": 282,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/f89fe4cb83ffdaf39883e4c6ba62a80f976147bb"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/road_straight_crossing.obj",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "21c48190399cd3d9f8c45d930a65c0b343432d88",
+      "size": 4996,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/21c48190399cd3d9f8c45d930a65c0b343432d88"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/road_tsplit.mtl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f89fe4cb83ffdaf39883e4c6ba62a80f976147bb",
+      "size": 282,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/f89fe4cb83ffdaf39883e4c6ba62a80f976147bb"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/road_tsplit.obj",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "68db529c89735d86a9a1a1398c0d5b6c6fe80503",
+      "size": 9541,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/68db529c89735d86a9a1a1398c0d5b6c6fe80503"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/streetlight.mtl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f89fe4cb83ffdaf39883e4c6ba62a80f976147bb",
+      "size": 282,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/f89fe4cb83ffdaf39883e4c6ba62a80f976147bb"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/streetlight.obj",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b01489c7d7194a43b4f4dd3d18833a98bea3a211",
+      "size": 12572,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/b01489c7d7194a43b4f4dd3d18833a98bea3a211"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/trafficlight_A.mtl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f89fe4cb83ffdaf39883e4c6ba62a80f976147bb",
+      "size": 282,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/f89fe4cb83ffdaf39883e4c6ba62a80f976147bb"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/trafficlight_A.obj",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "88b5ded02eacb5fb83e08d26b0abed55f21e52ba",
+      "size": 41388,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/88b5ded02eacb5fb83e08d26b0abed55f21e52ba"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/trafficlight_B.mtl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f89fe4cb83ffdaf39883e4c6ba62a80f976147bb",
+      "size": 282,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/f89fe4cb83ffdaf39883e4c6ba62a80f976147bb"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/trafficlight_B.obj",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d05d909b06617431264beb4a1e8e777f2860cfb6",
+      "size": 51555,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/d05d909b06617431264beb4a1e8e777f2860cfb6"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/trafficlight_C.mtl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f89fe4cb83ffdaf39883e4c6ba62a80f976147bb",
+      "size": 282,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/f89fe4cb83ffdaf39883e4c6ba62a80f976147bb"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/trafficlight_C.obj",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "98988f3c667d59a3b73ab4203dd1a0d022acd011",
+      "size": 36123,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/98988f3c667d59a3b73ab4203dd1a0d022acd011"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/trash_A.mtl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f89fe4cb83ffdaf39883e4c6ba62a80f976147bb",
+      "size": 282,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/f89fe4cb83ffdaf39883e4c6ba62a80f976147bb"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/trash_A.obj",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c7faedf28fd9df1485521294f39c231fa2de1ca8",
+      "size": 1469,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/c7faedf28fd9df1485521294f39c231fa2de1ca8"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/trash_B.mtl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f89fe4cb83ffdaf39883e4c6ba62a80f976147bb",
+      "size": 282,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/f89fe4cb83ffdaf39883e4c6ba62a80f976147bb"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/trash_B.obj",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "407e8c433873ed58cc8275da37cc5f832f9dba71",
+      "size": 1467,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/407e8c433873ed58cc8275da37cc5f832f9dba71"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/watertower.mtl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f89fe4cb83ffdaf39883e4c6ba62a80f976147bb",
+      "size": 282,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/f89fe4cb83ffdaf39883e4c6ba62a80f976147bb"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/obj/watertower.obj",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4aae03cd8cc5cac48c6f619d639f43db5348d195",
+      "size": 11342,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/4aae03cd8cc5cac48c6f619d639f43db5348d195"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/texture",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "b2eb6e841df65b9a1c18151488cdecd38919d527",
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/trees/b2eb6e841df65b9a1c18151488cdecd38919d527"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Assets/texture/citybits_texture.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ffffc8998d30b32bdfa6761f33c87bcdfd0ba07f",
+      "size": 19885,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/ffffc8998d30b32bdfa6761f33c87bcdfd0ba07f"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/More KayKit Assets.url",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "480e65b483ffecaa07a398e704179a3ef9e1f597",
+      "size": 122,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/480e65b483ffecaa07a398e704179a3ef9e1f597"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/Patreon.url",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "43f9abfd38ddca05cf5147ac02df40348b5ef0c7",
+      "size": 120,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/43f9abfd38ddca05cf5147ac02df40348b5ef0c7"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/contents.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5d5c3e653947d8c5cfbd6da1d2c48dfe820862c4",
+      "size": 1107356,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/5d5c3e653947d8c5cfbd6da1d2c48dfe820862c4"
+    },
+    {
+      "path": "addons/kaykit_city_builder_bits/sample.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ac6ab19b9e22ad001d5c9c260c31ed0642c2255e",
+      "size": 1120281,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/ac6ab19b9e22ad001d5c9c260c31ed0642c2255e"
+    },
+    {
+      "path": "icon.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8ac0c91acf42f45949512a4e8dbbd74c299746cf",
+      "size": 848631,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0/git/blobs/8ac0c91acf42f45949512a4e8dbbd74c299746cf"
+    }
+  ],
+  "truncated": false
+}

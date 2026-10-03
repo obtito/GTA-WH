@@ -13,6 +13,8 @@ import { worldCollision } from './collision.js';
 import { createEnvironment } from './environment.js';
 import { initHUD } from './hud.js';
 import { buildMetro, buildFerry } from './transit.js';
+import { buildNPCs } from './npc.js';
+import { buildStreetProps } from './props.js';
 import { loadGLB } from './assets.js';
 import { Game, MODE_NAME } from './game.js';
 import { setEnvIntensity, mergeStaticMeshes } from './lib.js';
@@ -32,7 +34,7 @@ const elSpeedBox = $('#speedBox');
 /* ==================== 全局 ==================== */
 let renderer, scene, camera, controls, sky, sunLight, hemi, moonLight, stars;
 let waterMat, waterGroup, roads, city, trees, cars, bridges, landmarks, lights, beacon, metro, ferry;
-let osmCity = null, driveLines = null;
+let osmCity = null, driveLines = null, npcs;
 // OSM 覆盖区的场景坐标盒(供程序化城市避让)
 const OSM_BOX_SCENE = (() => {
   const [x0, z0] = toV2(OSM_BOX.lon0, OSM_BOX.lat1);
@@ -257,6 +259,12 @@ step('放行车流与路灯', async () => {
   console.log(`[GTA-WH] 路灯: ${lights.count}`);
   metro = buildMetro();
   scene.add(metro.group);
+  npcs = await buildNPCs(driveLines || roads.centerlines, 60);
+  scene.add(npcs.group);
+  console.log(`[GTA-WH] 行人 NPC: ${npcs.count}`);
+  const props = await buildStreetProps(driveLines || roads.centerlines, 240);
+  scene.add(props.group);
+  console.log(`[GTA-WH] 街道小品: ${props.count}`);
   ferry = buildFerry();
   scene.add(ferry.group);
   // 绿地中心塔顶航空障碍灯(红,闪烁)
@@ -476,10 +484,11 @@ function animate() {
     sunLight.position.copy(game._pos).addScaledVector(lastSunDir, 1800);
   }
 
-  // 桥上列车 / 轻轨 / 轮渡
+  // 桥上列车 / 轻轨 / 轮渡 / 行人
   for (const u of bridges?.updates || []) u(dt);
   metro?.update(dt);
   ferry?.update(dt);
+  npcs?.update(dt);
 
   // 塔顶航空障碍灯闪烁
   if (beacon) beacon.visible = (clock.elapsedTime % 1.6) < 0.9;
