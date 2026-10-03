@@ -8,6 +8,7 @@
 |---|---|---|---|
 | 建筑/路网轮廓 `data/osm/` | [OpenStreetMap](https://www.openstreetmap.org) 经 Overpass API 提取(核心区 114.22–114.42°E, 30.50–30.64°N) | **ODbL 1.0** | © OpenStreetMap contributors;若再分发本数据需以同许可提供 |
 | 地标坐标 `data/wikidata-coords.json` | [Wikidata](https://www.wikidata.org)(329 条武汉地标,含精度) | CC0 1.0 | 无需署名 |
+| 建筑高度 `data/cnbh/`(CNBH-10m 栅格采样,93% 覆盖) | [CNBH-10m](https://zenodo.org/records/7827315)(Zenodo) | CC BY 4.0 | Li et al., CNBH-10m, Zenodo |
 | 水系中心线 `data/hydro-centerlines.json` | OpenStreetMap 水系(OSM ODbL 衍生) | ODbL 1.0 | © OpenStreetMap contributors |
 
 ## 模型

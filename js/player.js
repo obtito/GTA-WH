@@ -3,6 +3,7 @@ import * as THREE from 'three';
 import { clamp, lerp } from './geo.js';
 import { groundY, isWater } from './ground.js';
 import { mat, put, UNIT } from './lib.js';
+import { worldCollision } from './collision.js';
 
 /** 程序化小人(胶囊 + 头 + 四肢摆动) */
 function buildAvatar() {
@@ -53,6 +54,12 @@ export class Player {
       this.heading = Math.atan2(mx, mz);
     }
 
+    // 建筑碰撞:半径 0.55 m 的圆推出墙体(治"人穿墙")
+    if (worldCollision.ready) {
+      worldCollision.resolve(nx, nz, 0.55, this.mesh.position.y, _res);
+      nx = _res.x; nz = _res.z;
+    }
+
     // 水域:游泳(贴水面;桥面上下文用当前身高判定)
     this.swimming = isWater(nx, nz, this.mesh.position.y);
     const gy = groundY(nx, nz, this.mesh.position.y);
@@ -93,6 +100,15 @@ export class Player {
     const k = 1 - Math.pow(0.0003, dt);
     _v1.set(cx, cy, cz);
     camera.position.lerp(_v1, k);
+    // 相机不进楼:自身体向机位步进,撞墙即在墙前收住
+    if (worldCollision.ready) {
+      worldCollision.freePath(
+        this.mesh.position.x, this.mesh.position.z,
+        camera.position.x, camera.position.z,
+        camera.position.y, 1.0, _res,
+      );
+      if (_res.hit) { camera.position.x = _res.x; camera.position.z = _res.z; }
+    }
     const camGround = groundY(camera.position.x, camera.position.z, camera.position.y);
     if (camera.position.y < camGround + 1.2) camera.position.y = camGround + 1.2;
     // 视线随俯仰抬升/下压(负=俯视)
@@ -105,3 +121,4 @@ export class Player {
 }
 
 const _v1 = new THREE.Vector3();
+const _res = { x: 0, z: 0, hit: false };

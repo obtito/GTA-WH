@@ -6,8 +6,10 @@ import { Sky } from 'three/addons/Sky.js';
 import { buildGround, buildMountains, createWaterMaterial, buildWater, buildRoads, terrainHeight } from './world.js';
 import { buildCity, buildTrees, buildCars, buildStreetLights } from './city.js';
 import { buildOsmCity, buildOsmRoads, OSM_BOX } from './city-osm.js';
-import { buildLandmarks, landmarkSites } from './landmarks.js';
+import { buildLandmarks } from './landmarks.js';
 import { buildBridges } from './bridges.js';
+import { REAL_TOWERS, allExclusions } from './sites.js';
+import { worldCollision } from './collision.js';
 import { createEnvironment } from './environment.js';
 import { initHUD } from './hud.js';
 import { buildMetro, buildFerry } from './transit.js';
@@ -45,14 +47,7 @@ const clock = new THREE.Clock();
 const BUILD_STAMP = new Date().toISOString().slice(11, 19);
 const BUILD_STEPS = [];
 
-/* Sketchfab 武汉真实地标楼群(Void.com,CC-BY,按实测高度归一化放置) */
-const REAL_TOWERS = [
-  { id: 'greenland-real', dir: 'wuhan-greenland-center', lon: 114.317475, lat: 30.585942, h: 475.6, r: 80, replace: 'lm:greenland' },  // Q143235 ±0.3m
-  { id: 'wuhan-center', dir: 'wuhan-center', lon: 114.239670, lat: 30.596650, h: 438, r: 75 },  // Q2484373 ±1.1m 王家墩CBD
-  { id: 'ctf-finance', dir: 'wuhan-ctf-finance', lon: 114.3420, lat: 30.6120, h: 400, r: 70 },
-  { id: 'shipping-center', dir: 'wuhan-shipping-center', lon: 114.3490, lat: 30.6230, h: 236, r: 65 },
-  { id: 'panhai-times', dir: 'wuhan-panhai-times', lon: 114.3085, lat: 30.5955, h: 200, r: 60 },
-];
+/* Sketchfab 真实地标楼群 / 地标占地圆 → js/sites.js(单一事实来源) */
 
 /* ==================== 渲染器 / 场景 ==================== */
 function initRenderer() {
@@ -215,6 +210,7 @@ step('装载 OSM 真实城市', async () => {
     const [buildings, osmRoads] = await Promise.all([bRes.json(), rRes.json()]);
     osmCity = await buildOsmCity(buildings);
     scene.add(osmCity.group);
+    if (osmCity.boxes) worldCollision.addRaw(osmCity.boxes);
     console.log(`[GTA-WH] OSM 真实建筑: ${osmCity.count} 栋(ODbL)`);
     const osmR = buildOsmRoads(osmRoads);
     scene.add(osmR.group);
@@ -228,23 +224,35 @@ step('装载 OSM 真实城市', async () => {
   }
 });
 step('生成三镇城市体块', () => {
-  const sites = [...landmarkSites()];
-  // Sketchfab 真实地标楼的占地排他(见 assets/models/)
-  for (const s of REAL_TOWERS) sites.push({ id: s.id, ...toV2(s.lon, s.lat), r: s.r });
-  // OSM 覆盖区内不再程序化生成(真实建筑已就位)
-  city = buildCity({ exclusions: sites, osmBox: osmCity ? OSM_BOX_SCENE : null });
+  // 排他圆:地标 + Sketchfab 真楼 + 摄影测量模型(旧版 `...toV2()` 会把
+  // 数组展开成 {0:x,1:z},e.x/e.z 为 undefined → 排他判定恒不生效)
+  const sites = allExclusions();
+  // OSM 覆盖区内不再程序化生成(真实建筑已就位);传入真实路网走廊做体块避让
+  city = buildCity({
+    exclusions: sites,
+    osmBox: osmCity ? OSM_BOX_SCENE : null,
+    corridors: driveLines,
+  });
   scene.add(city.group);
+  if (city.boxes) worldCollision.addRaw(city.boxes);
+  worldCollision.build();
   console.log(`[GTA-WH] 程序化补充建筑: ${city.count} 栋${osmCity ? '(OSM 框外)' : ''}`);
+  console.log(`[GTA-WH] 碰撞网格: ${worldCollision.n} 个占地盒`);
 });
 step('栽种行道树与樱花', () => {
-  trees = buildTrees({ exclusions: landmarkSites() });
+  trees = buildTrees({
+    exclusions: allExclusions(),
+    lines: driveLines || null,
+    blocked: (x, z) => !worldCollision.free(x, z, 0, 1.5),   // 树不穿楼
+  });
   scene.add(trees.group);
   console.log(`[GTA-WH] 树木: ${trees.count}`);
 });
 step('放行车流与路灯', async () => {
   cars = await buildCars(driveLines || roads.centerlines, 170);
   scene.add(cars.group);
-  lights = buildStreetLights(driveLines || roads.centerlines);
+  lights = buildStreetLights(driveLines || roads.centerlines, 777,
+    (x, z) => !worldCollision.free(x, z, 0, 0.8));            // 灯杆不立进楼里
   scene.add(lights.group);
   console.log(`[GTA-WH] 路灯: ${lights.count}`);
   metro = buildMetro();
@@ -276,6 +284,9 @@ step('装配玩法与 HUD', () => {
   });
   game = new Game(scene, camera, hud);
   window.__hud = hud;      // 供 tools/tour.mjs 等验收脚本调用
+  window.__game = game;    // 供验收脚本摆放机位/切模式
+  window.__scene = scene;
+  window.__three = { toV2, terrainHeight };   // 验收脚本摆机位用
 });
 step('烘焙环境光照', () => {
   try {
@@ -295,7 +306,8 @@ step('装载 Sketchfab 真实地标楼群', async () => {
     const b2 = new THREE.Box3().setFromObject(g);
     const [x, z] = toV2(t.lon, t.lat);
     const gy = Math.max(terrainHeight(x, z), 0);
-    g.position.set(x - (b2.max.x + b2.min.x) / 2, gy - b2.min.y, z - (b2.max.z + b2.min.z) / 2);
+    // 下沉 1.5 m:坡地上模型底面与地形之间不会露出缝
+    g.position.set(x - (b2.max.x + b2.min.x) / 2, gy - b2.min.y - 1.5, z - (b2.max.z + b2.min.z) / 2);
     scene.add(g);
     // 夜间亮化:emissiveMap 复用漫反射贴图,入夜整楼透出暖光(窗格纹理即亮纹)
     g.traverse((o) => {
@@ -331,7 +343,8 @@ step('黄鹤楼摄影测量模型(替换程序化版)', async () => {
   const b2 = new THREE.Box3().setFromObject(g);
   const [x, z] = toV2(114.3011, 30.5433);
   const gy = Math.max(terrainHeight(x, z), 0);
-  g.position.set(x - (b2.max.x + b2.min.x) / 2, gy - b2.min.y, z - (b2.max.z + b2.min.z) / 2);
+  // 蛇山是坡地,下沉 2 m 兜底,避免台基底部悬空
+  g.position.set(x - (b2.max.x + b2.min.x) / 2, gy - b2.min.y - 2, z - (b2.max.z + b2.min.z) / 2);
   // 夜间金顶泛光
   g.traverse((o) => {
     if (o.isMesh && o.material && !Array.isArray(o.material) && o.material.map && !o.material.userData.lit) {
@@ -385,6 +398,12 @@ step('铜陵公铁大桥改造为武汉长江大桥', async () => {
   for (const name of ['yb-truss', 'yb-piers']) {
     const m = bridges.group.getObjectByName(name);
     if (m) m.visible = false;
+  }
+  // GLB 桥面与程序化桥面共面会 z-fighting:把程序化桥面沉进 GLB 箱梁里 0.4 m,
+  // 既消除闪烁,又保留 GLB 缺失时的可见行驶面(行驶高度仍由 DECKS 注册表给出)
+  for (const name of ['yb-road-deck']) {
+    const m = bridges.group.getObjectByName(name);
+    if (m) m.position.y -= 0.4;
   }
   console.log('[GTA-WH] 长江大桥:铜陵公铁大桥模型改造(hello123D,CC-BY,245k 面)');
 });

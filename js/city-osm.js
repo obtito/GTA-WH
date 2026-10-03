@@ -81,9 +81,11 @@ function bucketOf(tags) {
 export async function buildOsmCity(buildings) {
   // 优先:构建期烘焙的 Overture 全量二进制(data/city.bin,零构建成本)
   try {
-    const [bin, meta] = await Promise.all([
+    const [bin, meta, collBin] = await Promise.all([
       fetch('./data/city.bin').then((r) => r.arrayBuffer()),
       fetch('./data/city-meta.json').then((r) => r.json()),
+      fetch('./data/city-collision.bin').then((r) => r.arrayBuffer())
+        .catch(() => null),      // 碰撞盒缺失降级为"无碰撞",不影响出图
     ]);
     const dv = new DataView(bin);
     let o = 0;
@@ -118,8 +120,12 @@ export async function buildOsmCity(buildings) {
       mesh.material.side = THREE.DoubleSide;
       group.add(mesh);
     }
-    console.log(`[GTA-WH] 烘焙城市: ${meta.count} 栋(Overture,110MB 零拷贝)`);
-    return { group, count: meta.count, mats: matList, setNight(kk) { for (const m of matList) m.emissiveIntensity = kk * 0.85; } };
+    const boxes = collBin ? new Float32Array(collBin) : null;
+    console.log(`[GTA-WH] 烘焙城市: ${meta.count} 栋(Overture,零拷贝),碰撞盒 ${boxes ? boxes.length / 7 : 0} 个`);
+    return {
+      group, count: meta.count, mats: matList, boxes,
+      setNight(kk) { for (const m of matList) m.emissiveIntensity = kk * 0.85; },
+    };
   } catch (e) {
     console.warn('[GTA-WH] city.bin 不可用,回退 OSM JSON 挤出:', e.message);
   }
@@ -153,6 +159,7 @@ export async function buildOsmCity(buildings) {
   for (const m of Object.values(materials)) registerEnv(m, 0.7);
 
   let count = 0;
+  const coll = [];          // 回退路径的碰撞盒(AABB 近似,stride 7)
   for (const b of buildings) {
     const g = b.g;
     if (!g || g.length < 4) continue;
@@ -214,6 +221,15 @@ export async function buildOsmCity(buildings) {
       }
       for (const t of tris) B.idx.push(vi + t[0], vi + t[2], vi + t[1]);
     } catch { /* 自交多边形跳过屋顶 */ }
+    // 碰撞盒(AABB)
+    {
+      let a0 = Infinity, a1 = -Infinity, b0 = Infinity, b1 = -Infinity;
+      for (const [px, pz] of pts) {
+        if (px < a0) a0 = px; if (px > a1) a1 = px;
+        if (pz < b0) b0 = pz; if (pz > b1) b1 = pz;
+      }
+      coll.push((a0 + a1) / 2, (b0 + b1) / 2, Math.max(0.6, (a1 - a0) / 2 - 0.4), Math.max(0.6, (b1 - b0) / 2 - 0.4), 1, 0, gy + h);
+    }
     // 屋顶设备块(机房/水箱):中大型建筑 40%
     if (area > 220 && h > 11 && rand() < 0.4) {
       const bh = 2.2 + rand() * 1.6, bw = Math.min(6, Math.sqrt(area) * 0.18);
@@ -260,15 +276,17 @@ export async function buildOsmCity(buildings) {
     group.add(mesh);
   }
   return {
-    group, count,
+    group, count, boxes: new Float32Array(coll),
     setNight(k) {
       for (const m of Object.values(materials)) m.emissiveIntensity = k * 0.85;
     },
   };
 }
 
-/* ---------- OSM 路网 ---------- */
-const HW_W = { motorway: 48, trunk: 42, trunk_link: 20, primary: 34, primary_link: 16, secondary: 27, secondary_link: 14, tertiary: 20, tertiary_link: 12 };
+/* ---------- OSM 路网 ----------
+ * 旧版宽度整体偏大(如 motorway 48 m),路面带常压进沿街楼体 → "路穿楼";
+ * 按车道数+硬路肩的真实口径收窄。 */
+const HW_W = { motorway: 40, trunk: 34, trunk_link: 16, primary: 28, primary_link: 14, secondary: 22, secondary_link: 12, tertiary: 16, tertiary_link: 10 };
 
 export function buildOsmRoads(roads) {
   const group = new THREE.Group();
@@ -307,7 +325,7 @@ export function buildOsmRoads(roads) {
     for (let i = 0; i < p.count; i++) p.setY(i, ys[Math.min(ys.length - 1, Math.floor(i / 2))] + 0.18);
     geo.computeVertexNormals();
     geoms[cls].push(geo);
-    if (w >= 20) centerlines.push({ name: r.t?.name || 'osm-road', w, pts, ys, major: cls === 'major' });
+    if (w >= 16) centerlines.push({ name: r.t?.name || 'osm-road', w, pts, ys, major: cls === 'major' });
   }
   for (const [cls, list] of Object.entries(geoms)) {
     if (!list.length) continue;

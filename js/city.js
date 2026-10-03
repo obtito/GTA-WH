@@ -12,19 +12,26 @@ const BRANCH_PTS = RIVER.branches.map((b) => ({ hw: b.halfWidth, pts: toV2List(b
 const LAKE_POLYS = LAKES.map((l) => toV2List(l.pts));
 const ROAD_LINES = ROADS.map((r) => ({ w: r.w, pts: toV2List(r.pts) }));
 
-/* ============ 掩膜:水/山/路/地标占地之上不生成建筑 ============ */
-function blocked(x, z, exclusions, osmBox) {
+/* ============ 掩膜:水/山/路/地标占地之上不生成建筑 ============
+ * rad = 楼体外接半径。旧版只判楼心,导致 40~60 m 进深的高层体块
+ * 横插进路面("路穿楼");现在把体块半径计入避让。 */
+function blocked(x, z, exclusions, osmBox, rad = 0, corridors = null) {
   if (osmBox && x >= osmBox.minX && x <= osmBox.maxX && z >= osmBox.minZ && z <= osmBox.maxZ) return true;
-  if (distToPolyline(x, z, RIVER_PTS) < RIVER.halfWidth + 30) return true;
-  for (const b of BRANCH_PTS) if (distToPolyline(x, z, b.pts) < b.hw + 25) return true;
+  if (distToPolyline(x, z, RIVER_PTS) < RIVER.halfWidth * 1.35 + rad) return true;
+  for (const b of BRANCH_PTS) if (distToPolyline(x, z, b.pts) < b.hw + 20 + rad) return true;
   for (const p of LAKE_POLYS) if (pointInPolygon(x, z, p)) return true;
   if (terrainHeight(x, z) > 2.5) return true;                 // 山坡留绿
   for (const l of ROAD_LINES) {
-    if (distToPolyline(x, z, l.pts) < l.w / 2 + 10) return true;
+    if (distToPolyline(x, z, l.pts) < l.w / 2 + 4 + rad) return true;
+  }
+  if (corridors) {
+    for (const l of corridors) {
+      if (distToPolyline(x, z, l.pts) < l.w / 2 + 2 + rad) return true;
+    }
   }
   for (const e of exclusions) {
-    const dx = x - e.x, dz = z - e.z;
-    if (dx * dx + dz * dz < e.r * e.r) return true;
+    const dx = x - e.x, dz = z - e.z, rr = e.r + rad;
+    if (dx * dx + dz * dz < rr * rr) return true;
   }
   return false;
 }
@@ -72,7 +79,7 @@ function patchUV(m, texK = 1) {
 }
 
 /* ============ 建筑 ============ */
-export function buildCity({ exclusions = [], seed = 20261001, osmBox = null } = {}) {
+export function buildCity({ exclusions = [], seed = 20261001, osmBox = null, corridors = null } = {}) {
   const rand = makeRandom(seed);
   const facade = makeFacadeTexture();
   const windowsTex = makeWindowTexture();
@@ -92,6 +99,7 @@ export function buildCity({ exclusions = [], seed = 20261001, osmBox = null } = 
   const details = { cap: [], antenna: [], pitch: [], parapet: [], tank: [], ac: [], shop: [], crown: [] };
   const mats = { wall: [], roof: [], misc: [] };
   let shopMatRef = null;
+  const boxes = [];        // 碰撞 OBB(cx,cz,hx,hz,cos,sin,topY)stride 7
 
   /** 局部坐标(相对建筑中心,含旋转)→ 世界坐标 */
   const local = (x, z, lx, lz, rot) => {
@@ -125,31 +133,40 @@ export function buildCity({ exclusions = [], seed = 20261001, osmBox = null } = 
     for (let i = 0; i < nx; i++) {
       for (let j = 0; j < nz; j++) {
         if (rand() > density) continue;
-        const lx = minX + (i + 0.5) * cell + (rand() - 0.5) * cell * 0.2;
-        const lz = minZ + (j + 0.5) * cell + (rand() - 0.5) * cell * 0.2;
+        // 抖动压缩到 ±0.05 cell:相邻楼心最小间距 0.9 cell
+        const lx = minX + (i + 0.5) * cell + (rand() - 0.5) * cell * 0.1;
+        const lz = minZ + (j + 0.5) * cell + (rand() - 0.5) * cell * 0.1;
         // 四边形内才生成(区外切掉)
         const [wx, wz] = toWorld(lx, lz);
         if (!pointInPolygon(wx, wz, poly)) continue;
-        if (blocked(wx, wz, exclusions, osmBox)) continue;
-        const x = wx, z = wz;
 
         const r = Math.hypot(lx, lz) / maxR;
         const core = Math.pow(clamp(1 - r * 0.9, 0, 1), d.style === 'skyline' || d.style === 'glass' ? 1.3 : 2.2);
         const tall = Math.pow(rand(), d.style === 'skyline' ? 1.6 : 2.4);
         let hMeters = d.hMin + (d.hMax - d.hMin) * (0.25 + 0.75 * tall) * (0.55 + 0.45 * core);
-        const ground = terrainHeight(x, z);
+        const ground = Math.max(terrainHeight(wx, wz), 0);
         const h = Math.max(4, hMeters);
 
-        const fw = cell * (0.5 + rand() * 0.34);
-        const fd = cell * (0.5 + rand() * 0.34);
+        // 进深上限 0.76 cell:两楼最大半跨和 0.806 cell < 0.9 cell 间距 → 结构上不可能"楼穿楼"
+        const fw = cell * (0.46 + rand() * 0.30);
+        const fd = cell * (0.46 + rand() * 0.30);
         const yRot = rot + (rand() - 0.5) * 0.12;
+        // 网格朝向 = three 的 Ry(-rot);楼体 rotation.y 取 -yRot 才能与街区走向、
+        // 细节件偏移(local() 用 Ry(-rot) 口径)三者一致 —— 旧版差一个符号,
+        // 导致女儿墙/水箱/空调外机整体绕楼心转了 2·gridRot,悬在楼体之外。
+        const mRot = -yRot;
+        // 体块外接半径(计入避让,防"路穿楼")
+        const rad = 0.5 * Math.hypot(fw, fd);
+        if (blocked(wx, wz, exclusions, osmBox, rad, corridors)) continue;
+        const x = wx, z = wz;
 
         /* 体量分层(podium / setback) */
         let hShaft = h;
         if (hMeters > 85 && rand() > 0.3) {
           const ph = Math.min(h * 0.3, 14 + rand() * 16);
-          const pw = fw * (1.2 + rand() * 0.2), pd = fd * (1.2 + rand() * 0.2);
-          bucket.podium.push({ x, z, y: ground, w: pw, h: ph, d: pd, rot: yRot, r2: rand(), r3: rand() });
+          const pw = Math.min(fw * (1.2 + rand() * 0.2), cell * 0.86);
+          const pd = Math.min(fd * (1.2 + rand() * 0.2), cell * 0.86);
+          bucket.podium.push({ x, z, y: ground, w: pw, h: ph, d: pd, rot: mRot, r2: rand(), r3: rand() });
         }
         if (hMeters > 150 && rand() > 0.35) {
           const sh = h * (0.15 + rand() * 0.22);
@@ -157,21 +174,27 @@ export function buildCity({ exclusions = [], seed = 20261001, osmBox = null } = 
           bucket.setback.push({
             x, z, y: ground + hShaft, h: sh,
             w: fw * (0.6 + rand() * 0.22), d: fd * (0.6 + rand() * 0.22),
-            rot: yRot, r2: rand(), r3: rand(),
+            rot: mRot, r2: rand(), r3: rand(),
           });
         }
 
         bucket.items.push({
-          x, z, y: ground, w: fw, h: hShaft, d: fd, rot: yRot,
+          x, z, y: ground, w: fw, h: hShaft, d: fd, rot: mRot,
           r2: rand(), r3: rand(), shade: 0.86 + rand() * 0.28,
         });
+        // 碰撞 OBB(内缩 0.4 m)
+        boxes.push(
+          x, z, Math.max(0.6, fw / 2 - 0.4), Math.max(0.6, fd / 2 - 0.4),
+          Math.cos(mRot), Math.sin(mRot), ground + hShaft,
+        );
 
         // 坡屋顶(武昌老城/武大/汉阳/里分的小房子)
         if (style.pitch && fw < 26 && rand() < style.pitch) {
-          details.pitch.push({ x, z, y: ground + hShaft, w: fw * 1.12, h: 2.5 + rand() * 3.5, d: fd * 1.12, rot: yRot });
+          const pw = Math.min(fw * 1.12, cell * 0.9);
+          details.pitch.push({ x, z, y: ground + hShaft, w: pw, h: 2.5 + rand() * 3.5, d: pw, rot: mRot });
         }
         if (h > 30 && rand() > 0.45) {
-          details.cap.push({ x, z, y: ground + hShaft, w: fw * (0.3 + rand() * 0.3), h: 2 + rand() * 3, d: fd * 0.5, rot: yRot });
+          details.cap.push({ x, z, y: ground + hShaft, w: fw * (0.3 + rand() * 0.3), h: 2 + rand() * 3, d: fd * 0.5, rot: mRot });
         }
         if (hMeters > 90 && rand() > 0.5) {
           details.antenna.push({ x, z, y: ground + hShaft, h: 6 + rand() * 18 });
@@ -187,14 +210,14 @@ export function buildCity({ exclusions = [], seed = 20261001, osmBox = null } = 
             [-(fw / 2 - 0.2), 0, 0.4, fd], [fw / 2 - 0.2, 0, 0.4, fd],
           ]) {
             const [px, pz] = local(x, z, ex, ez, yRot);
-            details.parapet.push({ x: px, z: pz, y: hTop, w: rw, h: pw, d: rd, rot: yRot, tint: '#ffffff', shade: 0.92 });
+            details.parapet.push({ x: px, z: pz, y: hTop, w: rw, h: pw, d: rd, rot: mRot, tint: '#ffffff', shade: 0.92 });
           }
         }
         // 屋顶水箱/电梯机房
         if (rand() < 0.62) {
           const [tx, tz] = local(x, z, (rand() - 0.5) * fw * 0.4, (rand() - 0.5) * fd * 0.4, yRot);
           const tw = Math.min(fw, fd) * (0.2 + rand() * 0.14);
-          details.tank.push({ x: tx, z: tz, y: hTop, w: tw, h: 2.0 + rand() * 1.8, d: tw * 0.85, rot: yRot + (rand() - 0.5) * 0.3 });
+          details.tank.push({ x: tx, z: tz, y: hTop, w: tw, h: 2.0 + rand() * 1.8, d: tw * 0.85, rot: mRot + (rand() - 0.5) * 0.3 });
         }
         // 空调外机:立面悬挂(低层建筑为主)
         if (hShaft < 60 && fw > 8) {
@@ -206,17 +229,17 @@ export function buildCity({ exclusions = [], seed = 20261001, osmBox = null } = 
             const lz = side === 0 ? fd / 2 + 0.3 : side === 1 ? -fd / 2 - 0.3 : (rand() - 0.5) * fd * 0.7;
             const lxx = side < 2 ? (rand() - 0.5) * fw * 0.7 : lx;
             const [ax, az] = local(x, z, lxx, lz, yRot);
-            details.ac.push({ x: ax, z: az, y: hy, w: 1.15, h: 0.8, d: 0.5, rot: yRot + (side >= 2 ? Math.PI / 2 : 0) });
+            details.ac.push({ x: ax, z: az, y: hy, w: 1.15, h: 0.8, d: 0.5, rot: mRot + (side >= 2 ? Math.PI / 2 : 0) });
           }
         }
         // 商铺基座:临街底层深色 storefront 带
         if (hShaft > 18) {
           const sh = Math.min(4.4, hShaft * 0.24);
-          details.shop.push({ x, z, y: ground, w: fw + 0.3, h: sh, d: fd + 0.3, rot: yRot, tint: '#3a3f46', shade: 1 });
+          details.shop.push({ x, z, y: ground, w: fw + 0.3, h: sh, d: fd + 0.3, rot: mRot, tint: '#3a3f46', shade: 1 });
         }
         // 楼冠:高层顶部收分冠部
         if (hMeters > 60 && rand() < 0.35) {
-          details.crown.push({ x, z, y: hTop, w: fw * 0.72, h: 2.6 + rand() * 3.2, d: fd * 0.72, rot: yRot });
+          details.crown.push({ x, z, y: hTop, w: fw * 0.72, h: 2.6 + rand() * 3.2, d: fd * 0.72, rot: mRot });
         }
       }
     }
@@ -387,11 +410,17 @@ export function buildCity({ exclusions = [], seed = 20261001, osmBox = null } = 
   return {
     group, meshes, mats, setNight,
     count: allBuckets.reduce((s, b) => s + b.items.length, 0),
+    boxes: new Float32Array(boxes),        // 碰撞 OBB(stride 7),供运行时装配
   };
 }
 
 /* ============ 行道树 / 樱花 / 湖畔绿带 ============ */
-export function buildTrees({ exclusions = [], seed = 4242 } = {}) {
+/**
+ * @param lines    道路中心线(默认手绘主干网;OSM 载入后应传真实中心线,
+ *                 否则树会种在已隐藏的手绘路两侧、与真实路网错位)
+ * @param blocked  额外占位判定(建筑占地网格),治"树穿楼"
+ */
+export function buildTrees({ exclusions = [], seed = 4242, lines = null, blocked = null } = {}) {
   const rand = makeRandom(seed);
   const group = new THREE.Group();
   group.name = 'trees';
@@ -402,26 +431,32 @@ export function buildTrees({ exclusions = [], seed = 4242 } = {}) {
       const dx = x - e.x, dz = z - e.z;
       if (dx * dx + dz * dz < e.r * e.r) return true;
     }
+    // 建筑占地:树冠半径可达 5 m,留出 1.5 m 净距
+    if (blocked && blocked(x, z)) return true;
     return false;
   };
 
-  // 1) 行道树:主干道两侧,25 m 一棵
-  for (const l of ROAD_LINES) {
-    if (l.w < 24) continue;
+  // 1) 行道树:主干道两侧,22 m 一棵(贴真实路面标高,岸线段不会埋进堤里)
+  for (const l of (lines || ROAD_LINES)) {
+    if (l.w < 16) continue;
     const pts = l.pts;
     for (let i = 1; i < pts.length; i++) {
       const [ax, az] = pts[i - 1], [bx, bz] = pts[i];
       const d = Math.hypot(bx - ax, bz - az);
-      const n = Math.floor(d / 25);
+      const n = Math.floor(d / 22);
+      if (n < 1) continue;
       const dx = (bx - ax) / d, dz = (bz - az) / d;
+      const ya = l.ys ? l.ys[i - 1] : Math.max(terrainHeight(ax, az), 0);
+      const yb = l.ys ? l.ys[i] : Math.max(terrainHeight(bx, bz), 0);
       for (let k = 0; k < n; k++) {
         const t = (k + 0.5) / n;
         for (const side of [-1, 1]) {
-          const off = (l.w / 2 + 4) * side;
+          if (rand() < 0.25) continue;                  // 疏密有致
+          const off = (l.w / 2 + 3.5) * side;
           const x = ax + (bx - ax) * t - dz * off;
           const z = az + (bz - az) * t + dx * off;
           if (nearBlocked(x, z)) continue;
-          items.push({ x, z, y: terrainHeight(x, z), s: 0.8 + rand() * 0.5, t: rand(), c: rand(), sakura: false });
+          items.push({ x, z, y: ya + (yb - ya) * t, s: 0.8 + rand() * 0.5, t: rand(), c: rand(), sakura: false });
         }
       }
     }
@@ -495,28 +530,34 @@ export function buildTrees({ exclusions = [], seed = 4242 } = {}) {
 }
 
 /* ============ 路灯(主干道,夜间点亮) ============ */
-export function buildStreetLights(centerlines, seed = 777) {
+export function buildStreetLights(centerlines, seed = 777, blocked = null) {
   const rand = makeRandom(seed);
   const group = new THREE.Group();
   group.name = 'streetlights';
   const poles = [], heads = [];
   for (const l of centerlines) {
-    if (l.w < 24) continue;
+    if (l.w < 20) continue;
     const pts = l.pts;
     for (let i = 1; i < pts.length; i++) {
       const [ax, az] = pts[i - 1], [bx, bz] = pts[i];
       const d = Math.hypot(bx - ax, bz - az);
       const n = Math.floor(d / 48);
+      if (n < 1) continue;
       const dx = (bx - ax) / d, dz = (bz - az) / d;
+      // 立杆基准取路面标高(堤式路/高架段不再半埋进路基)
+      const ya = l.ys ? l.ys[i - 1] : Math.max(terrainHeight(ax, az), 0);
+      const yb = l.ys ? l.ys[i] : Math.max(terrainHeight(bx, bz), 0);
       for (let k = 0; k < n; k++) {
         const t = (k + 0.5) / n;
         const side = ((i + k) % 2 === 0) ? 1 : -1;         // 两侧交替
         const off = (l.w / 2 + 1.5) * side;
         const x = ax + (bx - ax) * t - dz * off;
         const z = az + (bz - az) * t + dx * off;
-        const gy = Math.max(terrainHeight(x, z), 0);
+        if (blocked && blocked(x, z)) continue;            // 不立进楼里
+        const gy = ya + (yb - ya) * t;
         poles.push({ x, z, y: gy, w: 0.22, h: 9.5, d: 0.22 });
-        heads.push({ x: x + dz * off * -0.12, z: z - dx * off * -0.12, y: gy + 9.3, w: 1.6, h: 0.5, d: 0.8 });
+        // 灯头朝路心内挑 2.2 m(旧式 off*-0.12 方向相反、且随路宽放大到 2.7 m)
+        heads.push({ x: x + dz * side * 2.2, z: z - dx * side * 2.2, y: gy + 9.3, w: 1.6, h: 0.5, d: 0.8 });
       }
     }
   }

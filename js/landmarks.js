@@ -7,22 +7,10 @@ import { mat, put, UNIT, instancedBoxes, registerEnv } from './lib.js';
 import { terrainHeight } from './world.js';
 import { chineseHall, storiedPavilion, hipRoof, gableRoof, pedestal } from './arch.js';
 
-/* ============ 地标占地(供城市生成排他) ============ */
-const SITE_R = {
-  huanghelou: 80, tvtower: 55, qingchuan: 45, jianghanguan: 48, jianghanlu: 30,
-  hankoujiangtan: 0, hubsmuseum: 150, chuhehanjie: 240, hanxiu: 70, greenland: 65,
-  whu: 330, chutiantai: 70, opticsvalley: 120, guiyuan: 140, guqintai: 45,
-  tanhualin: 160, honglou: 65,
-};
-export function landmarkSites() {
-  return LANDMARKS
-    .map((l) => {
-      const [x, z] = toV2(l.lon, l.lat);
-      const r = SITE_R[l.id] ?? 60;
-      return r > 0 ? { id: l.id, x, z, r } : null;
-    })
-    .filter(Boolean);
-}
+/* ============ 地标占地(供城市生成排他) ============
+ * 单一事实来源迁到 js/sites.js(烘焙工具/程序化城市/运行时共用),
+ * 这里原样转发,保持既有 import 不变。 */
+export { SITE_R, landmarkSites } from './sites.js';
 
 /* ============ 工具 ============ */
 function groundAt(x, z) { return Math.max(terrainHeight(x, z), 0); }

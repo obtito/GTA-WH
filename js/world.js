@@ -287,9 +287,9 @@ export function buildRoads() {
     mesh.receiveShadow = true;
     group.add(mesh);
 
-    // 中心虚线(主干道,高出路面 0.06 m)
+    // 中心虚线(主干道;抬高 0.14 m + polygonOffset,远处不再与路面 z-fighting)
     if (r.w >= 24) {
-      group.add(new THREE.Mesh(setY(ribbonGeometry(pts, 0.4, 0), 0.06), dashMatCache()));
+      group.add(new THREE.Mesh(setY(ribbonGeometry(pts, 0.4, 0), 0.14), dashMatCache()));
     }
     centerlines.push({ name: r.name, w: r.w, pts, ys, major: !!r.major });
     if (anyWater) {

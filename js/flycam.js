@@ -2,6 +2,7 @@
 import * as THREE from 'three';
 import { clamp } from './geo.js';
 import { groundY } from './ground.js';
+import { worldCollision } from './collision.js';
 
 export class FlyCam {
   constructor(camera) {
@@ -26,6 +27,11 @@ export class FlyCam {
     if (input.right) p.addScaledVector(right, speed * dt);
     if (input.up) p.y += speed * 0.7 * dt;
     if (input.down) p.y -= speed * 0.7 * dt;
+    // 不穿楼:机身 3 m 半径推出(楼顶低于当前高度时自然放行)
+    if (worldCollision.ready) {
+      worldCollision.resolve(p.x, p.z, 3, p.y, _res);
+      p.x = _res.x; p.z = _res.z;
+    }
     // 最低不穿地(带高度上下文:桥下飞行不会被桥面走廊抬升)
     const gy = groundY(p.x, p.z, p.y) + 2;
     if (p.y < gy) p.y = gy;
@@ -41,3 +47,5 @@ export class FlyCam {
     this.pitch = clamp(this.pitch - dpitch, -1.35, 1.35);
   }
 }
+
+const _res = { x: 0, z: 0, hit: false };

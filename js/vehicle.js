@@ -4,6 +4,7 @@ import { clamp, lerp } from './geo.js';
 import { groundY, isWater } from './ground.js';
 import { bridgeHeightAt } from './bridges.js';
 import { mat, put, UNIT, registerEnv } from './lib.js';
+import { worldCollision } from './collision.js';
 
 /* ---------- 车体(程序化小轿车) ---------- */
 export function buildCarMesh(bodyColor = '#c9412e') {
@@ -111,6 +112,19 @@ export class Vehicle {
     this.inWater = isWater(nx, nz, this.mesh.position.y);
     if (this.inWater) this.speed = clamp(this.speed, -3, 3);
 
+    // 建筑碰撞:车头/车尾两个圆(半径 1.15 m)推出,撞墙掉速 —— 治"车穿楼"
+    if (worldCollision.ready) {
+      const cy = this.mesh.position.y;
+      const dirx = Math.sin(dir), dirz = Math.cos(dir);
+      let px = 0, pz = 0, hit = false;
+      for (const off of [1.25, -1.25]) {
+        const ox = nx + dirx * off, oz = nz + dirz * off;
+        worldCollision.resolve(ox, oz, 1.15, cy, _res);
+        if (_res.hit) { px += _res.x - ox; pz += _res.z - oz; hit = true; }
+      }
+      if (hit) { nx += px; nz += pz; this.speed *= 0.55; }
+    }
+
     const gy = groundY(nx, nz, this.mesh.position.y);
     this.mesh.position.set(nx, lerp(this.mesh.position.y, Math.max(gy, this.inWater ? 0.55 : gy), 1 - Math.pow(0.0001, dt)), nz);
     this.mesh.rotation.y = dir + this.drift * 0.9;
@@ -156,6 +170,15 @@ export class Vehicle {
     const k = 1 - Math.pow(0.0005, dt);
     _v1.set(cx, cy, cz);
     camera.position.lerp(_v1, k);
+    // 相机不进楼:自车身向机位步进,撞墙即在墙前收住(不穿墙、不丢目标)
+    if (worldCollision.ready) {
+      worldCollision.freePath(
+        this.mesh.position.x, this.mesh.position.z,
+        camera.position.x, camera.position.z,
+        camera.position.y, 1.2, _res,
+      );
+      if (_res.hit) { camera.position.x = _res.x; camera.position.z = _res.z; }
+    }
     // 相机不穿地/不穿桥面
     const camGround = groundY(camera.position.x, camera.position.z, camera.position.y);
     if (camera.position.y < camGround + 1.6) camera.position.y = camGround + 1.6;
@@ -166,3 +189,4 @@ export class Vehicle {
 }
 
 const _v1 = new THREE.Vector3();
+const _res = { x: 0, z: 0, hit: false };
