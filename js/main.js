@@ -348,52 +348,19 @@ step('装载 Sketchfab 真实地标楼群', async () => {
   }
 });
 
-step('黄鹤楼(混合方案:程序化飞檐+精建模贴图)', async () => {
-  // 现役:混合方案——程序化楼体(高翘飞檐/红柱廊/收分)+ China_Tower 瓦片贴图(landmarks.js 已接)
-  // 备用(关掉 HHLT_HYBRID 即启用):China_Tower 精建模 GLB(0G-Bhqc,MIT,1.37M 面)→ 摄影测量 → 程序化
-  const HHLT_HYBRID = false;   // 2026-10-05 用户裁定:精建模版为主体,混合版保留待选
-  window.__hhltBadge = HHLT_HYBRID ? 'HHLT:混合版' : 'HHLT:精建模';
-  if (HHLT_HYBRID) {
-    // "黄鹤楼"金字匾挂顶层北面(长江/大桥一侧)
-    const [hx, hz] = toV2(114.296944, 30.546944);
-    const hgy = Math.max(terrainHeight(hx, hz), 0);
-    const cv = document.createElement('canvas');
-    cv.width = 512; cv.height = 144;
-    const cx2 = cv.getContext('2d');
-    cx2.fillStyle = '#14151c'; cx2.fillRect(0, 0, 512, 144);
-    cx2.strokeStyle = '#c9a227'; cx2.lineWidth = 8; cx2.strokeRect(6, 6, 500, 132);
-    cx2.fillStyle = '#e8c34a';
-    cx2.font = 'bold 104px KaiTi, STKaiti, serif';
-    cx2.textAlign = 'center'; cx2.textBaseline = 'middle';
-    cx2.fillText('黄鹤楼', 256, 78);
-    const plaqueTex = new THREE.CanvasTexture(cv);
-    plaqueTex.colorSpace = THREE.SRGBColorSpace;
-    const goldMat = new THREE.MeshStandardMaterial({ color: '#d9a933', metalness: 0.6, roughness: 0.35 });
-    const plaque = new THREE.Mesh(
-      new THREE.BoxGeometry(6, 1.7, 0.25),
-      [goldMat, goldMat, goldMat, goldMat, new THREE.MeshStandardMaterial({ map: plaqueTex, roughness: 0.6 }), goldMat],
-    );
-    // 程序化楼:台基 6m + 五层 34.8m,顶层墙面前(北面)
-    plaque.position.set(hx, hgy + 6 + 34.8 - 2.2, hz - 9.3);
-    plaque.rotation.y = Math.PI;
-    plaque.castShadow = true;
-    scene.add(plaque);
-    console.log('[GTA-WH] 黄鹤楼:混合版(程序化飞檐+精建模瓦片贴图,免载 45MB GLB)');
+step('黄鹤楼精建模(China_Tower,现役唯一模型)', async () => {
+  // China_Tower LOD2(0G-Bhqc,MIT,1.37M 面,全分辨率贴图)
+  // 旧摄影测量版(yellow-crane-tower)已于 2026-10-05 删除;GLB 加载失败时保留程序化地标兜底
+  const g = await loadGLB('./assets/models/huanghe-tower/huanghe-main-tower-lod2.glb');
+  window.__hhltBadge = 'HHLT:精建模';
+  if (!g) {
+    window.__hhltBadge = 'HHLT:⚠程序化回退';
+    console.error('[GTA-WH] ⚠ 黄鹤楼精建模 GLB 加载失败,保留程序化版——请截图此行反馈');
     return;
   }
-  let g = await loadGLB('./assets/models/huanghe-tower/huanghe-main-tower-lod2.glb');
-  let src = 'China_Tower 精建模(0G-Bhqc,MIT,1.37M 面)';
-  if (!g) {
-    console.error('[GTA-WH] ⚠ 黄鹤楼精建模 GLB 加载失败,回退摄影测量版——请截图此行反馈');
-    g = await loadGLB('./assets/models/yellow-crane-tower/scene.gltf');
-    src = g ? '摄影测量(CUNO/jiannibang,CC-BY,177k 面)' : '程序化版';
-    window.__hhltBadge = g ? 'HHLT:⚠摄影测量回退' : 'HHLT:⚠程序化回退';
-  }
-  if (!g) { console.error('[GTA-WH] ⚠ 黄鹤楼模型全部缺失,保留程序化版'); return; }
-  // 归一化:楼体 51.4 m(China_Tower 原生 37.2 m 高,等比放大);摄影测量版含台基按 57 m
+  // 归一化:楼体 51.4 m(China_Tower 原生 37.2 m 高,等比放大)
   const box = new THREE.Box3().setFromObject(g);
-  const isCT = src.startsWith('China_Tower');
-  const scale = (isCT ? 51.4 : 57) / Math.max(box.max.y - box.min.y, 0.01);
+  const scale = 51.4 / Math.max(box.max.y - box.min.y, 0.01);
   g.scale.setScalar(scale);
   g.updateMatrixWorld(true);
   const b2 = new THREE.Box3().setFromObject(g);
@@ -415,7 +382,7 @@ step('黄鹤楼(混合方案:程序化飞檐+精建模贴图)', async () => {
   // 写顶点色分三段——坡屋面/飞檐(法线朝上)染金,每层平座带(楼层密集区下缘)染朱红,墙面保持白
   // (abs:模型带镜像变换;不用 onBeforeCompile——程序缓存导致补丁不生效)
   // 楼层带为相对塔基高度,取自顶点高度直方图实测(5 层平座位置)
-  if (isCT) {
+  {
     const GOLD = new THREE.Color('#e8b33a');
     const RED = new THREE.Color('#a83226');
     const RED_BANDS = [[0.5, 3.2], [8.3, 10.8], [15.3, 17.8], [21.3, 23.8], [28.3, 31.5]];
@@ -490,7 +457,7 @@ step('黄鹤楼(混合方案:程序化飞檐+精建模贴图)', async () => {
   scene.add(g);
   const sub = landmarks.group.getObjectByName('lm:huanghelou');
   if (sub) sub.visible = false;
-  console.log(`[GTA-WH] 黄鹤楼:${src}`);
+  console.log('[GTA-WH] 黄鹤楼:China_Tower 精建模(0G-Bhqc,MIT,1.37M 面,唯一模型)');
 });
 
 step('铜陵公铁大桥改造为武汉长江大桥', async () => {

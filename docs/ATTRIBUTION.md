@@ -15,8 +15,7 @@
 
 | 资产 | 来源 | 许可证 | 署名 |
 |---|---|---|---|
-| `assets/models/huanghe-tower/huanghe-main-tower-lod2.glb` | [China_Tower](https://github.com/0G-Bhqc/China_Tower)(黄鹤楼精建模 LOD2,meshopt 压缩,1.37M 面;现役主楼) | **MIT** | Copyright © 0G-Bhqc;保留本表即视为署名 |
-| `assets/models/yellow-crane-tower/` | [Yellow Crane Tower](https://sketchfab.com/3d-models/yellow-crane-tower-8d56b5d7f23246be91da35b7a33328fe) by **CUNO/jiannibang**(摄影测量,144 张照片重建,177k 面;现作回退) | CC-BY 4.0 | 保留本表即视为署名 |
+| `assets/models/huanghe-tower/huanghe-main-tower-lod2.glb` | [China_Tower](https://github.com/0G-Bhqc/China_Tower)(黄鹤楼精建模 LOD2,meshopt 压缩,1.37M 面;现役主楼,全分辨率贴图自 highmodel 移植) | **MIT** | Copyright © 0G-Bhqc;保留本表即视为署名 |
 | `assets/models/tongling-railway-bridge/` | [铜陵长江公铁大桥](https://sketchfab.com/3d-models/c29ea5437cfd4569ad86fbefcc64d15b) by **hello123D**(245k 面,改造为武汉长江大桥) | CC-BY 4.0 | 保留本表即视为署名 |
 | `assets/models/wuhan-greenland-center/` | [Wuhan Greenland Center](https://sketchfab.com/3d-models/wuhan-greenland-center-795a3cec308d44a985dacfda99239a3e) by **Void**(37.7k 面) | CC-BY 4.0 | 保留本表即视为署名 |
 | `assets/models/wuhan-center/` | [Wuhan Center](https://sketchfab.com/3d-models/wuhan-center-413eb58cc89c4423bf51ce63c2ab1393) by **Void**(13k 面) | CC-BY 4.0 | 保留本表即视为署名 |
