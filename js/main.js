@@ -348,20 +348,47 @@ step('装载 Sketchfab 真实地标楼群', async () => {
   }
 });
 
-step('黄鹤楼高模(China_Tower,替换摄影测量版)', async () => {
-  // 优先:China_Tower 精建模(0G-Bhqc,MIT,meshopt 压缩,1.37M 面)
-  // 回退:Sketchfab 摄影测量(CUNO/jiannibang,CC-BY)→ 程序化版
+step('黄鹤楼(混合方案:程序化飞檐+精建模贴图)', async () => {
+  // 现役:混合方案——程序化楼体(高翘飞檐/红柱廊/收分)+ China_Tower 瓦片贴图(landmarks.js 已接)
+  // 备用(关掉 HHLT_HYBRID 即启用):China_Tower 精建模 GLB(0G-Bhqc,MIT,1.37M 面)→ 摄影测量 → 程序化
+  const HHLT_HYBRID = true;
+  window.__hhltBadge = HHLT_HYBRID ? 'HHLT:混合版' : 'HHLT:精建模';
+  if (HHLT_HYBRID) {
+    // "黄鹤楼"金字匾挂顶层北面(长江/大桥一侧)
+    const [hx, hz] = toV2(114.296944, 30.546944);
+    const hgy = Math.max(terrainHeight(hx, hz), 0);
+    const cv = document.createElement('canvas');
+    cv.width = 512; cv.height = 144;
+    const cx2 = cv.getContext('2d');
+    cx2.fillStyle = '#14151c'; cx2.fillRect(0, 0, 512, 144);
+    cx2.strokeStyle = '#c9a227'; cx2.lineWidth = 8; cx2.strokeRect(6, 6, 500, 132);
+    cx2.fillStyle = '#e8c34a';
+    cx2.font = 'bold 104px KaiTi, STKaiti, serif';
+    cx2.textAlign = 'center'; cx2.textBaseline = 'middle';
+    cx2.fillText('黄鹤楼', 256, 78);
+    const plaqueTex = new THREE.CanvasTexture(cv);
+    plaqueTex.colorSpace = THREE.SRGBColorSpace;
+    const goldMat = new THREE.MeshStandardMaterial({ color: '#d9a933', metalness: 0.6, roughness: 0.35 });
+    const plaque = new THREE.Mesh(
+      new THREE.BoxGeometry(6, 1.7, 0.25),
+      [goldMat, goldMat, goldMat, goldMat, new THREE.MeshStandardMaterial({ map: plaqueTex, roughness: 0.6 }), goldMat],
+    );
+    // 程序化楼:台基 6m + 五层 34.8m,顶层墙面前(北面)
+    plaque.position.set(hx, hgy + 6 + 34.8 - 2.2, hz - 9.3);
+    plaque.rotation.y = Math.PI;
+    plaque.castShadow = true;
+    scene.add(plaque);
+    console.log('[GTA-WH] 黄鹤楼:混合版(程序化飞檐+精建模瓦片贴图,免载 45MB GLB)');
+    return;
+  }
   let g = await loadGLB('./assets/models/huanghe-tower/huanghe-main-tower-lod2.glb');
   let src = 'China_Tower 精建模(0G-Bhqc,MIT,1.37M 面)';
-  let badge = 'HHLT:精建模';
   if (!g) {
     console.error('[GTA-WH] ⚠ 黄鹤楼精建模 GLB 加载失败,回退摄影测量版——请截图此行反馈');
     g = await loadGLB('./assets/models/yellow-crane-tower/scene.gltf');
     src = g ? '摄影测量(CUNO/jiannibang,CC-BY,177k 面)' : '程序化版';
-    badge = g ? 'HHLT:⚠摄影测量回退' : 'HHLT:⚠程序化回退';
+    window.__hhltBadge = g ? 'HHLT:⚠摄影测量回退' : 'HHLT:⚠程序化回退';
   }
-  // 角标明示当前生效版本(排查"看到旧模型"用;真正渲染在 build() 尾部统一写 stamp)
-  window.__hhltBadge = badge;
   if (!g) { console.error('[GTA-WH] ⚠ 黄鹤楼模型全部缺失,保留程序化版'); return; }
   // 归一化:楼体 51.4 m(China_Tower 原生 37.2 m 高,等比放大);摄影测量版含台基按 57 m
   const box = new THREE.Box3().setFromObject(g);

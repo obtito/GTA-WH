@@ -174,11 +174,12 @@ export function hipRoof({
   color = '#c9a227', segX = 20, segZ = 20,
   ridge = true, ridgeColor = '#4a4038', ridgeSize = null,
   finial = false, finialColor = '#d9b451', srcRect = null,
+  material = null,   // 混合方案直通:带贴图的屋面材质(不给则用 color)
 }) {
   const g = new THREE.Group();
   const hf = makeHeightFn({ w, d, ridgeLen, srcRect, rise, k, upA, upR, cornerA });
   const geo = gridSurface(w, d, segX, segZ, hf, true);
-  const roof = new THREE.Mesh(geo, mat(color, { rough: 0.72, side: THREE.DoubleSide, env: 0.4 }));
+  const roof = new THREE.Mesh(geo, material || mat(color, { rough: 0.72, side: THREE.DoubleSide, env: 0.4 }));
   roof.castShadow = true; roof.receiveShadow = true;
   g.add(roof);
 
@@ -619,6 +620,7 @@ export function storiedPavilion({
   floors, eaveW, topRoof, topType = 'hip', ridgeLen = null, finial = true,
   postColor = '#a13f2c', wallColor = '#a13f2c', roofColor = '#c9a227',
   stoneColor = '#e8e3d6', terrace = true, bays = 5,
+  roofMaterial = null,   // 混合方案:贴图屋面材质(腰檐+顶檐共用)
 }) {
   const g = new THREE.Group();
   let y = 0;
@@ -638,6 +640,7 @@ export function storiedPavilion({
       w: ew, d: ed, rise: eaveRise, ridgeLen: ew * 0.42,
       color: roofColor, ridge: true, segX: 14, segZ: 14,
       k: 1.6, upA: 0.13, upR: 0.3, cornerA: 0.18,
+      material: roofMaterial,
     });
     eave.position.y = y + f.h - eaveRise * 0.55;
     g.add(eave);
@@ -651,9 +654,9 @@ export function storiedPavilion({
   const top = floors[floors.length - 1];
   let topR;
   if (topType === 'hip') {
-    topR = hipRoof({ w: top.w * 1.30, d: top.d * 1.30, rise: topRoof, ridgeLen: ridgeLen ?? top.w * 0.5, color: roofColor, finial });
+    topR = hipRoof({ w: top.w * 1.30, d: top.d * 1.30, rise: topRoof, ridgeLen: ridgeLen ?? top.w * 0.5, color: roofColor, finial, material: roofMaterial });
   } else {
-    topR = hipRoof({ w: top.w * 1.30, d: top.d * 1.30, rise: topRoof, ridgeLen: 0, color: roofColor, finial });
+    topR = hipRoof({ w: top.w * 1.30, d: top.d * 1.30, rise: topRoof, ridgeLen: 0, color: roofColor, finial, material: roofMaterial });
   }
   topR.position.y = y;
   g.add(topR);

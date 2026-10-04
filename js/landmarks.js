@@ -23,6 +23,20 @@ function mkHuangelou(g, x, z, ground, rot) {
   platform.rotation.y = rot;
   g.add(platform);
 
+  // 混合方案:高翘飞檐的程序化几何 + 精建模瓦片贴图(China_Tower 抽取并重着金色)
+  const roofMat = mat('#e8b33a', { rough: 0.6, side: THREE.DoubleSide, env: 0.5 });
+  roofMat.userData.nightGlow = 1.3;
+  roofMat.emissive = new THREE.Color('#7a5510');
+  new THREE.TextureLoader().load('./assets/models/huanghe-tower/roof-tiles.png', (t) => {
+    t.wrapS = t.wrapT = THREE.RepeatWrapping;
+    t.repeat.set(9, 6);          // 瓦垄密度:按腰檐面阔平铺
+    t.colorSpace = THREE.SRGBColorSpace;
+    roofMat.map = t;
+    roofMat.emissiveMap = t;
+    roofMat.color = new THREE.Color('#ffffff');
+    roofMat.needsUpdate = true;
+  });
+
   const tower = storiedPavilion({
     floors: [
       { w: 33, d: 33, h: 8.6 }, { w: 29, d: 29, h: 7.6 },
@@ -38,23 +52,11 @@ function mkHuangelou(g, x, z, ground, rot) {
     roofColor: '#dcae32',
     stoneColor: '#cfc9b8',
     bays: 7,
+    roofMaterial: roofMat,
   });
   tower.position.set(x, ground + 6, z);
   tower.rotation.y = rot;
   g.add(tower);
-
-  // 夜间金色泛光(黄色琉璃屋面自发光)
-  const gold = new THREE.Color('#dcae32');
-  tower.traverse((o) => {
-    if (o.isMesh && o.material?.color) {
-      const c = o.material.color;
-      if (Math.abs(c.r - gold.r) < 0.02 && Math.abs(c.g - gold.g) < 0.02 && Math.abs(c.b - gold.b) < 0.02) {
-        o.material = o.material.clone();
-        o.material.emissive = new THREE.Color('#7a5510');
-        o.material.userData.nightGlow = 1.4;
-      }
-    }
-  });
 }
 
 /* ==================== 2. 龟山电视塔 ==================== */
