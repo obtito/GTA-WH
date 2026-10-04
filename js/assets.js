@@ -10,6 +10,7 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/GLTFLoader.js';
 import { DRACOLoader } from 'three/addons/DRACOLoader.js';
+import { MeshoptDecoder } from 'three/addons/meshopt_decoder.module.js';
 
 let loader = null;
 
@@ -19,6 +20,7 @@ function getLoader() {
   draco.setDecoderPath('./assets/draco/gltf/');
   loader = new GLTFLoader();
   loader.setDRACOLoader(draco);
+  loader.setMeshoptDecoder(MeshoptDecoder);   // EXT_meshopt_compression(China_Tower 等高模)
   return loader;
 }
 

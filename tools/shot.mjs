@@ -44,9 +44,13 @@ try {
   await page.waitForTimeout(2000);
   await page.screenshot({ path: `${OUT}/03-夜景-驾驶.png` });
 
-  // 黄鹤楼特写(观察模式 + POI 跳转)
+  // 黄鹤楼特写(白天,观察模式 + POI 跳转)
   await page.keyboard.press('1');
-  await page.evaluate(() => { window.__hudTest?.showPOI('huanghelou'); });
+  await page.evaluate(() => {
+    const s = document.querySelector('#timeSlider');
+    s.value = 12.5; s.dispatchEvent(new Event('input'));
+    window.__hud?.showPOI('huanghelou');
+  });
   await page.waitForTimeout(1200);
   await page.screenshot({ path: `${OUT}/04-黄鹤楼.png` });
 

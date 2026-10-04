@@ -33,7 +33,7 @@ const elSpeedBox = $('#speedBox');
 
 /* ==================== 全局 ==================== */
 let renderer, scene, camera, controls, sky, sunLight, hemi, moonLight, stars;
-let waterMat, waterGroup, roads, city, trees, cars, bridges, landmarks, lights, beacon, metro, ferry;
+let waterMat, waterGroup, roads, city, trees, cars, bridges, landmarks, lights, beacon, metro, ferry, propsSys;
 let osmCity = null, driveLines = null, npcs;
 // OSM 覆盖区的场景坐标盒(供程序化城市避让)
 const OSM_BOX_SCENE = (() => {
@@ -168,6 +168,7 @@ function applyTime(hours) {
   lights?.setNight(s.night);
   bridges?.setNight(s.night);
   metro?.setNight(s.night);
+  propsSys?.setNight(s.night);
 
   scene.fog.color.copy(FOG_DAY.clone().lerp(FOG_NIGHT, clamp(s.night + s.dusk * 0.5, 0, 1)));
   scene.fog.far = lerp(16000, 9000, s.night);
@@ -241,8 +242,8 @@ step('生成三镇城市体块', () => {
   console.log(`[GTA-WH] 程序化补充建筑: ${city.count} 栋${osmCity ? '(OSM 框外)' : ''}`);
   console.log(`[GTA-WH] 碰撞网格: ${worldCollision.n} 个占地盒`);
 });
-step('栽种行道树与樱花', () => {
-  trees = buildTrees({
+step('栽种行道树与樱花', async () => {
+  trees = await buildTrees({
     exclusions: allExclusions(),
     lines: driveLines || null,
     blocked: (x, z) => !worldCollision.free(x, z, 0, 1.5),   // 树不穿楼
@@ -262,9 +263,9 @@ step('放行车流与路灯', async () => {
   npcs = await buildNPCs(driveLines || roads.centerlines, 60);
   scene.add(npcs.group);
   console.log(`[GTA-WH] 行人 NPC: ${npcs.count}`);
-  const props = await buildStreetProps(driveLines || roads.centerlines, 240);
-  scene.add(props.group);
-  console.log(`[GTA-WH] 街道小品: ${props.count}`);
+  propsSys = await buildStreetProps(driveLines || roads.centerlines, 320);
+  scene.add(propsSys.group);
+  console.log(`[GTA-WH] 街道小品: ${propsSys.count}(红绿灯 ${propsSys.traffic ?? 0})`);
   ferry = buildFerry();
   scene.add(ferry.group);
   // 绿地中心塔顶航空障碍灯(红,闪烁)
@@ -340,12 +341,20 @@ step('装载 Sketchfab 真实地标楼群', async () => {
   }
 });
 
-step('黄鹤楼摄影测量模型(替换程序化版)', async () => {
-  const g = await loadGLB('./assets/models/yellow-crane-tower/scene.gltf');
+step('黄鹤楼高模(China_Tower,替换摄影测量版)', async () => {
+  // 优先:China_Tower 精建模(0G-Bhqc,MIT,meshopt 压缩,1.37M 面)
+  // 回退:Sketchfab 摄影测量(CUNO/jiannibang,CC-BY)→ 程序化版
+  let g = await loadGLB('./assets/models/huanghe-tower/huanghe-main-tower-lod2.glb');
+  let src = 'China_Tower 精建模(0G-Bhqc,MIT,1.37M 面)';
+  if (!g) {
+    g = await loadGLB('./assets/models/yellow-crane-tower/scene.gltf');
+    src = g ? '摄影测量(CUNO/jiannibang,CC-BY,177k 面)' : '程序化版';
+  }
   if (!g) { console.warn('[GTA-WH] 黄鹤楼模型缺失,保留程序化版'); return; }
-  // 归一化:主楼+台基按 ~57 m(楼 51.4 + 台基),底面贴地(蛇山顶)
+  // 归一化:楼体 51.4 m(China_Tower 原生 37.2 m 高,等比放大);摄影测量版含台基按 57 m
   const box = new THREE.Box3().setFromObject(g);
-  const scale = 57 / Math.max(box.max.y - box.min.y, 0.01);
+  const isCT = src.startsWith('China_Tower');
+  const scale = (isCT ? 51.4 : 57) / Math.max(box.max.y - box.min.y, 0.01);
   g.scale.setScalar(scale);
   g.updateMatrixWorld(true);
   const b2 = new THREE.Box3().setFromObject(g);
@@ -366,7 +375,7 @@ step('黄鹤楼摄影测量模型(替换程序化版)', async () => {
   scene.add(g);
   const sub = landmarks.group.getObjectByName('lm:huanghelou');
   if (sub) sub.visible = false;
-  console.log('[GTA-WH] 黄鹤楼:摄影测量模型(CUNO/jiannibang,CC-BY,177k 面)');
+  console.log(`[GTA-WH] 黄鹤楼:${src}`);
 });
 
 step('铜陵公铁大桥改造为武汉长江大桥', async () => {

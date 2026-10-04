@@ -4,7 +4,8 @@ import * as THREE from 'three';
 import { toV2, toV2List, makeRandom, clamp, pointInPolygon, distToPolyline } from './geo.js';
 import { DISTRICTS, RIVER, LAKES, ROADS } from './data.js';
 import { mat, loadTexture, makeFacadeTexture, makeWindowTexture, makeBrickTexture, patchMaterial, instancedBoxes, registerEnv } from './lib.js';
-import { loadMergedGLB } from './assets.js';
+import { loadMergedGLB, loadGLB } from './assets.js';
+import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { terrainHeight } from './world.js';
 
 const RIVER_PTS = toV2List(RIVER.pts);
@@ -420,7 +421,7 @@ export function buildCity({ exclusions = [], seed = 20261001, osmBox = null, cor
  *                 否则树会种在已隐藏的手绘路两侧、与真实路网错位)
  * @param blocked  额外占位判定(建筑占地网格),治"树穿楼"
  */
-export function buildTrees({ exclusions = [], seed = 4242, lines = null, blocked = null } = {}) {
+export async function buildTrees({ exclusions = [], seed = 4242, lines = null, blocked = null } = {}) {
   const rand = makeRandom(seed);
   const group = new THREE.Group();
   group.name = 'trees';
@@ -488,7 +489,86 @@ export function buildTrees({ exclusions = [], seed = 4242, lines = null, blocked
     }
   }
 
-  const n = items.length;
+  /* ---- 几何升级:Kenney Nature Kit(CC0)真树 GLB 实例化 ----
+   * 布点逻辑(items)不变;常规树换真模型,樱花保留程序化粉冠(团状花云)。
+   * 每型一次 InstancedMesh,整城 6 个 draw call。 */
+  const TREE_FILES = [
+    './assets/trees/tree_default.glb',
+    './assets/trees/tree_default_dark.glb',
+    './assets/trees/tree_fat.glb',
+    './assets/trees/tree_oak.glb',
+    './assets/trees/tree_thin.glb',
+    './assets/trees/tree_small.glb',
+  ];
+  const types = [];                     // { geo, mat, norm(归一到7m基准) }
+  for (const f of TREE_FILES) {
+    try {
+      const root = await loadGLB(f);
+      if (!root) continue;
+      const meshes = [];
+      root.traverse((o) => { if (o.isMesh) meshes.push(o); });
+      if (!meshes.length) continue;
+      let geo, mtl;
+      if (meshes.length === 1) {
+        geo = meshes[0].geometry;
+        mtl = meshes[0].material;
+      } else {
+        // 多部件(干/冠分离)合并为一;应用首个非单位变换
+        geo = mergeGeometries(meshes.map((ms) => {
+          const g = ms.geometry.clone();
+          g.applyMatrix4(ms.matrixWorld);
+          return g;
+        }));
+        mtl = meshes[0].material;
+      }
+      geo = geo.clone();
+      geo.computeBoundingBox();
+      const size = new THREE.Vector3();
+      geo.boundingBox.getSize(size);
+      const mat2 = mtl && mtl.clone ? mtl.clone() : new THREE.MeshStandardMaterial({ color: 0x4b7a3c, roughness: 1 });
+      registerEnv(mat2, 0.42);
+      types.push({ geo, mat: mat2, norm: 7 / (size.y || 7) });
+    } catch { /* 单型失败不拖垮整体 */ }
+  }
+
+  const sakuraItems = items.filter((it) => it.sakura);
+  const greenItems = items.filter((it) => !it.sakura);
+  const allMats = [];
+
+  if (types.length) {
+    const dummy = new THREE.Object3D();
+    const col = new THREE.Color();
+    const buckets = types.map(() => []);
+    for (const it of greenItems) {
+      buckets[Math.min(types.length - 1, (it.t * types.length) | 0)].push(it);
+    }
+    types.forEach((tp, k) => {
+      const bucket = buckets[k];
+      if (!bucket.length) return;
+      const im = new THREE.InstancedMesh(tp.geo, tp.mat, bucket.length);
+      im.frustumCulled = false;
+      im.castShadow = true;
+      bucket.forEach((it, i) => {
+        dummy.position.set(it.x, it.y, it.z);
+        dummy.rotation.set(0, it.t * 6.28, 0);
+        dummy.scale.setScalar(it.s * tp.norm);
+        dummy.updateMatrix();
+        im.setMatrixAt(i, dummy.matrix);
+        col.setScalar(0.86 + it.c * 0.28);          // 明度微差(固有色之上)
+        im.setColorAt(i, col);
+      });
+      im.instanceMatrix.needsUpdate = true;
+      if (im.instanceColor) im.instanceColor.needsUpdate = true;
+      group.add(im);
+      allMats.push(tp.mat);
+    });
+  } else {
+    // GLB 全挂(离线开发):常规树退回程序化,与樱花同管线
+    for (const it of greenItems) sakuraItems.push(it);
+  }
+
+  // 樱花(以及 GLB 缺失时的兜底树):程序化干 + 粉团冠
+  const n = sakuraItems.length;
   const trunkGeo = new THREE.CylinderGeometry(0.16, 0.26, 1, 6).translate(0, 0.5, 0);
   const crownGeo = new THREE.IcosahedronGeometry(0.5, 0);
   const trunkMat = new THREE.MeshStandardMaterial({ color: 0x6b5340, roughness: 1 });
@@ -503,7 +583,7 @@ export function buildTrees({ exclusions = [], seed = 4242, lines = null, blocked
   const col = new THREE.Color();
   const greens = ['#4b7a3c', '#568a41', '#3d6b34', '#6d9445', '#456f38'];
   const pinks = ['#e8b4c8', '#f0c8d8', '#dd9ebc', '#f4d8e0'];
-  items.forEach((it, i) => {
+  sakuraItems.forEach((it, i) => {
     const h = 7 * it.s;
     dummy.position.set(it.x, it.y, it.z);
     dummy.rotation.set(0, it.t * 6.28, 0);
@@ -526,7 +606,8 @@ export function buildTrees({ exclusions = [], seed = 4242, lines = null, blocked
   if (crown.instanceColor) crown.instanceColor.needsUpdate = true;
   trunk.castShadow = crown.castShadow = true;
   group.add(trunk, crown);
-  return { group, count: n, mats: [trunkMat, crownMat] };
+  allMats.push(trunkMat, crownMat);
+  return { group, count: items.length, mats: allMats };
 }
 
 /* ============ 路灯(主干道,夜间点亮) ============ */

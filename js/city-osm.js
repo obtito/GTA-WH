@@ -105,6 +105,7 @@ export async function buildOsmCity(buildings) {
       const nor = new Float32Array(bin, o, v * 3); o += v * 12;
       const uv = new Float32Array(bin, o, v * 2); o += v * 8;
       const col = new Uint8Array(bin, o, v * 3); o += v * 3;
+      o = (o + 3) & ~3;                     // idx 起点 4 字节对齐(烘焙器在 col 后补零)
       const idx = new Uint32Array(bin, o, ni); o += ni * 4;
       const geo = new THREE.BufferGeometry();
       geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));

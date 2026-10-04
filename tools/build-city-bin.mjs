@@ -422,9 +422,12 @@ for (const [k, B] of Object.entries(buckets)) {
   const col = new Uint8Array(B.col.length);
   for (let i = 0; i < B.col.length; i++) col[i] = Math.round(B.col[i] * 255);
   const idx = new Uint32Array(B.idx);
+  // idx 起点 4 字节对齐:col 是 3B/顶点,末尾补零到 4 的倍数
+  // (JS TypedArray 要求对齐,否则运行期 "start offset should be a multiple of 4")
+  const pad = (4 - (col.byteLength % 4)) % 4;
   metas.buckets[k] = { offset, vCount: pos.length / 3, iCount: idx.length };
-  parts.push(pos.buffer, nor.buffer, uv.buffer, col.buffer, idx.buffer);
-  offset += pos.byteLength + nor.byteLength + uv.byteLength + col.byteLength + idx.byteLength;
+  parts.push(pos.buffer, nor.buffer, uv.buffer, col.buffer, new ArrayBuffer(pad), idx.buffer);
+  offset += pos.byteLength + nor.byteLength + uv.byteLength + col.byteLength + pad + idx.byteLength;
 }
 const total = new Uint8Array(offset);
 let o = 0;

@@ -15,7 +15,8 @@
 
 | 资产 | 来源 | 许可证 | 署名 |
 |---|---|---|---|
-| `assets/models/yellow-crane-tower/` | [Yellow Crane Tower](https://sketchfab.com/3d-models/yellow-crane-tower-8d56b5d7f23246be91da35b7a33328fe) by **CUNO/jiannibang**(摄影测量,144 张照片重建,177k 面) | CC-BY 4.0 | 保留本表即视为署名 |
+| `assets/models/huanghe-tower/huanghe-main-tower-lod2.glb` | [China_Tower](https://github.com/0G-Bhqc/China_Tower)(黄鹤楼精建模 LOD2,meshopt 压缩,1.37M 面;现役主楼) | **MIT** | Copyright © 0G-Bhqc;保留本表即视为署名 |
+| `assets/models/yellow-crane-tower/` | [Yellow Crane Tower](https://sketchfab.com/3d-models/yellow-crane-tower-8d56b5d7f23246be91da35b7a33328fe) by **CUNO/jiannibang**(摄影测量,144 张照片重建,177k 面;现作回退) | CC-BY 4.0 | 保留本表即视为署名 |
 | `assets/models/tongling-railway-bridge/` | [铜陵长江公铁大桥](https://sketchfab.com/3d-models/c29ea5437cfd4569ad86fbefcc64d15b) by **hello123D**(245k 面,改造为武汉长江大桥) | CC-BY 4.0 | 保留本表即视为署名 |
 | `assets/models/wuhan-greenland-center/` | [Wuhan Greenland Center](https://sketchfab.com/3d-models/wuhan-greenland-center-795a3cec308d44a985dacfda99239a3e) by **Void**(37.7k 面) | CC-BY 4.0 | 保留本表即视为署名 |
 | `assets/models/wuhan-center/` | [Wuhan Center](https://sketchfab.com/3d-models/wuhan-center-413eb58cc89c4423bf51ce63c2ab1393) by **Void**(13k 面) | CC-BY 4.0 | 保留本表即视为署名 |
@@ -24,6 +25,7 @@
 | `assets/models/wuhan-panhai-times/` | [Wuhan Pan Hai Times Center](https://sketchfab.com/3d-models/wuhan-pan-hai-times-center-landmark-tower-c5dfa1384c0b4ae3a08a49e2ed7ae2e4) by **Void**(7.4k 面) | CC-BY 4.0 | 保留本表即视为署名 |
 | `assets/npc/` + `assets/props/`(角色 / 街道小品) | [KayKit Character Pack](https://kaylousberg.com) & [City Builder Bits](https://kaylousberg.com) by Kay Lousberg | CC0 1.0 | 无需署名 |
 | `assets/cars/*.glb` + `Textures/colormap.png`(20 台车) | [Kenney Car Kit](https://kenney.nl/assets/car-kit),经 [shorepine/kenney](https://github.com/shorepine/kenney) 镜像 | **CC0 1.0** | 无需署名,仍致谢 Kenney |
+| `assets/trees/*.glb`(6 树型,93176 实例) | [Kenney Nature Kit](https://kenney.nl/assets/nature-kit),经 [shorepine/kenney](https://github.com/shorepine/kenney) 镜像 | **CC0 1.0** | 无需署名,仍致谢 Kenney |
 
 ## 贴图 / 代码
 
@@ -39,4 +41,4 @@
 - 只引入 **CC0** 或 **CC-BY**(CC-BY 在本表登记署名);**ODbL 数据**再分发时保持同许可
 - **CC-BY-NC(非商用)一律不进仓库**
 - Sketchfab 下载的模型逐个核对原页面许可证并登记
-- 模型统一 GLB/gltf、Y-up、米制,Draco 压缩可用(解码器已内置)
+- 模型统一 GLB/gltf、Y-up、米制,Draco / meshopt 压缩可用(解码器已内置)
