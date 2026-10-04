@@ -351,7 +351,7 @@ step('装载 Sketchfab 真实地标楼群', async () => {
 step('黄鹤楼(混合方案:程序化飞檐+精建模贴图)', async () => {
   // 现役:混合方案——程序化楼体(高翘飞檐/红柱廊/收分)+ China_Tower 瓦片贴图(landmarks.js 已接)
   // 备用(关掉 HHLT_HYBRID 即启用):China_Tower 精建模 GLB(0G-Bhqc,MIT,1.37M 面)→ 摄影测量 → 程序化
-  const HHLT_HYBRID = true;
+  const HHLT_HYBRID = false;   // 2026-10-05 用户裁定:精建模版为主体,混合版保留待选
   window.__hhltBadge = HHLT_HYBRID ? 'HHLT:混合版' : 'HHLT:精建模';
   if (HHLT_HYBRID) {
     // "黄鹤楼"金字匾挂顶层北面(长江/大桥一侧)
