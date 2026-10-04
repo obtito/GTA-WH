@@ -384,6 +384,34 @@ step('黄鹤楼高模(China_Tower,替换摄影测量版)', async () => {
       realTowerMats.push(o.material);
     }
   });
+  // 琉璃瓦金顶:上游模型屋面与白墙共用一张纯白贴图(Material#25,120 万顶点),
+  // 无法按贴图分区;改为写顶点色——按顶点法线朝上度把飞檐/坡屋面染金黄,墙面保持白
+  // (abs:模型带镜像变换,法线可能反向;不用 onBeforeCompile——程序缓存导致补丁不生效)
+  if (isCT) {
+    const GOLD = new THREE.Color('#e8b33a');
+    const _q = new THREE.Quaternion(), _v = new THREE.Vector3();
+    g.updateMatrixWorld(true);
+    g.traverse((o) => {
+      if (!o.isMesh || !o.geometry?.attributes?.normal) return;
+      const m = Array.isArray(o.material) ? null : o.material;
+      if (!m || m.userData.goldVerts) return;
+      m.userData.goldVerts = true;
+      const nor = o.geometry.attributes.normal;
+      o.getWorldQuaternion(_q);
+      const n = nor.count;
+      const col = new Float32Array(n * 3);
+      for (let i = 0; i < n; i++) {
+        _v.set(nor.getX(i), nor.getY(i), nor.getZ(i)).applyQuaternion(_q);
+        const t = THREE.MathUtils.smoothstep(Math.abs(_v.y), 0.45, 0.72);
+        col[i * 3] = 1 + t * (GOLD.r - 1);
+        col[i * 3 + 1] = 1 + t * (GOLD.g - 1);
+        col[i * 3 + 2] = 1 + t * (GOLD.b - 1);
+      }
+      o.geometry.setAttribute('color', new THREE.BufferAttribute(col, 3));
+      m.vertexColors = true;
+      m.needsUpdate = true;
+    });
+  }
   scene.add(g);
   const sub = landmarks.group.getObjectByName('lm:huanghelou');
   if (sub) sub.visible = false;
