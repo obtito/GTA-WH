@@ -195,8 +195,15 @@ step('铺设主干道网', () => {
 });
 step('精建 16 处地标', () => {
   landmarks = buildLandmarks();
-  const merged = mergeStaticMeshes(landmarks.group);
-  console.log(`[GTA-WH] 地标合批: ${merged.before} → ${merged.after} 个 mesh(${merged.tris} 三角形)`);
+  // 黄鹤楼/绿地中心后续由真实模型替换:保留独立 mesh 供换模隐藏
+  // (合班会删原件烘进 merged,之后的 lm:*.visible=false 就成了空操作——程序化塔将永远可见)
+  const keep = new Set();
+  for (const id of ['lm:huanghelou', 'lm:greenland']) {
+    const s = landmarks.group.getObjectByName(id);
+    if (s) keep.add(s);
+  }
+  const merged = mergeStaticMeshes(landmarks.group, keep);
+  console.log(`[GTA-WH] 地标合批: ${merged.before} → ${merged.after} 个 mesh(${merged.tris} 三角形,保留 ${keep.size} 处换模位)`);
   scene.add(landmarks.group);
 });
 step('架设五座大桥', () => {
