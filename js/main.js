@@ -346,11 +346,16 @@ step('黄鹤楼高模(China_Tower,替换摄影测量版)', async () => {
   // 回退:Sketchfab 摄影测量(CUNO/jiannibang,CC-BY)→ 程序化版
   let g = await loadGLB('./assets/models/huanghe-tower/huanghe-main-tower-lod2.glb');
   let src = 'China_Tower 精建模(0G-Bhqc,MIT,1.37M 面)';
+  let badge = 'HHLT:精建模';
   if (!g) {
+    console.error('[GTA-WH] ⚠ 黄鹤楼精建模 GLB 加载失败,回退摄影测量版——请截图此行反馈');
     g = await loadGLB('./assets/models/yellow-crane-tower/scene.gltf');
     src = g ? '摄影测量(CUNO/jiannibang,CC-BY,177k 面)' : '程序化版';
+    badge = g ? 'HHLT:⚠摄影测量回退' : 'HHLT:⚠程序化回退';
   }
-  if (!g) { console.warn('[GTA-WH] 黄鹤楼模型缺失,保留程序化版'); return; }
+  // 角标明示当前生效版本(排查"看到旧模型"用;真正渲染在 build() 尾部统一写 stamp)
+  window.__hhltBadge = badge;
+  if (!g) { console.error('[GTA-WH] ⚠ 黄鹤楼模型全部缺失,保留程序化版'); return; }
   // 归一化:楼体 51.4 m(China_Tower 原生 37.2 m 高,等比放大);摄影测量版含台基按 57 m
   const box = new THREE.Box3().setFromObject(g);
   const isCT = src.startsWith('China_Tower');
@@ -464,7 +469,7 @@ async function build() {
   }
   applyTime(timeHours);
   $('#loading').classList.add('done');
-  $('#buildStamp').textContent = 'build ' + BUILD_STAMP;
+  $('#buildStamp').textContent = 'build ' + BUILD_STAMP + (window.__hhltBadge ? ' | ' + window.__hhltBadge : '');
   hud.modeTip('按 2 驾车出发 · F 上下车 · 3 无人机 · 拖顶部滑杆调时间');
   requestAnimationFrame(animate);
 }
