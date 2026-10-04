@@ -363,7 +363,7 @@ step('黄鹤楼高模(China_Tower,替换摄影测量版)', async () => {
   g.scale.setScalar(scale);
   g.updateMatrixWorld(true);
   const b2 = new THREE.Box3().setFromObject(g);
-  const [x, z] = toV2(114.3011, 30.5433);
+  const [x, z] = toV2(114.296944, 30.546944);   // Wikidata Q462372 = Overture 实测轮廓中心(误差 16m)
   const gy = Math.max(terrainHeight(x, z), 0);
   // 蛇山是坡地,下沉 2 m 兜底,避免台基底部悬空
   g.position.set(x - (b2.max.x + b2.min.x) / 2, gy - b2.min.y - 2, z - (b2.max.z + b2.min.z) / 2);

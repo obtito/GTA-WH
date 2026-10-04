@@ -33,9 +33,9 @@ export const REAL_TOWERS = [
   { id: 'panhai-times', dir: 'wuhan-panhai-times', lon: 114.3085, lat: 30.5955, h: 200, r: 58 },
 ];
 
-/** 摄影测量替换模型占地(黄鹤楼 · 蛇山顶) */
+/** 摄影测量替换模型占地(黄鹤楼 · 蛇山顶;坐标与 Wikidata Q462372/Overture 实测轮廓对齐) */
 export const REAL_SITES = [
-  { id: 'yellow-crane', lon: 114.3011, lat: 30.5433, r: 72 },
+  { id: 'yellow-crane', lon: 114.296944, lat: 30.546944, r: 72 },
 ];
 
 const circle = (id, lon, lat, r) => { const [x, z] = toV2(lon, lat); return { id, x, z, r }; };
