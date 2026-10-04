@@ -384,12 +384,16 @@ step('黄鹤楼高模(China_Tower,替换摄影测量版)', async () => {
       realTowerMats.push(o.material);
     }
   });
-  // 琉璃瓦金顶:上游模型屋面与白墙共用一张纯白贴图(Material#25,120 万顶点),
-  // 无法按贴图分区;改为写顶点色——按顶点法线朝上度把飞檐/坡屋面染金黄,墙面保持白
-  // (abs:模型带镜像变换,法线可能反向;不用 onBeforeCompile——程序缓存导致补丁不生效)
+  // 琉璃瓦金顶+朱红柱廊:上游模型屋面与白墙共用纯白贴图(Material#25,120 万顶点),
+  // 写顶点色分三段——坡屋面/飞檐(法线朝上)染金,每层平座带(楼层密集区下缘)染朱红,墙面保持白
+  // (abs:模型带镜像变换;不用 onBeforeCompile——程序缓存导致补丁不生效)
+  // 楼层带为相对塔基高度,取自顶点高度直方图实测(5 层平座位置)
   if (isCT) {
     const GOLD = new THREE.Color('#e8b33a');
-    const _q = new THREE.Quaternion(), _v = new THREE.Vector3();
+    const RED = new THREE.Color('#a83226');
+    const RED_BANDS = [[0.5, 3.2], [8.3, 10.8], [15.3, 17.8], [21.3, 23.8], [28.3, 31.5]];
+    const _q = new THREE.Quaternion(), _v = new THREE.Vector3(), _n = new THREE.Vector3();
+    const y0 = b2.min.y;
     g.updateMatrixWorld(true);
     g.traverse((o) => {
       if (!o.isMesh || !o.geometry?.attributes?.normal) return;
@@ -400,17 +404,61 @@ step('黄鹤楼高模(China_Tower,替换摄影测量版)', async () => {
       o.getWorldQuaternion(_q);
       const n = nor.count;
       const col = new Float32Array(n * 3);
+      const pos = o.geometry.attributes.position;
       for (let i = 0; i < n; i++) {
-        _v.set(nor.getX(i), nor.getY(i), nor.getZ(i)).applyQuaternion(_q);
-        const t = THREE.MathUtils.smoothstep(Math.abs(_v.y), 0.45, 0.72);
-        col[i * 3] = 1 + t * (GOLD.r - 1);
-        col[i * 3 + 1] = 1 + t * (GOLD.g - 1);
-        col[i * 3 + 2] = 1 + t * (GOLD.b - 1);
+        _v.set(pos.getX(i), pos.getY(i), pos.getZ(i)).applyMatrix4(o.matrixWorld);
+        // 金:法线朝上度
+        _n.set(nor.getX(i), nor.getY(i), nor.getZ(i)).applyQuaternion(_q);
+        const ny = Math.abs(_n.y);
+        const goldT = THREE.MathUtils.smoothstep(ny, 0.45, 0.72);
+        // 红:楼层平座带
+        const ry = _v.y - y0;
+        let redT = 0;
+        for (const [a, b] of RED_BANDS) {
+          if (ry >= a && ry <= b) { redT = 1; break; }
+        }
+        let r = 1, gg = 1, bb = 1;
+        if (redT) { r = RED.r; gg = RED.g; bb = RED.b; }
+        r += goldT * (GOLD.r - r); gg += goldT * (GOLD.g - gg); bb += goldT * (GOLD.b - bb);
+        col[i * 3] = r; col[i * 3 + 1] = gg; col[i * 3 + 2] = bb;
       }
       o.geometry.setAttribute('color', new THREE.BufferAttribute(col, 3));
       m.vertexColors = true;
       m.needsUpdate = true;
     });
+    // 葫芦宝顶:模型攒尖顶欠圆润,叠加金色双球葫芦
+    const goldMat = new THREE.MeshStandardMaterial({ color: '#d9a933', metalness: 0.65, roughness: 0.3 });
+    const finial = new THREE.Group();
+    const s1 = new THREE.Mesh(new THREE.SphereGeometry(1.35, 18, 14), goldMat);
+    s1.position.y = 0.9;
+    const s2 = new THREE.Mesh(new THREE.SphereGeometry(0.85, 16, 12), goldMat);
+    s2.position.y = 2.4;
+    const rod = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.1, 1.6, 8), goldMat);
+    rod.position.y = 3.5;
+    finial.add(s1, s2, rod);
+    finial.position.set(x, b2.max.y - 0.7, z);
+    finial.traverse((o) => { if (o.isMesh) o.castShadow = true; });
+    scene.add(finial);
+    // "黄鹤楼"金字匾:顶层北面(长江/大桥一侧)
+    const cv = document.createElement('canvas');
+    cv.width = 512; cv.height = 144;
+    const cx2 = cv.getContext('2d');
+    cx2.fillStyle = '#14151c'; cx2.fillRect(0, 0, 512, 144);
+    cx2.strokeStyle = '#c9a227'; cx2.lineWidth = 8; cx2.strokeRect(6, 6, 500, 132);
+    cx2.fillStyle = '#e8c34a';
+    cx2.font = 'bold 104px KaiTi, STKaiti, serif';
+    cx2.textAlign = 'center'; cx2.textBaseline = 'middle';
+    cx2.fillText('黄鹤楼', 256, 78);
+    const plaqueTex = new THREE.CanvasTexture(cv);
+    plaqueTex.colorSpace = THREE.SRGBColorSpace;
+    const plaque = new THREE.Mesh(
+      new THREE.BoxGeometry(6, 1.7, 0.25),
+      [goldMat, goldMat, goldMat, goldMat, new THREE.MeshStandardMaterial({ map: plaqueTex, roughness: 0.6 }), goldMat],
+    );
+    plaque.position.set(x, y0 + 43.5, z - 9.6);
+    plaque.rotation.y = Math.PI;
+    plaque.castShadow = true;
+    scene.add(plaque);
   }
   scene.add(g);
   const sub = landmarks.group.getObjectByName('lm:huanghelou');
