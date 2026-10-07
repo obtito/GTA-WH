@@ -1,0 +1,12 @@
+{
+  "objects": 283,
+  "mesh_objects": 278,
+  "vertices": 458968,
+  "faces": 421202,
+  "roof_tiers": 5,
+  "wing_corners": 60,
+  "scale_factor": 1.5795943380139221,
+  "blender_version": "4.5.14 LTS",
+  "source_assets": "none",
+  "external_textures": 0
+}

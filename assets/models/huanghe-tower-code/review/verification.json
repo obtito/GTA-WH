@@ -1,0 +1,25 @@
+{
+  "offline": {
+    "errors": [],
+    "externalRequests": [],
+    "stage": 3
+  },
+  "video": {
+    "durationSeconds": 48.052,
+    "width": 1280,
+    "height": 720,
+    "canPlayH264": "probably",
+    "bytesDecoded": 186673
+  },
+  "native_video_frame_check": {
+    "decoder": "macOS AVFoundation AVAssetImageGenerator",
+    "times_seconds": [
+      12,
+      20,
+      28,
+      37,
+      45
+    ],
+    "observed": "Stage captions, actual geometry changes and final camera rotation verified from native-decoded frames. Browser canvas seek snapshots were stale and replaced."
+  }
+}

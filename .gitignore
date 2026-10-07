@@ -6,3 +6,16 @@ repo_ref/
 ref/
 .workbuddy/
 .tmp_china_tower.*
+__pycache__/
+*.pyc
+
+# Reproducible Blender exports and local video tooling; keep model sources in Git.
+/yellow-crane-tower-new-20261007/*.blend
+/yellow-crane-tower-new-20261007/*.zip
+/yellow-crane-tower-refined-20261007/baseline/*.blend
+/yellow-crane-tower-refined-20261007/stages/*.blend
+/yellow-crane-tower-refined-20261007/assets/*.glb
+/yellow-crane-tower-refined-20261007/video/runtime/
+/yellow-crane-tower-refined-20261007/video/vendor/
+/yellow-crane-tower-refined-20261007/video/three.tgz
+/yellow-crane-tower-refined-20261007/video/bin/

@@ -1,0 +1,30 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><title>黄鹤楼 · 照片对照优化记录</title>
+<style>*{box-sizing:border-box}body{margin:0;background:#eff1ee;color:#303b3c;font-family:-apple-system,"PingFang SC",sans-serif}header{padding:24px 32px;background:#fafbf8;border-bottom:1px solid #d6dbd6}h1{margin:0 0 8px;font-size:27px}p{margin:0;color:#687572;font-size:14px}main{display:grid;grid-template-columns:1fr 1fr 1fr}.panel{border-right:1px solid #d4dbd6;position:relative}.panel h2{position:absolute;top:0;left:24px;font-size:19px;z-index:1}.photo{width:100%;height:690px;object-fit:contain;background:#e5e9e5;padding:70px 18px 20px}canvas{width:100%;height:690px;display:block}footer{padding:18px 28px;background:#fafbf8;border-top:1px solid #d6dbd6;display:flex;gap:12px;align-items:center}button{border:1px solid #bfcac3;border-radius:8px;background:white;padding:9px 14px;cursor:pointer;color:#384c42}button.active{background:#496352;color:white}#note{font-size:14px;flex:1}#credit{padding:12px 28px;color:#6b7b70;font-size:12px}a{color:#536a58}#video{display:none}#detail{font-size:14px}body.video-mode main,body.video-mode header,body.video-mode footer,body.video-mode #credit{display:none}body.video-mode #video{display:block;width:1280px;height:720px}</style>
+<header><h1>黄鹤楼 · 照片对照优化</h1><p>真实参考 / 优化前代码模型 / 优化后代码模型　　模型统一视角与光照 · 游戏继续使用旧 GLB</p></header>
+<main><div class="panel"><h2>真实照片 · MonsieurRoi</h2><img class="photo" src="review/references/real-front.jpg"></div><div class="panel"><h2>优化前 · 规则八角塔</h2><canvas id="before"></canvas></div><div class="panel"><h2 id="after-title">第 1 轮 · 楼体与复合飞檐</h2><canvas id="after"></canvas></div></main>
+<footer><button id="stage1" class="active">第 1 轮 · 结构</button><button id="stage2">第 2 轮 · 细节</button><button id="stage3">最终 · 檐口与性能</button><button id="front">正面</button><button id="quarter">斜侧</button><button id="back">背面</button><span id="note">折角方形楼体、四面骑楼、逐层檐口与楼层比例</span></footer>
+<div id="credit">照片：<a href="https://commons.wikimedia.org/wiki/File:CN_-_Hubei_-_Wuhan_-_Kranichpagode.JPG">MonsieurRoi / Wikimedia Commons</a> · <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>。照片原样保留，模型未使用照片贴图。尺寸与未见背面为参考推定，尚非测绘复原。<span id="detail"></span></div>
+<canvas id="video" width="1280" height="720"></canvas>
+<script type="importmap">{"imports":{"three":"../../../vendor/three.module.js","three/addons/":"../../../vendor/"}}</script>
+<script type="module">
+import * as THREE from 'three';
+import {OrbitControls} from 'three/addons/OrbitControls.js';
+import {buildYellowCraneTower as baseline} from './review/baseline/tower.js';
+import {buildYellowCraneTower as intermediate} from './review/stages/02-detail/tower.js';
+import {buildYellowCraneTower} from './tower.js';
+const roots=[baseline(),intermediate({stage:1}),intermediate({stage:2}),buildYellowCraneTower()];let stage=1;const views=[];
+for(const [id,root]of[['before',roots[0]],['after',roots[1]]]){
+ const canvas=document.getElementById(id),w=canvas.clientWidth,h=690;
+ const renderer=new THREE.WebGLRenderer({canvas,antialias:true,preserveDrawingBuffer:true});renderer.setSize(w,h,false);renderer.setPixelRatio(1);renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=.95;renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+ const scene=new THREE.Scene();scene.background=new THREE.Color('#e9ede8');scene.add(new THREE.HemisphereLight('#e6efff','#afa590',1.2));const sun=new THREE.DirectionalLight('#fff2da',2.6);sun.position.set(-50,100,75);sun.castShadow=true;sun.shadow.mapSize.set(1024,1024);Object.assign(sun.shadow.camera,{left:-55,right:55,top:55,bottom:-55,far:240});sun.shadow.bias=-.0003;scene.add(sun);
+ const ground=new THREE.Mesh(new THREE.PlaneGeometry(2000,2000),new THREE.MeshStandardMaterial({color:'#e9ede8',roughness:1}));ground.rotation.x=-Math.PI/2;ground.position.y=-.04;ground.receiveShadow=true;scene.add(ground,root);
+ const camera=new THREE.PerspectiveCamera(34,w/h,.1,2000);camera.position.set(4,38,127);camera.lookAt(0,24,0);
+ const controls=new OrbitControls(camera,canvas);controls.target.set(0,24,0);controls.update();const view={renderer,scene,camera,root,controls};views.push(view);controls.addEventListener('change',()=>renderer.render(scene,camera));renderer.render(scene,camera);
+}
+function render(){for(const v of views)v.renderer.render(v.scene,v.camera)}
+function setStage(next){const v=views[1];v.scene.remove(v.root);v.root=roots[next];v.scene.add(v.root);stage=next;document.getElementById('after-title').textContent=next===1?'第 1 轮 · 楼体与复合飞檐':next===2?'第 2 轮 · 瓦垄、栏杆与彩绘':'最终 · 飞檐轮廓与性能优化';document.getElementById('note').textContent=next===1?'折角方形楼体、四面骑楼、逐层檐口与楼层比例':next===2?'瓦垄、斗拱、回纹栏杆、绿色额枋、门窗格栅与入口雨棚':'抬升飞檐角、匹配山花板轮廓、简化瓦垄、合并同层实例批次';for(const n of [1,2,3])document.getElementById('stage'+n).classList.toggle('active',n===next);render()}
+function angle(a,pitch=38){for(const v of views){v.camera.position.set(Math.sin(a)*127,pitch,Math.cos(a)*127);v.camera.lookAt(0,24,0);v.controls.update()}render()}
+document.getElementById('stage1').onclick=()=>setStage(1);document.getElementById('stage2').onclick=()=>setStage(2);document.getElementById('stage3').onclick=()=>setStage(3);document.getElementById('front').onclick=()=>angle(0);document.getElementById('quarter').onclick=()=>angle(.65,58);document.getElementById('back').onclick=()=>angle(Math.PI);
+await document.fonts.ready;await document.querySelector('img').decode();setStage(3);render();window.__ready=true;window.__review={views,roots,setStage,angle,render,THREE};
+window.__codecSupport=['video/mp4;codecs=avc1.42E01E','video/mp4','video/webm;codecs=vp9'].map(mime=>({mime,supported:MediaRecorder.isTypeSupported(mime)}));
+</script></html>

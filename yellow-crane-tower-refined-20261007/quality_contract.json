@@ -1,0 +1,17 @@
+{
+  "subject": "现代黄鹤楼 · 照片校正外观模型",
+  "delivery": ["Blender .blend", "连续旋转迭代 MP4", "前后对照与真实时间记录"],
+  "implementation": "Blender procedural geometry; Three.js animation of authored GLBs",
+  "skill_scope": {
+    "img2threejs": "参考图分析、分层拆分、质量约定、分阶段对照与多角度自检；Three.js factory/forge自动门禁不适用于本次既有Blender模型，未声称运行或通过这些门禁。",
+    "gpt_3d_skill": "建模、可编辑源保护、相机与边界检查、资源打包、逐帧视频与解码验证。",
+    "threejs_geometry": "索引网格、曲面/扫掠几何和语义分组供浏览器动画使用。"
+  },
+  "observed": ["首层明显宽于中层", "中间三层同宽", "高层棕红回纹栏杆", "抱厦造成楼板与檐线凸凹", "四面骑楼贴嵌中央攒尖屋面", "琉璃瓦为橙赭陶瓷而非镜面黄金", "正面上匾黄鹤楼、下匾气吞云梦"],
+  "inferred": ["背面与遮挡细节按四向结构推断", "斗拱和瓦件均为程序化近似", "未从照片宣称精确三维尺寸或测绘复原"],
+  "critical_reviews": ["底层与中层宽度差", "连续飞檐与低宽抱厦", "非石质高层栏杆", "无遮挡中文匾额", "视频全楼连续旋转与渐变，无分层爆炸"],
+  "stages": ["保留V1", "结构比例与基座", "连续檐线与嵌入冠顶", "材质、回纹栏杆与题额", "连续旋转动画"],
+  "review_evidence": "固定机位前后图 + 正面/侧面/背面/高角度渲染 + 连续视频播放",
+  "references": "references/source-records.json",
+  "rights": "实景参考图保留来源与署名，只留在用户本地交付；未经另行许可不公开发布。"
+}

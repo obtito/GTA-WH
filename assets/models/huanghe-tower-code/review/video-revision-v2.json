@@ -1,0 +1,85 @@
+{
+  "revision": 2,
+  "started_utc": "2026-10-07T08:54:47+00:00",
+  "finished_utc": "2026-10-07T09:01:51.341304+00:00",
+  "elapsed_seconds": 424,
+  "elapsed_label": "7 分 4 秒",
+  "requested_changes": [
+    "加快前半段阶段节奏",
+    "基线持续旋转，并在旋转中切换各轮模型",
+    "保留最后共同旋转"
+  ],
+  "video": {
+    "durationSeconds": 30.009,
+    "width": 1280,
+    "height": 720,
+    "currentSource": "http://127.0.0.1:8140/assets/models/huanghe-tower-code/review/optimization-process-v2.mp4",
+    "canPlayH264": "probably"
+  },
+  "timeline": [
+    {
+      "start": 0,
+      "end": 3,
+      "stage": "待优化基线"
+    },
+    {
+      "start": 3,
+      "end": 8,
+      "stage": "第 1 轮结构"
+    },
+    {
+      "start": 8,
+      "end": 13,
+      "stage": "第 2 轮细节"
+    },
+    {
+      "start": 13,
+      "end": 18,
+      "stage": "最终檐口与性能"
+    },
+    {
+      "start": 18,
+      "end": 22,
+      "stage": "前后对照"
+    },
+    {
+      "start": 22,
+      "end": 30,
+      "stage": "共同旋转"
+    }
+  ],
+  "iteration_orbit": {
+    "continuous": true,
+    "model_stages": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "angle_formula": "t / 22 * 2π",
+    "camera_radius": 127,
+    "camera_y": 38,
+    "look_at": [
+      0,
+      24,
+      0
+    ],
+    "before_reference": "fixed during initial 22 seconds"
+  },
+  "final_orbit": {
+    "preserved_from_v1": true,
+    "duration_seconds": 8,
+    "camera_radius": 127,
+    "camera_y": 50,
+    "look_at": [
+      0,
+      24,
+      0
+    ],
+    "radians_per_second": "π / 4",
+    "full_turns": 1
+  },
+  "previous_video": "versions/optimization-process-v1-48s.mp4",
+  "model_geometry_changed": false,
+  "verification": "verification-v2.json"
+}

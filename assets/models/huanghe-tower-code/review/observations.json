@@ -1,0 +1,27 @@
+{
+  "visible": [
+    "Five primary roof bands with central projecting fronts",
+    "Four cardinal pavilion roofs surrounding top roof",
+    "Terracotta cylindrical columns and meander balustrades",
+    "Yellow-orange ceramic tile ridges",
+    "Entry canopy separate from five main storeys"
+  ],
+  "inferred": [
+    "Dimensions other than 51.4 m height and approximate 30/18 m body widths are visual estimates, not construction drawings.",
+    "No reference photograph is used as model texture.",
+    "Hidden back facade follows fourfold symmetry."
+  ],
+  "sources": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:CN_-_Hubei_-_Wuhan_-_Kranichpagode.JPG",
+      "author": "MonsieurRoi",
+      "license": "CC BY-SA 3.0",
+      "file": "references/real-front.jpg"
+    },
+    {
+      "url": "https://k.sina.cn/article_6489134920_p182c8574800100owlf.html",
+      "file": "references/real-main.jpg",
+      "use": "private local reference only"
+    }
+  ]
+}

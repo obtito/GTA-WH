@@ -9,16 +9,27 @@ import { groundY } from './ground.js';
 export const MODE_NAME = { orbit: '观察模式', drive: '驾驶模式', walk: '步行模式', fly: '无人机模式' };
 
 export class Game {
-  constructor(scene, camera, hud) {
+  constructor(scene, camera, hud, roads = []) {
     this.scene = scene;
     this.camera = camera;
     this.hud = hud;
     this.mode = 'orbit';
 
     // 出生点:江汉关旁沿江大道(车头朝东北)
-    const [sx, sz] = toV2(114.2830, 30.5760);
-    this.vehicle = new Vehicle(scene, sx, sz, 0.65);
-    this.player = new Player(scene, sx + 12, sz + 8, 0.65);
+    let [sx, sz] = toV2(114.2830, 30.5760);
+    let heading = 0.65, best = Infinity;
+    const originX = sx, originZ = sz;
+    for (const line of roads) for (let i = 1; i < line.pts.length; i++) {
+      const [ax, az] = line.pts[i - 1], [bx, bz] = line.pts[i];
+      const dx = bx - ax, dz = bz - az, l2 = dx * dx + dz * dz;
+      if (l2 < 1 || line.bridge) continue;
+      const t = Math.max(0, Math.min(1, ((originX - ax) * dx + (originZ - az) * dz) / l2));
+      const x = ax + dx * t, z = az + dz * t;
+      const d = (x - originX) ** 2 + (z - originZ) ** 2;
+      if (d < best) { best = d; sx = x; sz = z; heading = Math.atan2(dx, dz); }
+    }
+    this.vehicle = new Vehicle(scene, sx, sz, heading);
+    this.player = new Player(scene, sx + 12, sz + 8, heading);
     this.player.mesh.visible = false;
     this.fly = new FlyCam(camera);
 
@@ -33,8 +44,11 @@ export class Game {
 
   _bindInput() {
     window.addEventListener('keydown', (e) => {
+      if (e.target.matches?.('input, textarea, select, [contenteditable]')) return;
       const k = e.key.toLowerCase();
       this.keys[k] = true;
+      if ([' ', 'w', 'a', 's', 'd', 'q', 'e'].includes(k)) e.preventDefault();
+      if (e.repeat) return;
       if (k === '1') this.setMode('orbit');
       if (k === '2') this.enterCar();
       if (k === '3') this.setMode('fly');
@@ -44,12 +58,13 @@ export class Game {
     });
     window.addEventListener('keyup', (e) => { this.keys[e.key.toLowerCase()] = false; });
     // 切窗/失焦清空按键:否则切走时按住的键在回来后卡死
-    window.addEventListener('blur', () => { this.keys = {}; });
+    window.addEventListener('blur', () => { this.keys = {}; this.dragging = false; });
     document.addEventListener('visibilitychange', () => { if (document.hidden) this.keys = {}; });
     // 鼠标:观察/步行/无人机视角转(拖拽)
     const cv = this.camera.domElement ?? document.querySelector('#scene');
     cv.addEventListener('pointerdown', (e) => { this.dragging = true; });
     window.addEventListener('pointerup', () => { this.dragging = false; });
+    cv.addEventListener('pointercancel', () => { this.dragging = false; });
     window.addEventListener('pointermove', (e) => {
       if (!this.dragging) return;
       const dx = e.movementX * 0.0042, dy = e.movementY * 0.0036;
@@ -118,14 +133,16 @@ export class Game {
     }
 
     if (this.mode === 'drive') {
-      const spd = this.vehicle.update(dt, inp, nightK);
+      const steps = Math.max(1, Math.ceil(dt / (1 / 120)));
+      for (let i = 0; i < steps; i++) this.vehicle.update(dt / steps, inp, nightK);
       this.player.mesh.visible = false;
       this.vehicle.applyCamera(this.camera, dt);
       this.camYaw = this.vehicle.heading;
       this._pos = this.vehicle.mesh.position;
       this._heading = this.vehicle.heading;
     } else if (this.mode === 'walk') {
-      this.player.update(dt, inp, this.camYaw, nightK);
+      const steps = Math.max(1, Math.ceil(dt / (1 / 120)));
+      for (let i = 0; i < steps; i++) this.player.update(dt / steps, inp, this.camYaw, nightK);
       this.player.applyCamera(this.camera, dt, this.camYaw, this.camPitch);
       this._pos = this.player.mesh.position;
       this._heading = this.player.mesh.rotation.y;

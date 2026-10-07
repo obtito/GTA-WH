@@ -8,7 +8,7 @@ import { buildCity, buildTrees, buildCars, buildStreetLights } from './city.js';
 import { buildOsmCity, buildOsmRoads, OSM_BOX } from './city-osm.js';
 import { buildLandmarks } from './landmarks.js';
 import { buildBridges } from './bridges.js';
-import { REAL_TOWERS, allExclusions } from './sites.js';
+import { REAL_TOWERS, allExclusions, realTowerAnchor } from './sites.js';
 import { worldCollision } from './collision.js';
 import { createEnvironment } from './environment.js';
 import { initHUD } from './hud.js';
@@ -54,7 +54,7 @@ const BUILD_STEPS = [];
 /* ==================== 渲染器 / 场景 ==================== */
 function initRenderer() {
   renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: 'high-performance' });
-  renderer.setPixelRatio(Math.min(devicePixelRatio, 1.75));
+  renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5));
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
@@ -161,7 +161,7 @@ function applyTime(hours) {
   nightK = s.night;
   osmCity?.setNight(s.night);
   lastSunDir.set(s.dir.x, s.dir.y, s.dir.z);
-  for (const m of realTowerMats) m.emissiveIntensity = nightK * 0.34;   // 真楼夜间亮化
+  for (const m of realTowerMats) m.emissiveIntensity = nightK * 0.34 * (m.userData.nightGlowScale ?? 1);   // 真楼夜间亮化
   city?.setNight(s.night);
   cars?.setNight(s.night);
   landmarks?.setNight(s.night);
@@ -193,9 +193,9 @@ step('铺设主干道网', () => {
   roads = buildRoads();
   scene.add(roads.group);
 });
-step('精建 16 处地标', () => {
+step('精建 17 处地标', () => {
   landmarks = buildLandmarks();
-  // 黄鹤楼/绿地中心后续由真实模型替换:保留独立 mesh 供换模隐藏
+  // 黄鹤楼/绿地中心由真实模型替换：保留独立节点供换模隐藏
   // (合班会删原件烘进 merged,之后的 lm:*.visible=false 就成了空操作——程序化塔将永远可见)
   const keep = new Set();
   for (const id of ['lm:huanghelou', 'lm:greenland']) {
@@ -212,21 +212,25 @@ step('架设五座大桥', () => {
 });
 step('装载 OSM 真实城市', async () => {
   try {
-    const [bRes, rRes] = await Promise.all([
-      fetch('./data/osm/buildings.json'),
-      fetch('./data/osm/roads.json'),
+    const [buildings, osmRoads] = await Promise.all([
+      fetch('./data/osm/buildings.json').then(r => { if (!r.ok) throw new Error(`buildings:${r.status}`); return r.json(); }),
+      fetch('./data/osm/roads-land.json').then(async r => {
+        if (!r.ok) throw new Error(`road plan:${r.status}`);
+        const plan = await r.json();
+        if (!Array.isArray(plan.roads)) throw new Error('invalid road plan');
+        console.log('[GTA-WH] 岸线路网规划:', plan.stats);
+        return plan.roads;
+      }).catch(() => fetch('./data/osm/roads.json').then(r => { if (!r.ok) throw new Error(`roads:${r.status}`); return r.json(); })),
     ]);
-    if (!bRes.ok || !rRes.ok) throw new Error(`buildings:${bRes.status} roads:${rRes.status}`);
-    const [buildings, osmRoads] = await Promise.all([bRes.json(), rRes.json()]);
     osmCity = await buildOsmCity(buildings);
     scene.add(osmCity.group);
     if (osmCity.boxes) worldCollision.addRaw(osmCity.boxes);
     console.log(`[GTA-WH] OSM 真实建筑: ${osmCity.count} 栋(ODbL)`);
-    const osmR = buildOsmRoads(osmRoads);
+    const osmR = buildOsmRoads(osmRoads, osmCity.boxes);
     scene.add(osmR.group);
     // 手绘路网在 OSM 覆盖区内隐藏(OSM 路网替代;中心线走廊保留供行驶)
     roads.group.visible = false;
-    driveLines = osmR.centerlines.length ? osmR.centerlines : roads.centerlines;
+    driveLines = osmR.centerlines;
     console.log(`[GTA-WH] OSM 路网: ${osmR.centerlines.length} 条`);
   } catch (e) {
     console.warn('[GTA-WH] OSM 数据不可用,使用程序化城市:', e.message);
@@ -276,29 +280,59 @@ step('放行车流与路灯', async () => {
   ferry = buildFerry();
   scene.add(ferry.group);
   // 绿地中心塔顶航空障碍灯(红,闪烁)
-  const [gx, gz] = toV2(114.3366, 30.6152);
+  const greenland=REAL_TOWERS.find(t=>t.id==='greenland-real');
+  const [gx, gz] = realTowerAnchor(greenland);
   beacon = new THREE.Mesh(
     new THREE.SphereGeometry(3.2, 10, 8),
     new THREE.MeshBasicMaterial({ color: 0xff2020 }),
   );
-  beacon.position.set(gx, Math.max(terrainHeight(gx, gz), 0) + 468, gz);
+  beacon.position.set(gx, Math.max(terrainHeight(gx, gz), 0) + greenland.h - 1.5, gz);
   scene.add(beacon);
 });
 step('装配玩法与 HUD', () => {
   hud = initHUD({
     onGoto: (item) => {
-      // 观察模式飞到地标(按建筑高度自适应取景:高楼看远,小景看近)
+      // Frame the actual model and select a view clear of surrounding city buildings.
       game.setMode('orbit', true);
-      const [x, z] = toV2(item.lon, item.lat);
       const h = item.heightM || 20;
-      const dist = h > 200 ? h * 2.2 : h * 2.8 + 90;
-      camera.position.set(x - dist * 0.72, Math.max(terrainHeight(x, z), 0) + h * 0.8 + 26, z + dist * 0.78);
-      controls.target.set(x, Math.max(terrainHeight(x, z), 0) + h * 0.45, z);
+      const sub = landmarks.group.getObjectByName('lm:' + item.id);
+      const [x,z] = sub?.userData.anchor || toV2(item.lon,item.lat);
+      const bounds = sub?.userData.bounds;
+      const base = Math.max(terrainHeight(x,z),0);
+      const street = ['jianghanlu','chuhehanjie','hankoujiangtan','tanhualin'].includes(item.id);
+      const span = bounds && !street ? Math.max(bounds.max[0]-bounds.min[0],bounds.max[2]-bounds.min[2]) : 90;
+      const portraitScale = Math.max(1, Math.min(2.2, .9 / camera.aspect));
+      const dist = Math.max(h * 2.1, Math.min(span,250) * 1.15, 55) * portraitScale;
+      const targetY = base + h * .43;
+      const rot = sub?.userData.viewRotation ?? (item.params?.rot != null ? Math.PI - item.params.rot * Math.PI / 180 : 0);
+      let best = null;
+      for (const lift of [0, Math.min(span, 160) * .4]) {
+        for (const offset of [-.6, 0, .6, -1.2, 1.2, Math.PI, -Math.PI / 2, Math.PI / 2]) {
+          const a = rot + offset;
+          const px = x + Math.sin(a) * dist, pz = z + Math.cos(a) * dist;
+          const py = Math.max(base + h * .78 + dist * .18 + 10 + lift, terrainHeight(px, pz) + 8);
+          let blocked = 0;
+          // Check the centre and sides of the framed model, so foreground buildings cannot hide it.
+          for (const side of [-.35, 0, .35]) {
+            const sx = Math.cos(a) * Math.min(span, 180) * side;
+            const sz = -Math.sin(a) * Math.min(span, 180) * side;
+            for (let i = 1; i <= 32; i++) {
+              const t = i / 32;
+              if (!worldCollision.free(x + sx + (px - x) * t, z + sz + (pz - z) * t, targetY + (py - targetY) * t, 2)) blocked++;
+            }
+          }
+          if (!best || blocked < best.blocked) best = { px, py, pz, blocked };
+          if (!blocked) break;
+        }
+        if (!best.blocked) break;
+      }
+      camera.position.set(best.px,best.py,best.pz);
+      controls.target.set(x,targetY,z);
       controls.update();
     },
     onToggleTour: () => hud.setTour(true),
   });
-  game = new Game(scene, camera, hud);
+  game = new Game(scene, camera, hud, driveLines || roads.centerlines);
   window.__hud = hud;      // 供 tools/tour.mjs 等验收脚本调用
   window.__game = game;    // 供验收脚本摆放机位/切模式
   window.__scene = scene;
@@ -320,16 +354,23 @@ step('装载 Sketchfab 真实地标楼群', async () => {
     g.scale.setScalar(scale);
     g.updateMatrixWorld(true);
     const b2 = new THREE.Box3().setFromObject(g);
-    const [x, z] = toV2(t.lon, t.lat);
+    const width=b2.max.x-b2.min.x,depth=b2.max.z-b2.min.z;
+    const [x, z] = realTowerAnchor(t,width,depth);
     const gy = Math.max(terrainHeight(x, z), 0);
     // 下沉 1.5 m:坡地上模型底面与地形之间不会露出缝
     g.position.set(x - (b2.max.x + b2.min.x) / 2, gy - b2.min.y - 1.5, z - (b2.max.z + b2.min.z) / 2);
+    g.name='real-tower:'+t.id;
+    g.userData.site={x,z,width,depth};
     scene.add(g);
     // 夜间亮化:emissiveMap 复用漫反射贴图,入夜整楼透出暖光(窗格纹理即亮纹)
     g.traverse((o) => {
       if (!o.isMesh || !o.material) return;
       const list = Array.isArray(o.material) ? o.material : [o.material];
       for (const m of list) {
+        if (m.map) {
+          m.map.anisotropy = Math.min(8, renderer.capabilities.getMaxAnisotropy());
+          m.map.needsUpdate = true;
+        }
         if (m.map && !m.userData.lit) {
           m.emissive = new THREE.Color('#b08a52');
           m.emissiveMap = m.map;
@@ -368,60 +409,46 @@ step('黄鹤楼精建模(China_Tower,现役唯一模型)', async () => {
   const gy = Math.max(terrainHeight(x, z), 0);
   // 蛇山是坡地,下沉 2 m 兜底,避免台基底部悬空
   g.position.set(x - (b2.max.x + b2.min.x) / 2, gy - b2.min.y - 2, z - (b2.max.z + b2.min.z) / 2);
-  // 夜间金顶泛光
+  // 夜间立面亮化，瓦顶保持无自发光。
   g.traverse((o) => {
     if (o.isMesh && o.material && !Array.isArray(o.material) && o.material.map && !o.material.userData.lit) {
-      o.material.emissive = new THREE.Color('#8a6222');
+      o.material.emissive = new THREE.Color('#9d7338');
+      o.material.userData.nightGlowScale = 0.4;
       o.material.emissiveMap = o.material.map;
       o.material.emissiveIntensity = 0;
       o.material.userData.lit = true;
       realTowerMats.push(o.material);
     }
   });
-  // 琉璃瓦金顶+朱红柱廊:上游模型屋面与白墙共用纯白贴图(Material#25,120 万顶点),
-  // 写顶点色分三段——坡屋面/飞檐(法线朝上)染金,每层平座带(楼层密集区下缘)染朱红,墙面保持白
-  // (abs:模型带镜像变换;不用 onBeforeCompile——程序缓存导致补丁不生效)
-  // 楼层带为相对塔基高度,取自顶点高度直方图实测(5 层平座位置)
   {
-    const GOLD = new THREE.Color('#e8b33a');
-    const RED = new THREE.Color('#a83226');
-    const RED_BANDS = [[0.5, 3.2], [8.3, 10.8], [15.3, 17.8], [21.3, 23.8], [28.3, 31.5]];
-    const _q = new THREE.Quaternion(), _v = new THREE.Vector3(), _n = new THREE.Vector3();
-    const y0 = b2.min.y;
     g.updateMatrixWorld(true);
+    const placedBounds = new THREE.Box3().setFromObject(g);
+    const y0 = placedBounds.min.y;
     g.traverse((o) => {
-      if (!o.isMesh || !o.geometry?.attributes?.normal) return;
-      const m = Array.isArray(o.material) ? null : o.material;
-      if (!m || m.userData.goldVerts) return;
-      m.userData.goldVerts = true;
-      const nor = o.geometry.attributes.normal;
-      o.getWorldQuaternion(_q);
-      const n = nor.count;
-      const col = new Float32Array(n * 3);
-      const pos = o.geometry.attributes.position;
-      for (let i = 0; i < n; i++) {
-        _v.set(pos.getX(i), pos.getY(i), pos.getZ(i)).applyMatrix4(o.matrixWorld);
-        // 金:法线朝上度
-        _n.set(nor.getX(i), nor.getY(i), nor.getZ(i)).applyQuaternion(_q);
-        const ny = Math.abs(_n.y);
-        const goldT = THREE.MathUtils.smoothstep(ny, 0.45, 0.72);
-        // 红:楼层平座带
-        const ry = _v.y - y0;
-        let redT = 0;
-        for (const [a, b] of RED_BANDS) {
-          if (ry >= a && ry <= b) { redT = 1; break; }
+      if (!o.isMesh) return;
+      const materials = Array.isArray(o.material) ? o.material : [o.material];
+      for (const m of materials) {
+        if (!m) continue;
+        if (m.map) {
+          m.map.anisotropy = Math.min(8, renderer.capabilities.getMaxAnisotropy());
+          m.map.needsUpdate = true;
         }
-        let r = 1, gg = 1, bb = 1;
-        if (redT) { r = RED.r; gg = RED.g; bb = RED.b; }
-        r += goldT * (GOLD.r - r); gg += goldT * (GOLD.g - gg); bb += goldT * (GOLD.b - bb);
-        col[i * 3] = r; col[i * 3 + 1] = gg; col[i * 3 + 2] = bb;
+        if (m.name === 'Material #25') {
+          m.color.set('#a87330');
+          m.metalness = 0;
+          m.roughness = 0.78;
+          m.vertexColors = false;
+          m.emissive.set(0x000000);
+          m.userData.nightGlowScale = 0;
+          m.needsUpdate = true;
+        } else if (m.name.endsWith('-008')) {
+          m.color.set('#a74432');
+          m.roughness = 0.75;
+        }
       }
-      o.geometry.setAttribute('color', new THREE.BufferAttribute(col, 3));
-      m.vertexColors = true;
-      m.needsUpdate = true;
     });
     // 葫芦宝顶:模型攒尖顶欠圆润,叠加金色双球葫芦
-    const goldMat = new THREE.MeshStandardMaterial({ color: '#d9a933', metalness: 0.65, roughness: 0.3 });
+    const goldMat = new THREE.MeshStandardMaterial({ color: '#a87330', metalness: 0, roughness: 0.78 });
     const finial = new THREE.Group();
     const s1 = new THREE.Mesh(new THREE.SphereGeometry(1.35, 18, 14), goldMat);
     s1.position.y = 0.9;
@@ -430,7 +457,7 @@ step('黄鹤楼精建模(China_Tower,现役唯一模型)', async () => {
     const rod = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.1, 1.6, 8), goldMat);
     rod.position.y = 3.5;
     finial.add(s1, s2, rod);
-    finial.position.set(x, b2.max.y - 0.7, z);
+    finial.position.set(x, placedBounds.max.y - 0.7, z);
     finial.traverse((o) => { if (o.isMesh) o.castShadow = true; });
     scene.add(finial);
     // "黄鹤楼"金字匾:顶层北面(长江/大桥一侧)
@@ -458,53 +485,6 @@ step('黄鹤楼精建模(China_Tower,现役唯一模型)', async () => {
   const sub = landmarks.group.getObjectByName('lm:huanghelou');
   if (sub) sub.visible = false;
   console.log('[GTA-WH] 黄鹤楼:China_Tower 精建模(0G-Bhqc,MIT,1.37M 面,唯一模型)');
-});
-
-step('铜陵公铁大桥改造为武汉长江大桥', async () => {
-  const g = await loadGLB('./assets/models/tongling-railway-bridge/scene.gltf');
-  if (!g) { console.warn('[GTA-WH] 铜陵桥模型缺失,保留程序化大桥'); return; }
-  // 对齐桥轴:长轴归一到 1670 m,旋转到 大桥 bearing,桥中点对齐
-  const box = new THREE.Box3().setFromObject(g);
-  const lenX = box.max.x - box.min.x, lenZ = box.max.z - box.min.z;
-  const modelLen = Math.max(lenX, lenZ);
-  const alongX = lenX >= lenZ;
-  const scale = 1670 / Math.max(modelLen, 0.01);
-  g.scale.setScalar(scale);
-  g.updateMatrixWorld(true);
-  const b2 = new THREE.Box3().setFromObject(g);
-  // 桥面高对齐 deckH=26:桁架桥桥面约在整体高度上部 60% 处
-  const h2 = b2.max.y - b2.min.y;
-  const deckInModel = b2.min.y + h2 * 0.58;
-  const BR = BRIDGES.find((b) => b.id === 'yangtzebridge');
-  const [ax, az] = toV2(...BR.axis[0]);
-  const [bx, bz] = toV2(...BR.axis[1]);
-  const cx = (ax + bx) / 2, cz = (az + bz) / 2;
-  const bearing = Math.atan2(bx - ax, bz - az);
-  g.rotation.y = bearing + (alongX ? Math.PI / 2 : 0);
-  g.position.set(cx - (b2.max.x + b2.min.x) / 2, 26 - deckInModel, cz - (b2.max.z + b2.min.z) / 2);
-  // 夜间灯化
-  g.traverse((o) => {
-    if (o.isMesh && o.material && !Array.isArray(o.material) && o.material.map && !o.material.userData.lit) {
-      o.material.emissive = new THREE.Color('#7a5a2e');
-      o.material.emissiveMap = o.material.map;
-      o.material.emissiveIntensity = 0;
-      o.material.userData.lit = true;
-      realTowerMats.push(o.material);
-    }
-  });
-  scene.add(g);
-  // 隐藏程序化桁架/桥墩(保留行驶桥面、桥头堡、下层列车、灯带)
-  for (const name of ['yb-truss', 'yb-piers']) {
-    const m = bridges.group.getObjectByName(name);
-    if (m) m.visible = false;
-  }
-  // GLB 桥面与程序化桥面共面会 z-fighting:把程序化桥面沉进 GLB 箱梁里 0.4 m,
-  // 既消除闪烁,又保留 GLB 缺失时的可见行驶面(行驶高度仍由 DECKS 注册表给出)
-  for (const name of ['yb-road-deck']) {
-    const m = bridges.group.getObjectByName(name);
-    if (m) m.position.y -= 0.4;
-  }
-  console.log('[GTA-WH] 长江大桥:铜陵公铁大桥模型改造(hello123D,CC-BY,245k 面)');
 });
 
 step('装载 Kenney 车辆与街头停车', async () => {
@@ -548,11 +528,15 @@ async function build() {
   $('#loading').classList.add('done');
   $('#buildStamp').textContent = 'build ' + BUILD_STAMP + (window.__hhltBadge ? ' | ' + window.__hhltBadge : '');
   hud.modeTip('按 2 驾车出发 · F 上下车 · 3 无人机 · 拖顶部滑杆调时间');
+  clock.getDelta();
   requestAnimationFrame(animate);
 }
 
 /* ==================== 主循环 ==================== */
-let fpsAcc = 0, fpsN = 0, hudAcc = 0;
+let fpsAcc = 0, fpsN = 0, hudAcc = 0, timeAcc = 0;
+let qualityAcc = 0, qualityFrames = 0;
+let renderScale = Math.min(devicePixelRatio, 1.5);
+const maxRenderScale = renderScale;
 
 function animate() {
   requestAnimationFrame(animate);
@@ -561,7 +545,8 @@ function animate() {
   if (autoTime) {
     timeHours = (timeHours + dt * 0.25) % 24;
     $('#timeSlider').value = timeHours;
-    applyTime(timeHours);
+    timeAcc += dt;
+    if (timeAcc >= 0.1) { applyTime(timeHours); timeAcc = 0; }
   }
   if (env) scene.environment = env.update(timeHours);
   if (waterMat) waterMat.uniforms.uTime.value += dt;
@@ -588,6 +573,14 @@ function animate() {
   cars?.update(dt);
 
   renderer.render(scene, camera);
+  // Adjust only after a sustained slow/fast window, avoiding per-frame resolution oscillation.
+  qualityAcc += dt; qualityFrames++;
+  if (qualityAcc >= 3) {
+    const fps = qualityFrames / qualityAcc;
+    const next = fps < 45 ? Math.max(0.75, renderScale - 0.15) : fps > 58 ? Math.min(maxRenderScale, renderScale + 0.1) : renderScale;
+    if (Math.abs(next - renderScale) > 0.01) { renderScale = next; renderer.setPixelRatio(renderScale); }
+    qualityAcc = 0; qualityFrames = 0;
+  }
 
   // HUD(4 Hz)
   hudAcc += dt; fpsAcc += dt; fpsN++;
@@ -611,6 +604,7 @@ $('#timeSlider').addEventListener('input', (e) => {
   applyTime(timeHours);
 });
 window.addEventListener('keydown', (e) => {
+  if (e.repeat || e.target.matches?.('input, textarea, select, [contenteditable]')) return;
   const k = e.key.toLowerCase();
   if (k === 'n') autoTime = !autoTime;
   if (k === 'h') $('#helpPanel').classList.toggle('hidden');

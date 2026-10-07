@@ -1,0 +1,11 @@
+{
+  "stage": "roof",
+  "mesh_objects": 352,
+  "vertices": 475512,
+  "faces": 403686,
+  "unpacked_images": [],
+  "linked_libraries": 0,
+  "packed_fonts": 1,
+  "geometry_finite": true,
+  "top_z": 53.46979904174805
+}

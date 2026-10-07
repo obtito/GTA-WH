@@ -1,0 +1,31 @@
+{
+  "video": {
+    "durationSeconds": 30.009,
+    "width": 1280,
+    "height": 720,
+    "currentSource": "http://127.0.0.1:8140/assets/models/huanghe-tower-code/review/optimization-process-v2.mp4",
+    "canPlayH264": "probably"
+  },
+  "errors": [],
+  "motion": {
+    "initialReferencePanelMeanDifference": 0.628420606925898,
+    "initialIteratingPanelMeanDifference": 15.204085131995186,
+    "finalBeforePanelMeanDifference": 16.610950141373422,
+    "finalAfterPanelMeanDifference": 18.0760949441505
+  },
+  "nativeFrameCheck": {
+    "decoder": "AVFoundation",
+    "seconds": [
+      1,
+      2,
+      4,
+      9,
+      14,
+      20,
+      23,
+      27,
+      29
+    ],
+    "observed": "Continuous baseline rotation, structural/detail/final stage labels and final synchronized orbit verified."
+  }
+}

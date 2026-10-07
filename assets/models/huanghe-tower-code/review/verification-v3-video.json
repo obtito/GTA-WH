@@ -1,0 +1,133 @@
+{
+  "video": {
+    "durationSeconds": 30.075,
+    "width": 1280,
+    "height": 720,
+    "currentSource": "http://127.0.0.1:8140/assets/models/huanghe-tower-code/review/optimization-process-v3.mp4",
+    "canPlayH264": "probably"
+  },
+  "errors": [],
+  "nativeFrameCheck": {
+    "decoder": "AVFoundation",
+    "seconds": [
+      2,
+      4,
+      5,
+      6,
+      10,
+      15,
+      20,
+      22,
+      27,
+      29
+    ],
+    "nominalFrameRate": 23.839632,
+    "observed": "Intermediate morphed silhouettes and blended details inspected; final synchronized orbit retained."
+  },
+  "geometryAndCameraChecks": {
+    "states": [
+      {
+        "t": 2.3,
+        "stage": 0
+      },
+      {
+        "t": 2.4,
+        "pair": 0,
+        "progress": 0
+      },
+      {
+        "t": 4.9,
+        "pair": 0,
+        "progress": 0.5000000000000001
+      },
+      {
+        "t": 7.4,
+        "stage": 1
+      },
+      {
+        "t": 10.1,
+        "pair": 1,
+        "progress": 0.4791735243611235
+      },
+      {
+        "t": 15.2,
+        "pair": 2,
+        "progress": 0.4999999999999997
+      },
+      {
+        "t": 17.5,
+        "stage": 3
+      }
+    ],
+    "camera": [
+      {
+        "t": 18.99,
+        "yaw": 5.423531317424561,
+        "height": 38
+      },
+      {
+        "t": 19,
+        "yaw": 5.426387310746007,
+        "height": 38
+      },
+      {
+        "t": 19.01,
+        "yaw": 5.429226699639615,
+        "height": 38.00000442225185
+      },
+      {
+        "t": 21.99,
+        "yaw": 6.275364589934491,
+        "height": 49.99999557774815
+      },
+      {
+        "t": 22,
+        "yaw": 0,
+        "height": 50
+      },
+      {
+        "t": 22.01,
+        "yaw": 0.00785398163397571,
+        "height": 50
+      },
+      {
+        "t": 27,
+        "yaw": 3.9269908169872414,
+        "height": 50
+      }
+    ],
+    "finiteMorphs": true,
+    "boundaryFrameChecks": [
+      {
+        "from": 2.399,
+        "to": 2.4,
+        "meanDifference": 0.7817127879958568
+      },
+      {
+        "from": 2.4,
+        "to": 2.401,
+        "meanDifference": 0.1689517370734302
+      },
+      {
+        "from": 7.399,
+        "to": 7.4,
+        "meanDifference": 0.4795848380504465
+      },
+      {
+        "from": 7.4,
+        "to": 7.401,
+        "meanDifference": 0.07786561126508217
+      },
+      {
+        "from": 21.999,
+        "to": 22,
+        "meanDifference": 0.47068601102992635
+      },
+      {
+        "from": 22,
+        "to": 22.001,
+        "meanDifference": 0.4746665126956132
+      }
+    ]
+  }
+}

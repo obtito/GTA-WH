@@ -1,0 +1,27 @@
+{
+  "valid": true,
+  "blender_version": "4.5.14 LTS",
+  "mesh_objects": 278,
+  "vertices": 458968,
+  "top_z_m": 55.8229,
+  "linked_libraries": 0,
+  "unpacked_image_dependencies": [],
+  "packed_fonts": 1,
+  "collections": [
+    "00_Base",
+    "01_Plaque",
+    "01_Roof",
+    "02_Roof",
+    "03_Roof",
+    "04_Roof",
+    "05_Plaque",
+    "05_Roof",
+    "06_Crown",
+    "90_Studio",
+    "Floor_01",
+    "Floor_02",
+    "Floor_03",
+    "Floor_04",
+    "Floor_05"
+  ]
+}

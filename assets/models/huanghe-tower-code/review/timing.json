@@ -1,0 +1,69 @@
+{
+  "started_utc": "2026-10-07T07:46:10Z",
+  "timezone": "Asia/Shanghai",
+  "events": [
+    {
+      "time_utc": "2026-10-07T07:46:10Z",
+      "stage": "start",
+      "description": "保存纯代码模型基线，收集真实照片与技能"
+    },
+    {
+      "time_utc": "2026-10-07T08:04:01.847526+00:00",
+      "stage": "analysis-complete",
+      "description": "参考照片与技能就绪，开始几何优化"
+    },
+    {
+      "time_utc": "2026-10-07T08:16:44.464331+00:00",
+      "stage": "detail-reviewed",
+      "description": "结构与细节两轮保存；开始屋檐校正和实例批次优化"
+    },
+    {
+      "time_utc": "2026-10-07T08:19:19.831828+00:00",
+      "stage": "modeling-finished",
+      "description": "第三轮飞檐校正与几何批次优化完成，转入渲染复核和视频制作"
+    },
+    {
+      "time_utc": "2026-10-07T08:38:12.163600+00:00",
+      "stage": "delivery-verified",
+      "description": "48.052 秒 MP4 及离线对比页验证完成，原生视频解码抽查 12/20/28/37/45 秒画面"
+    }
+  ],
+  "modeling_started_utc": "2026-10-07T08:04:01.847526+00:00",
+  "modeling_finished_utc": "2026-10-07T08:19:19.831828+00:00",
+  "finished_utc": "2026-10-07T08:38:12.163600+00:00",
+  "durations": {
+    "reference_and_skill_setup": {
+      "seconds": 1072,
+      "label": "17 分 52 秒"
+    },
+    "geometry_optimization": {
+      "seconds": 918,
+      "label": "15 分 18 秒"
+    },
+    "render_video_verification": {
+      "seconds": 1132,
+      "label": "18 分 52 秒"
+    },
+    "total_wall_time": {
+      "seconds": 3122,
+      "label": "52 分 2 秒"
+    }
+  },
+  "timing_method": "UTC wall-clock markers; includes reading, waiting and tool execution; not CPU/GPU render time.",
+  "video_revisions": [
+    {
+      "revision": 2,
+      "started_utc": "2026-10-07T08:54:47+00:00",
+      "finished_utc": "2026-10-07T09:01:51.341304+00:00",
+      "elapsed_seconds": 424,
+      "description": "加快阶段节奏并让基线持续旋转，最终共同旋转维持 8 秒原参数"
+    },
+    {
+      "revision": 3,
+      "started_utc": "2026-10-07T09:06:16+00:00",
+      "finished_utc": "2026-10-07T09:38:54.882735+00:00",
+      "elapsed_seconds": 1959,
+      "description": "连续几何渐变、HDR 画面融合与相机平滑衔接，最终共同旋转保持原参数"
+    }
+  ]
+}

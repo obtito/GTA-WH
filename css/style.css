@@ -81,6 +81,22 @@ body {
 .btn.ghost { background: rgba(255,255,255,0.04); }
 .btn.small { padding: 3px 8px; font-size: 11px; }
 
+/* Keep narrow preview panels clear enough to inspect the landmark model. */
+@media (max-width: 680px) {
+  #topbar { flex-wrap: wrap; gap: 8px; padding: 8px 10px; }
+  .brand-mark { flex-shrink: 0; width: 30px; height: 30px; font-size: 18px; }
+  .brand-txt h1 { white-space: nowrap; font-size: 14px; }
+  .brand-txt p { display: none; }
+  .top-actions { width: 100%; gap: 6px; }
+  #clockWrap { flex: 1; min-width: 0; padding: 4px 6px; }
+  #clockVal { flex-shrink: 0; }
+  #timeSlider { width: 100%; min-width: 35px; }
+  .btn { white-space: nowrap; padding: 6px 8px; }
+  #listPanel, #tourBar, #app #helpPanel { top: 108px; max-width: calc(100vw - 28px); }
+  #app #minimap { width: 145px; height: 145px; }
+  #app #statusbar { top: 108px; font-size: 9px; }
+}
+
 /* ---------- 任务条 ---------- */
 #tourBar {
   top: 76px; left: 50%; transform: translateX(-50%);

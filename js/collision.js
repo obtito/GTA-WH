@@ -48,7 +48,7 @@ export class CollisionGrid {
   build() {
     const N = this.n;
     this.B = new Float32Array(this._buf);
-    this._buf = null;
+    this._buf = Array.from(this.B);
     if (!N) { this.ready = true; return this; }
 
     const cell = this.cell;
@@ -107,6 +107,45 @@ export class CollisionGrid {
     this.gen = 0;
     this.ready = true;
     return this;
+  }
+
+  /** Convex road footprint vs nearby building OBBs, using separating axes. */
+  overlapsPolygon(poly, y, pad = 0.75) {
+    if (!this.ready || !this.n) return false;
+    const xs = poly.map(p => p[0]), zs = poly.map(p => p[1]);
+    const ax = Math.max(0, Math.floor((Math.min(...xs) - pad - this.minX) / this.cell));
+    const bx = Math.min(this.nx - 1, Math.floor((Math.max(...xs) + pad - this.minX) / this.cell));
+    const az = Math.max(0, Math.floor((Math.min(...zs) - pad - this.minZ) / this.cell));
+    const bz = Math.min(this.nz - 1, Math.floor((Math.max(...zs) + pad - this.minZ) / this.cell));
+    const g = ++this.gen, B = this.B;
+    for (let a = ax; a <= bx; a++) for (let b = az; b <= bz; b++) {
+      const k = a * this.nz + b;
+      for (let j = this.starts[k]; j < this.starts[k + 1]; j++) {
+        const i = this.items[j];
+        if (this.mark[i] === g) continue;
+        this.mark[i] = g;
+        const o = i * 7;
+        if (B[o + 6] <= y) continue;
+        const cx = B[o], cz = B[o + 1], hx = B[o + 2] + pad, hz = B[o + 3] + pad;
+        const c = B[o + 4], s = B[o + 5];
+        const axes = [[c, -s], [s, c]];
+        for (let v = 0; v < poly.length; v++) {
+          const p = poly[v], q = poly[(v + 1) % poly.length];
+          axes.push([q[1] - p[1], p[0] - q[0]]);
+        }
+        let separated = false;
+        for (const [ux, uz] of axes) {
+          if (ux * ux + uz * uz < 1e-10) continue;
+          let lo = Infinity, hi = -Infinity;
+          for (const [x, z] of poly) { const t = x * ux + z * uz; lo = Math.min(lo, t); hi = Math.max(hi, t); }
+          const mid = cx * ux + cz * uz;
+          const r = hx * Math.abs(c * ux - s * uz) + hz * Math.abs(s * ux + c * uz);
+          if (hi < mid - r || lo > mid + r) { separated = true; break; }
+        }
+        if (!separated) return true;
+      }
+    }
+    return false;
   }
 
   /**

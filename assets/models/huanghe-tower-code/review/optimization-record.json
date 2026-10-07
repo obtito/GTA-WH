@@ -1,0 +1,317 @@
+{
+  "skills": [
+    {
+      "name": "img2threejs",
+      "url": "https://github.com/img2threejs/img2threejs",
+      "commit": "809b72d048533ab196177ae3ba8762cad89167bd",
+      "used": "reference observation, spec, material evidence, strict validation, comparison sheet, deterministic diagnostic"
+    },
+    {
+      "name": "threejs-geometry",
+      "url": "https://github.com/CloudAI-X/threejs-skills/blob/main/skills/threejs-geometry/SKILL.md",
+      "used": "BufferGeometry surface normals, InstancedMesh batches, Lathe/Tube geometry"
+    },
+    {
+      "name": "gpt_3d_skill",
+      "url": "https://github.com/grapeot/gpt_3d_skill",
+      "used": "semantic scene tree, source isolation, multiple views and offline HTML handoff; Blender not executed"
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:CN_-_Hubei_-_Wuhan_-_Kranichpagode.JPG",
+      "author": "MonsieurRoi",
+      "license": "CC BY-SA 3.0",
+      "use": "comparison photo, original unchanged"
+    },
+    {
+      "url": "https://zjt.hubei.gov.cn/bmdt/ztzl/hbcjda/gzdt_7471/201910/t20191028_79891.shtml",
+      "use": "published 51.4 m height, five storeys, chamfered square plan"
+    }
+  ],
+  "old_model": {
+    "path": "assets/models/huanghe-tower/huanghe-main-tower-lod2.glb",
+    "sha256": "369bb9d4fa200612f06a0c27ce0cdd0935a071738787ffcb29e1c8d3ffbbeda3",
+    "git_modified": false,
+    "still_loaded_by_game": true
+  },
+  "stages": [
+    {
+      "name": "before",
+      "module": "baseline/tower.js"
+    },
+    {
+      "name": "structure",
+      "module": "stages/02-detail/tower.js",
+      "options": {
+        "stage": 1
+      }
+    },
+    {
+      "name": "detail",
+      "module": "stages/02-detail/tower.js",
+      "options": {
+        "stage": 2
+      }
+    },
+    {
+      "name": "final",
+      "module": "../tower.js",
+      "options": {
+        "stage": 3
+      }
+    }
+  ],
+  "timing": {
+    "reference_and_skill_setup": {
+      "seconds": 1072,
+      "label": "17 分 52 秒"
+    },
+    "geometry_optimization": {
+      "seconds": 918,
+      "label": "15 分 18 秒"
+    },
+    "render_video_verification": {
+      "seconds": 1132,
+      "label": "18 分 52 秒"
+    },
+    "total_wall_time": {
+      "seconds": 3122,
+      "label": "52 分 2 秒"
+    }
+  },
+  "stats": [
+    {
+      "triangles": 57320,
+      "meshes": 2258,
+      "bounds": [
+        57.488770454560566,
+        51.40000005364418,
+        57.488770454560566
+      ]
+    },
+    {
+      "triangles": 51872,
+      "meshes": 213,
+      "bounds": [
+        55,
+        51.400000002980235,
+        55
+      ]
+    },
+    {
+      "triangles": 299064,
+      "meshes": 366,
+      "bounds": [
+        55,
+        51.400000002980235,
+        55
+      ]
+    },
+    {
+      "triangles": 109560,
+      "meshes": 114,
+      "bounds": [
+        55,
+        51.400000002980235,
+        55
+      ]
+    }
+  ],
+  "video": {
+    "durationSeconds": 30.075,
+    "width": 1280,
+    "height": 720,
+    "currentSource": "http://127.0.0.1:8140/assets/models/huanghe-tower-code/review/optimization-process-v3.mp4",
+    "canPlayH264": "probably",
+    "file": "optimization-process-v3.mp4"
+  },
+  "model_limits": [
+    "Roof corner ornament, painted patterns and full bracket systems are simplified",
+    "Only total height is anchored to published dimensions; plan widths/depths and hidden faces are inferred",
+    "Camera was visually matched, not calibrated to photo",
+    "Main photograph has vegetation and a partially cropped base; deterministic mask comparison is not an accepted fidelity score"
+  ],
+  "formal_skill_acceptance": {
+    "strict_spec_validation": "PASS",
+    "reference_admission": "ADMITTED",
+    "tier1_diagnostic": "FAILED",
+    "full_eight_pass_acceptance": false,
+    "reason": "Original-photo mask, framing and scale checks failed; map-stripped evidence absent. Do not claim the img2threejs full gated workflow is complete."
+  },
+  "video_v1": {
+    "durationSeconds": 48.052,
+    "width": 1280,
+    "height": 720,
+    "canPlayH264": "probably",
+    "bytesDecoded": 186673
+  },
+  "video_revisions": [
+    {
+      "revision": 2,
+      "started_utc": "2026-10-07T08:54:47+00:00",
+      "finished_utc": "2026-10-07T09:01:51.341304+00:00",
+      "elapsed_seconds": 424,
+      "elapsed_label": "7 分 4 秒",
+      "requested_changes": [
+        "加快前半段阶段节奏",
+        "基线持续旋转，并在旋转中切换各轮模型",
+        "保留最后共同旋转"
+      ],
+      "video": {
+        "durationSeconds": 30.009,
+        "width": 1280,
+        "height": 720,
+        "currentSource": "http://127.0.0.1:8140/assets/models/huanghe-tower-code/review/optimization-process-v2.mp4",
+        "canPlayH264": "probably",
+        "file": "optimization-process-v2.mp4"
+      },
+      "timeline": [
+        {
+          "start": 0,
+          "end": 3,
+          "stage": "待优化基线"
+        },
+        {
+          "start": 3,
+          "end": 8,
+          "stage": "第 1 轮结构"
+        },
+        {
+          "start": 8,
+          "end": 13,
+          "stage": "第 2 轮细节"
+        },
+        {
+          "start": 13,
+          "end": 18,
+          "stage": "最终檐口与性能"
+        },
+        {
+          "start": 18,
+          "end": 22,
+          "stage": "前后对照"
+        },
+        {
+          "start": 22,
+          "end": 30,
+          "stage": "共同旋转"
+        }
+      ],
+      "iteration_orbit": {
+        "continuous": true,
+        "model_stages": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "angle_formula": "t / 22 * 2π",
+        "camera_radius": 127,
+        "camera_y": 38,
+        "look_at": [
+          0,
+          24,
+          0
+        ],
+        "before_reference": "fixed during initial 22 seconds"
+      },
+      "final_orbit": {
+        "preserved_from_v1": true,
+        "duration_seconds": 8,
+        "camera_radius": 127,
+        "camera_y": 50,
+        "look_at": [
+          0,
+          24,
+          0
+        ],
+        "radians_per_second": "π / 4",
+        "full_turns": 1
+      },
+      "previous_video": "versions/optimization-process-v1-48s.mp4",
+      "model_geometry_changed": false,
+      "verification": "verification-v2.json"
+    },
+    {
+      "revision": 3,
+      "started_utc": "2026-10-07T09:06:16+00:00",
+      "finished_utc": "2026-10-07T09:38:54.882735+00:00",
+      "elapsed_seconds": 1959,
+      "elapsed_label": "32 分 39 秒",
+      "video": {
+        "durationSeconds": 30.075,
+        "width": 1280,
+        "height": 720,
+        "currentSource": "http://127.0.0.1:8140/assets/models/huanghe-tower-code/review/optimization-process-v3.mp4",
+        "canPlayH264": "probably",
+        "file": "optimization-process-v3.mp4"
+      },
+      "requested_change": "把旋转中的模型迭代改为连续渐变",
+      "skills_referenced": [
+        {
+          "name": "threejs-animation",
+          "url": "https://github.com/CloudAI-X/threejs-skills/blob/main/skills/threejs-animation/SKILL.md",
+          "sha256": "b24dc96c7a854ab97fa797a8e20d6bf981f155dfc625fd1ef347042395b7754c",
+          "used": "Morph targets and smooth weight interpolation"
+        },
+        {
+          "name": "threejs-shaders",
+          "url": "https://github.com/CloudAI-X/threejs-skills/blob/main/skills/threejs-shaders/SKILL.md",
+          "sha256": "6702267bd3ee70d458b54078211db36b1c3738c3faa0570e88e33dceaf478a4d",
+          "used": "HDR render-target blending with per-layer tone mapping and alpha-aware background composition"
+        }
+      ],
+      "transitions": [
+        {
+          "from": 0,
+          "to": 1,
+          "start": 2.4,
+          "end": 7.4,
+          "method": "Angular footprint and level-height morph; roof surface reprojection; smooth rendered-layer blend"
+        },
+        {
+          "from": 1,
+          "to": 2,
+          "start": 7.9,
+          "end": 12.4,
+          "method": "Smooth detail/material blend with matching camera"
+        },
+        {
+          "from": 2,
+          "to": 3,
+          "start": 12.9,
+          "end": 17.5,
+          "method": "Continuous main-eave vertex morph and surface/detail blend"
+        }
+      ],
+      "weight_curve": "quintic smootherstep, zero first/second derivatives at transition endpoints",
+      "camera": "Both views share a continuous orbit; camera height and angular velocity smoothly join the final orbit from 19 to 22 seconds",
+      "final_orbit": {
+        "preserved_from_v2": true,
+        "start": 22,
+        "end": 30,
+        "radius": 127,
+        "height": 50,
+        "target": [
+          0,
+          24,
+          0
+        ],
+        "radians_per_second": "π / 4",
+        "turns": 1
+      },
+      "note": "Intermediate frames are presentation morphs between saved stages, not additional modeling versions. Endpoint model source files are unchanged.",
+      "model_geometry_changed": false,
+      "verification": "verification-v3-video.json"
+    }
+  ],
+  "video_v2": {
+    "durationSeconds": 30.009,
+    "width": 1280,
+    "height": 720,
+    "currentSource": "http://127.0.0.1:8140/assets/models/huanghe-tower-code/review/optimization-process-v2.mp4",
+    "canPlayH264": "probably",
+    "file": "optimization-process-v2.mp4"
+  }
+}

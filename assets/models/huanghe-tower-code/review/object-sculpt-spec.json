@@ -1,0 +1,5178 @@
+{
+  "targetName": "Yellow Crane Tower",
+  "targetId": "yellow-crane-tower",
+  "schemaVersion": "2.1",
+  "terminologyProfile": {
+    "domain": "real-time procedural Three.js asset",
+    "geometryTerms": [
+      "silhouette",
+      "topology",
+      "primitive",
+      "bevel",
+      "chamfer",
+      "taper",
+      "bend",
+      "boolean cut",
+      "edge loop",
+      "surface normal",
+      "displacement"
+    ],
+    "materialTerms": [
+      "albedo",
+      "baseColor",
+      "roughness",
+      "metalness",
+      "normal map",
+      "bump map",
+      "ambient occlusion",
+      "cavity dirt",
+      "edge wear",
+      "clearcoat"
+    ],
+    "lightingTerms": [
+      "key light",
+      "fill light",
+      "rim light",
+      "HDRI/environment reflection",
+      "contact shadow"
+    ],
+    "descriptionRule": "Use measurable 3D graphics terms. Avoid vague words unless they are paired with concrete geometry/material/shader parameters."
+  },
+  "sourceImage": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/references/real-front.jpg",
+  "referenceCamera": {
+    "solved": false,
+    "fovDegrees": 34,
+    "aspect": 0.75,
+    "orientation": {
+      "yaw": 0.0,
+      "pitch": 0.0,
+      "roll": 0.0
+    },
+    "positionHint": [
+      4,
+      27,
+      115
+    ],
+    "note": "Approximate camera from front photo; not a calibrated photogrammetry solve."
+  },
+  "suitability": "conditional",
+  "scores": {
+    "object_isolation": 3,
+    "silhouette_readability": 3,
+    "depth_inference": 2,
+    "primitive_decomposition": 3,
+    "material_procedurality": 3,
+    "occlusion_risk": 2,
+    "interaction_fit": 3
+  },
+  "preSpecAssessment": {
+    "objectClass": {
+      "primaryType": "five-storey chamfer-square Chinese tower",
+      "primaryDomain": "object",
+      "formLanguage": [
+        "architectural",
+        "hard-surface"
+      ],
+      "structureKind": [
+        "repeated modules",
+        "layered shell"
+      ],
+      "motionPotential": [
+        "static prop",
+        "whole-object transform"
+      ],
+      "materialFamilies": [
+        "ceramic",
+        "wood",
+        "stone"
+      ],
+      "notes": "Photo shows five primary roof tiers, projecting cardinal pavilions, broad facade bays and terracotta columns; back elevations inferred by fourfold symmetry."
+    },
+    "complexity": {
+      "tier": "complex",
+      "scores": {
+        "silhouetteComplexity": 3,
+        "componentCount": 3,
+        "hierarchyDepth": 3,
+        "repetitionDensity": 3,
+        "materialLayerCount": 2,
+        "localDetailDensity": 3,
+        "occlusionRisk": 2,
+        "actionReadinessNeed": 1
+      },
+      "estimatedCounts": {
+        "macroComponents": 4,
+        "mesoComponents": 13,
+        "microFeatureGroups": 16,
+        "materialLayers": 5,
+        "repetitionSystems": 3
+      },
+      "reasoning": [
+        "Five layered roofs and four cardinal projections are the main silhouette systems. Roof tile flutes, bracket arms, geometric balustrades and facade beams require repeated detail."
+      ]
+    },
+    "specDepthDecision": {
+      "requiredDepth": "complex",
+      "minimumComponentLevels": [
+        "macro",
+        "meso",
+        "micro"
+      ],
+      "needsRepetitionSystems": true,
+      "needsMaterialLocalOverrides": true,
+      "needsMultipleReviewViews": true,
+      "needsActionReadyHierarchy": true,
+      "rationale": "Choose simple/moderate/complex/ultra-complex from observed structure, not from a hardcoded domain."
+    },
+    "unknownsToResolveBeforeImplementation": [],
+    "detailInventory": {
+      "scanMethod": "component-zones",
+      "targetMinDetails": 10,
+      "note": "Enumerate every identity-defining small detail before authoring the spec. Each detail must map to a component.localFeatures entry or material.localOverrides entry, never prose only. Use forge/stage1_intake/build_detail_inventory.py to scan zones.",
+      "details": [
+        {
+          "id": "detail-0",
+          "kind": "ridge",
+          "description": "Broad stepped terraces and straight stair treads",
+          "mapsTo": {
+            "ref": "step-treads"
+          },
+          "confidence": 0.8,
+          "evidenceRefs": [
+            "full-object"
+          ]
+        },
+        {
+          "id": "detail-1",
+          "kind": "contour",
+          "description": "Broad cardinal facade and short diagonal corner planes",
+          "mapsTo": {
+            "ref": "facade-chamfer"
+          },
+          "confidence": 0.8,
+          "evidenceRefs": [
+            "full-object"
+          ]
+        },
+        {
+          "id": "detail-2",
+          "kind": "hole",
+          "description": "Core walls inset from outer columns",
+          "mapsTo": {
+            "ref": "open-galleries"
+          },
+          "confidence": 0.8,
+          "evidenceRefs": [
+            "full-object"
+          ]
+        },
+        {
+          "id": "detail-3",
+          "kind": "contour",
+          "description": "Five distinct primary eave bands with gradual width taper",
+          "mapsTo": {
+            "ref": "tier-proportion"
+          },
+          "confidence": 0.8,
+          "evidenceRefs": [
+            "full-object"
+          ]
+        },
+        {
+          "id": "detail-4",
+          "kind": "contour",
+          "description": "Round terracotta gallery columns with bracket supports",
+          "mapsTo": {
+            "ref": "columns-1"
+          },
+          "confidence": 0.8,
+          "evidenceRefs": [
+            "full-object"
+          ]
+        },
+        {
+          "id": "detail-5",
+          "kind": "ridge",
+          "description": "Dense parallel ceramic tile flutes",
+          "mapsTo": {
+            "ref": "roof-flutes-1"
+          },
+          "confidence": 0.8,
+          "evidenceRefs": [
+            "full-object"
+          ]
+        },
+        {
+          "id": "detail-6",
+          "kind": "contour",
+          "description": "Raised main hip corners and projecting gable eave tips",
+          "mapsTo": {
+            "ref": "eave-tips-1"
+          },
+          "confidence": 0.8,
+          "evidenceRefs": [
+            "full-object"
+          ]
+        },
+        {
+          "id": "detail-7",
+          "kind": "contour",
+          "description": "Round terracotta gallery columns with bracket supports",
+          "mapsTo": {
+            "ref": "columns-2"
+          },
+          "confidence": 0.8,
+          "evidenceRefs": [
+            "full-object"
+          ]
+        },
+        {
+          "id": "detail-8",
+          "kind": "ridge",
+          "description": "Dense parallel ceramic tile flutes",
+          "mapsTo": {
+            "ref": "roof-flutes-2"
+          },
+          "confidence": 0.8,
+          "evidenceRefs": [
+            "full-object"
+          ]
+        },
+        {
+          "id": "detail-9",
+          "kind": "contour",
+          "description": "Raised main hip corners and projecting gable eave tips",
+          "mapsTo": {
+            "ref": "eave-tips-2"
+          },
+          "confidence": 0.8,
+          "evidenceRefs": [
+            "full-object"
+          ]
+        },
+        {
+          "id": "detail-10",
+          "kind": "contour",
+          "description": "Round terracotta gallery columns with bracket supports",
+          "mapsTo": {
+            "ref": "columns-3"
+          },
+          "confidence": 0.8,
+          "evidenceRefs": [
+            "full-object"
+          ]
+        },
+        {
+          "id": "detail-11",
+          "kind": "ridge",
+          "description": "Dense parallel ceramic tile flutes",
+          "mapsTo": {
+            "ref": "roof-flutes-3"
+          },
+          "confidence": 0.8,
+          "evidenceRefs": [
+            "full-object"
+          ]
+        },
+        {
+          "id": "detail-12",
+          "kind": "contour",
+          "description": "Raised main hip corners and projecting gable eave tips",
+          "mapsTo": {
+            "ref": "eave-tips-3"
+          },
+          "confidence": 0.8,
+          "evidenceRefs": [
+            "full-object"
+          ]
+        },
+        {
+          "id": "detail-13",
+          "kind": "contour",
+          "description": "Round terracotta gallery columns with bracket supports",
+          "mapsTo": {
+            "ref": "columns-4"
+          },
+          "confidence": 0.8,
+          "evidenceRefs": [
+            "full-object"
+          ]
+        },
+        {
+          "id": "detail-14",
+          "kind": "ridge",
+          "description": "Dense parallel ceramic tile flutes",
+          "mapsTo": {
+            "ref": "roof-flutes-4"
+          },
+          "confidence": 0.8,
+          "evidenceRefs": [
+            "full-object"
+          ]
+        },
+        {
+          "id": "detail-15",
+          "kind": "contour",
+          "description": "Raised main hip corners and projecting gable eave tips",
+          "mapsTo": {
+            "ref": "eave-tips-4"
+          },
+          "confidence": 0.8,
+          "evidenceRefs": [
+            "full-object"
+          ]
+        },
+        {
+          "id": "detail-16",
+          "kind": "contour",
+          "description": "Round terracotta gallery columns with bracket supports",
+          "mapsTo": {
+            "ref": "columns-5"
+          },
+          "confidence": 0.8,
+          "evidenceRefs": [
+            "full-object"
+          ]
+        },
+        {
+          "id": "detail-17",
+          "kind": "ridge",
+          "description": "Dense parallel ceramic tile flutes",
+          "mapsTo": {
+            "ref": "roof-flutes-5"
+          },
+          "confidence": 0.8,
+          "evidenceRefs": [
+            "full-object"
+          ]
+        },
+        {
+          "id": "detail-18",
+          "kind": "contour",
+          "description": "Raised main hip corners and projecting gable eave tips",
+          "mapsTo": {
+            "ref": "eave-tips-5"
+          },
+          "confidence": 0.8,
+          "evidenceRefs": [
+            "full-object"
+          ]
+        },
+        {
+          "id": "detail-19",
+          "kind": "contour",
+          "description": "Continuous three-lobed lathe profile and small red top bead",
+          "mapsTo": {
+            "ref": "gourd-lobes"
+          },
+          "confidence": 0.8,
+          "evidenceRefs": [
+            "full-object"
+          ]
+        },
+        {
+          "id": "detail-20",
+          "kind": "linework",
+          "description": "Square meander pattern along balcony panels",
+          "mapsTo": {
+            "ref": "rail-pattern"
+          },
+          "confidence": 0.8,
+          "evidenceRefs": [
+            "full-object"
+          ]
+        },
+        {
+          "id": "detail-21",
+          "kind": "contour",
+          "description": "Layered bracket arms beneath each eave",
+          "mapsTo": {
+            "ref": "bracket-stack"
+          },
+          "confidence": 0.8,
+          "evidenceRefs": [
+            "full-object"
+          ]
+        },
+        {
+          "id": "detail-22",
+          "kind": "linework",
+          "description": "Muted green beam insets",
+          "mapsTo": {
+            "ref": "green-band"
+          },
+          "confidence": 0.8,
+          "evidenceRefs": [
+            "full-object"
+          ]
+        },
+        {
+          "id": "detail-23",
+          "kind": "contour",
+          "description": "Separate low canopy over entrance",
+          "mapsTo": {
+            "ref": "entry-gable"
+          },
+          "confidence": 0.8,
+          "evidenceRefs": [
+            "full-object"
+          ]
+        }
+      ]
+    },
+    "anatomy": {
+      "applies": false,
+      "styleHeads": 0.0,
+      "proportions": {
+        "headUnit": 0.0,
+        "torso": 0.0,
+        "legs": 0.0,
+        "shoulderWidth": 0.0,
+        "hipWidth": 0.0
+      },
+      "pose": {
+        "type": "unassessed",
+        "jointAngles": {}
+      },
+      "faceLandmarks": {
+        "eyeLine": 0.0,
+        "eyeSpacing": 0.0,
+        "noseBase": 0.0,
+        "mouthLine": 0.0,
+        "hairline": 0.0
+      },
+      "features": [],
+      "confidence": 0.0,
+      "note": "Only meaningful when objectClass.primaryDomain is character or hybrid. Set applies=true and fill from forge/stage1_intake/extract_landmarks.py. See grimoire/character/reconstruction.md and grimoire/character/likeness_maximization.md."
+    },
+    "sourceImage": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/references/real-front.jpg"
+  },
+  "qualityContract": {
+    "qualityBar": "complex",
+    "definitionOfDone": [
+      "Five main roofs and a separate entry canopy; four cardinal projecting roof arms; broad chamfer-square facades rather than a regular octagon; sheltered galleries, geometric railings, muted terracotta columns and yellow ceramic roof tiles. Overall height remains 51.4 metres."
+    ],
+    "minimumSpecDepth": {
+      "macroComponents": 3,
+      "mesoComponents": 8,
+      "microFeatureGroups": 5,
+      "materialLayers": 3,
+      "repetitionSystems": 1,
+      "reviewViewpoints": 4
+    },
+    "featureGroups": [
+      {
+        "id": "overall-silhouette",
+        "name": "Overall silhouette and proportions",
+        "required": true,
+        "qualityCriteria": [
+          "Bounding shape, dominant curves, negative spaces, and scale relationships are explicitly described."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "model reads as a generic placeholder instead of the reference object",
+          "major proportions are guessed without evidence"
+        ]
+      },
+      {
+        "id": "primary-structure",
+        "name": "Primary structure and hierarchy",
+        "required": true,
+        "qualityCriteria": [
+          "Major parts, joints, seams, contact points, and parent-child relationships are named before code generation."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "large visible parts are merged into one mesh",
+          "component hierarchy is too shallow for the observed complexity"
+        ]
+      },
+      {
+        "id": "attachment-joint-correctness",
+        "name": "Attachment and joint correctness",
+        "required": true,
+        "qualityCriteria": [
+          "Every visible child appendage, branch, limb, handle, connector, tube, cable, horn, wing, leg, or hinged part has an attachment contract with parent socket, localStart/localEnd, contact type, embed/overlap, and gap tolerance."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "child part root floats away from the parent",
+          "branch/limb/tube is centered in space instead of pivoting from its root",
+          "parent-child transform mixes world and local coordinates"
+        ]
+      },
+      {
+        "id": "surface-material-response",
+        "name": "Surface material response",
+        "required": true,
+        "qualityCriteria": [
+          "Albedo zones, roughness, normal/bump/displacement intent, cavity dirt, edge wear, and local overrides are specified where visible.",
+          "Important materials define independent albedo, roughness, height/normal, and AO responses instead of reusing one texture for unrelated PBR channels.",
+          "Surface response is decomposed into macro, meso, and micro frequency bands with scale and amplitude tied to object scale."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "surface looks like flat plastic",
+          "local material variation is missing or not tied to image evidence"
+        ]
+      },
+      {
+        "id": "reference-lookdev",
+        "name": "Reference color, material, and lighting response",
+        "required": true,
+        "qualityCriteria": [
+          "Material-pass names the reference-derived albedo palette, roughness variation, tactile normal/bump/displacement response, and local masks.",
+          "When a source image is available, run reference PBR extraction and require confidence >= 0.7 before treating maps as implementation-ready.",
+          "Lighting-pass names key/fill/rim or environment light, exposure, tone mapping, background, and contact shadow behavior.",
+          "Neutral, grazing-angle, and reference-matched renders prove that surface relief survives relighting and is not painted into albedo."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "model has acceptable shape but reads as flat shaded or plastic",
+          "colors are a generic average instead of reference-observed local color zones",
+          "lighting is evenly ambient and cannot reproduce the source value range"
+        ]
+      }
+    ],
+    "visualDeltaChecks": [
+      "silhouette and negative-space delta",
+      "component hierarchy depth delta",
+      "repetition density and distribution delta",
+      "material albedo/roughness/normal response delta",
+      "local feature placement and scale delta"
+    ],
+    "antiShallowSpecRules": [
+      "Do not proceed to code if qualityContract.qualityBar is unassessed.",
+      "Do not proceed to code if the spec only contains a root component for a moderate or complex object.",
+      "Do not proceed to code if required featureGroups are not represented by componentTree, materials, or repetitionSystems.",
+      "Do not proceed to code if visible local features are described only in prose and not attached to components/materials/evidenceRefs.",
+      "Do not proceed past structural-pass if attached child parts lack attachment.parentSocket, localStart, localEnd, embedDepth/overlap, and gapTolerance.",
+      "Do not pass material look-dev when albedo is reused as roughness, height, normal, or AO.",
+      "Do not pass material look-dev without macro, meso, and micro surface frequency bands for close-up materials.",
+      "Do not pass reference-fidelity material look-dev from a source image without usable referencePbr maps or an explicit documented limitation.",
+      "Do not patch a spec with extracted PBR maps when extraction confidence is below the target threshold unless the user explicitly accepts lower fidelity.",
+      "Do not place adjacent separate-geometry parts below 0.02 world-unit seam overlap (source: grimoire/build/geometry_patterns.md).",
+      "Do not satisfy raised or recessed relief, fasteners, or grip structure with a map alone when the feature affects form; use geometry or displacement (source: grimoire/build/geometry_patterns.md).",
+      "Adjacent components must overlap by at least 0.02 world units at shared seams (source: grimoire/build/geometry_patterns.md).",
+      "Raised or recessed relief and fasteners must be geometry, instanced micro-parts, or displacement; a map alone is an approximation (source: grimoire/build/geometry_patterns.md)."
+    ],
+    "mustNotDo": [
+      "Do not proceed to code if qualityContract.qualityBar is unassessed.",
+      "Do not proceed to code if the spec only contains a root component for a moderate or complex object.",
+      "Do not proceed to code if required featureGroups are not represented by componentTree, materials, or repetitionSystems.",
+      "Do not proceed to code if visible local features are described only in prose and not attached to components/materials/evidenceRefs.",
+      "Do not proceed past structural-pass if attached child parts lack attachment.parentSocket, localStart, localEnd, embedDepth/overlap, and gapTolerance.",
+      "Do not pass material look-dev when albedo is reused as roughness, height, normal, or AO.",
+      "Do not pass material look-dev without macro, meso, and micro surface frequency bands for close-up materials.",
+      "Do not pass reference-fidelity material look-dev from a source image without usable referencePbr maps or an explicit documented limitation.",
+      "Do not patch a spec with extracted PBR maps when extraction confidence is below the target threshold unless the user explicitly accepts lower fidelity.",
+      "Do not place adjacent separate-geometry parts below 0.02 world-unit seam overlap (source: grimoire/build/geometry_patterns.md).",
+      "Do not satisfy raised or recessed relief, fasteners, or grip structure with a map alone when the feature affects form; use geometry or displacement (source: grimoire/build/geometry_patterns.md).",
+      "Adjacent components must overlap by at least 0.02 world units at shared seams (source: grimoire/build/geometry_patterns.md).",
+      "Raised or recessed relief and fasteners must be geometry, instanced micro-parts, or displacement; a map alone is an approximation (source: grimoire/build/geometry_patterns.md)."
+    ]
+  },
+  "qualityTargets": {
+    "targetFidelity": 0.7,
+    "mustMatch": [
+      "macro silhouette and proportions",
+      "primary material albedo/roughness response",
+      "reference-derived PBR material response at or above 0.7 confidence when source pixels are usable",
+      "most recognizable local features"
+    ],
+    "niceToHave": [
+      "micro scratches, stains, chips, and dirt masks",
+      "secondary lighting match"
+    ],
+    "fpsTarget": 60,
+    "reviewViewpoints": [
+      "front",
+      "three-quarter",
+      "side",
+      "thickness-axis",
+      "long-axis"
+    ]
+  },
+  "selfCorrectLoop": {
+    "enabled": true,
+    "visualAcceptance": {
+      "reviewer": "ai-vision",
+      "threshold": 0.7,
+      "comparisonArtifactRequired": true,
+      "layerScoresRequired": true,
+      "codePixelDiffIsAcceptanceAuthority": false,
+      "scoringRule": "AI vision must inspect a side-by-side reference/render sheet and score the current pass from 0 to 1. Pixel-diff code may assist diagnostics but cannot approve a pass.",
+      "requiredLayerScores": [
+        "silhouetteProportion",
+        "componentStructure",
+        "formDetail",
+        "materialSurface",
+        "lightingCamera"
+      ],
+      "featureReviewPolicy": {
+        "enabled": true,
+        "reviewUnit": "semantic-subsystem",
+        "maxCriticalFeaturesPerPass": 5,
+        "maxImportantFeaturesPerPass": 3,
+        "criticalDefaultThreshold": 0.8,
+        "importantAverageThreshold": 0.65,
+        "adaptiveEscalation": true,
+        "singleImagePairOnly": true,
+        "selectionRule": "Choose only the most visually salient, identity-defining, user-prioritized, or high-risk semantic systems. Group repeated parts instead of reviewing every mesh. AI vision scores every selected feature from the same full reference/render pair."
+      }
+    },
+    "reviewAfterPasses": [
+      "blockout",
+      "structural-pass",
+      "form-refinement",
+      "material-pass",
+      "surface-pass",
+      "lighting-pass",
+      "interaction-pass",
+      "optimization-pass"
+    ],
+    "allowedActions": [
+      "continue",
+      "refine-spec",
+      "refine-code",
+      "request-input",
+      "stop"
+    ],
+    "specRefineTriggers": [
+      "missing component",
+      "wrong primitive family",
+      "wrong proportions",
+      "material layer under-specified",
+      "local feature not traceable to viewEvidence",
+      "reference ambiguity discovered during implementation"
+    ],
+    "codeRefineTriggers": [
+      "spec is adequate but generated geometry/material does not match",
+      "browser render differs from reference",
+      "performance budget exceeded",
+      "lighting hides geometry or material response"
+    ],
+    "stopCriteria": [
+      "target fidelity reached or user accepts current approximation",
+      "remaining gaps require new reference images or manual art"
+    ],
+    "screenshotPolicy": {
+      "requiredForPasses": [
+        "blockout",
+        "structural-pass",
+        "form-refinement",
+        "material-pass",
+        "surface-pass",
+        "lighting-pass",
+        "interaction-pass"
+      ],
+      "preferredCapture": "in-app-browser-screenshot",
+      "fallbackCapture": "user-supplied-screenshot-path",
+      "minimumEvidence": "Each visual pass needs a reference image, rendered screenshot, side-by-side comparison sheet, AI vision score, layer scores, and critique before choosing continue.",
+      "reviewPairRule": "Compare the same camera/viewpoint whenever possible; do not judge a front reference against a random render angle.",
+      "acceptanceAuthority": "AI vision review of the comparison sheet. Code-generated pixel similarity is not sufficient evidence."
+    }
+  },
+  "featureReviewTargets": [
+    {
+      "id": "tiered-chamfer-silhouette",
+      "name": "Five-storey chamfer-square silhouette",
+      "tier": "critical",
+      "passIds": [
+        "blockout"
+      ],
+      "minimumScore": 0.8,
+      "mustPass": true,
+      "componentRefs": [
+        "storeys",
+        "roof-assembly"
+      ],
+      "evidenceRefs": [
+        "full-object"
+      ]
+    },
+    {
+      "id": "four-cardinal-roofs",
+      "name": "Four cardinal pavilion gables around each main roof",
+      "tier": "critical",
+      "passIds": [
+        "structural-pass",
+        "form-refinement"
+      ],
+      "minimumScore": 0.8,
+      "mustPass": true,
+      "componentRefs": [
+        "roof-assembly"
+      ],
+      "evidenceRefs": [
+        "full-object"
+      ]
+    },
+    {
+      "id": "terracotta-and-ceramic",
+      "name": "Terracotta columns green beam bands yellow ceramic tiles",
+      "tier": "critical",
+      "passIds": [
+        "material-pass",
+        "surface-pass"
+      ],
+      "minimumScore": 0.75,
+      "mustPass": true,
+      "componentRefs": [
+        "facade-detail",
+        "roof-assembly"
+      ],
+      "evidenceRefs": [
+        "full-object"
+      ]
+    }
+  ],
+  "sculptPipeline": {
+    "passGateMode": "locked-sequential",
+    "passOrder": [
+      "blockout",
+      "structural-pass",
+      "form-refinement",
+      "material-pass",
+      "surface-pass",
+      "lighting-pass",
+      "interaction-pass",
+      "optimization-pass"
+    ],
+    "currentPass": "blockout",
+    "completedPasses": [],
+    "lastCompletedPass": "",
+    "blockedReason": "blockout requires a browser screenshot and self-correction review before structural-pass unlocks",
+    "nextRequiredEvidence": [
+      "blockout browser render screenshot from your agent's browser/screenshot tool",
+      "side-by-side reference/render comparison sheet",
+      "AI vision score >= 0.7 with layer scores and mismatch critique",
+      "critical semantic feature scores from the same image pair meeting their individual thresholds",
+      "reviewHistory entry for blockout with action=continue"
+    ]
+  },
+  "lookDevTargets": {
+    "qualityPriority": "reference-fidelity",
+    "materialPass": {
+      "albedoPaletteRequired": true,
+      "roughnessVariationRequired": true,
+      "normalOrBumpRequired": true,
+      "localOverridesRequired": true,
+      "minimumTextureResolution": 1024,
+      "preferredTextureResolution": 2048,
+      "independentMapChannels": [
+        "albedo",
+        "roughness",
+        "height",
+        "normal",
+        "ambient-occlusion"
+      ],
+      "requiredSurfaceFrequencyBands": [
+        "macro",
+        "meso",
+        "micro"
+      ],
+      "geometryReliefRequiredWhenSilhouetteAffected": true,
+      "referencePbrExtraction": {
+        "requiredWhenSourceImagePresent": true,
+        "targetThreshold": 0.7,
+        "stopOnLowConfidence": true,
+        "script": "forge/stage1_intake/extract_pbr_evidence.py",
+        "acceptedLimitation": "single-image extraction is reference-derived inference, not exact photogrammetry"
+      },
+      "mustAvoid": [
+        "single flat albedo per material",
+        "uniform roughness",
+        "albedo texture reused as roughness/height/normal/AO",
+        "single-frequency random noise",
+        "plastic-looking smooth bark, stone, cloth, foliage, or aged material",
+        "local color/detail described only in prose without material masks",
+        "claiming exact PBR recovery when confidence is below the target threshold"
+      ]
+    },
+    "lightingPass": {
+      "requiredTerms": [
+        "key light",
+        "fill light",
+        "rim or environment light",
+        "exposure",
+        "tone mapping",
+        "background",
+        "contact shadow"
+      ],
+      "mustAvoid": [
+        "ambient-only lighting",
+        "flat value range",
+        "missing contact shadow",
+        "reference lighting copied without separating material readability"
+      ]
+    },
+    "screenshotReview": [
+      "Compare albedo palette and local color zones.",
+      "Compare roughness/normal/bump response under light.",
+      "Compare cavity dirt, edge wear, stains, moss, scratches, or other local masks.",
+      "Compare key/fill/rim structure, exposure, tone mapping, background, and contact shadows.",
+      "Capture a neutral-light render to verify material readability without reference lighting.",
+      "Capture a grazing-light close-up to expose flat normals, uniform roughness, tiling, and plastic highlights.",
+      "Capture a reference-matched render from the same camera framing as the source."
+    ]
+  },
+  "actionReadiness": {
+    "contract": "Every macro/meso component should be generated as a stable named Object3D pivot node with a mesh child, action metadata, optional sockets, collider proxy, and destruction metadata.",
+    "defaultRigType": "action-ready-static-rig",
+    "rootMotionNode": "root",
+    "requiredComponentFields": [
+      "id",
+      "parent",
+      "transform",
+      "attachment for child appendages, connectors, limbs, tubes, handles, legs, horns, wings, branches, or cables",
+      "actionProfile.animationRole",
+      "actionProfile.pivot",
+      "actionProfile.collider",
+      "actionProfile.destruction"
+    ],
+    "transformChannels": [
+      "translate",
+      "rotate",
+      "scale",
+      "bend",
+      "twist",
+      "detach",
+      "visibility",
+      "material-state"
+    ],
+    "authoringRules": [
+      "Do not collapse independently movable parts into one mesh.",
+      "Put transforms on component pivot groups, not only on raw meshes.",
+      "For attached child parts, put the pivot at the semantic root/socket and build visible geometry from localStart to localEnd.",
+      "Represent hinge, socket, detachable, and breakable intent even when no animation is implemented yet.",
+      "Use simplified collider proxies for runtime physics instead of visual mesh colliders by default."
+    ],
+    "destructionPolicy": {
+      "defaultBreakable": false,
+      "fractureGroupNaming": "Use stable semantic names such as body-shell, left-hinge, glass-panel, branch-segment.",
+      "debrisStrategy": "Prefer detachable component groups and a small number of procedural fragments over random mesh explosion."
+    }
+  },
+  "assumptions": [
+    "Dimensions other than 51.4 m height and approximate 30/18 m body widths are visual estimates, not construction drawings.",
+    "No reference photograph is used as model texture.",
+    "Hidden back facade follows fourfold symmetry."
+  ],
+  "coordinateFrame": {
+    "front": "camera-facing side in the reference image",
+    "up": "image up direction",
+    "scaleReference": "unit scale; adjust after first browser render"
+  },
+  "silhouette": {
+    "boundingShape": "stepped chamfer-square tower with four cardinal roof projections",
+    "aspectRatios": [
+      {
+        "height": 51.4,
+        "baseWidth": 46,
+        "topBodyWidth": 18
+      }
+    ],
+    "symmetry": "fourfold",
+    "dominantCurves": [
+      "upturned eaves",
+      "pointed central roof",
+      "gourd finial"
+    ],
+    "negativeSpaces": [
+      "open galleries between core and outer columns"
+    ],
+    "landmarks": [
+      "five primary eaves",
+      "four top cardinal gables",
+      "three-lobed finial"
+    ]
+  },
+  "viewEvidence": [
+    {
+      "id": "full-object",
+      "view": "primary",
+      "imageRegion": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 1.0,
+        "height": 1.0,
+        "units": "normalized"
+      },
+      "observations": [
+        "Five primary roof bands with central projecting fronts",
+        "Four cardinal pavilion roofs surrounding top roof",
+        "Terracotta cylindrical columns and meander balustrades",
+        "Yellow-orange ceramic tile ridges",
+        "Entry canopy separate from five main storeys"
+      ],
+      "confidence": 0.86
+    }
+  ],
+  "componentTree": [
+    {
+      "id": "root",
+      "name": "Yellow Crane Tower",
+      "level": "macro",
+      "role": "architectural-assembly",
+      "importance": 0.85,
+      "confidence": 0.8,
+      "primitive": "box",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Discrete structural assembly built with extruded chamfer polygons, cylinders and sampled roof surfaces.",
+      "geometryDescriptor": {
+        "topologyIntent": "low-poly blockout with bevel-ready edges",
+        "edgeTreatment": {
+          "type": "none",
+          "bevelRadius": 0.0,
+          "segments": 1
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "vertex normals from generated geometry"
+      },
+      "parent": null,
+      "attachment": null,
+      "dimensions": {
+        "width": 46,
+        "height": 51.4,
+        "depth": 46,
+        "units": "m",
+        "confidence": 0.75
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.5
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "root",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0.0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "wood",
+      "materialLayers": [
+        "wood"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [],
+      "surfaceDetail": {
+        "macroRoughness": 0.0,
+        "microRoughness": 0.0,
+        "bumpAmplitude": 0.0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [
+        "Yellow Crane Tower"
+      ],
+      "fidelityTier": "structural",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(166, 91, 64, 1)",
+        "secondaryAlbedo": "rgba(166, 91, 64, 1)",
+        "materialClass": "wood",
+        "materialClassConfidence": 0.8
+      }
+    },
+    {
+      "id": "foundation",
+      "name": "Stone foundation and steps",
+      "level": "macro",
+      "role": "architectural-assembly",
+      "importance": 0.85,
+      "confidence": 0.8,
+      "primitive": "box",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Discrete structural assembly built with extruded chamfer polygons, cylinders and sampled roof surfaces.",
+      "geometryDescriptor": {
+        "topologyIntent": "low-poly blockout with bevel-ready edges",
+        "edgeTreatment": {
+          "type": "none",
+          "bevelRadius": 0.0,
+          "segments": 1
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "vertex normals from generated geometry"
+      },
+      "parent": "root",
+      "attachment": null,
+      "dimensions": {
+        "width": 46,
+        "height": 2,
+        "depth": 46,
+        "units": "m",
+        "confidence": 0.75
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.5
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "foundation",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0.0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "stone",
+      "materialLayers": [
+        "stone"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "step-treads",
+          "type": "ridge",
+          "description": "Broad stepped terraces and straight stair treads",
+          "evidenceRefs": [
+            "full-object"
+          ],
+          "confidence": 0.8
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.0,
+        "microRoughness": 0.0,
+        "bumpAmplitude": 0.0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [
+        "Stone foundation and steps"
+      ],
+      "fidelityTier": "structural",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(210, 197, 172, 1)",
+        "secondaryAlbedo": "rgba(210, 197, 172, 1)",
+        "materialClass": "stone",
+        "materialClassConfidence": 0.8
+      }
+    },
+    {
+      "id": "storeys",
+      "name": "Five chamfer-square storeys",
+      "level": "macro",
+      "role": "architectural-assembly",
+      "importance": 0.85,
+      "confidence": 0.8,
+      "primitive": "box",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Discrete structural assembly built with extruded chamfer polygons, cylinders and sampled roof surfaces.",
+      "geometryDescriptor": {
+        "topologyIntent": "low-poly blockout with bevel-ready edges",
+        "edgeTreatment": {
+          "type": "none",
+          "bevelRadius": 0.0,
+          "segments": 1
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "vertex normals from generated geometry"
+      },
+      "parent": "root",
+      "attachment": null,
+      "dimensions": {
+        "width": 30,
+        "height": 39,
+        "depth": 30,
+        "units": "m",
+        "confidence": 0.75
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.5
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "storeys",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0.0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "wood",
+      "materialLayers": [
+        "wood"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "facade-chamfer",
+          "type": "contour",
+          "description": "Broad cardinal facade and short diagonal corner planes",
+          "evidenceRefs": [
+            "full-object"
+          ],
+          "confidence": 0.8
+        },
+        {
+          "id": "open-galleries",
+          "type": "hole",
+          "description": "Core walls inset from outer columns",
+          "evidenceRefs": [
+            "full-object"
+          ],
+          "confidence": 0.8
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.0,
+        "microRoughness": 0.0,
+        "bumpAmplitude": 0.0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [
+        "Five chamfer-square storeys"
+      ],
+      "fidelityTier": "structural",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(166, 91, 64, 1)",
+        "secondaryAlbedo": "rgba(166, 91, 64, 1)",
+        "materialClass": "wood",
+        "materialClassConfidence": 0.8
+      }
+    },
+    {
+      "id": "roof-assembly",
+      "name": "Layered roof assemblies",
+      "level": "macro",
+      "role": "architectural-assembly",
+      "importance": 0.85,
+      "confidence": 0.8,
+      "primitive": "box",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Discrete structural assembly built with extruded chamfer polygons, cylinders and sampled roof surfaces.",
+      "geometryDescriptor": {
+        "topologyIntent": "low-poly blockout with bevel-ready edges",
+        "edgeTreatment": {
+          "type": "none",
+          "bevelRadius": 0.0,
+          "segments": 1
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "vertex normals from generated geometry"
+      },
+      "parent": "root",
+      "attachment": null,
+      "dimensions": {
+        "width": 42,
+        "height": 44,
+        "depth": 42,
+        "units": "m",
+        "confidence": 0.75
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.5
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "roof-assembly",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0.0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "ceramic",
+      "materialLayers": [
+        "ceramic"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "tier-proportion",
+          "type": "contour",
+          "description": "Five distinct primary eave bands with gradual width taper",
+          "evidenceRefs": [
+            "full-object"
+          ],
+          "confidence": 0.8
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.0,
+        "microRoughness": 0.0,
+        "bumpAmplitude": 0.0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [
+        "Layered roof assemblies"
+      ],
+      "fidelityTier": "structural",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(188, 131, 59, 1)",
+        "secondaryAlbedo": "rgba(188, 131, 59, 1)",
+        "materialClass": "ceramic",
+        "materialClassConfidence": 0.8
+      }
+    },
+    {
+      "id": "storey-1",
+      "name": "Storey 1 columns and balcony",
+      "level": "meso",
+      "role": "architectural-assembly",
+      "importance": 0.85,
+      "confidence": 0.8,
+      "primitive": "box",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Discrete structural assembly built with extruded chamfer polygons, cylinders and sampled roof surfaces.",
+      "geometryDescriptor": {
+        "topologyIntent": "low-poly blockout with bevel-ready edges",
+        "edgeTreatment": {
+          "type": "none",
+          "bevelRadius": 0.0,
+          "segments": 1
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "vertex normals from generated geometry"
+      },
+      "parent": "storeys",
+      "attachment": null,
+      "dimensions": {
+        "width": 30,
+        "height": 10,
+        "depth": 30,
+        "units": "m",
+        "confidence": 0.75
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.5
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "storey-1",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0.0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "wood",
+      "materialLayers": [
+        "wood"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "columns-1",
+          "type": "contour",
+          "description": "Round terracotta gallery columns with bracket supports",
+          "evidenceRefs": [
+            "full-object"
+          ],
+          "confidence": 0.8
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.0,
+        "microRoughness": 0.0,
+        "bumpAmplitude": 0.0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [
+        "Storey 1 columns and balcony"
+      ],
+      "fidelityTier": "structural",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(166, 91, 64, 1)",
+        "secondaryAlbedo": "rgba(166, 91, 64, 1)",
+        "materialClass": "wood",
+        "materialClassConfidence": 0.8
+      }
+    },
+    {
+      "id": "roof-1",
+      "name": "Roof 1 plus four cardinal gables",
+      "level": "meso",
+      "role": "architectural-assembly",
+      "importance": 0.85,
+      "confidence": 0.8,
+      "primitive": "box",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Discrete structural assembly built with extruded chamfer polygons, cylinders and sampled roof surfaces.",
+      "geometryDescriptor": {
+        "topologyIntent": "low-poly blockout with bevel-ready edges",
+        "edgeTreatment": {
+          "type": "none",
+          "bevelRadius": 0.0,
+          "segments": 1
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "vertex normals from generated geometry"
+      },
+      "parent": "roof-assembly",
+      "attachment": null,
+      "dimensions": {
+        "width": 42,
+        "height": 4,
+        "depth": 42,
+        "units": "m",
+        "confidence": 0.75
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.5
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "roof-1",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0.0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "ceramic",
+      "materialLayers": [
+        "ceramic"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "roof-flutes-1",
+          "type": "ridge",
+          "description": "Dense parallel ceramic tile flutes",
+          "evidenceRefs": [
+            "full-object"
+          ],
+          "confidence": 0.8
+        },
+        {
+          "id": "eave-tips-1",
+          "type": "contour",
+          "description": "Raised main hip corners and projecting gable eave tips",
+          "evidenceRefs": [
+            "full-object"
+          ],
+          "confidence": 0.8
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.0,
+        "microRoughness": 0.0,
+        "bumpAmplitude": 0.0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [
+        "Roof 1 plus four cardinal gables"
+      ],
+      "fidelityTier": "structural",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(188, 131, 59, 1)",
+        "secondaryAlbedo": "rgba(188, 131, 59, 1)",
+        "materialClass": "ceramic",
+        "materialClassConfidence": 0.8
+      }
+    },
+    {
+      "id": "storey-2",
+      "name": "Storey 2 columns and balcony",
+      "level": "meso",
+      "role": "architectural-assembly",
+      "importance": 0.85,
+      "confidence": 0.8,
+      "primitive": "box",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Discrete structural assembly built with extruded chamfer polygons, cylinders and sampled roof surfaces.",
+      "geometryDescriptor": {
+        "topologyIntent": "low-poly blockout with bevel-ready edges",
+        "edgeTreatment": {
+          "type": "none",
+          "bevelRadius": 0.0,
+          "segments": 1
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "vertex normals from generated geometry"
+      },
+      "parent": "storeys",
+      "attachment": null,
+      "dimensions": {
+        "width": 28,
+        "height": 6.7,
+        "depth": 28,
+        "units": "m",
+        "confidence": 0.75
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.5
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "storey-2",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0.0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "wood",
+      "materialLayers": [
+        "wood"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "columns-2",
+          "type": "contour",
+          "description": "Round terracotta gallery columns with bracket supports",
+          "evidenceRefs": [
+            "full-object"
+          ],
+          "confidence": 0.8
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.0,
+        "microRoughness": 0.0,
+        "bumpAmplitude": 0.0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [
+        "Storey 2 columns and balcony"
+      ],
+      "fidelityTier": "structural",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(166, 91, 64, 1)",
+        "secondaryAlbedo": "rgba(166, 91, 64, 1)",
+        "materialClass": "wood",
+        "materialClassConfidence": 0.8
+      }
+    },
+    {
+      "id": "roof-2",
+      "name": "Roof 2 plus four cardinal gables",
+      "level": "meso",
+      "role": "architectural-assembly",
+      "importance": 0.85,
+      "confidence": 0.8,
+      "primitive": "box",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Discrete structural assembly built with extruded chamfer polygons, cylinders and sampled roof surfaces.",
+      "geometryDescriptor": {
+        "topologyIntent": "low-poly blockout with bevel-ready edges",
+        "edgeTreatment": {
+          "type": "none",
+          "bevelRadius": 0.0,
+          "segments": 1
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "vertex normals from generated geometry"
+      },
+      "parent": "roof-assembly",
+      "attachment": null,
+      "dimensions": {
+        "width": 40,
+        "height": 4,
+        "depth": 40,
+        "units": "m",
+        "confidence": 0.75
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.5
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "roof-2",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0.0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "ceramic",
+      "materialLayers": [
+        "ceramic"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "roof-flutes-2",
+          "type": "ridge",
+          "description": "Dense parallel ceramic tile flutes",
+          "evidenceRefs": [
+            "full-object"
+          ],
+          "confidence": 0.8
+        },
+        {
+          "id": "eave-tips-2",
+          "type": "contour",
+          "description": "Raised main hip corners and projecting gable eave tips",
+          "evidenceRefs": [
+            "full-object"
+          ],
+          "confidence": 0.8
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.0,
+        "microRoughness": 0.0,
+        "bumpAmplitude": 0.0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [
+        "Roof 2 plus four cardinal gables"
+      ],
+      "fidelityTier": "structural",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(188, 131, 59, 1)",
+        "secondaryAlbedo": "rgba(188, 131, 59, 1)",
+        "materialClass": "ceramic",
+        "materialClassConfidence": 0.8
+      }
+    },
+    {
+      "id": "storey-3",
+      "name": "Storey 3 columns and balcony",
+      "level": "meso",
+      "role": "architectural-assembly",
+      "importance": 0.85,
+      "confidence": 0.8,
+      "primitive": "box",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Discrete structural assembly built with extruded chamfer polygons, cylinders and sampled roof surfaces.",
+      "geometryDescriptor": {
+        "topologyIntent": "low-poly blockout with bevel-ready edges",
+        "edgeTreatment": {
+          "type": "none",
+          "bevelRadius": 0.0,
+          "segments": 1
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "vertex normals from generated geometry"
+      },
+      "parent": "storeys",
+      "attachment": null,
+      "dimensions": {
+        "width": 26,
+        "height": 6.7,
+        "depth": 26,
+        "units": "m",
+        "confidence": 0.75
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.5
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "storey-3",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0.0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "wood",
+      "materialLayers": [
+        "wood"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "columns-3",
+          "type": "contour",
+          "description": "Round terracotta gallery columns with bracket supports",
+          "evidenceRefs": [
+            "full-object"
+          ],
+          "confidence": 0.8
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.0,
+        "microRoughness": 0.0,
+        "bumpAmplitude": 0.0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [
+        "Storey 3 columns and balcony"
+      ],
+      "fidelityTier": "structural",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(166, 91, 64, 1)",
+        "secondaryAlbedo": "rgba(166, 91, 64, 1)",
+        "materialClass": "wood",
+        "materialClassConfidence": 0.8
+      }
+    },
+    {
+      "id": "roof-3",
+      "name": "Roof 3 plus four cardinal gables",
+      "level": "meso",
+      "role": "architectural-assembly",
+      "importance": 0.85,
+      "confidence": 0.8,
+      "primitive": "box",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Discrete structural assembly built with extruded chamfer polygons, cylinders and sampled roof surfaces.",
+      "geometryDescriptor": {
+        "topologyIntent": "low-poly blockout with bevel-ready edges",
+        "edgeTreatment": {
+          "type": "none",
+          "bevelRadius": 0.0,
+          "segments": 1
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "vertex normals from generated geometry"
+      },
+      "parent": "roof-assembly",
+      "attachment": null,
+      "dimensions": {
+        "width": 38,
+        "height": 4,
+        "depth": 38,
+        "units": "m",
+        "confidence": 0.75
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.5
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "roof-3",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0.0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "ceramic",
+      "materialLayers": [
+        "ceramic"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "roof-flutes-3",
+          "type": "ridge",
+          "description": "Dense parallel ceramic tile flutes",
+          "evidenceRefs": [
+            "full-object"
+          ],
+          "confidence": 0.8
+        },
+        {
+          "id": "eave-tips-3",
+          "type": "contour",
+          "description": "Raised main hip corners and projecting gable eave tips",
+          "evidenceRefs": [
+            "full-object"
+          ],
+          "confidence": 0.8
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.0,
+        "microRoughness": 0.0,
+        "bumpAmplitude": 0.0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [
+        "Roof 3 plus four cardinal gables"
+      ],
+      "fidelityTier": "structural",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(188, 131, 59, 1)",
+        "secondaryAlbedo": "rgba(188, 131, 59, 1)",
+        "materialClass": "ceramic",
+        "materialClassConfidence": 0.8
+      }
+    },
+    {
+      "id": "storey-4",
+      "name": "Storey 4 columns and balcony",
+      "level": "meso",
+      "role": "architectural-assembly",
+      "importance": 0.85,
+      "confidence": 0.8,
+      "primitive": "box",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Discrete structural assembly built with extruded chamfer polygons, cylinders and sampled roof surfaces.",
+      "geometryDescriptor": {
+        "topologyIntent": "low-poly blockout with bevel-ready edges",
+        "edgeTreatment": {
+          "type": "none",
+          "bevelRadius": 0.0,
+          "segments": 1
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "vertex normals from generated geometry"
+      },
+      "parent": "storeys",
+      "attachment": null,
+      "dimensions": {
+        "width": 24,
+        "height": 6.7,
+        "depth": 24,
+        "units": "m",
+        "confidence": 0.75
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.5
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "storey-4",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0.0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "wood",
+      "materialLayers": [
+        "wood"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "columns-4",
+          "type": "contour",
+          "description": "Round terracotta gallery columns with bracket supports",
+          "evidenceRefs": [
+            "full-object"
+          ],
+          "confidence": 0.8
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.0,
+        "microRoughness": 0.0,
+        "bumpAmplitude": 0.0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [
+        "Storey 4 columns and balcony"
+      ],
+      "fidelityTier": "structural",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(166, 91, 64, 1)",
+        "secondaryAlbedo": "rgba(166, 91, 64, 1)",
+        "materialClass": "wood",
+        "materialClassConfidence": 0.8
+      }
+    },
+    {
+      "id": "roof-4",
+      "name": "Roof 4 plus four cardinal gables",
+      "level": "meso",
+      "role": "architectural-assembly",
+      "importance": 0.85,
+      "confidence": 0.8,
+      "primitive": "box",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Discrete structural assembly built with extruded chamfer polygons, cylinders and sampled roof surfaces.",
+      "geometryDescriptor": {
+        "topologyIntent": "low-poly blockout with bevel-ready edges",
+        "edgeTreatment": {
+          "type": "none",
+          "bevelRadius": 0.0,
+          "segments": 1
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "vertex normals from generated geometry"
+      },
+      "parent": "roof-assembly",
+      "attachment": null,
+      "dimensions": {
+        "width": 36,
+        "height": 4,
+        "depth": 36,
+        "units": "m",
+        "confidence": 0.75
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.5
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "roof-4",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0.0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "ceramic",
+      "materialLayers": [
+        "ceramic"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "roof-flutes-4",
+          "type": "ridge",
+          "description": "Dense parallel ceramic tile flutes",
+          "evidenceRefs": [
+            "full-object"
+          ],
+          "confidence": 0.8
+        },
+        {
+          "id": "eave-tips-4",
+          "type": "contour",
+          "description": "Raised main hip corners and projecting gable eave tips",
+          "evidenceRefs": [
+            "full-object"
+          ],
+          "confidence": 0.8
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.0,
+        "microRoughness": 0.0,
+        "bumpAmplitude": 0.0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [
+        "Roof 4 plus four cardinal gables"
+      ],
+      "fidelityTier": "structural",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(188, 131, 59, 1)",
+        "secondaryAlbedo": "rgba(188, 131, 59, 1)",
+        "materialClass": "ceramic",
+        "materialClassConfidence": 0.8
+      }
+    },
+    {
+      "id": "storey-5",
+      "name": "Storey 5 columns and balcony",
+      "level": "meso",
+      "role": "architectural-assembly",
+      "importance": 0.85,
+      "confidence": 0.8,
+      "primitive": "box",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Discrete structural assembly built with extruded chamfer polygons, cylinders and sampled roof surfaces.",
+      "geometryDescriptor": {
+        "topologyIntent": "low-poly blockout with bevel-ready edges",
+        "edgeTreatment": {
+          "type": "none",
+          "bevelRadius": 0.0,
+          "segments": 1
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "vertex normals from generated geometry"
+      },
+      "parent": "storeys",
+      "attachment": null,
+      "dimensions": {
+        "width": 22,
+        "height": 6.7,
+        "depth": 22,
+        "units": "m",
+        "confidence": 0.75
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.5
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "storey-5",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0.0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "wood",
+      "materialLayers": [
+        "wood"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "columns-5",
+          "type": "contour",
+          "description": "Round terracotta gallery columns with bracket supports",
+          "evidenceRefs": [
+            "full-object"
+          ],
+          "confidence": 0.8
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.0,
+        "microRoughness": 0.0,
+        "bumpAmplitude": 0.0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [
+        "Storey 5 columns and balcony"
+      ],
+      "fidelityTier": "structural",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(166, 91, 64, 1)",
+        "secondaryAlbedo": "rgba(166, 91, 64, 1)",
+        "materialClass": "wood",
+        "materialClassConfidence": 0.8
+      }
+    },
+    {
+      "id": "roof-5",
+      "name": "Roof 5 plus four cardinal gables",
+      "level": "meso",
+      "role": "architectural-assembly",
+      "importance": 0.85,
+      "confidence": 0.8,
+      "primitive": "box",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Discrete structural assembly built with extruded chamfer polygons, cylinders and sampled roof surfaces.",
+      "geometryDescriptor": {
+        "topologyIntent": "low-poly blockout with bevel-ready edges",
+        "edgeTreatment": {
+          "type": "none",
+          "bevelRadius": 0.0,
+          "segments": 1
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "vertex normals from generated geometry"
+      },
+      "parent": "roof-assembly",
+      "attachment": null,
+      "dimensions": {
+        "width": 34,
+        "height": 4,
+        "depth": 34,
+        "units": "m",
+        "confidence": 0.75
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.5
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "roof-5",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0.0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "ceramic",
+      "materialLayers": [
+        "ceramic"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "roof-flutes-5",
+          "type": "ridge",
+          "description": "Dense parallel ceramic tile flutes",
+          "evidenceRefs": [
+            "full-object"
+          ],
+          "confidence": 0.8
+        },
+        {
+          "id": "eave-tips-5",
+          "type": "contour",
+          "description": "Raised main hip corners and projecting gable eave tips",
+          "evidenceRefs": [
+            "full-object"
+          ],
+          "confidence": 0.8
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.0,
+        "microRoughness": 0.0,
+        "bumpAmplitude": 0.0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [
+        "Roof 5 plus four cardinal gables"
+      ],
+      "fidelityTier": "structural",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(188, 131, 59, 1)",
+        "secondaryAlbedo": "rgba(188, 131, 59, 1)",
+        "materialClass": "ceramic",
+        "materialClassConfidence": 0.8
+      }
+    },
+    {
+      "id": "finial",
+      "name": "Gourd finial",
+      "level": "meso",
+      "role": "architectural-assembly",
+      "importance": 0.85,
+      "confidence": 0.8,
+      "primitive": "lathe",
+      "topologyClass": "continuous-sculpt",
+      "topologyRationale": "Rotationally symmetric gourd follows a curved profile.",
+      "geometryDescriptor": {
+        "topologyIntent": "low-poly blockout with bevel-ready edges",
+        "edgeTreatment": {
+          "type": "none",
+          "bevelRadius": 0.0,
+          "segments": 1
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "vertex normals from generated geometry"
+      },
+      "parent": "roof-assembly",
+      "attachment": null,
+      "dimensions": {
+        "width": 3.2,
+        "height": 5,
+        "depth": 3.2,
+        "units": "m",
+        "confidence": 0.75
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.5
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "finial",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0.0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "ceramic",
+      "materialLayers": [
+        "ceramic"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "gourd-lobes",
+          "type": "contour",
+          "description": "Continuous three-lobed lathe profile and small red top bead",
+          "evidenceRefs": [
+            "full-object"
+          ],
+          "confidence": 0.8
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.0,
+        "microRoughness": 0.0,
+        "bumpAmplitude": 0.0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [
+        "Gourd finial"
+      ],
+      "fidelityTier": "structural",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(188, 131, 59, 1)",
+        "secondaryAlbedo": "rgba(188, 131, 59, 1)",
+        "materialClass": "ceramic",
+        "materialClassConfidence": 0.8
+      }
+    },
+    {
+      "id": "facade-detail",
+      "name": "Brackets railings and beam bands",
+      "level": "meso",
+      "role": "architectural-assembly",
+      "importance": 0.85,
+      "confidence": 0.8,
+      "primitive": "box",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Discrete structural assembly built with extruded chamfer polygons, cylinders and sampled roof surfaces.",
+      "geometryDescriptor": {
+        "topologyIntent": "low-poly blockout with bevel-ready edges",
+        "edgeTreatment": {
+          "type": "none",
+          "bevelRadius": 0.0,
+          "segments": 1
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "vertex normals from generated geometry"
+      },
+      "parent": "storeys",
+      "attachment": null,
+      "dimensions": {
+        "width": 30,
+        "height": 38,
+        "depth": 30,
+        "units": "m",
+        "confidence": 0.75
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.5
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "facade-detail",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0.0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "paint",
+      "materialLayers": [
+        "paint"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "rail-pattern",
+          "type": "linework",
+          "description": "Square meander pattern along balcony panels",
+          "evidenceRefs": [
+            "full-object"
+          ],
+          "confidence": 0.8
+        },
+        {
+          "id": "bracket-stack",
+          "type": "contour",
+          "description": "Layered bracket arms beneath each eave",
+          "evidenceRefs": [
+            "full-object"
+          ],
+          "confidence": 0.8
+        },
+        {
+          "id": "green-band",
+          "type": "linework",
+          "description": "Muted green beam insets",
+          "evidenceRefs": [
+            "full-object"
+          ],
+          "confidence": 0.8
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.0,
+        "microRoughness": 0.0,
+        "bumpAmplitude": 0.0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [
+        "Brackets railings and beam bands"
+      ],
+      "fidelityTier": "structural",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(80, 114, 103, 1)",
+        "secondaryAlbedo": "rgba(80, 114, 103, 1)",
+        "materialClass": "wood",
+        "materialClassConfidence": 0.8
+      }
+    },
+    {
+      "id": "entry-canopy",
+      "name": "Entry canopy",
+      "level": "meso",
+      "role": "architectural-assembly",
+      "importance": 0.85,
+      "confidence": 0.8,
+      "primitive": "box",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Discrete structural assembly built with extruded chamfer polygons, cylinders and sampled roof surfaces.",
+      "geometryDescriptor": {
+        "topologyIntent": "low-poly blockout with bevel-ready edges",
+        "edgeTreatment": {
+          "type": "none",
+          "bevelRadius": 0.0,
+          "segments": 1
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "vertex normals from generated geometry"
+      },
+      "parent": "foundation",
+      "attachment": null,
+      "dimensions": {
+        "width": 22,
+        "height": 8,
+        "depth": 9,
+        "units": "m",
+        "confidence": 0.75
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.5
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "Replace with sphere/capsule/compound proxy when the object shape demands it."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "entry-canopy",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0.0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "ceramic",
+      "materialLayers": [
+        "ceramic"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "entry-gable",
+          "type": "contour",
+          "description": "Separate low canopy over entrance",
+          "evidenceRefs": [
+            "full-object"
+          ],
+          "confidence": 0.8
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.0,
+        "microRoughness": 0.0,
+        "bumpAmplitude": 0.0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [
+        "Entry canopy"
+      ],
+      "fidelityTier": "structural",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(188, 131, 59, 1)",
+        "secondaryAlbedo": "rgba(188, 131, 59, 1)",
+        "materialClass": "ceramic",
+        "materialClassConfidence": 0.8
+      }
+    }
+  ],
+  "materials": [
+    {
+      "id": "wood",
+      "name": "wood",
+      "type": "standard",
+      "shaderModel": "MeshStandardMaterial / PBR approximation",
+      "baseColor": "#a65b40",
+      "color": "#a65b40",
+      "albedo": {
+        "dominant": "#E8B28F",
+        "secondary": [
+          "#E4A672",
+          "#996A4E",
+          "#C58C68"
+        ],
+        "samplingNotes": "Reference-derived from foreground pixels; de-lit to reduce baked shadows/highlights.",
+        "map": {
+          "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/wood/wood_albedo.png",
+          "url": "wood_albedo.png",
+          "channel": "albedo",
+          "source": "reference-pixel-extraction"
+        }
+      },
+      "colorVariation": {
+        "palette": [
+          "#E8B28F",
+          "#E4A672",
+          "#996A4E",
+          "#C58C68",
+          "#57403A"
+        ],
+        "pattern": "reference-derived pixel palette",
+        "amplitude": 0.22,
+        "heightCorrelation": 0.42
+      },
+      "textureResolution": 1024,
+      "textureProjection": {
+        "mode": "uv",
+        "repeat": [
+          2.0,
+          2.0
+        ],
+        "anisotropy": 8,
+        "texelDensityIntent": "Preserve stable world/object-scale detail; do not stretch micro detail with component scale."
+      },
+      "surfaceFrequencyBands": [
+        {
+          "id": "macro",
+          "frequency": 2.0,
+          "amplitude": 0.463,
+          "role": "reference-derived broad albedo and height breakup"
+        },
+        {
+          "id": "meso",
+          "frequency": 14.0,
+          "amplitude": 0.35,
+          "role": "reference-derived cracks, ridges, pores, grain, or leaf clusters"
+        },
+        {
+          "id": "micro",
+          "frequency": 72.0,
+          "amplitude": 0.14,
+          "role": "reference-derived micro highlight breakup under grazing light"
+        }
+      ],
+      "roughness": {
+        "base": 0.775,
+        "variation": 0.219,
+        "map": {
+          "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/wood/wood_roughness.png",
+          "url": "wood_roughness.png",
+          "channel": "roughness",
+          "source": "reference-pixel-extraction"
+        },
+        "localResponse": "reference-derived roughness estimate; cavities and textured zones trend rougher, bright highlights trend smoother"
+      },
+      "metalness": {
+        "base": 0.0,
+        "variation": 0.0
+      },
+      "normal": {
+        "pattern": "reference-derived height-gradient normal map",
+        "strength": 0.41,
+        "map": {
+          "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/wood/wood_normal.png",
+          "url": "wood_normal.png",
+          "channel": "normal",
+          "source": "reference-pixel-extraction"
+        },
+        "heightSource": {
+          "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/wood/wood_height.png",
+          "url": "wood_height.png",
+          "channel": "height",
+          "source": "reference-pixel-extraction"
+        },
+        "space": "tangent"
+      },
+      "bump": {
+        "pattern": "reference-derived height field",
+        "amplitude": 0.08,
+        "map": {
+          "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/wood/wood_height.png",
+          "url": "wood_height.png",
+          "channel": "height",
+          "source": "reference-pixel-extraction"
+        }
+      },
+      "displacement": {
+        "pattern": "none",
+        "amplitude": 0.0,
+        "scale": 1.0,
+        "silhouetteAffects": false
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.38,
+        "contactShadowBias": 0.35,
+        "map": {
+          "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/wood/wood_ao.png",
+          "url": "wood_ao.png",
+          "channel": "ao",
+          "source": "reference-pixel-extraction"
+        },
+        "notes": "Reference-derived cavity estimate from local height minima; verify against grazing-light screenshot."
+      },
+      "wear": {
+        "edgeWear": 0.0,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0.0,
+        "cavityBias": 0.0,
+        "color": "#2F2A22"
+      },
+      "localOverrides": [
+        {
+          "id": "wood-variation",
+          "region": "whole-part",
+          "baseColor": "#a65b40",
+          "roughness": 0.76,
+          "notes": "Restrained deterministic per-element shade variation."
+        },
+        {
+          "id": "reference-pbr-pixel-evidence",
+          "type": "material-map-evidence",
+          "evidenceRefs": [
+            "full-object"
+          ],
+          "channels": [
+            "albedo",
+            "roughness",
+            "height",
+            "normal",
+            "ambient-occlusion"
+          ],
+          "notes": "Use generated maps as material evidence, then refine after browser screenshot comparison."
+        }
+      ],
+      "shaderNotes": [
+        "Prefer MeshPhysicalMaterial when clearcoat, sheen, transmission, or thin-surface response is observed; otherwise use MeshStandardMaterial-compatible PBR channels.",
+        "Generate albedo, roughness, height/normal, and AO independently; never alias albedo into roughness.",
+        "Use normal/bump/displacement only when they map to observed surface relief.",
+        "Use displacement geometry when the observed relief changes the close-up silhouette; texture-only relief is insufficient there.",
+        "Reference-derived maps are estimates from image pixels; verify with neutral, grazing, and reference-matched renders.",
+        "Do not treat baked image shadows as final albedo; rerun extraction with a tighter material crop if highlights/shadows pollute the maps."
+      ],
+      "notes": "Reference-inspired procedural colors; exact albedo/roughness not recoverable from one lit photograph.",
+      "referencePbr": {
+        "version": "1.0",
+        "sourceImage": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/references/wood.png",
+        "extractor": "stage1_intake/extract_pbr_evidence.py",
+        "method": "single-image pixel evidence with de-lighting estimate; not photogrammetry",
+        "usable": true,
+        "verdict": "pass",
+        "confidence": 0.86,
+        "estimatedFidelity": 0.86,
+        "targetThreshold": 0.7,
+        "hardLimit": "A single image cannot uniquely recover true albedo/roughness/normal/AO; maps are reference-derived estimates.",
+        "maps": {
+          "albedo": {
+            "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/wood/wood_albedo.png",
+            "url": "wood_albedo.png",
+            "channel": "albedo",
+            "source": "reference-pixel-extraction"
+          },
+          "roughness": {
+            "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/wood/wood_roughness.png",
+            "url": "wood_roughness.png",
+            "channel": "roughness",
+            "source": "reference-pixel-extraction"
+          },
+          "height": {
+            "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/wood/wood_height.png",
+            "url": "wood_height.png",
+            "channel": "height",
+            "source": "reference-pixel-extraction"
+          },
+          "normal": {
+            "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/wood/wood_normal.png",
+            "url": "wood_normal.png",
+            "channel": "normal",
+            "source": "reference-pixel-extraction"
+          },
+          "ao": {
+            "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/wood/wood_ao.png",
+            "url": "wood_ao.png",
+            "channel": "ao",
+            "source": "reference-pixel-extraction"
+          }
+        },
+        "diagnostics": {
+          "sourceWidth": 22,
+          "sourceHeight": 170,
+          "mapSize": 256,
+          "cropBBoxPixels": {
+            "x": 0,
+            "y": 0,
+            "width": 22,
+            "height": 170
+          },
+          "mask": {
+            "backgroundColor": "#6C5348",
+            "backgroundNoise": 60.737,
+            "transparentPixelFraction": 0.0,
+            "foregroundCoverage": 0.715
+          },
+          "mapStats": {
+            "valueRange": 0.5234,
+            "heightP90Gradient": 0.21688,
+            "roughnessBase": 0.775,
+            "roughnessVariation": 0.219,
+            "normalStrength": 0.41,
+            "blurRadius": 5
+          },
+          "palette": [
+            "#E8B28F",
+            "#E4A672",
+            "#996A4E",
+            "#C58C68",
+            "#57403A"
+          ]
+        },
+        "warnings": [
+          "single-image inverse rendering cannot prove true physical PBR; confidence is capped"
+        ]
+      }
+    },
+    {
+      "id": "stone",
+      "name": "stone",
+      "type": "standard",
+      "shaderModel": "MeshStandardMaterial / PBR approximation",
+      "baseColor": "#d2c5ac",
+      "color": "#d2c5ac",
+      "albedo": {
+        "dominant": "#D39A81",
+        "secondary": [
+          "#B8836E",
+          "#E0A891",
+          "#915E4D"
+        ],
+        "samplingNotes": "Reference-derived from foreground pixels; de-lit to reduce baked shadows/highlights.",
+        "map": {
+          "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/stone/stone_albedo.png",
+          "url": "stone_albedo.png",
+          "channel": "albedo",
+          "source": "reference-pixel-extraction"
+        }
+      },
+      "colorVariation": {
+        "palette": [
+          "#D39A81",
+          "#B8836E",
+          "#E0A891",
+          "#915E4D",
+          "#5D2C22"
+        ],
+        "pattern": "reference-derived pixel palette",
+        "amplitude": 0.215,
+        "heightCorrelation": 0.42
+      },
+      "textureResolution": 1024,
+      "textureProjection": {
+        "mode": "uv",
+        "repeat": [
+          2.0,
+          2.0
+        ],
+        "anisotropy": 8,
+        "texelDensityIntent": "Preserve stable world/object-scale detail; do not stretch micro detail with component scale."
+      },
+      "surfaceFrequencyBands": [
+        {
+          "id": "macro",
+          "frequency": 2.0,
+          "amplitude": 0.459,
+          "role": "reference-derived broad albedo and height breakup"
+        },
+        {
+          "id": "meso",
+          "frequency": 14.0,
+          "amplitude": 0.35,
+          "role": "reference-derived cracks, ridges, pores, grain, or leaf clusters"
+        },
+        {
+          "id": "micro",
+          "frequency": 72.0,
+          "amplitude": 0.14,
+          "role": "reference-derived micro highlight breakup under grazing light"
+        }
+      ],
+      "roughness": {
+        "base": 0.88,
+        "variation": 0.159,
+        "map": {
+          "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/stone/stone_roughness.png",
+          "url": "stone_roughness.png",
+          "channel": "roughness",
+          "source": "reference-pixel-extraction"
+        },
+        "localResponse": "reference-derived roughness estimate; cavities and textured zones trend rougher, bright highlights trend smoother"
+      },
+      "metalness": {
+        "base": 0.0,
+        "variation": 0.0
+      },
+      "normal": {
+        "pattern": "reference-derived height-gradient normal map",
+        "strength": 0.594,
+        "map": {
+          "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/stone/stone_normal.png",
+          "url": "stone_normal.png",
+          "channel": "normal",
+          "source": "reference-pixel-extraction"
+        },
+        "heightSource": {
+          "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/stone/stone_height.png",
+          "url": "stone_height.png",
+          "channel": "height",
+          "source": "reference-pixel-extraction"
+        },
+        "space": "tangent"
+      },
+      "bump": {
+        "pattern": "reference-derived height field",
+        "amplitude": 0.08,
+        "map": {
+          "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/stone/stone_height.png",
+          "url": "stone_height.png",
+          "channel": "height",
+          "source": "reference-pixel-extraction"
+        }
+      },
+      "displacement": {
+        "pattern": "none",
+        "amplitude": 0.0,
+        "scale": 1.0,
+        "silhouetteAffects": false
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.38,
+        "contactShadowBias": 0.35,
+        "map": {
+          "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/stone/stone_ao.png",
+          "url": "stone_ao.png",
+          "channel": "ao",
+          "source": "reference-pixel-extraction"
+        },
+        "notes": "Reference-derived cavity estimate from local height minima; verify against grazing-light screenshot."
+      },
+      "wear": {
+        "edgeWear": 0.0,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0.0,
+        "cavityBias": 0.0,
+        "color": "#2F2A22"
+      },
+      "localOverrides": [
+        {
+          "id": "stone-variation",
+          "region": "whole-part",
+          "baseColor": "#d2c5ac",
+          "roughness": 0.94,
+          "notes": "Restrained deterministic per-element shade variation."
+        },
+        {
+          "id": "reference-pbr-pixel-evidence",
+          "type": "material-map-evidence",
+          "evidenceRefs": [
+            "full-object"
+          ],
+          "channels": [
+            "albedo",
+            "roughness",
+            "height",
+            "normal",
+            "ambient-occlusion"
+          ],
+          "notes": "Use generated maps as material evidence, then refine after browser screenshot comparison."
+        }
+      ],
+      "shaderNotes": [
+        "Prefer MeshPhysicalMaterial when clearcoat, sheen, transmission, or thin-surface response is observed; otherwise use MeshStandardMaterial-compatible PBR channels.",
+        "Generate albedo, roughness, height/normal, and AO independently; never alias albedo into roughness.",
+        "Use normal/bump/displacement only when they map to observed surface relief.",
+        "Use displacement geometry when the observed relief changes the close-up silhouette; texture-only relief is insufficient there.",
+        "Reference-derived maps are estimates from image pixels; verify with neutral, grazing, and reference-matched renders.",
+        "Do not treat baked image shadows as final albedo; rerun extraction with a tighter material crop if highlights/shadows pollute the maps."
+      ],
+      "notes": "Reference-inspired procedural colors; exact albedo/roughness not recoverable from one lit photograph.",
+      "referencePbr": {
+        "version": "1.0",
+        "sourceImage": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/references/stone.png",
+        "extractor": "stage1_intake/extract_pbr_evidence.py",
+        "method": "single-image pixel evidence with de-lighting estimate; not photogrammetry",
+        "usable": true,
+        "verdict": "pass",
+        "confidence": 0.829,
+        "estimatedFidelity": 0.829,
+        "targetThreshold": 0.7,
+        "hardLimit": "A single image cannot uniquely recover true albedo/roughness/normal/AO; maps are reference-derived estimates.",
+        "maps": {
+          "albedo": {
+            "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/stone/stone_albedo.png",
+            "url": "stone_albedo.png",
+            "channel": "albedo",
+            "source": "reference-pixel-extraction"
+          },
+          "roughness": {
+            "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/stone/stone_roughness.png",
+            "url": "stone_roughness.png",
+            "channel": "roughness",
+            "source": "reference-pixel-extraction"
+          },
+          "height": {
+            "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/stone/stone_height.png",
+            "url": "stone_height.png",
+            "channel": "height",
+            "source": "reference-pixel-extraction"
+          },
+          "normal": {
+            "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/stone/stone_normal.png",
+            "url": "stone_normal.png",
+            "channel": "normal",
+            "source": "reference-pixel-extraction"
+          },
+          "ao": {
+            "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/stone/stone_ao.png",
+            "url": "stone_ao.png",
+            "channel": "ao",
+            "source": "reference-pixel-extraction"
+          }
+        },
+        "diagnostics": {
+          "sourceWidth": 210,
+          "sourceHeight": 28,
+          "mapSize": 256,
+          "cropBBoxPixels": {
+            "x": 0,
+            "y": 0,
+            "width": 210,
+            "height": 28
+          },
+          "mask": {
+            "backgroundColor": "#B88D77",
+            "backgroundNoise": 41.964,
+            "transparentPixelFraction": 0.0,
+            "foregroundCoverage": 0.9978
+          },
+          "mapStats": {
+            "valueRange": 0.5109,
+            "heightP90Gradient": 0.40847,
+            "roughnessBase": 0.88,
+            "roughnessVariation": 0.159,
+            "normalStrength": 0.594,
+            "blurRadius": 5
+          },
+          "palette": [
+            "#D39A81",
+            "#B8836E",
+            "#E0A891",
+            "#915E4D",
+            "#5D2C22"
+          ]
+        },
+        "warnings": [
+          "image is not clearly isolated from background; using most pixels as material evidence",
+          "object/background separation is weak",
+          "single-image inverse rendering cannot prove true physical PBR; confidence is capped"
+        ]
+      }
+    },
+    {
+      "id": "ceramic",
+      "name": "ceramic",
+      "type": "standard",
+      "shaderModel": "MeshStandardMaterial / PBR approximation",
+      "baseColor": "#bc833b",
+      "color": "#bc833b",
+      "albedo": {
+        "dominant": "#E7A771",
+        "secondary": [
+          "#C28B64",
+          "#99684C",
+          "#664537"
+        ],
+        "samplingNotes": "Reference-derived from foreground pixels; de-lit to reduce baked shadows/highlights.",
+        "map": {
+          "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/ceramic/ceramic_albedo.png",
+          "url": "ceramic_albedo.png",
+          "channel": "albedo",
+          "source": "reference-pixel-extraction"
+        }
+      },
+      "colorVariation": {
+        "palette": [
+          "#E7A771",
+          "#C28B64",
+          "#99684C",
+          "#664537",
+          "#BCBFC2"
+        ],
+        "pattern": "reference-derived pixel palette",
+        "amplitude": 0.197,
+        "heightCorrelation": 0.42
+      },
+      "textureResolution": 1024,
+      "textureProjection": {
+        "mode": "uv",
+        "repeat": [
+          2.0,
+          2.0
+        ],
+        "anisotropy": 8,
+        "texelDensityIntent": "Preserve stable world/object-scale detail; do not stretch micro detail with component scale."
+      },
+      "surfaceFrequencyBands": [
+        {
+          "id": "macro",
+          "frequency": 2.0,
+          "amplitude": 0.444,
+          "role": "reference-derived broad albedo and height breakup"
+        },
+        {
+          "id": "meso",
+          "frequency": 14.0,
+          "amplitude": 0.35,
+          "role": "reference-derived cracks, ridges, pores, grain, or leaf clusters"
+        },
+        {
+          "id": "micro",
+          "frequency": 72.0,
+          "amplitude": 0.14,
+          "role": "reference-derived micro highlight breakup under grazing light"
+        }
+      ],
+      "roughness": {
+        "base": 0.775,
+        "variation": 0.201,
+        "map": {
+          "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/ceramic/ceramic_roughness.png",
+          "url": "ceramic_roughness.png",
+          "channel": "roughness",
+          "source": "reference-pixel-extraction"
+        },
+        "localResponse": "reference-derived roughness estimate; cavities and textured zones trend rougher, bright highlights trend smoother"
+      },
+      "metalness": {
+        "base": 0.0,
+        "variation": 0.0
+      },
+      "normal": {
+        "pattern": "reference-derived height-gradient normal map",
+        "strength": 0.283,
+        "map": {
+          "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/ceramic/ceramic_normal.png",
+          "url": "ceramic_normal.png",
+          "channel": "normal",
+          "source": "reference-pixel-extraction"
+        },
+        "heightSource": {
+          "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/ceramic/ceramic_height.png",
+          "url": "ceramic_height.png",
+          "channel": "height",
+          "source": "reference-pixel-extraction"
+        },
+        "space": "tangent"
+      },
+      "bump": {
+        "pattern": "reference-derived height field",
+        "amplitude": 0.049,
+        "map": {
+          "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/ceramic/ceramic_height.png",
+          "url": "ceramic_height.png",
+          "channel": "height",
+          "source": "reference-pixel-extraction"
+        }
+      },
+      "displacement": {
+        "pattern": "none",
+        "amplitude": 0.0,
+        "scale": 1.0,
+        "silhouetteAffects": false
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.38,
+        "contactShadowBias": 0.35,
+        "map": {
+          "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/ceramic/ceramic_ao.png",
+          "url": "ceramic_ao.png",
+          "channel": "ao",
+          "source": "reference-pixel-extraction"
+        },
+        "notes": "Reference-derived cavity estimate from local height minima; verify against grazing-light screenshot."
+      },
+      "wear": {
+        "edgeWear": 0.0,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0.0,
+        "cavityBias": 0.0,
+        "color": "#2F2A22"
+      },
+      "localOverrides": [
+        {
+          "id": "ceramic-variation",
+          "region": "whole-part",
+          "baseColor": "#bc833b",
+          "roughness": 0.54,
+          "notes": "Restrained deterministic per-element shade variation."
+        },
+        {
+          "id": "reference-pbr-pixel-evidence",
+          "type": "material-map-evidence",
+          "evidenceRefs": [
+            "full-object"
+          ],
+          "channels": [
+            "albedo",
+            "roughness",
+            "height",
+            "normal",
+            "ambient-occlusion"
+          ],
+          "notes": "Use generated maps as material evidence, then refine after browser screenshot comparison."
+        }
+      ],
+      "shaderNotes": [
+        "Prefer MeshPhysicalMaterial when clearcoat, sheen, transmission, or thin-surface response is observed; otherwise use MeshStandardMaterial-compatible PBR channels.",
+        "Generate albedo, roughness, height/normal, and AO independently; never alias albedo into roughness.",
+        "Use normal/bump/displacement only when they map to observed surface relief.",
+        "Use displacement geometry when the observed relief changes the close-up silhouette; texture-only relief is insufficient there.",
+        "Reference-derived maps are estimates from image pixels; verify with neutral, grazing, and reference-matched renders.",
+        "Do not treat baked image shadows as final albedo; rerun extraction with a tighter material crop if highlights/shadows pollute the maps."
+      ],
+      "notes": "Reference-inspired procedural colors; exact albedo/roughness not recoverable from one lit photograph.",
+      "referencePbr": {
+        "version": "1.0",
+        "sourceImage": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/references/ceramic.png",
+        "extractor": "stage1_intake/extract_pbr_evidence.py",
+        "method": "single-image pixel evidence with de-lighting estimate; not photogrammetry",
+        "usable": true,
+        "verdict": "pass",
+        "confidence": 0.86,
+        "estimatedFidelity": 0.86,
+        "targetThreshold": 0.7,
+        "hardLimit": "A single image cannot uniquely recover true albedo/roughness/normal/AO; maps are reference-derived estimates.",
+        "maps": {
+          "albedo": {
+            "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/ceramic/ceramic_albedo.png",
+            "url": "ceramic_albedo.png",
+            "channel": "albedo",
+            "source": "reference-pixel-extraction"
+          },
+          "roughness": {
+            "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/ceramic/ceramic_roughness.png",
+            "url": "ceramic_roughness.png",
+            "channel": "roughness",
+            "source": "reference-pixel-extraction"
+          },
+          "height": {
+            "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/ceramic/ceramic_height.png",
+            "url": "ceramic_height.png",
+            "channel": "height",
+            "source": "reference-pixel-extraction"
+          },
+          "normal": {
+            "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/ceramic/ceramic_normal.png",
+            "url": "ceramic_normal.png",
+            "channel": "normal",
+            "source": "reference-pixel-extraction"
+          },
+          "ao": {
+            "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/ceramic/ceramic_ao.png",
+            "url": "ceramic_ao.png",
+            "channel": "ao",
+            "source": "reference-pixel-extraction"
+          }
+        },
+        "diagnostics": {
+          "sourceWidth": 180,
+          "sourceHeight": 55,
+          "mapSize": 1024,
+          "cropBBoxPixels": {
+            "x": 0,
+            "y": 0,
+            "width": 180,
+            "height": 55
+          },
+          "mask": {
+            "backgroundColor": "#90874D",
+            "backgroundNoise": 135.573,
+            "transparentPixelFraction": 0.0,
+            "foregroundCoverage": 0.8172
+          },
+          "mapStats": {
+            "valueRange": 0.4692,
+            "heightP90Gradient": 0.10851,
+            "roughnessBase": 0.775,
+            "roughnessVariation": 0.201,
+            "normalStrength": 0.283,
+            "blurRadius": 21
+          },
+          "palette": [
+            "#E7A771",
+            "#C28B64",
+            "#99684C",
+            "#664537",
+            "#BCBFC2"
+          ]
+        },
+        "warnings": [
+          "single-image inverse rendering cannot prove true physical PBR; confidence is capped"
+        ]
+      }
+    },
+    {
+      "id": "paint",
+      "name": "paint",
+      "type": "standard",
+      "shaderModel": "MeshStandardMaterial / PBR approximation",
+      "baseColor": "#507267",
+      "color": "#507267",
+      "albedo": {
+        "dominant": "#55403F",
+        "secondary": [
+          "#654E4C",
+          "#A17466",
+          "#382F34"
+        ],
+        "samplingNotes": "Reference-derived from foreground pixels; de-lit to reduce baked shadows/highlights.",
+        "map": {
+          "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/paint/paint_albedo.png",
+          "url": "paint_albedo.png",
+          "channel": "albedo",
+          "source": "reference-pixel-extraction"
+        }
+      },
+      "colorVariation": {
+        "palette": [
+          "#55403F",
+          "#654E4C",
+          "#A17466",
+          "#382F34",
+          "#845A51"
+        ],
+        "pattern": "reference-derived pixel palette",
+        "amplitude": 0.137,
+        "heightCorrelation": 0.42
+      },
+      "textureResolution": 1024,
+      "textureProjection": {
+        "mode": "uv",
+        "repeat": [
+          2.0,
+          2.0
+        ],
+        "anisotropy": 8,
+        "texelDensityIntent": "Preserve stable world/object-scale detail; do not stretch micro detail with component scale."
+      },
+      "surfaceFrequencyBands": [
+        {
+          "id": "macro",
+          "frequency": 2.0,
+          "amplitude": 0.394,
+          "role": "reference-derived broad albedo and height breakup"
+        },
+        {
+          "id": "meso",
+          "frequency": 14.0,
+          "amplitude": 0.337,
+          "role": "reference-derived cracks, ridges, pores, grain, or leaf clusters"
+        },
+        {
+          "id": "micro",
+          "frequency": 72.0,
+          "amplitude": 0.14,
+          "role": "reference-derived micro highlight breakup under grazing light"
+        }
+      ],
+      "roughness": {
+        "base": 0.68,
+        "variation": 0.05,
+        "map": {
+          "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/paint/paint_roughness.png",
+          "url": "paint_roughness.png",
+          "channel": "roughness",
+          "source": "reference-pixel-extraction"
+        },
+        "localResponse": "reference-derived roughness estimate; cavities and textured zones trend rougher, bright highlights trend smoother"
+      },
+      "metalness": {
+        "base": 0.0,
+        "variation": 0.0
+      },
+      "normal": {
+        "pattern": "reference-derived height-gradient normal map",
+        "strength": 0.208,
+        "map": {
+          "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/paint/paint_normal.png",
+          "url": "paint_normal.png",
+          "channel": "normal",
+          "source": "reference-pixel-extraction"
+        },
+        "heightSource": {
+          "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/paint/paint_height.png",
+          "url": "paint_height.png",
+          "channel": "height",
+          "source": "reference-pixel-extraction"
+        },
+        "space": "tangent"
+      },
+      "bump": {
+        "pattern": "reference-derived height field",
+        "amplitude": 0.02,
+        "map": {
+          "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/paint/paint_height.png",
+          "url": "paint_height.png",
+          "channel": "height",
+          "source": "reference-pixel-extraction"
+        }
+      },
+      "displacement": {
+        "pattern": "none",
+        "amplitude": 0.0,
+        "scale": 1.0,
+        "silhouetteAffects": false
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.38,
+        "contactShadowBias": 0.35,
+        "map": {
+          "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/paint/paint_ao.png",
+          "url": "paint_ao.png",
+          "channel": "ao",
+          "source": "reference-pixel-extraction"
+        },
+        "notes": "Reference-derived cavity estimate from local height minima; verify against grazing-light screenshot."
+      },
+      "wear": {
+        "edgeWear": 0.0,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0.0,
+        "cavityBias": 0.0,
+        "color": "#2F2A22"
+      },
+      "localOverrides": [
+        {
+          "id": "paint-variation",
+          "region": "whole-part",
+          "baseColor": "#507267",
+          "roughness": 0.85,
+          "notes": "Restrained deterministic per-element shade variation."
+        },
+        {
+          "id": "reference-pbr-pixel-evidence",
+          "type": "material-map-evidence",
+          "evidenceRefs": [
+            "full-object"
+          ],
+          "channels": [
+            "albedo",
+            "roughness",
+            "height",
+            "normal",
+            "ambient-occlusion"
+          ],
+          "notes": "Use generated maps as material evidence, then refine after browser screenshot comparison."
+        }
+      ],
+      "shaderNotes": [
+        "Prefer MeshPhysicalMaterial when clearcoat, sheen, transmission, or thin-surface response is observed; otherwise use MeshStandardMaterial-compatible PBR channels.",
+        "Generate albedo, roughness, height/normal, and AO independently; never alias albedo into roughness.",
+        "Use normal/bump/displacement only when they map to observed surface relief.",
+        "Use displacement geometry when the observed relief changes the close-up silhouette; texture-only relief is insufficient there.",
+        "Reference-derived maps are estimates from image pixels; verify with neutral, grazing, and reference-matched renders.",
+        "Do not treat baked image shadows as final albedo; rerun extraction with a tighter material crop if highlights/shadows pollute the maps."
+      ],
+      "notes": "Reference-inspired procedural colors; exact albedo/roughness not recoverable from one lit photograph.",
+      "referencePbr": {
+        "version": "1.0",
+        "sourceImage": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/references/paint.png",
+        "extractor": "stage1_intake/extract_pbr_evidence.py",
+        "method": "single-image pixel evidence with de-lighting estimate; not photogrammetry",
+        "usable": true,
+        "verdict": "pass",
+        "confidence": 0.86,
+        "estimatedFidelity": 0.86,
+        "targetThreshold": 0.7,
+        "hardLimit": "A single image cannot uniquely recover true albedo/roughness/normal/AO; maps are reference-derived estimates.",
+        "maps": {
+          "albedo": {
+            "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/paint/paint_albedo.png",
+            "url": "paint_albedo.png",
+            "channel": "albedo",
+            "source": "reference-pixel-extraction"
+          },
+          "roughness": {
+            "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/paint/paint_roughness.png",
+            "url": "paint_roughness.png",
+            "channel": "roughness",
+            "source": "reference-pixel-extraction"
+          },
+          "height": {
+            "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/paint/paint_height.png",
+            "url": "paint_height.png",
+            "channel": "height",
+            "source": "reference-pixel-extraction"
+          },
+          "normal": {
+            "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/paint/paint_normal.png",
+            "url": "paint_normal.png",
+            "channel": "normal",
+            "source": "reference-pixel-extraction"
+          },
+          "ao": {
+            "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/paint/paint_ao.png",
+            "url": "paint_ao.png",
+            "channel": "ao",
+            "source": "reference-pixel-extraction"
+          }
+        },
+        "diagnostics": {
+          "sourceWidth": 120,
+          "sourceHeight": 15,
+          "mapSize": 256,
+          "cropBBoxPixels": {
+            "x": 17,
+            "y": 0,
+            "width": 103,
+            "height": 15
+          },
+          "mask": {
+            "backgroundColor": "#4C4E48",
+            "backgroundNoise": 47.424,
+            "transparentPixelFraction": 0.0,
+            "foregroundCoverage": 0.0944
+          },
+          "mapStats": {
+            "valueRange": 0.3257,
+            "heightP90Gradient": 0.04458,
+            "roughnessBase": 0.68,
+            "roughnessVariation": 0.05,
+            "normalStrength": 0.208,
+            "blurRadius": 5
+          },
+          "palette": [
+            "#55403F",
+            "#654E4C",
+            "#A17466",
+            "#382F34",
+            "#845A51"
+          ]
+        },
+        "warnings": [
+          "single-image inverse rendering cannot prove true physical PBR; confidence is capped"
+        ]
+      }
+    },
+    {
+      "id": "dark",
+      "name": "dark",
+      "type": "standard",
+      "shaderModel": "MeshStandardMaterial / PBR approximation",
+      "baseColor": "#30251e",
+      "color": "#30251e",
+      "albedo": {
+        "dominant": "#C59883",
+        "secondary": [
+          "#DEAE98",
+          "#342A2C",
+          "#946F61"
+        ],
+        "samplingNotes": "Reference-derived from foreground pixels; de-lit to reduce baked shadows/highlights.",
+        "map": {
+          "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/dark/dark_albedo.png",
+          "url": "dark_albedo.png",
+          "channel": "albedo",
+          "source": "reference-pixel-extraction"
+        }
+      },
+      "colorVariation": {
+        "palette": [
+          "#C59883",
+          "#DEAE98",
+          "#342A2C",
+          "#946F61",
+          "#684D46"
+        ],
+        "pattern": "reference-derived pixel palette",
+        "amplitude": 0.245,
+        "heightCorrelation": 0.42
+      },
+      "textureResolution": 1024,
+      "textureProjection": {
+        "mode": "uv",
+        "repeat": [
+          2.0,
+          2.0
+        ],
+        "anisotropy": 8,
+        "texelDensityIntent": "Preserve stable world/object-scale detail; do not stretch micro detail with component scale."
+      },
+      "surfaceFrequencyBands": [
+        {
+          "id": "macro",
+          "frequency": 2.0,
+          "amplitude": 0.484,
+          "role": "reference-derived broad albedo and height breakup"
+        },
+        {
+          "id": "meso",
+          "frequency": 14.0,
+          "amplitude": 0.35,
+          "role": "reference-derived cracks, ridges, pores, grain, or leaf clusters"
+        },
+        {
+          "id": "micro",
+          "frequency": 72.0,
+          "amplitude": 0.14,
+          "role": "reference-derived micro highlight breakup under grazing light"
+        }
+      ],
+      "roughness": {
+        "base": 0.769,
+        "variation": 0.22,
+        "map": {
+          "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/dark/dark_roughness.png",
+          "url": "dark_roughness.png",
+          "channel": "roughness",
+          "source": "reference-pixel-extraction"
+        },
+        "localResponse": "reference-derived roughness estimate; cavities and textured zones trend rougher, bright highlights trend smoother"
+      },
+      "metalness": {
+        "base": 0.0,
+        "variation": 0.0
+      },
+      "normal": {
+        "pattern": "reference-derived height-gradient normal map",
+        "strength": 0.394,
+        "map": {
+          "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/dark/dark_normal.png",
+          "url": "dark_normal.png",
+          "channel": "normal",
+          "source": "reference-pixel-extraction"
+        },
+        "heightSource": {
+          "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/dark/dark_height.png",
+          "url": "dark_height.png",
+          "channel": "height",
+          "source": "reference-pixel-extraction"
+        },
+        "space": "tangent"
+      },
+      "bump": {
+        "pattern": "reference-derived height field",
+        "amplitude": 0.08,
+        "map": {
+          "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/dark/dark_height.png",
+          "url": "dark_height.png",
+          "channel": "height",
+          "source": "reference-pixel-extraction"
+        }
+      },
+      "displacement": {
+        "pattern": "none",
+        "amplitude": 0.0,
+        "scale": 1.0,
+        "silhouetteAffects": false
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.38,
+        "contactShadowBias": 0.35,
+        "map": {
+          "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/dark/dark_ao.png",
+          "url": "dark_ao.png",
+          "channel": "ao",
+          "source": "reference-pixel-extraction"
+        },
+        "notes": "Reference-derived cavity estimate from local height minima; verify against grazing-light screenshot."
+      },
+      "wear": {
+        "edgeWear": 0.0,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0.0,
+        "cavityBias": 0.0,
+        "color": "#2F2A22"
+      },
+      "localOverrides": [
+        {
+          "id": "dark-variation",
+          "region": "whole-part",
+          "baseColor": "#30251e",
+          "roughness": 0.92,
+          "notes": "Restrained deterministic per-element shade variation."
+        },
+        {
+          "id": "reference-pbr-pixel-evidence",
+          "type": "material-map-evidence",
+          "evidenceRefs": [
+            "full-object"
+          ],
+          "channels": [
+            "albedo",
+            "roughness",
+            "height",
+            "normal",
+            "ambient-occlusion"
+          ],
+          "notes": "Use generated maps as material evidence, then refine after browser screenshot comparison."
+        }
+      ],
+      "shaderNotes": [
+        "Prefer MeshPhysicalMaterial when clearcoat, sheen, transmission, or thin-surface response is observed; otherwise use MeshStandardMaterial-compatible PBR channels.",
+        "Generate albedo, roughness, height/normal, and AO independently; never alias albedo into roughness.",
+        "Use normal/bump/displacement only when they map to observed surface relief.",
+        "Use displacement geometry when the observed relief changes the close-up silhouette; texture-only relief is insufficient there.",
+        "Reference-derived maps are estimates from image pixels; verify with neutral, grazing, and reference-matched renders.",
+        "Do not treat baked image shadows as final albedo; rerun extraction with a tighter material crop if highlights/shadows pollute the maps."
+      ],
+      "notes": "Reference-inspired procedural colors; exact albedo/roughness not recoverable from one lit photograph.",
+      "referencePbr": {
+        "version": "1.0",
+        "sourceImage": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/references/dark.png",
+        "extractor": "stage1_intake/extract_pbr_evidence.py",
+        "method": "single-image pixel evidence with de-lighting estimate; not photogrammetry",
+        "usable": true,
+        "verdict": "pass",
+        "confidence": 0.86,
+        "estimatedFidelity": 0.86,
+        "targetThreshold": 0.7,
+        "hardLimit": "A single image cannot uniquely recover true albedo/roughness/normal/AO; maps are reference-derived estimates.",
+        "maps": {
+          "albedo": {
+            "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/dark/dark_albedo.png",
+            "url": "dark_albedo.png",
+            "channel": "albedo",
+            "source": "reference-pixel-extraction"
+          },
+          "roughness": {
+            "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/dark/dark_roughness.png",
+            "url": "dark_roughness.png",
+            "channel": "roughness",
+            "source": "reference-pixel-extraction"
+          },
+          "height": {
+            "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/dark/dark_height.png",
+            "url": "dark_height.png",
+            "channel": "height",
+            "source": "reference-pixel-extraction"
+          },
+          "normal": {
+            "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/dark/dark_normal.png",
+            "url": "dark_normal.png",
+            "channel": "normal",
+            "source": "reference-pixel-extraction"
+          },
+          "ao": {
+            "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/dark/dark_ao.png",
+            "url": "dark_ao.png",
+            "channel": "ao",
+            "source": "reference-pixel-extraction"
+          }
+        },
+        "diagnostics": {
+          "sourceWidth": 80,
+          "sourceHeight": 45,
+          "mapSize": 256,
+          "cropBBoxPixels": {
+            "x": 0,
+            "y": 0,
+            "width": 80,
+            "height": 45
+          },
+          "mask": {
+            "backgroundColor": "#7F5448",
+            "backgroundNoise": 79.246,
+            "transparentPixelFraction": 0.0,
+            "foregroundCoverage": 0.43
+          },
+          "mapStats": {
+            "valueRange": 0.5833,
+            "heightP90Gradient": 0.20256,
+            "roughnessBase": 0.769,
+            "roughnessVariation": 0.22,
+            "normalStrength": 0.394,
+            "blurRadius": 5
+          },
+          "palette": [
+            "#C59883",
+            "#DEAE98",
+            "#342A2C",
+            "#946F61",
+            "#684D46"
+          ]
+        },
+        "warnings": [
+          "single-image inverse rendering cannot prove true physical PBR; confidence is capped"
+        ]
+      }
+    }
+  ],
+  "repetitionSystems": [
+    {
+      "id": "columns",
+      "componentRefs": [
+        "storey-1",
+        "storey-2",
+        "storey-3",
+        "storey-4",
+        "storey-5"
+      ],
+      "distribution": "along eight clipped-square facade edges, shared corner positions deduplicated",
+      "count": 100,
+      "buildsGeometry": true
+    },
+    {
+      "id": "tile-flutes",
+      "componentRefs": [
+        "roof-1",
+        "roof-2",
+        "roof-3",
+        "roof-4",
+        "roof-5"
+      ],
+      "distribution": "parallel strips swept from eave to roof ridge on four hip faces and eight gable surfaces",
+      "count": 900,
+      "buildsGeometry": true
+    },
+    {
+      "id": "rail-pattern",
+      "componentRefs": [
+        "facade-detail"
+      ],
+      "distribution": "regular gallery bays, repeated square meander relief",
+      "count": 160,
+      "buildsGeometry": true
+    }
+  ],
+  "buildPasses": [
+    {
+      "id": "blockout",
+      "goal": "Match macro silhouette and proportions.",
+      "componentRefs": [
+        "root"
+      ],
+      "acceptance": [
+        "Silhouette reads correctly without materials.",
+        "Quality contract has named all required macro feature groups before code generation.",
+        "AI vision comparison score meets selfCorrectLoop.visualAcceptance.threshold."
+      ]
+    },
+    {
+      "id": "structural-pass",
+      "goal": "Build the component hierarchy implied by the pre-spec complexity assessment.",
+      "componentRefs": [
+        "root"
+      ],
+      "acceptance": [
+        "Macro, meso, and repeated structures meet qualityContract.minimumSpecDepth.",
+        "Parent-child relations, joints, seams, sockets, and contact points are explicit.",
+        "Every attached child appendage/connector has parentSocket, localStart/localEnd, contactType, embedDepth or overlap, and gapTolerance.",
+        "AI vision comparison score meets selfCorrectLoop.visualAcceptance.threshold."
+      ]
+    },
+    {
+      "id": "form-refinement",
+      "goal": "Refine shape, deformation, bevels, tapers, curves, asymmetry, and visible local geometry.",
+      "componentRefs": [
+        "root"
+      ],
+      "acceptance": [
+        "Important visible forms are represented in component geometryDescriptor, deformations, localFeatures, or repetitionSystems.",
+        "Endpoint-based child parts are rooted at their attachment sockets and do not visibly float away from parents.",
+        "AI vision comparison score meets selfCorrectLoop.visualAcceptance.threshold."
+      ]
+    },
+    {
+      "id": "material-pass",
+      "goal": "Match material color, roughness, bump, and local variation.",
+      "componentRefs": [
+        "root"
+      ],
+      "acceptance": [
+        "Reference-derived albedo palette records dominant, secondary, and accent colors per visible material.",
+        "Each important material defines roughness variation and at least one normal/bump/displacement response.",
+        "Local material overrides, dirt/wear/stains/moss/chips/scratches or equivalent masks are tied to evidenceRefs.",
+        "Thin, transparent, reflective, wet, or fibrous materials document alpha/transmission/clearcoat/metalness/fiber response when relevant.",
+        "Generated preview uses procedural albedo/roughness/bump texture or vertex color variation instead of one flat color.",
+        "Generated preview uses independent PBR maps at 1024px or higher for the quality-first tier.",
+        "If source pixels are available, referencePbr extraction passed at confidence >= 0.7 or the pass is stopped/requesting better references.",
+        "Macro, meso, and micro surface frequency bands are visible at the intended review distance without obvious tiling.",
+        "AI vision comparison score meets selfCorrectLoop.visualAcceptance.threshold."
+      ]
+    },
+    {
+      "id": "surface-pass",
+      "goal": "Add procedural surface locality such as normal/bump/displacement, AO, dirt, stains, chips, grain, moss, scratches, and wear.",
+      "componentRefs": [
+        "root"
+      ],
+      "acceptance": [
+        "Every required material feature group has local overrides or surfaceDetail tied to evidenceRefs.",
+        "A grazing-angle close-up proves that normal/height detail breaks highlights naturally and does not read as smooth plastic.",
+        "AI vision comparison score meets selfCorrectLoop.visualAcceptance.threshold."
+      ]
+    },
+    {
+      "id": "lighting-pass",
+      "goal": "Make material and form readable under neutral turntable lighting plus optional reference lighting.",
+      "componentRefs": [
+        "root"
+      ],
+      "acceptance": [
+        "lightingFromPhoto identifies key light direction/color/intensity, fill light, rim or environment light, and ambient color.",
+        "Exposure, tone mapping, background color/gradient, shadow softness, and contact shadow behavior are specified.",
+        "Lighting does not hide geometry/material gaps and screenshots can be compared fairly to the reference.",
+        "Neutral, grazing, and reference-matched lighting checks distinguish material errors from lighting errors.",
+        "AI vision comparison score meets selfCorrectLoop.visualAcceptance.threshold."
+      ]
+    },
+    {
+      "id": "interaction-pass",
+      "goal": "Make the model ready for future animation, transformation, physics, or destruction.",
+      "componentRefs": [
+        "root"
+      ],
+      "acceptance": [
+        "Macro and movable meso components have stable pivot nodes.",
+        "Sockets, collider proxies, and destruction metadata are present for future runtime actions.",
+        "AI vision comparison score meets selfCorrectLoop.visualAcceptance.threshold."
+      ]
+    },
+    {
+      "id": "optimization-pass",
+      "goal": "Protect runtime performance after visual fidelity is accepted.",
+      "componentRefs": [
+        "root"
+      ],
+      "acceptance": [
+        "Triangle count, draw calls, instancing, LOD strategy, and FPS target are documented or verified.",
+        "Repeated detail is instanced or simplified where possible without breaking silhouette/material believability."
+      ]
+    }
+  ],
+  "visualEvidence": [],
+  "reviewHistory": [],
+  "lodPlan": [
+    {
+      "tier": "near",
+      "distance": 0,
+      "strategy": "full component tree and material layers"
+    },
+    {
+      "tier": "far",
+      "distance": 30,
+      "strategy": "merge static components and reduce local feature geometry"
+    }
+  ],
+  "performanceBudget": {
+    "qualityPriority": "reference-fidelity",
+    "targetTriangles": 110000,
+    "maxDrawCalls": 180,
+    "textureSize": 512,
+    "fpsTarget": 30,
+    "optimizationPolicy": "Reach accepted visual fidelity first, then optimize without removing reference-critical geometry or surface layers."
+  },
+  "lightingFromPhoto": [
+    "key light from front-left daylight, 2.6 intensity",
+    "fill light blue sky hemisphere, 1.05 intensity",
+    "rim/environment light from pale blue sky",
+    "exposure 0.85, ACESFilmic tone mapping",
+    "contact shadow on neutral ground with PCF filtering"
+  ],
+  "proceduralStrategy": [
+    "Block out macro silhouette first.",
+    "Add component hierarchy and joints.",
+    "Create stable pivot groups, sockets, collider proxies, and destruction metadata before visual polish.",
+    "Refine forms with bevels, tapers, bends, and procedural noise.",
+    "Run reference PBR extraction for important source-image materials and stop when confidence is below the target threshold.",
+    "Add material variation before adding expensive micro-geometry."
+  ],
+  "animationAnchors": [
+    "root pivot node supports whole-object translation, rotation, scale, and visibility changes",
+    "component pivot groups support later local transforms without rebuilding geometry"
+  ],
+  "destructionAnchors": [
+    "actionProfile.destruction.fractureGroup marks detachable or breakable component sets",
+    "component seams and sockets define plausible break points instead of random explosions"
+  ],
+  "risks": [],
+  "localSpecSearch": {
+    "collection": "core_3d",
+    "query": "Yellow Crane Tower architectural reconstruction",
+    "index": {
+      "status": "rebuilt",
+      "reason": "missing",
+      "fingerprint": "62f2831e1d52eeb6dbb94a87c44fa25b1f4926626a7b1f8c2bcadc63e04e9471"
+    },
+    "matches": [
+      {
+        "record_id": "core.shader-mapping-reconstruction-metadata-schema",
+        "file_path": "docs/raw/img2threejs-skill-dataset.json",
+        "heading": null,
+        "key_path": "categories.rendering_shader_mapping[15]",
+        "score": 2.024594950701,
+        "snippets": [
+          "A structured metadata envelope (identity, extraction provenance, geometry stats, texture-slot mapping, rights) accompanying each reconstructed asset to drive and audit the pipeline. Một gói metadata có cấu trúc (định danh, nguồn gốc trích xuất, ..."
+        ],
+        "source_refs": [
+          {
+            "path": "docs/raw/img2threejs-skill-dataset.json",
+            "heading": null,
+            "key_path": "categories.rendering_shader_mapping[15]"
+          }
+        ],
+        "evidence_refs": [
+          {
+            "kind": "source",
+            "ref": "docs/raw/img2threejs-skill-dataset.json",
+            "note": "img2threejs NotebookLM research distillation"
+          }
+        ]
+      },
+      {
+        "record_id": "core.description-vra-core-40-attribute-value-schema",
+        "file_path": "docs/raw/img2threejs-skill-dataset.json",
+        "heading": null,
+        "key_path": "categories.description_conventions[1]",
+        "score": 1.911498280754,
+        "snippets": [
+          "... biết nó mô tả toàn bộ đối tượng hay một sub-part — sự mơ hồ này là lỗi schema phổ biến nhất Three.js target: Per-field metadata: { value, vocab, extent } attached to each material/measurement/attribute entry in the reconstruction metadata schema"
+        ],
+        "source_refs": [
+          {
+            "path": "docs/raw/img2threejs-skill-dataset.json",
+            "heading": null,
+            "key_path": "categories.description_conventions[1]"
+          }
+        ],
+        "evidence_refs": [
+          {
+            "kind": "source",
+            "ref": "docs/raw/img2threejs-skill-dataset.json",
+            "note": "img2threejs NotebookLM research distillation"
+          }
+        ]
+      },
+      {
+        "record_id": "core.description-controlled-vocabulary-aat-facets",
+        "file_path": "docs/raw/img2threejs-skill-dataset.json",
+        "heading": null,
+        "key_path": "categories.description_conventions[5]",
+        "score": 1.872277772496,
+        "snippets": [
+          "... diễn đạt tự do thay đổi giữa các mô tả của cùng một vật liệu Three.js target: Enum-constrained metadata fields (materialType, finishStyle) validated against a fixed controlled-vocabulary list before being written to the reconstruction schema"
+        ],
+        "source_refs": [
+          {
+            "path": "docs/raw/img2threejs-skill-dataset.json",
+            "heading": null,
+            "key_path": "categories.description_conventions[5]"
+          }
+        ],
+        "evidence_refs": [
+          {
+            "kind": "source",
+            "ref": "docs/raw/img2threejs-skill-dataset.json",
+            "note": "img2threejs NotebookLM research distillation"
+          }
+        ]
+      }
+    ]
+  },
+  "pbrExtractionHistory": [
+    {
+      "materialId": "ceramic",
+      "confidence": 0.86,
+      "verdict": "pass",
+      "usable": true,
+      "maps": {
+        "albedo": {
+          "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/ceramic/ceramic_albedo.png",
+          "url": "ceramic_albedo.png",
+          "channel": "albedo",
+          "source": "reference-pixel-extraction"
+        },
+        "roughness": {
+          "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/ceramic/ceramic_roughness.png",
+          "url": "ceramic_roughness.png",
+          "channel": "roughness",
+          "source": "reference-pixel-extraction"
+        },
+        "height": {
+          "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/ceramic/ceramic_height.png",
+          "url": "ceramic_height.png",
+          "channel": "height",
+          "source": "reference-pixel-extraction"
+        },
+        "normal": {
+          "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/ceramic/ceramic_normal.png",
+          "url": "ceramic_normal.png",
+          "channel": "normal",
+          "source": "reference-pixel-extraction"
+        },
+        "ao": {
+          "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/ceramic/ceramic_ao.png",
+          "url": "ceramic_ao.png",
+          "channel": "ao",
+          "source": "reference-pixel-extraction"
+        }
+      }
+    },
+    {
+      "materialId": "wood",
+      "confidence": 0.86,
+      "verdict": "pass",
+      "usable": true,
+      "maps": {
+        "albedo": {
+          "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/wood/wood_albedo.png",
+          "url": "wood_albedo.png",
+          "channel": "albedo",
+          "source": "reference-pixel-extraction"
+        },
+        "roughness": {
+          "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/wood/wood_roughness.png",
+          "url": "wood_roughness.png",
+          "channel": "roughness",
+          "source": "reference-pixel-extraction"
+        },
+        "height": {
+          "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/wood/wood_height.png",
+          "url": "wood_height.png",
+          "channel": "height",
+          "source": "reference-pixel-extraction"
+        },
+        "normal": {
+          "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/wood/wood_normal.png",
+          "url": "wood_normal.png",
+          "channel": "normal",
+          "source": "reference-pixel-extraction"
+        },
+        "ao": {
+          "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/wood/wood_ao.png",
+          "url": "wood_ao.png",
+          "channel": "ao",
+          "source": "reference-pixel-extraction"
+        }
+      }
+    },
+    {
+      "materialId": "stone",
+      "confidence": 0.829,
+      "verdict": "pass",
+      "usable": true,
+      "maps": {
+        "albedo": {
+          "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/stone/stone_albedo.png",
+          "url": "stone_albedo.png",
+          "channel": "albedo",
+          "source": "reference-pixel-extraction"
+        },
+        "roughness": {
+          "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/stone/stone_roughness.png",
+          "url": "stone_roughness.png",
+          "channel": "roughness",
+          "source": "reference-pixel-extraction"
+        },
+        "height": {
+          "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/stone/stone_height.png",
+          "url": "stone_height.png",
+          "channel": "height",
+          "source": "reference-pixel-extraction"
+        },
+        "normal": {
+          "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/stone/stone_normal.png",
+          "url": "stone_normal.png",
+          "channel": "normal",
+          "source": "reference-pixel-extraction"
+        },
+        "ao": {
+          "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/stone/stone_ao.png",
+          "url": "stone_ao.png",
+          "channel": "ao",
+          "source": "reference-pixel-extraction"
+        }
+      }
+    },
+    {
+      "materialId": "paint",
+      "confidence": 0.86,
+      "verdict": "pass",
+      "usable": true,
+      "maps": {
+        "albedo": {
+          "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/paint/paint_albedo.png",
+          "url": "paint_albedo.png",
+          "channel": "albedo",
+          "source": "reference-pixel-extraction"
+        },
+        "roughness": {
+          "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/paint/paint_roughness.png",
+          "url": "paint_roughness.png",
+          "channel": "roughness",
+          "source": "reference-pixel-extraction"
+        },
+        "height": {
+          "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/paint/paint_height.png",
+          "url": "paint_height.png",
+          "channel": "height",
+          "source": "reference-pixel-extraction"
+        },
+        "normal": {
+          "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/paint/paint_normal.png",
+          "url": "paint_normal.png",
+          "channel": "normal",
+          "source": "reference-pixel-extraction"
+        },
+        "ao": {
+          "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/paint/paint_ao.png",
+          "url": "paint_ao.png",
+          "channel": "ao",
+          "source": "reference-pixel-extraction"
+        }
+      }
+    },
+    {
+      "materialId": "dark",
+      "confidence": 0.86,
+      "verdict": "pass",
+      "usable": true,
+      "maps": {
+        "albedo": {
+          "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/dark/dark_albedo.png",
+          "url": "dark_albedo.png",
+          "channel": "albedo",
+          "source": "reference-pixel-extraction"
+        },
+        "roughness": {
+          "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/dark/dark_roughness.png",
+          "url": "dark_roughness.png",
+          "channel": "roughness",
+          "source": "reference-pixel-extraction"
+        },
+        "height": {
+          "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/dark/dark_height.png",
+          "url": "dark_height.png",
+          "channel": "height",
+          "source": "reference-pixel-extraction"
+        },
+        "normal": {
+          "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/dark/dark_normal.png",
+          "url": "dark_normal.png",
+          "channel": "normal",
+          "source": "reference-pixel-extraction"
+        },
+        "ao": {
+          "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/dark/dark_ao.png",
+          "url": "dark_ao.png",
+          "channel": "ao",
+          "source": "reference-pixel-extraction"
+        }
+      }
+    }
+  ],
+  "tier1Results": [
+    {
+      "passed": false,
+      "checks": {
+        "silhouetteIoU": 0.0416,
+        "aspectRatioDelta": 0.5101,
+        "scaleDelta": 0.5947,
+        "bilateralSymmetryError": 0.0316,
+        "colorDelta": {
+          "checked": 17,
+          "maxDeltaE": 21.19,
+          "perComponent": [
+            {
+              "componentId": null,
+              "deltaE": 21.19
+            },
+            {
+              "componentId": null,
+              "deltaE": 7.65
+            },
+            {
+              "componentId": null,
+              "deltaE": 21.19
+            },
+            {
+              "componentId": null,
+              "deltaE": 1.82
+            },
+            {
+              "componentId": null,
+              "deltaE": 21.19
+            },
+            {
+              "componentId": null,
+              "deltaE": 1.82
+            },
+            {
+              "componentId": null,
+              "deltaE": 21.19
+            },
+            {
+              "componentId": null,
+              "deltaE": 1.82
+            },
+            {
+              "componentId": null,
+              "deltaE": 21.19
+            },
+            {
+              "componentId": null,
+              "deltaE": 1.82
+            },
+            {
+              "componentId": null,
+              "deltaE": 21.19
+            },
+            {
+              "componentId": null,
+              "deltaE": 1.82
+            },
+            {
+              "componentId": null,
+              "deltaE": 21.19
+            },
+            {
+              "componentId": null,
+              "deltaE": 1.82
+            },
+            {
+              "componentId": null,
+              "deltaE": 1.82
+            },
+            {
+              "componentId": null,
+              "deltaE": 18.5
+            },
+            {
+              "componentId": null,
+              "deltaE": 1.82
+            }
+          ],
+          "gated": false
+        }
+      },
+      "failures": [
+        "silhouette IoU 0.042 is below threshold 0.85",
+        "aspect-ratio delta 0.510 exceeds threshold 0.05",
+        "scale delta 0.595 exceeds threshold 0.08",
+        "blockout requires --map-stripped-render evidence"
+      ],
+      "maskWarnings": [
+        "reference: 54.1% of foreground cells lie outside the largest connected blob and were excluded from the bounding box; if the subject really has separated parts in this projection, they are not being measured"
+      ],
+      "renderHash": "2d622eab8e4460fc",
+      "passId": "blockout"
+    }
+  ]
+}

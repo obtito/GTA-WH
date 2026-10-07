@@ -1,0 +1,95 @@
+{
+  "passed": false,
+  "checks": {
+    "silhouetteIoU": 0.0416,
+    "aspectRatioDelta": 0.5101,
+    "scaleDelta": 0.5947,
+    "bilateralSymmetryError": 0.0316,
+    "colorDelta": {
+      "checked": 17,
+      "maxDeltaE": 21.19,
+      "perComponent": [
+        {
+          "componentId": null,
+          "deltaE": 21.19
+        },
+        {
+          "componentId": null,
+          "deltaE": 7.65
+        },
+        {
+          "componentId": null,
+          "deltaE": 21.19
+        },
+        {
+          "componentId": null,
+          "deltaE": 1.82
+        },
+        {
+          "componentId": null,
+          "deltaE": 21.19
+        },
+        {
+          "componentId": null,
+          "deltaE": 1.82
+        },
+        {
+          "componentId": null,
+          "deltaE": 21.19
+        },
+        {
+          "componentId": null,
+          "deltaE": 1.82
+        },
+        {
+          "componentId": null,
+          "deltaE": 21.19
+        },
+        {
+          "componentId": null,
+          "deltaE": 1.82
+        },
+        {
+          "componentId": null,
+          "deltaE": 21.19
+        },
+        {
+          "componentId": null,
+          "deltaE": 1.82
+        },
+        {
+          "componentId": null,
+          "deltaE": 21.19
+        },
+        {
+          "componentId": null,
+          "deltaE": 1.82
+        },
+        {
+          "componentId": null,
+          "deltaE": 1.82
+        },
+        {
+          "componentId": null,
+          "deltaE": 18.5
+        },
+        {
+          "componentId": null,
+          "deltaE": 1.82
+        }
+      ],
+      "gated": false
+    }
+  },
+  "failures": [
+    "silhouette IoU 0.042 is below threshold 0.85",
+    "aspect-ratio delta 0.510 exceeds threshold 0.05",
+    "scale delta 0.595 exceeds threshold 0.08",
+    "blockout requires --map-stripped-render evidence"
+  ],
+  "maskWarnings": [
+    "reference: 54.1% of foreground cells lie outside the largest connected blob and were excluded from the bounding box; if the subject really has separated parts in this projection, they are not being measured"
+  ],
+  "renderHash": "2d622eab8e4460fc",
+  "passId": "blockout"
+}

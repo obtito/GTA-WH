@@ -1,0 +1,14 @@
+{
+  "admitted": true,
+  "reasons": [],
+  "provenance": {
+    "viewpoint": "reference",
+    "sourcePath": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/references/real-front.png",
+    "width": 1200,
+    "height": 1600,
+    "foregroundCoverage": 0.706,
+    "largestComponentFraction": 0.9998,
+    "pHash": 12367005508725957312,
+    "duplicateOfHash": null
+  }
+}

@@ -14,9 +14,11 @@ import { writeFileSync, readFileSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import * as THREE from '../vendor/three.module.js';
-import { toV2, pointInPolygon, distToPolyline, clamp } from '../js/geo.js';
-import { RIVER, LAKES, MOUNTAINS, ROADS } from '../js/data.js';
-import { allExclusions } from '../js/sites.js';
+import { toV2 } from '../js/geo.js';
+import { MOUNTAINS, ROADS } from '../js/data.js';
+import { allExclusions, footprintOverlapsSite } from '../js/sites.js';
+
+import { footprintOverlapsWater } from '../js/water-mask.js';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 // CNBH-10m 真实高度回填(CC BY 4.0,93% 覆盖;对超高建筑低估 → 核心区大楼做恢复)
@@ -51,48 +53,6 @@ function terrainHeight(x, z) {
     h += Math.pow(Math.cos((r * Math.PI) / 2), 1.7) * (0.66 + 0.6 * fbm(x * 0.004, z * 0.004, 4, m.seed) * (m.rough ?? 0.5)) * (0.92 + 0.14 * noise2(x * 0.02, z * 0.02, m.seed + 5)) * m.h;
   }
   return h;
-}
-
-/* ==================== 场景空间水域判定(精确) ==================== */
-const riverPts = RIVER.pts.map(([lo, la]) => toV2(lo, la));
-const riverCum = [0];
-for (let i = 1; i < riverPts.length; i++) {
-  riverCum.push(riverCum[i - 1] + Math.hypot(riverPts[i][0] - riverPts[i - 1][0], riverPts[i][1] - riverPts[i - 1][1]));
-}
-const riverTotal = riverCum[riverCum.length - 1];
-/** 长江沿程全宽(与 world.js yangtzeWidth 同式) */
-function yangtzeWidth(t) {
-  return RIVER.halfWidth * 2 * (
-    0.82
-    + 0.30 * Math.sin(Math.PI * clamp(t, 0, 1))
-    - 0.12 * Math.exp(-Math.pow((t - 0.33) / 0.06, 2))
-    + 0.06 * Math.sin(t * 21)
-  );
-}
-/** 点到长江的最近距离 + 沿程参数 t */
-function riverDist(x, z) {
-  let best = Infinity, bt = 0;
-  for (let i = 1; i < riverPts.length; i++) {
-    const ax = riverPts[i - 1][0], az = riverPts[i - 1][1];
-    const bx = riverPts[i][0], bz = riverPts[i][1];
-    const dx = bx - ax, dz = bz - az;
-    const l2 = dx * dx + dz * dz || 1e-12;
-    let t = ((x - ax) * dx + (z - az) * dz) / l2;
-    t = clamp(t, 0, 1);
-    const d = Math.hypot(x - ax - dx * t, z - az - dz * t);
-    if (d < best) { best = d; bt = (riverCum[i - 1] + t * (riverCum[i] - riverCum[i - 1])) / riverTotal; }
-  }
-  return [best, bt];
-}
-const branchPts = RIVER.branches.map((b) => ({ hw: b.halfWidth, pts: b.pts.map(([lo, la]) => toV2(lo, la)) }));
-const lakePolys = LAKES.map((l) => l.pts.map(([lo, la]) => toV2(lo, la)));
-
-function isWaterScene(x, z) {
-  const [d, t] = riverDist(x, z);
-  if (d < yangtzeWidth(t) / 2) return true;
-  for (const b of branchPts) if (distToPolyline(x, z, b.pts) < b.hw) return true;
-  for (const p of lakePolys) if (pointInPolygon(x, z, p)) return true;
-  return false;
 }
 
 /* ==================== 道路走廊栅格掩膜 ==================== */
@@ -179,6 +139,15 @@ try {
   }
   console.log('走廊: OSM', osmRoads.length, '条 + 手绘', ROADS.length, '条');
 } catch (e) { console.warn('OSM 路网不可用,仅手绘走廊:', e.message); }
+// Preserve corridors of the replanned dry-land roads when rebuilding landmark clearances.
+try {
+  const plan = JSON.parse(readFileSync(resolve(ROOT, 'data/osm/roads-land.json'), 'utf8'));
+  for (const r of plan.roads) {
+    if (r.t?.tunnel) continue;
+    const w = Number(r.t?.width) || HW_W[r.t?.highway] || 10;
+    stampCorridor(r.g.map(ll => toV2(...ll)), w / 2 + 1);
+  }
+} catch { /* First bake has no planned roads yet. */ }
 
 /* ④ 模型占地圆 */
 const excl = allExclusions();
@@ -290,17 +259,8 @@ for (const f of feats) {
   for (const p of pts) { gx += p[0]; gz += p[1]; }
   gx /= pts.length; gz /= pts.length;
 
-  // ① 水域:质心 + 全部顶点(大 footprint 追加边中点)
-  if (isWaterScene(gx, gz)) { skip.water++; continue; }
-  let wet = false;
-  for (const p of pts) { if (isWaterScene(p[0], p[1])) { wet = true; break; } }
-  if (!wet && area > 1500) {
-    for (let i = 0; i < pts.length; i++) {
-      const p = pts[i], q = pts[(i + 1) % pts.length];
-      if (isWaterScene((p[0] + q[0]) / 2, (p[1] + q[1]) / 2)) { wet = true; break; }
-    }
-  }
-  if (wet) { skip.water++; continue; }
+  // Whole footprint against the exact rendered river/lake polygons (including crossing edges).
+  if (footprintOverlapsWater(pts)) { skip.water++; continue; }
 
   // ② 道路走廊:按"碰撞包围盒"判,而非轮廓顶点。
   //    凹形/斜置楼体的 OBB 会在拐角外溢,若只测顶点,渲染上看似不压路,
@@ -322,22 +282,8 @@ for (const f of feats) {
   }
   if (onRoad) { skip.road++; continue; }
 
-  // ③ 模型占地圆
-  let inSite = false;
-  for (const e of excl) {
-    const dx = gx - e.x, dz = gz - e.z;
-    if (dx * dx + dz * dz < e.r * e.r) { inSite = true; break; }
-  }
-  if (!inSite) {
-    for (const p of pts) {
-      for (const e of excl) {
-        const dx = p[0] - e.x, dz = p[1] - e.z;
-        if (dx * dx + dz * dz < e.r * e.r) { inSite = true; break; }
-      }
-      if (inSite) break;
-    }
-  }
-  if (inSite) { skip.site++; continue; }
+  // Exact footprint/circle test also catches edges crossing and buildings enclosing a landmark.
+  if (footprintOverlapsSite(pts, excl)) { skip.site++; continue; }
 
   // 抽稀(渲染用)
   let rp = pts;

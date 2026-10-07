@@ -11,12 +11,12 @@
 //  2. 构件层面补齐 正脊/垂脊/戗脊/宝顶、柱网、额枋、斗拱、隔扇、须弥座、栏板，
 //     让建筑在近景下也有东西可看。
 //
-// 坐标约定：入参一律为「场景单位」，且单体的平面与竖向同尺（footU / vU 都是 1u = 30 m），
-// 所以这里的长宽高可以直接 1:1 视觉比对。
+// 坐标约定：平面和竖向均为米。
 
 import * as THREE from 'three';
 import { mat, UNIT, instancedBoxes } from './lib.js';
 import { clamp, lerp } from './geo.js';
+import { tileMaterial } from './landmark-details.js';
 
 /** instancedBoxes 在空列表时返回 null，直接 add(null) 会在更新矩阵时炸掉 */
 function addInst(parent, items, material, opts) {
@@ -102,7 +102,7 @@ function gridSurface(w, d, segX, segZ, fn, flip) {
       const x = -w / 2 + (w * i) / segX;
       const z = -d / 2 + (d * j) / segZ;
       pos.push(x, fn(x, z), z);
-      uvs.push(i / segX, j / segZ);
+      uvs.push(x / .75, z / 1.6);
     }
   }
   const row = segX + 1;
@@ -179,7 +179,7 @@ export function hipRoof({
   const g = new THREE.Group();
   const hf = makeHeightFn({ w, d, ridgeLen, srcRect, rise, k, upA, upR, cornerA });
   const geo = gridSurface(w, d, segX, segZ, hf, true);
-  const roof = new THREE.Mesh(geo, material || mat(color, { rough: 0.72, side: THREE.DoubleSide, env: 0.4 }));
+  const roof = new THREE.Mesh(geo, material || tileMaterial(color));
   roof.castShadow = true; roof.receiveShadow = true;
   g.add(roof);
 
@@ -292,12 +292,13 @@ export function gableRoof({
   const grp = new THREE.Group();
   const hw = w / 2, hd = d / 2;
   const pos = [], uvs = [], idx = [];
-  const twoSided = (z, i, j, flip) => {
+  const twoSided = (eaveZ, i, j) => {
     const x = -hw + (w * i) / segX;
     const u = j / segZ;                        // 0 在檐口，1 在脊
     const y = rise * roofProfile(u, k, upA, upR);
+    const z = eaveZ * (1 - u);
     pos.push(x, y, z);
-    uvs.push(i / segX, u);
+    uvs.push(x / .75, z / 1.6);
     return { x, y, z };
   };
   for (const sz of [-1, 1]) {
@@ -317,7 +318,7 @@ export function gableRoof({
   g.setAttribute('uv', new THREE.Float32BufferAttribute(uvs, 2));
   g.setIndex(idx);
   g.computeVertexNormals();
-  const roof = new THREE.Mesh(g, mat(color, { rough: 0.8, side: THREE.DoubleSide }));
+  const roof = new THREE.Mesh(g, tileMaterial(color));
   roof.castShadow = true; roof.receiveShadow = true;
   grp.add(roof);
 
@@ -333,7 +334,7 @@ export function gableRoof({
       const pt = [];
       for (let j = 0; j <= 10; j++) {
         const u = j / 10;
-        pt.push(new THREE.Vector3(sx * hw, rise * roofProfile(u, k, upA, upR), lerp(0, sz * hd, u)));
+        pt.push(new THREE.Vector3(sx * hw, rise * roofProfile(u, k, upA, upR), sz * hd * (1 - u)));
       }
       grp.add(sweepRect(pt, rs * 0.85, rMat));
     }
@@ -514,38 +515,35 @@ export function wallBody({
   const g = new THREE.Group();
   const wm = mat(color, { rough: 0.9 });
   const om = mat(openingColor, { rough: 0.85 });
-  const items = [], opens = [];  const edges = [
-    { cx: 0, cz: -d / 2, len: w, rot: 0, front: false },
-    { cx: 0, cz: d / 2, len: w, rot: 0, front: true },
-    { cx: -w / 2, cz: 0, len: d, rot: Math.PI / 2, front: false },
-    { cx: w / 2, cz: 0, len: d, rot: Math.PI / 2, front: false },
+  const items = [], opens = [], frames = [];
+  const t = h * .055;
+  const edges = [
+    { cx: 0, cz: -d/2, len: w, rot: 0, nx: 0, nz: -1, front: false },
+    { cx: 0, cz: d/2, len: w, rot: 0, nx: 0, nz: 1, front: true },
+    { cx: -w/2, cz: 0, len: d, rot: Math.PI/2, nx: -1, nz: 0, front: false },
+    { cx: w/2, cz: 0, len: d, rot: Math.PI/2, nx: 1, nz: 0, front: false },
   ];
   for (const e of edges) {
-    const isFront = e.front && doorSide > 0;
-    const t = h * 0.055;
-    // 实墙体（留出门窗洞口的位置由 bays 决定）
-    if (isFront) {
-      const n = bays;
-      for (let i = 0; i < n; i++) {
-        const c = (i + 0.5) / n - 0.5;
-        const px = e.cx + Math.cos(e.rot) * c * e.len;
-        const pz = e.cz + Math.sin(e.rot) * c * e.len;
-        const mid = i > 0 && i < n - 1;
-        if (mid) {
-          // 明间/次间：隔扇门到顶
-          opens.push({ x: px, z: pz, y: y + h * sillH, w: e.len / n * 0.86, h: h * (1 - sillH - 0.06), d: t * 0.7, rot: e.rot });
-        } else {
-          // 梢间：槛窗
-          opens.push({ x: px, z: pz, y: y + h * 0.42, w: e.len / n * 0.8, h: h * 0.5, d: t * 0.7, rot: e.rot });
-        }
-      }
-    }
     items.push({ x: e.cx, z: e.cz, y, w: e.len, h, d: t, rot: e.rot });
+    const n = Math.max(2, Math.round(bays * e.len / w));
+    for (let i = 0; i < n; i++) {
+      const along = ((i+.5)/n-.5)*e.len;
+      const door = e.front && doorSide > 0 && i === Math.floor(n/2);
+      const px = e.cx + Math.cos(e.rot)*along + e.nx*t*.62;
+      const pz = e.cz + Math.sin(e.rot)*along + e.nz*t*.62;
+      const ww = e.len/n*.72, hh = h*(door ? .76 : .5);
+      const yy = y + h*(door ? sillH : .34);
+      opens.push({ x: px, z: pz, y: yy, w: ww, h: hh, d: t*.3, rot: e.rot });
+      for (const dx of [-ww/2, 0, ww/2]) frames.push({ x: px+Math.cos(e.rot)*dx+e.nx*t*.12,
+        z: pz+Math.sin(e.rot)*dx+e.nz*t*.12, y: yy, w: t*.35, h: hh, d: t*.45, rot: e.rot });
+      for (const dy of [0, hh*.5, hh]) frames.push({ x: px+e.nx*t*.12, z: pz+e.nz*t*.12,
+        y: yy+dy, w: ww+t*.3, h: t*.3, d: t*.45, rot: e.rot });
+    }
   }
-  if (items.length) g.add(instancedBoxes(items, wm, { uvU: 1.5, uvV: 1.5 }));
-  if (opens.length && lattice) {
-    const mesh = instancedBoxes(opens, om, { uvU: 1.5, uvV: 1.5 });
-    if (mesh) g.add(mesh);
+  addInst(g, items, wm, { uvU: 1.5, uvV: 1.5 });
+  if (lattice) {
+    addInst(g, opens, om, { uvU: 1.5, uvV: 1.5 });
+    addInst(g, frames, mat('#715343', { rough: .9 }), { uvU: 1.5, uvV: 1.5 });
   }
   return g;
 }
@@ -653,7 +651,9 @@ export function storiedPavilion({
   });
   const top = floors[floors.length - 1];
   let topR;
-  if (topType === 'hip') {
+  if (topType === 'gable-hip') {
+    topR = gableHipRoof({ w: top.w * 1.30, d: top.d * 1.30, rise: topRoof, color: roofColor, finial });
+  } else if (topType === 'hip') {
     topR = hipRoof({ w: top.w * 1.30, d: top.d * 1.30, rise: topRoof, ridgeLen: ridgeLen ?? top.w * 0.5, color: roofColor, finial, material: roofMaterial });
   } else {
     topR = hipRoof({ w: top.w * 1.30, d: top.d * 1.30, rise: topRoof, ridgeLen: 0, color: roofColor, finial, material: roofMaterial });

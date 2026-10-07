@@ -105,8 +105,8 @@ export class Vehicle {
 
     // 位移
     const dir = this.heading + this.drift * 0.6;
-    const nx = this.mesh.position.x + Math.sin(dir) * this.speed * dt;
-    const nz = this.mesh.position.z + Math.cos(dir) * this.speed * dt;
+    let nx = this.mesh.position.x + Math.sin(dir) * this.speed * dt;
+    let nz = this.mesh.position.z + Math.cos(dir) * this.speed * dt;
 
     // 水域:限速涉水(一次性限幅,不随帧率叠加锁死),可倒车退回岸上
     this.inWater = isWater(nx, nz, this.mesh.position.y);

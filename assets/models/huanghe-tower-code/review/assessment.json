@@ -1,0 +1,604 @@
+{
+  "preSpecAssessment": {
+    "objectClass": {
+      "primaryType": "five-storey chamfer-square Chinese tower",
+      "primaryDomain": "object",
+      "formLanguage": [
+        "architectural",
+        "hard-surface"
+      ],
+      "structureKind": [
+        "repeated modules",
+        "layered shell"
+      ],
+      "motionPotential": [
+        "static prop",
+        "whole-object transform"
+      ],
+      "materialFamilies": [
+        "ceramic",
+        "wood",
+        "stone"
+      ],
+      "notes": "Photo shows five primary roof tiers, projecting cardinal pavilions, broad facade bays and terracotta columns; back elevations inferred by fourfold symmetry."
+    },
+    "complexity": {
+      "tier": "complex",
+      "scores": {
+        "silhouetteComplexity": 3,
+        "componentCount": 3,
+        "hierarchyDepth": 3,
+        "repetitionDensity": 3,
+        "materialLayerCount": 2,
+        "localDetailDensity": 3,
+        "occlusionRisk": 2,
+        "actionReadinessNeed": 1
+      },
+      "estimatedCounts": {
+        "macroComponents": 4,
+        "mesoComponents": 13,
+        "microFeatureGroups": 16,
+        "materialLayers": 5,
+        "repetitionSystems": 3
+      },
+      "reasoning": [
+        "Five layered roofs and four cardinal projections are the main silhouette systems. Roof tile flutes, bracket arms, geometric balustrades and facade beams require repeated detail."
+      ]
+    },
+    "specDepthDecision": {
+      "requiredDepth": "complex",
+      "minimumComponentLevels": [
+        "macro",
+        "meso",
+        "micro"
+      ],
+      "needsRepetitionSystems": true,
+      "needsMaterialLocalOverrides": true,
+      "needsMultipleReviewViews": true,
+      "needsActionReadyHierarchy": true,
+      "rationale": "Choose simple/moderate/complex/ultra-complex from observed structure, not from a hardcoded domain."
+    },
+    "unknownsToResolveBeforeImplementation": [
+      "Precise concealed roof joints, rear decorative motifs and interior structure are not visible; use documented symmetry and record inferred dimensions."
+    ],
+    "detailInventory": {
+      "scanMethod": "component-zones",
+      "targetMinDetails": 10,
+      "note": "Enumerate every identity-defining small detail before authoring the spec. Each detail must map to a component.localFeatures entry or material.localOverrides entry, never prose only. Use forge/stage1_intake/build_detail_inventory.py to scan zones.",
+      "details": [
+        {
+          "id": "detail-0",
+          "kind": "ridge",
+          "description": "Broad stepped terraces and straight stair treads",
+          "mapsTo": {
+            "ref": "step-treads"
+          },
+          "confidence": 0.8,
+          "evidenceRefs": [
+            "full-object"
+          ]
+        },
+        {
+          "id": "detail-1",
+          "kind": "contour",
+          "description": "Broad cardinal facade and short diagonal corner planes",
+          "mapsTo": {
+            "ref": "facade-chamfer"
+          },
+          "confidence": 0.8,
+          "evidenceRefs": [
+            "full-object"
+          ]
+        },
+        {
+          "id": "detail-2",
+          "kind": "hole",
+          "description": "Core walls inset from outer columns",
+          "mapsTo": {
+            "ref": "open-galleries"
+          },
+          "confidence": 0.8,
+          "evidenceRefs": [
+            "full-object"
+          ]
+        },
+        {
+          "id": "detail-3",
+          "kind": "contour",
+          "description": "Five distinct primary eave bands with gradual width taper",
+          "mapsTo": {
+            "ref": "tier-proportion"
+          },
+          "confidence": 0.8,
+          "evidenceRefs": [
+            "full-object"
+          ]
+        },
+        {
+          "id": "detail-4",
+          "kind": "contour",
+          "description": "Round terracotta gallery columns with bracket supports",
+          "mapsTo": {
+            "ref": "columns-1"
+          },
+          "confidence": 0.8,
+          "evidenceRefs": [
+            "full-object"
+          ]
+        },
+        {
+          "id": "detail-5",
+          "kind": "ridge",
+          "description": "Dense parallel ceramic tile flutes",
+          "mapsTo": {
+            "ref": "roof-flutes-1"
+          },
+          "confidence": 0.8,
+          "evidenceRefs": [
+            "full-object"
+          ]
+        },
+        {
+          "id": "detail-6",
+          "kind": "contour",
+          "description": "Raised main hip corners and projecting gable eave tips",
+          "mapsTo": {
+            "ref": "eave-tips-1"
+          },
+          "confidence": 0.8,
+          "evidenceRefs": [
+            "full-object"
+          ]
+        },
+        {
+          "id": "detail-7",
+          "kind": "contour",
+          "description": "Round terracotta gallery columns with bracket supports",
+          "mapsTo": {
+            "ref": "columns-2"
+          },
+          "confidence": 0.8,
+          "evidenceRefs": [
+            "full-object"
+          ]
+        },
+        {
+          "id": "detail-8",
+          "kind": "ridge",
+          "description": "Dense parallel ceramic tile flutes",
+          "mapsTo": {
+            "ref": "roof-flutes-2"
+          },
+          "confidence": 0.8,
+          "evidenceRefs": [
+            "full-object"
+          ]
+        },
+        {
+          "id": "detail-9",
+          "kind": "contour",
+          "description": "Raised main hip corners and projecting gable eave tips",
+          "mapsTo": {
+            "ref": "eave-tips-2"
+          },
+          "confidence": 0.8,
+          "evidenceRefs": [
+            "full-object"
+          ]
+        },
+        {
+          "id": "detail-10",
+          "kind": "contour",
+          "description": "Round terracotta gallery columns with bracket supports",
+          "mapsTo": {
+            "ref": "columns-3"
+          },
+          "confidence": 0.8,
+          "evidenceRefs": [
+            "full-object"
+          ]
+        },
+        {
+          "id": "detail-11",
+          "kind": "ridge",
+          "description": "Dense parallel ceramic tile flutes",
+          "mapsTo": {
+            "ref": "roof-flutes-3"
+          },
+          "confidence": 0.8,
+          "evidenceRefs": [
+            "full-object"
+          ]
+        },
+        {
+          "id": "detail-12",
+          "kind": "contour",
+          "description": "Raised main hip corners and projecting gable eave tips",
+          "mapsTo": {
+            "ref": "eave-tips-3"
+          },
+          "confidence": 0.8,
+          "evidenceRefs": [
+            "full-object"
+          ]
+        },
+        {
+          "id": "detail-13",
+          "kind": "contour",
+          "description": "Round terracotta gallery columns with bracket supports",
+          "mapsTo": {
+            "ref": "columns-4"
+          },
+          "confidence": 0.8,
+          "evidenceRefs": [
+            "full-object"
+          ]
+        },
+        {
+          "id": "detail-14",
+          "kind": "ridge",
+          "description": "Dense parallel ceramic tile flutes",
+          "mapsTo": {
+            "ref": "roof-flutes-4"
+          },
+          "confidence": 0.8,
+          "evidenceRefs": [
+            "full-object"
+          ]
+        },
+        {
+          "id": "detail-15",
+          "kind": "contour",
+          "description": "Raised main hip corners and projecting gable eave tips",
+          "mapsTo": {
+            "ref": "eave-tips-4"
+          },
+          "confidence": 0.8,
+          "evidenceRefs": [
+            "full-object"
+          ]
+        },
+        {
+          "id": "detail-16",
+          "kind": "contour",
+          "description": "Round terracotta gallery columns with bracket supports",
+          "mapsTo": {
+            "ref": "columns-5"
+          },
+          "confidence": 0.8,
+          "evidenceRefs": [
+            "full-object"
+          ]
+        },
+        {
+          "id": "detail-17",
+          "kind": "ridge",
+          "description": "Dense parallel ceramic tile flutes",
+          "mapsTo": {
+            "ref": "roof-flutes-5"
+          },
+          "confidence": 0.8,
+          "evidenceRefs": [
+            "full-object"
+          ]
+        },
+        {
+          "id": "detail-18",
+          "kind": "contour",
+          "description": "Raised main hip corners and projecting gable eave tips",
+          "mapsTo": {
+            "ref": "eave-tips-5"
+          },
+          "confidence": 0.8,
+          "evidenceRefs": [
+            "full-object"
+          ]
+        },
+        {
+          "id": "detail-19",
+          "kind": "contour",
+          "description": "Continuous three-lobed lathe profile and small red top bead",
+          "mapsTo": {
+            "ref": "gourd-lobes"
+          },
+          "confidence": 0.8,
+          "evidenceRefs": [
+            "full-object"
+          ]
+        },
+        {
+          "id": "detail-20",
+          "kind": "linework",
+          "description": "Square meander pattern along balcony panels",
+          "mapsTo": {
+            "ref": "rail-pattern"
+          },
+          "confidence": 0.8,
+          "evidenceRefs": [
+            "full-object"
+          ]
+        },
+        {
+          "id": "detail-21",
+          "kind": "contour",
+          "description": "Layered bracket arms beneath each eave",
+          "mapsTo": {
+            "ref": "bracket-stack"
+          },
+          "confidence": 0.8,
+          "evidenceRefs": [
+            "full-object"
+          ]
+        },
+        {
+          "id": "detail-22",
+          "kind": "linework",
+          "description": "Muted green beam insets",
+          "mapsTo": {
+            "ref": "green-band"
+          },
+          "confidence": 0.8,
+          "evidenceRefs": [
+            "full-object"
+          ]
+        },
+        {
+          "id": "detail-23",
+          "kind": "contour",
+          "description": "Separate low canopy over entrance",
+          "mapsTo": {
+            "ref": "entry-gable"
+          },
+          "confidence": 0.8,
+          "evidenceRefs": [
+            "full-object"
+          ]
+        }
+      ]
+    },
+    "anatomy": {
+      "applies": false,
+      "styleHeads": 0.0,
+      "proportions": {
+        "headUnit": 0.0,
+        "torso": 0.0,
+        "legs": 0.0,
+        "shoulderWidth": 0.0,
+        "hipWidth": 0.0
+      },
+      "pose": {
+        "type": "unassessed",
+        "jointAngles": {}
+      },
+      "faceLandmarks": {
+        "eyeLine": 0.0,
+        "eyeSpacing": 0.0,
+        "noseBase": 0.0,
+        "mouthLine": 0.0,
+        "hairline": 0.0
+      },
+      "features": [],
+      "confidence": 0.0,
+      "note": "Only meaningful when objectClass.primaryDomain is character or hybrid. Set applies=true and fill from forge/stage1_intake/extract_landmarks.py. See grimoire/character/reconstruction.md and grimoire/character/likeness_maximization.md."
+    },
+    "sourceImage": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/references/real-front.jpg"
+  },
+  "qualityContract": {
+    "qualityBar": "complex",
+    "definitionOfDone": [
+      "Five main roofs and a separate entry canopy; four cardinal projecting roof arms; broad chamfer-square facades rather than a regular octagon; sheltered galleries, geometric railings, muted terracotta columns and yellow ceramic roof tiles. Overall height remains 51.4 metres."
+    ],
+    "minimumSpecDepth": {
+      "macroComponents": 3,
+      "mesoComponents": 8,
+      "microFeatureGroups": 5,
+      "materialLayers": 3,
+      "repetitionSystems": 1,
+      "reviewViewpoints": 4
+    },
+    "featureGroups": [
+      {
+        "id": "overall-silhouette",
+        "name": "Overall silhouette and proportions",
+        "required": true,
+        "qualityCriteria": [
+          "Bounding shape, dominant curves, negative spaces, and scale relationships are explicitly described."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "model reads as a generic placeholder instead of the reference object",
+          "major proportions are guessed without evidence"
+        ]
+      },
+      {
+        "id": "primary-structure",
+        "name": "Primary structure and hierarchy",
+        "required": true,
+        "qualityCriteria": [
+          "Major parts, joints, seams, contact points, and parent-child relationships are named before code generation."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "large visible parts are merged into one mesh",
+          "component hierarchy is too shallow for the observed complexity"
+        ]
+      },
+      {
+        "id": "attachment-joint-correctness",
+        "name": "Attachment and joint correctness",
+        "required": true,
+        "qualityCriteria": [
+          "Every visible child appendage, branch, limb, handle, connector, tube, cable, horn, wing, leg, or hinged part has an attachment contract with parent socket, localStart/localEnd, contact type, embed/overlap, and gap tolerance."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "child part root floats away from the parent",
+          "branch/limb/tube is centered in space instead of pivoting from its root",
+          "parent-child transform mixes world and local coordinates"
+        ]
+      },
+      {
+        "id": "surface-material-response",
+        "name": "Surface material response",
+        "required": true,
+        "qualityCriteria": [
+          "Albedo zones, roughness, normal/bump/displacement intent, cavity dirt, edge wear, and local overrides are specified where visible.",
+          "Important materials define independent albedo, roughness, height/normal, and AO responses instead of reusing one texture for unrelated PBR channels.",
+          "Surface response is decomposed into macro, meso, and micro frequency bands with scale and amplitude tied to object scale."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "surface looks like flat plastic",
+          "local material variation is missing or not tied to image evidence"
+        ]
+      },
+      {
+        "id": "reference-lookdev",
+        "name": "Reference color, material, and lighting response",
+        "required": true,
+        "qualityCriteria": [
+          "Material-pass names the reference-derived albedo palette, roughness variation, tactile normal/bump/displacement response, and local masks.",
+          "When a source image is available, run reference PBR extraction and require confidence >= 0.7 before treating maps as implementation-ready.",
+          "Lighting-pass names key/fill/rim or environment light, exposure, tone mapping, background, and contact shadow behavior.",
+          "Neutral, grazing-angle, and reference-matched renders prove that surface relief survives relighting and is not painted into albedo."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "model has acceptable shape but reads as flat shaded or plastic",
+          "colors are a generic average instead of reference-observed local color zones",
+          "lighting is evenly ambient and cannot reproduce the source value range"
+        ]
+      }
+    ],
+    "visualDeltaChecks": [
+      "silhouette and negative-space delta",
+      "component hierarchy depth delta",
+      "repetition density and distribution delta",
+      "material albedo/roughness/normal response delta",
+      "local feature placement and scale delta"
+    ],
+    "antiShallowSpecRules": [
+      "Do not proceed to code if qualityContract.qualityBar is unassessed.",
+      "Do not proceed to code if the spec only contains a root component for a moderate or complex object.",
+      "Do not proceed to code if required featureGroups are not represented by componentTree, materials, or repetitionSystems.",
+      "Do not proceed to code if visible local features are described only in prose and not attached to components/materials/evidenceRefs.",
+      "Do not proceed past structural-pass if attached child parts lack attachment.parentSocket, localStart, localEnd, embedDepth/overlap, and gapTolerance.",
+      "Do not pass material look-dev when albedo is reused as roughness, height, normal, or AO.",
+      "Do not pass material look-dev without macro, meso, and micro surface frequency bands for close-up materials.",
+      "Do not pass reference-fidelity material look-dev from a source image without usable referencePbr maps or an explicit documented limitation.",
+      "Do not patch a spec with extracted PBR maps when extraction confidence is below the target threshold unless the user explicitly accepts lower fidelity.",
+      "Do not place adjacent separate-geometry parts below 0.02 world-unit seam overlap (source: grimoire/build/geometry_patterns.md).",
+      "Do not satisfy raised or recessed relief, fasteners, or grip structure with a map alone when the feature affects form; use geometry or displacement (source: grimoire/build/geometry_patterns.md).",
+      "Adjacent components must overlap by at least 0.02 world units at shared seams (source: grimoire/build/geometry_patterns.md).",
+      "Raised or recessed relief and fasteners must be geometry, instanced micro-parts, or displacement; a map alone is an approximation (source: grimoire/build/geometry_patterns.md)."
+    ],
+    "mustNotDo": [
+      "Do not proceed to code if qualityContract.qualityBar is unassessed.",
+      "Do not proceed to code if the spec only contains a root component for a moderate or complex object.",
+      "Do not proceed to code if required featureGroups are not represented by componentTree, materials, or repetitionSystems.",
+      "Do not proceed to code if visible local features are described only in prose and not attached to components/materials/evidenceRefs.",
+      "Do not proceed past structural-pass if attached child parts lack attachment.parentSocket, localStart, localEnd, embedDepth/overlap, and gapTolerance.",
+      "Do not pass material look-dev when albedo is reused as roughness, height, normal, or AO.",
+      "Do not pass material look-dev without macro, meso, and micro surface frequency bands for close-up materials.",
+      "Do not pass reference-fidelity material look-dev from a source image without usable referencePbr maps or an explicit documented limitation.",
+      "Do not patch a spec with extracted PBR maps when extraction confidence is below the target threshold unless the user explicitly accepts lower fidelity.",
+      "Do not place adjacent separate-geometry parts below 0.02 world-unit seam overlap (source: grimoire/build/geometry_patterns.md).",
+      "Do not satisfy raised or recessed relief, fasteners, or grip structure with a map alone when the feature affects form; use geometry or displacement (source: grimoire/build/geometry_patterns.md).",
+      "Adjacent components must overlap by at least 0.02 world units at shared seams (source: grimoire/build/geometry_patterns.md).",
+      "Raised or recessed relief and fasteners must be geometry, instanced micro-parts, or displacement; a map alone is an approximation (source: grimoire/build/geometry_patterns.md)."
+    ]
+  },
+  "localSpecSearch": {
+    "collection": "core_3d",
+    "query": "Yellow Crane Tower architectural reconstruction",
+    "index": {
+      "status": "rebuilt",
+      "reason": "missing",
+      "fingerprint": "62f2831e1d52eeb6dbb94a87c44fa25b1f4926626a7b1f8c2bcadc63e04e9471"
+    },
+    "matches": [
+      {
+        "record_id": "core.shader-mapping-reconstruction-metadata-schema",
+        "file_path": "docs/raw/img2threejs-skill-dataset.json",
+        "heading": null,
+        "key_path": "categories.rendering_shader_mapping[15]",
+        "score": 2.024594950701,
+        "snippets": [
+          "A structured metadata envelope (identity, extraction provenance, geometry stats, texture-slot mapping, rights) accompanying each reconstructed asset to drive and audit the pipeline. Một gói metadata có cấu trúc (định danh, nguồn gốc trích xuất, ..."
+        ],
+        "source_refs": [
+          {
+            "path": "docs/raw/img2threejs-skill-dataset.json",
+            "heading": null,
+            "key_path": "categories.rendering_shader_mapping[15]"
+          }
+        ],
+        "evidence_refs": [
+          {
+            "kind": "source",
+            "ref": "docs/raw/img2threejs-skill-dataset.json",
+            "note": "img2threejs NotebookLM research distillation"
+          }
+        ]
+      },
+      {
+        "record_id": "core.description-vra-core-40-attribute-value-schema",
+        "file_path": "docs/raw/img2threejs-skill-dataset.json",
+        "heading": null,
+        "key_path": "categories.description_conventions[1]",
+        "score": 1.911498280754,
+        "snippets": [
+          "... biết nó mô tả toàn bộ đối tượng hay một sub-part — sự mơ hồ này là lỗi schema phổ biến nhất Three.js target: Per-field metadata: { value, vocab, extent } attached to each material/measurement/attribute entry in the reconstruction metadata schema"
+        ],
+        "source_refs": [
+          {
+            "path": "docs/raw/img2threejs-skill-dataset.json",
+            "heading": null,
+            "key_path": "categories.description_conventions[1]"
+          }
+        ],
+        "evidence_refs": [
+          {
+            "kind": "source",
+            "ref": "docs/raw/img2threejs-skill-dataset.json",
+            "note": "img2threejs NotebookLM research distillation"
+          }
+        ]
+      },
+      {
+        "record_id": "core.description-controlled-vocabulary-aat-facets",
+        "file_path": "docs/raw/img2threejs-skill-dataset.json",
+        "heading": null,
+        "key_path": "categories.description_conventions[5]",
+        "score": 1.872277772496,
+        "snippets": [
+          "... diễn đạt tự do thay đổi giữa các mô tả của cùng một vật liệu Three.js target: Enum-constrained metadata fields (materialType, finishStyle) validated against a fixed controlled-vocabulary list before being written to the reconstruction schema"
+        ],
+        "source_refs": [
+          {
+            "path": "docs/raw/img2threejs-skill-dataset.json",
+            "heading": null,
+            "key_path": "categories.description_conventions[5]"
+          }
+        ],
+        "evidence_refs": [
+          {
+            "kind": "source",
+            "ref": "docs/raw/img2threejs-skill-dataset.json",
+            "note": "img2threejs NotebookLM research distillation"
+          }
+        ]
+      }
+    ]
+  }
+}

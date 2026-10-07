@@ -1,0 +1,54 @@
+黄鹤楼 · 全新 Blender 模型
+生成日期：2026-10-07
+
+交付内容
+  黄鹤楼.blend   可编辑的 Blender 场景（Blender 4.5 或更新版本）
+  preview.png   三分之四角度的材质、灯光渲染
+  front.png     正面渲染
+  build_model.py / facades.py / crown.py   完整的程序化建模源代码
+  model_info.json   实际生成的网格统计
+
+独立生成范围
+  此目录为本次新建的交付目录。模型没有读取、引用、复制或改动
+  gta-wh 原有项目文件、旧模型、贴图或数据。全部建筑几何由本目录
+  脚本生成，材质为程序化材质。中文字体在保存时打包进 blend。
+  “隔离”在这里指素材与文件处理范围，不是操作系统权限沙箱。
+
+模型结构
+  00_Base：石台、台阶与平台栏杆。
+  Floor_01～Floor_05：按楼层分组的柱梁、格窗、墙体、回廊栏杆。
+  01_Roof～05_Roof：五组主屋面、瓦垄、瓦口、翘角与脊饰。
+  06_Crown：中央攒尖宝顶与四向骑楼屋顶。
+  01_Plaque / 05_Plaque：牌匾与“黄鹤楼”文字。
+  90_Studio：可独立隐藏的灯光、相机和摄影棚地面。
+  同一建筑部件与材质会合并成一个网格，便于按楼层编辑。
+
+使用
+  在 Blender 中直接打开 黄鹤楼.blend。
+  数字键盘 0 查看保存的相机，Home 框选场景，F12 重新渲染。
+  灯光与摄影棚在 90_Studio 集合中，可隐藏后作为建筑资产使用。
+  程序化材质已保存；无需下载贴图或链接其他项目文件。
+
+重新生成
+  blender --background --factory-startup --python build_model.py
+  生成器需要 build_model.py、facades.py、crown.py 放在同一目录。
+  生成器使用 macOS 系统宋体制作中文文字；在其他操作系统重新生成时，
+  请将 build_model.py 中的 font_path 改为支持中文的字体路径。
+  打开已生成的 blend 不需要原始系统字体。
+
+精度说明
+  这是依据公开建筑外观重新创作的艺术化外观模型，并非测绘复原。
+  保留五层、折角方形、金色琉璃瓦、朱柱、回廊与多翼角飞檐特征；
+  中间三层同宽，顶部收进。细部斗拱、柱数、瓦件及雕饰作了简化。
+  采用米制单位，建筑从平台面到最高宝顶的参考高度约为 51.4 米。
+  不包含室内空间、结构施工数据、游戏碰撞体或动画。
+
+公开外观资料（仅用于观察，不作为模型贴图）
+  武汉市政府：黄鹤楼设计手稿与建筑介绍
+  https://www.wuhan.gov.cn/zjwh/whrw/202608/t20260826_2838750.shtml
+  湖北省住房和城乡建设厅：黄鹤楼介绍
+  https://zjt.hubei.gov.cn/bmdt/ztzl/hbcjda/gzdt_7471/201910/t20191028_79891.shtml
+  武汉出版社《黄鹤楼沧桑》第九章
+  https://www.whcbs.com/Upload/BookReadFile/202004/5b46c3b00ef94c85a1065fb4138effbc/OPS/chapter009.html
+  湖北省委外办：官方照片
+  https://www.fohb.gov.cn/info/2022-08/20220810161400_204.html

@@ -1,0 +1,85 @@
+{
+  "ok": true,
+  "verdict": "pass",
+  "confidence": 0.86,
+  "estimatedFidelity": 0.86,
+  "targetThreshold": 0.7,
+  "materialId": "wood",
+  "sourceImage": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/references/wood.png",
+  "outDir": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/wood",
+  "palette": [
+    "#E8B28F",
+    "#E4A672",
+    "#996A4E",
+    "#C58C68",
+    "#57403A"
+  ],
+  "maps": {
+    "albedo": {
+      "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/wood/wood_albedo.png",
+      "url": "wood_albedo.png",
+      "channel": "albedo",
+      "source": "reference-pixel-extraction"
+    },
+    "roughness": {
+      "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/wood/wood_roughness.png",
+      "url": "wood_roughness.png",
+      "channel": "roughness",
+      "source": "reference-pixel-extraction"
+    },
+    "height": {
+      "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/wood/wood_height.png",
+      "url": "wood_height.png",
+      "channel": "height",
+      "source": "reference-pixel-extraction"
+    },
+    "normal": {
+      "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/wood/wood_normal.png",
+      "url": "wood_normal.png",
+      "channel": "normal",
+      "source": "reference-pixel-extraction"
+    },
+    "ao": {
+      "path": "/Users/Admin/Desktop/gta-wh/assets/models/huanghe-tower-code/review/pbr/wood/wood_ao.png",
+      "url": "wood_ao.png",
+      "channel": "ao",
+      "source": "reference-pixel-extraction"
+    }
+  },
+  "diagnostics": {
+    "sourceWidth": 22,
+    "sourceHeight": 170,
+    "mapSize": 256,
+    "cropBBoxPixels": {
+      "x": 0,
+      "y": 0,
+      "width": 22,
+      "height": 170
+    },
+    "mask": {
+      "backgroundColor": "#6C5348",
+      "backgroundNoise": 60.737,
+      "transparentPixelFraction": 0.0,
+      "foregroundCoverage": 0.715
+    },
+    "mapStats": {
+      "valueRange": 0.5234,
+      "heightP90Gradient": 0.21688,
+      "roughnessBase": 0.775,
+      "roughnessVariation": 0.219,
+      "normalStrength": 0.41,
+      "blurRadius": 5
+    },
+    "palette": [
+      "#E8B28F",
+      "#E4A672",
+      "#996A4E",
+      "#C58C68",
+      "#57403A"
+    ]
+  },
+  "warnings": [
+    "single-image inverse rendering cannot prove true physical PBR; confidence is capped"
+  ],
+  "limitation": "single-image PBR extraction is an estimate; 70%+ extraction confidence still needs render screenshot review"
+}

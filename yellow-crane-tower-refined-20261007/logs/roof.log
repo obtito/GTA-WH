@@ -1,0 +1,320 @@
+{"at": "2026-10-07T17:55:14+08:00", "phase": "开始生成 roof"}
+Info: Packed 1 file(s)
+Info: Saved as "roof.blend"
+VALIDATED {"stage": "roof", "mesh_objects": 352, "vertices": 475512, "faces": 403686, "unpacked_images": [], "linked_libraries": 0, "packed_fonts": 1, "geometry_finite": true, "top_z": 53.46979904174805}
+Blender 4.5.14 LTS (hash 62c1db4208e8 built 2026-09-15 01:30:44)
+Fra:1 Mem:200.77M (Peak 200.77M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 00_Base/Plinth
+Fra:1 Mem:200.77M (Peak 200.77M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 00_Base/Approach stair
+Fra:1 Mem:200.77M (Peak 200.77M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 00_Base/Stone posts
+Fra:1 Mem:200.78M (Peak 200.78M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 00_Base/Stone capitals
+Fra:1 Mem:200.92M (Peak 200.92M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 00_Base/Stone rails
+Fra:1 Mem:200.95M (Peak 200.95M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_01_column_bases
+Fra:1 Mem:201.04M (Peak 201.04M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_01_vermilion_columns
+Fra:1 Mem:201.15M (Peak 201.15M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_01_column_neck_rings
+Fra:1 Mem:201.18M (Peak 201.18M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_01_bracket_blocks
+Fra:1 Mem:201.20M (Peak 201.20M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_01_structural_beams
+Fra:1 Mem:201.27M (Peak 201.27M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_01_painted_fascia
+Fra:1 Mem:201.33M (Peak 201.33M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_01_fascia_edges
+Fra:1 Mem:201.45M (Peak 201.45M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_01_curved_queti
+Fra:1 Mem:201.55M (Peak 201.55M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_01_window_infill
+Fra:1 Mem:201.66M (Peak 201.66M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_01_window_frames
+Fra:1 Mem:201.71M (Peak 201.71M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_01_window_lattice
+Fra:1 Mem:201.81M (Peak 201.81M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_01_cream_lintels
+Fra:1 Mem:201.95M (Peak 201.95M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_01_entry_shadow
+Fra:1 Mem:202.03M (Peak 202.03M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_01_entry_upper_panel
+Fra:1 Mem:202.05M (Peak 202.05M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_01_rail_beams
+Fra:1 Mem:202.07M (Peak 202.07M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_01_rail_balusters
+Fra:1 Mem:202.37M (Peak 202.37M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_01_rail_posts
+Fra:1 Mem:202.41M (Peak 202.41M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 01_Roof/Closed roof edges
+Fra:1 Mem:202.42M (Peak 202.42M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 01_Roof/Tile courses
+Fra:1 Mem:203.39M (Peak 203.39M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 01_Roof/Eave ridge
+Fra:1 Mem:205.45M (Peak 205.45M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 01_Roof/Dark eave fascia
+Fra:1 Mem:208.35M (Peak 208.35M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 01_Roof/Hip ridge
+Fra:1 Mem:210.85M (Peak 210.85M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 01_Roof/Short ridge ornament
+Fra:1 Mem:211.40M (Peak 211.40M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_02_balcony_slab
+Fra:1 Mem:211.60M (Peak 211.60M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_02_floor_edge
+Fra:1 Mem:213.09M (Peak 213.09M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 匾额_樓鶴黃
+Fra:1 Mem:213.10M (Peak 213.10M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_02_vermilion_columns
+Fra:1 Mem:213.71M (Peak 213.71M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_02_column_neck_rings
+Fra:1 Mem:213.78M (Peak 213.78M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 匾额_目極天楚
+Fra:1 Mem:214.10M (Peak 214.10M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_02_bracket_blocks
+Fra:1 Mem:215.35M (Peak 215.35M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_02_bracket_arms
+Fra:1 Mem:215.60M (Peak 215.60M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_02_painted_fascia
+Fra:1 Mem:215.64M (Peak 215.64M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_02_fascia_edges
+Fra:1 Mem:215.91M (Peak 215.91M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_02_curved_queti
+Fra:1 Mem:216.02M (Peak 216.02M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_02_lower_door_panels
+Fra:1 Mem:216.34M (Peak 216.34M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_02_window_infill
+Fra:1 Mem:216.36M (Peak 216.36M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_02_window_frames
+Fra:1 Mem:216.40M (Peak 216.40M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_02_window_lattice
+Fra:1 Mem:216.43M (Peak 216.43M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_02_cream_lintels
+Fra:1 Mem:216.64M (Peak 216.64M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_02_wall_stiles
+Fra:1 Mem:216.87M (Peak 216.87M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_02_rail_beams
+Fra:1 Mem:216.95M (Peak 216.95M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_02_rail_balusters
+Fra:1 Mem:217.21M (Peak 217.21M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_02_rail_posts
+Fra:1 Mem:217.44M (Peak 217.44M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_02_rail_caps
+Fra:1 Mem:217.26M (Peak 217.44M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 匾额_夢雲吞氣
+Fra:1 Mem:218.29M (Peak 218.29M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 02_Roof/Closed roof edges
+Fra:1 Mem:218.70M (Peak 218.70M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 02_Roof/Round tile ribs
+Fra:1 Mem:219.09M (Peak 219.09M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 02_Roof/Tile courses
+Fra:1 Mem:221.24M (Peak 221.24M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 02_Roof/Eave ridge
+Fra:1 Mem:221.54M (Peak 221.54M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 02_Roof/Dark eave fascia
+Fra:1 Mem:222.44M (Peak 222.44M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 02_Roof/Painted underside trim
+Fra:1 Mem:223.02M (Peak 223.02M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rim
+Fra:1 Mem:223.77M (Peak 223.77M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 02_Roof/Hip ridge
+Fra:1 Mem:224.78M (Peak 224.78M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 02_Roof/Short ridge ornament
+Fra:1 Mem:225.47M (Peak 225.47M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_03_balcony_slab
+Fra:1 Mem:224.88M (Peak 225.47M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_03_floor_edge
+Fra:1 Mem:224.88M (Peak 225.47M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_03_column_bases
+Fra:1 Mem:225.08M (Peak 225.47M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_03_vermilion_columns
+Fra:1 Mem:226.69M (Peak 226.69M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_03_column_neck_rings
+Fra:1 Mem:226.71M (Peak 226.71M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_03_bracket_blocks
+Fra:1 Mem:226.82M (Peak 226.82M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_03_bracket_arms
+Fra:1 Mem:226.84M (Peak 226.84M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_03_painted_fascia
+Fra:1 Mem:226.86M (Peak 226.86M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_03_fascia_edges
+Fra:1 Mem:227.48M (Peak 227.48M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_03_curved_queti
+Fra:1 Mem:228.06M (Peak 228.06M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_03_lower_door_panels
+Fra:1 Mem:228.07M (Peak 228.07M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_03_window_lattice
+Fra:1 Mem:228.09M (Peak 228.09M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_03_window_sills
+Fra:1 Mem:228.68M (Peak 228.68M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_03_timber_wall_piers
+Fra:1 Mem:228.85M (Peak 228.85M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Fill
+Fra:1 Mem:228.89M (Peak 228.89M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_03_wall_stiles
+Fra:1 Mem:229.18M (Peak 229.18M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_03_rail_balusters
+Fra:1 Mem:229.29M (Peak 229.29M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_03_rail_posts
+Fra:1 Mem:229.30M (Peak 229.30M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_03_rail_caps
+Fra:1 Mem:229.63M (Peak 229.63M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_03_rail_return_beams
+Fra:1 Mem:229.69M (Peak 229.69M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 03_Roof/Glazed roof planes
+Fra:1 Mem:229.73M (Peak 229.73M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 03_Roof/Roof soffit
+Fra:1 Mem:229.75M (Peak 229.75M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 03_Roof/Closed roof edges
+Fra:1 Mem:229.86M (Peak 229.86M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Studio ground
+Fra:1 Mem:230.38M (Peak 230.38M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 03_Roof/Round tile ribs
+Fra:1 Mem:230.47M (Peak 230.47M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 03_Roof/Tile courses
+Fra:1 Mem:230.69M (Peak 230.69M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 03_Roof/Eave ridge
+Fra:1 Mem:234.52M (Peak 234.52M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 03_Roof/Dark eave fascia
+Fra:1 Mem:235.59M (Peak 235.59M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 03_Roof/Painted underside trim
+Fra:1 Mem:238.07M (Peak 238.07M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 03_Roof/Hip ridge
+Fra:1 Mem:238.47M (Peak 238.47M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 03_Roof/Short ridge ornament
+Fra:1 Mem:238.86M (Peak 238.86M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_04_balcony_slab
+Fra:1 Mem:239.43M (Peak 239.43M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_04_column_bases
+Fra:1 Mem:239.47M (Peak 239.47M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_04_vermilion_columns
+Fra:1 Mem:239.74M (Peak 239.74M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_04_column_neck_rings
+Fra:1 Mem:239.76M (Peak 239.76M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 01_Plaque/Frame
+Fra:1 Mem:239.81M (Peak 239.81M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_04_bracket_blocks
+Fra:1 Mem:240.45M (Peak 240.45M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_04_bracket_arms
+Fra:1 Mem:240.49M (Peak 240.49M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_04_structural_beams
+Fra:1 Mem:240.82M (Peak 240.82M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_04_painted_fascia
+Fra:1 Mem:240.82M (Peak 240.82M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_04_curved_queti
+Fra:1 Mem:240.88M (Peak 240.88M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_04_lower_door_panels
+Fra:1 Mem:240.89M (Peak 240.89M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_04_window_infill
+Fra:1 Mem:240.94M (Peak 240.94M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_04_window_lattice
+Fra:1 Mem:240.96M (Peak 240.96M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_04_window_sills
+Fra:1 Mem:240.99M (Peak 240.99M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_04_timber_wall_piers
+Fra:1 Mem:241.03M (Peak 241.03M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_04_wall_stiles
+Fra:1 Mem:241.11M (Peak 241.11M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_04_rail_balusters
+Fra:1 Mem:240.81M (Peak 241.11M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_04_rail_posts
+Fra:1 Mem:240.84M (Peak 241.11M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_04_rail_caps
+Fra:1 Mem:240.87M (Peak 241.11M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_04_rail_return_beams
+Fra:1 Mem:240.96M (Peak 241.11M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 04_Roof/Glazed roof planes
+Fra:1 Mem:240.96M (Peak 241.11M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 04_Roof/Closed roof edges
+Fra:1 Mem:242.00M (Peak 242.00M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 04_Roof/Round tile ribs
+Fra:1 Mem:244.21M (Peak 244.21M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 04_Roof/Tile courses
+Fra:1 Mem:244.73M (Peak 244.73M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 04_Roof/Eave ridge
+Fra:1 Mem:246.73M (Peak 246.73M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 04_Roof/Dark eave fascia
+Fra:1 Mem:248.22M (Peak 248.22M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 04_Roof/Hip ridge
+Fra:1 Mem:249.55M (Peak 249.55M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 04_Roof/Short ridge ornament
+Fra:1 Mem:249.66M (Peak 249.66M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_05_balcony_slab
+Fra:1 Mem:249.71M (Peak 249.71M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_05_column_bases
+Fra:1 Mem:249.73M (Peak 249.73M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_05_floor_edge
+Fra:1 Mem:250.24M (Peak 250.24M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_05_vermilion_columns
+Fra:1 Mem:250.36M (Peak 250.36M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_05_column_neck_rings
+Fra:1 Mem:250.51M (Peak 250.51M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_05_bracket_blocks
+Fra:1 Mem:250.61M (Peak 250.61M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_05_bracket_arms
+Fra:1 Mem:250.69M (Peak 250.69M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_05_structural_beams
+Fra:1 Mem:251.24M (Peak 251.24M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_05_lower_door_panels
+Fra:1 Mem:251.26M (Peak 251.26M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_05_window_infill
+Fra:1 Mem:251.32M (Peak 251.32M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_05_window_frames
+Fra:1 Mem:251.57M (Peak 251.57M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Finial bronze gourd
+Fra:1 Mem:251.63M (Peak 251.63M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_05_window_lattice
+Fra:1 Mem:251.69M (Peak 251.69M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_05_window_sills
+Fra:1 Mem:251.84M (Peak 251.84M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_05_timber_wall_piers
+Fra:1 Mem:251.85M (Peak 251.85M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_05_cream_lintels
+Fra:1 Mem:251.95M (Peak 251.95M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 4/Plaque frame
+Fra:1 Mem:251.93M (Peak 251.95M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 4/Lintel
+Fra:1 Mem:252.08M (Peak 252.08M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_05_rail_beams
+Fra:1 Mem:252.61M (Peak 252.61M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 4/Short supporting post
+Fra:1 Mem:252.66M (Peak 252.66M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_05_rail_caps
+Fra:1 Mem:252.73M (Peak 252.73M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_05_rail_return_beams
+Fra:1 Mem:252.89M (Peak 252.89M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Main slope 1/Upper/Glazed roof shell
+Fra:1 Mem:252.93M (Peak 252.93M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Main slope 1/Upper/Round tile ribs
+Fra:1 Mem:253.04M (Peak 253.04M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Main slope 1/Upper/Tile overlaps
+Fra:1 Mem:253.44M (Peak 253.44M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Main slope 1/Wing -1/Tile overlaps
+Fra:1 Mem:253.68M (Peak 253.68M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Main slope 1/Ceramic eave roll
+Fra:1 Mem:254.34M (Peak 254.34M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 4/Horizontal ceramic ridge
+Fra:1 Mem:254.50M (Peak 254.50M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Main slope 1/Timber fascia
+Fra:1 Mem:254.09M (Peak 254.50M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Main slope 1/Painted soffit edge
+Fra:1 Mem:254.16M (Peak 254.50M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 4/Side hip 1/Tile overlaps
+Fra:1 Mem:254.28M (Peak 254.50M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Main slope 1/Wing 1/Glazed roof shell
+Fra:1 Mem:254.33M (Peak 254.50M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Main slope 1/Wing 1/Round tile ribs
+Fra:1 Mem:254.36M (Peak 254.50M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Main slope 1/Wing 1/Tile overlaps
+Fra:1 Mem:254.72M (Peak 254.72M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 4/Side hip 1/Round tile ribs
+Fra:1 Mem:254.74M (Peak 254.74M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Main slope 1/Short ridge kiss
+Fra:1 Mem:254.83M (Peak 254.83M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Main slope 2/Upper/Glazed roof shell
+Fra:1 Mem:254.91M (Peak 254.91M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Main slope 2/Upper/Round tile ribs
+Fra:1 Mem:255.04M (Peak 255.04M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Main slope 2/Upper/Tile overlaps
+Fra:1 Mem:255.13M (Peak 255.13M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Main slope 2/Wing -1/Round tile ribs
+Fra:1 Mem:255.49M (Peak 255.49M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 4/Side hip 1/Glazed roof shell
+Fra:1 Mem:255.60M (Peak 255.60M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Main slope 2/Wing -1/Tile overlaps
+Fra:1 Mem:255.86M (Peak 255.86M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 4/Gable trim
+Fra:1 Mem:255.88M (Peak 255.88M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 4/Recessed triangular gable
+Fra:1 Mem:255.88M (Peak 255.88M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 4/Side hip -1/Tile overlaps
+Fra:1 Mem:256.03M (Peak 256.03M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Main slope 2/Ceramic eave roll
+Fra:1 Mem:256.04M (Peak 256.04M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Main slope 2/Timber fascia
+Fra:1 Mem:256.11M (Peak 256.11M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Main slope 2/Painted soffit edge
+Fra:1 Mem:256.12M (Peak 256.12M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Main slope 2/Wing 1/Round tile ribs
+Fra:1 Mem:256.12M (Peak 256.12M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Main slope 2/Wing 1/Tile overlaps
+Fra:1 Mem:256.62M (Peak 256.62M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Main slope 2/Main diagonal ridge
+Fra:1 Mem:256.63M (Peak 256.63M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Main slope 3/Upper/Glazed roof shell
+Fra:1 Mem:256.74M (Peak 256.74M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Main slope 3/Upper/Round tile ribs
+Fra:1 Mem:256.74M (Peak 256.74M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Main slope 3/Upper/Tile overlaps
+Fra:1 Mem:256.75M (Peak 256.75M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Main slope 3/Wing -1/Glazed roof shell
+Fra:1 Mem:256.94M (Peak 256.94M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Main slope 3/Wing -1/Round tile ribs
+Fra:1 Mem:257.38M (Peak 257.38M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Main slope 3/Wing -1/Tile overlaps
+Fra:1 Mem:257.50M (Peak 257.50M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Main slope 3/Ceramic eave roll
+Fra:1 Mem:257.60M (Peak 257.60M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Main slope 3/Timber fascia
+Fra:1 Mem:257.60M (Peak 257.60M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Main slope 3/Painted soffit edge
+Fra:1 Mem:257.83M (Peak 257.83M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Main slope 3/Wing 1/Glazed roof shell
+Fra:1 Mem:257.87M (Peak 257.87M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Main slope 3/Wing 1/Round tile ribs
+Fra:1 Mem:257.86M (Peak 257.87M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Main slope 3/Wing 1/Tile overlaps
+Fra:1 Mem:258.34M (Peak 258.34M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Main slope 3/Main diagonal ridge
+Fra:1 Mem:258.52M (Peak 258.52M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Main slope 3/Short ridge kiss
+Fra:1 Mem:258.65M (Peak 258.65M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Main slope 4/Upper/Tile overlaps
+Fra:1 Mem:258.80M (Peak 258.80M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 4/Lower pitch 1/Tile overlaps
+Fra:1 Mem:258.93M (Peak 258.93M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Main slope 4/Ceramic eave roll
+Fra:1 Mem:259.18M (Peak 259.18M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 4/Lower pitch 1/Round tile ribs
+Fra:1 Mem:259.33M (Peak 259.33M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Main slope 4/Timber fascia
+Fra:1 Mem:259.35M (Peak 259.35M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Main slope 4/Painted soffit edge
+Fra:1 Mem:259.44M (Peak 259.44M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Main slope 4/Wing 1/Glazed roof shell
+Fra:1 Mem:260.18M (Peak 260.18M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Main slope 4/Wing 1/Round tile ribs
+Fra:1 Mem:260.41M (Peak 260.41M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Main slope 4/Wing 1/Tile overlaps
+Fra:1 Mem:260.57M (Peak 260.57M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Main slope 4/Main diagonal ridge
+Fra:1 Mem:260.65M (Peak 260.65M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 4/Lower pitch 1/Glazed roof shell
+Fra:1 Mem:260.77M (Peak 260.77M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Peak closure
+Fra:1 Mem:260.89M (Peak 260.89M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 1/Upper pitch 0/Glazed roof shell
+Fra:1 Mem:260.92M (Peak 260.92M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 1/Upper pitch 0/Tile overlaps
+Fra:1 Mem:260.94M (Peak 260.94M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 1/Lower pitch 0/Glazed roof shell
+Fra:1 Mem:261.05M (Peak 261.05M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 1/Lower pitch 0/Tile overlaps
+Fra:1 Mem:261.09M (Peak 261.09M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 1/Ceramic eave roll
+Fra:1 Mem:261.22M (Peak 261.22M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 4/Upper pitch 1/Tile overlaps
+Fra:1 Mem:261.40M (Peak 261.40M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 1/Timber fascia
+Fra:1 Mem:261.45M (Peak 261.45M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 4/Upper pitch 1/Round tile ribs
+Fra:1 Mem:261.55M (Peak 261.55M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 1/Painted soffit edge
+Fra:1 Mem:261.69M (Peak 261.69M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 1/Upper pitch 1/Glazed roof shell
+Fra:1 Mem:261.78M (Peak 261.78M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 1/Upper pitch 1/Tile overlaps
+Fra:1 Mem:261.83M (Peak 261.83M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 1/Lower pitch 1/Glazed roof shell
+Fra:1 Mem:261.90M (Peak 261.90M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 1/Lower pitch 1/Round tile ribs
+Fra:1 Mem:262.00M (Peak 262.00M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 1/Lower pitch 1/Tile overlaps
+Fra:1 Mem:262.28M (Peak 262.28M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 1/Side hip -1/Glazed roof shell
+Fra:1 Mem:262.41M (Peak 262.41M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 1/Side hip -1/Round tile ribs
+Fra:1 Mem:262.50M (Peak 262.50M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 1/Recessed triangular gable
+Fra:1 Mem:262.65M (Peak 262.65M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 1/Gable trim
+Fra:1 Mem:262.77M (Peak 262.77M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 1/Side hip 1/Glazed roof shell
+Fra:1 Mem:262.89M (Peak 262.89M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 1/Side hip 1/Round tile ribs
+Fra:1 Mem:263.19M (Peak 263.19M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 1/Side hip 1/Tile overlaps
+Fra:1 Mem:263.36M (Peak 263.36M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 1/Horizontal ceramic ridge
+Fra:1 Mem:263.37M (Peak 263.37M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 1/Short supporting post
+Fra:1 Mem:263.45M (Peak 263.45M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 1/Lintel
+Fra:1 Mem:263.47M (Peak 263.47M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 1/Plaque lacquer
+Fra:1 Mem:263.51M (Peak 263.51M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 2/Upper pitch 0/Glazed roof shell
+Fra:1 Mem:263.55M (Peak 263.55M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 2/Upper pitch 0/Round tile ribs
+Fra:1 Mem:263.59M (Peak 263.59M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 4/Upper pitch 1/Glazed roof shell
+Fra:1 Mem:263.66M (Peak 263.66M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 2/Lower pitch 0/Glazed roof shell
+Fra:1 Mem:263.71M (Peak 263.71M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 2/Lower pitch 0/Round tile ribs
+Fra:1 Mem:263.85M (Peak 263.85M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 4/Short ridge kiss
+Fra:1 Mem:263.86M (Peak 263.86M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 2/Timber fascia
+Fra:1 Mem:264.02M (Peak 264.02M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 2/Painted soffit edge
+Fra:1 Mem:264.23M (Peak 264.23M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 2/Short ridge kiss
+Fra:1 Mem:264.53M (Peak 264.53M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 2/Upper pitch 1/Glazed roof shell
+Fra:1 Mem:264.63M (Peak 264.63M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 2/Lower pitch 1/Round tile ribs
+Fra:1 Mem:264.80M (Peak 264.80M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 2/Lower pitch 1/Tile overlaps
+Fra:1 Mem:265.04M (Peak 265.04M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 2/Side hip -1/Glazed roof shell
+Fra:1 Mem:265.28M (Peak 265.28M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 2/Side hip -1/Round tile ribs
+Fra:1 Mem:265.38M (Peak 265.38M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 4/Painted soffit edge
+Fra:1 Mem:265.51M (Peak 265.51M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 2/Gable trim
+Fra:1 Mem:265.59M (Peak 265.59M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 2/Side hip 1/Glazed roof shell
+Fra:1 Mem:265.72M (Peak 265.72M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 2/Side hip 1/Round tile ribs
+Fra:1 Mem:265.82M (Peak 265.82M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 2/Horizontal ceramic ridge
+Fra:1 Mem:265.90M (Peak 265.90M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 2/Short supporting post
+Fra:1 Mem:265.90M (Peak 265.90M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 2/Lintel
+Fra:1 Mem:265.91M (Peak 265.91M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 2/Plaque frame
+Fra:1 Mem:265.93M (Peak 265.93M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 2/Plaque lacquer
+Fra:1 Mem:265.93M (Peak 265.93M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 3/Upper pitch 0/Glazed roof shell
+Fra:1 Mem:265.98M (Peak 265.98M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 3/Upper pitch 0/Round tile ribs
+Fra:1 Mem:266.04M (Peak 266.04M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 3/Upper pitch 0/Tile overlaps
+Fra:1 Mem:266.05M (Peak 266.05M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 3/Lower pitch 0/Glazed roof shell
+Fra:1 Mem:266.16M (Peak 266.16M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 4/Timber fascia
+Fra:1 Mem:266.30M (Peak 266.30M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 3/Ceramic eave roll
+Fra:1 Mem:266.50M (Peak 266.50M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 3/Timber fascia
+Fra:1 Mem:266.59M (Peak 266.59M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 3/Short ridge kiss
+Fra:1 Mem:266.79M (Peak 266.79M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 3/Upper pitch 1/Glazed roof shell
+Fra:1 Mem:267.14M (Peak 267.14M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 3/Upper pitch 1/Tile overlaps
+Fra:1 Mem:267.25M (Peak 267.25M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 3/Lower pitch 1/Glazed roof shell
+Fra:1 Mem:267.26M (Peak 267.26M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 4/Ceramic eave roll
+Fra:1 Mem:267.41M (Peak 267.41M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 3/Side hip -1/Glazed roof shell
+Fra:1 Mem:267.55M (Peak 267.55M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 3/Side hip -1/Tile overlaps
+Fra:1 Mem:267.75M (Peak 267.75M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 3/Recessed triangular gable
+Fra:1 Mem:267.87M (Peak 267.87M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 3/Side hip 1/Round tile ribs
+Fra:1 Mem:268.08M (Peak 268.08M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 3/Side hip 1/Tile overlaps
+Fra:1 Mem:268.15M (Peak 268.15M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 3/Horizontal ceramic ridge
+Fra:1 Mem:268.16M (Peak 268.16M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 3/Short supporting post
+Fra:1 Mem:268.16M (Peak 268.16M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 3/Lintel
+Fra:1 Mem:268.16M (Peak 268.16M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 3/Plaque lacquer
+Fra:1 Mem:268.33M (Peak 268.33M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 4/Upper pitch 0/Glazed roof shell
+Fra:1 Mem:268.34M (Peak 268.34M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 4/Lower pitch 0/Glazed roof shell
+Fra:1 Mem:268.45M (Peak 268.45M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 4/Lower pitch 0/Round tile ribs
+Fra:1 Mem:268.48M (Peak 268.48M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Embedded bay 4/Lower pitch 0/Tile overlaps
+Fra:1 Mem:269.39M (Peak 269.39M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:1 Mem:253.76M (Peak 269.39M) | Time:00:00.03 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Waiting for render to start
+Fra:1 Mem:253.76M (Peak 269.39M) | Time:00:00.03 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Scene
+Fra:1 Mem:253.76M (Peak 269.39M) | Time:00:00.03 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Shaders
+Fra:1 Mem:253.76M (Peak 269.39M) | Time:00:00.03 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:253.86M (Peak 269.39M) | Time:00:00.03 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Procedurals
+Fra:1 Mem:253.86M (Peak 269.39M) | Time:00:00.03 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Background
+Fra:1 Mem:253.86M (Peak 269.39M) | Time:00:00.03 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Camera
+Fra:1 Mem:253.86M (Peak 269.39M) | Time:00:00.03 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Meshes Flags
+Fra:1 Mem:253.86M (Peak 269.39M) | Time:00:00.03 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Objects
+Fra:1 Mem:253.86M (Peak 269.39M) | Time:00:00.03 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:1 Mem:253.94M (Peak 269.39M) | Time:00:00.03 | Mem:0.10M, Peak:0.10M | Scene, ViewLayer | Updating Particle Systems
+Fra:1 Mem:253.94M (Peak 269.39M) | Time:00:00.03 | Mem:0.10M, Peak:0.10M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:253.94M (Peak 269.39M) | Time:00:00.03 | Mem:0.10M, Peak:0.10M | Scene, ViewLayer | Updating Meshes
+Fra:1 Mem:253.94M (Peak 269.39M) | Time:00:00.03 | Mem:0.10M, Peak:0.10M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:253.94M (Peak 269.39M) | Time:00:00.03 | Mem:0.10M, Peak:0.10M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:1 Mem:259.66M (Peak 269.39M) | Time:00:00.03 | Mem:0.12M, Peak:0.12M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:259.62M (Peak 269.39M) | Time:00:00.03 | Mem:5.77M, Peak:5.77M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:1 Mem:259.63M (Peak 269.39M) | Time:00:00.03 | Mem:5.77M, Peak:5.77M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:1 Mem:259.63M (Peak 269.39M) | Time:00:00.04 | Mem:32.00M, Peak:32.00M | Scene, ViewLayer | Updating Scene BVH | Building BVH 0%
+Fra:1 Mem:259.63M (Peak 269.39M) | Time:00:00.07 | Mem:59.77M, Peak:86.00M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:259.63M (Peak 269.39M) | Time:00:00.07 | Mem:59.77M, Peak:86.00M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:1 Mem:284.05M (Peak 284.05M) | Time:00:00.08 | Mem:59.77M, Peak:86.00M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:284.05M (Peak 284.05M) | Time:00:00.08 | Mem:84.19M, Peak:86.00M | Scene, ViewLayer | Updating Objects Flags
+Fra:1 Mem:284.05M (Peak 284.05M) | Time:00:00.08 | Mem:84.20M, Peak:86.00M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:1 Mem:284.05M (Peak 284.05M) | Time:00:00.08 | Mem:84.20M, Peak:86.00M | Scene, ViewLayer | Updating Images
+Fra:1 Mem:284.05M (Peak 284.05M) | Time:00:00.08 | Mem:84.20M, Peak:86.00M | Scene, ViewLayer | Updating Camera Volume
+Fra:1 Mem:284.05M (Peak 284.05M) | Time:00:00.08 | Mem:84.20M, Peak:86.00M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:284.05M (Peak 284.05M) | Time:00:00.08 | Mem:84.28M, Peak:86.00M | Scene, ViewLayer | Updating Lights
+Fra:1 Mem:284.05M (Peak 284.05M) | Time:00:00.08 | Mem:84.28M, Peak:86.00M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:1 Mem:284.05M (Peak 284.05M) | Time:00:00.08 | Mem:84.28M, Peak:86.00M | Scene, ViewLayer | Updating Integrator
+Fra:1 Mem:284.05M (Peak 284.05M) | Time:00:00.08 | Mem:84.28M, Peak:86.00M | Scene, ViewLayer | Updating Film
+Fra:1 Mem:284.06M (Peak 284.06M) | Time:00:00.08 | Mem:84.20M, Peak:86.00M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:284.06M (Peak 284.06M) | Time:00:00.08 | Mem:84.29M, Peak:86.00M | Scene, ViewLayer | Updating Baking
+Fra:1 Mem:284.06M (Peak 284.06M) | Time:00:00.08 | Mem:84.29M, Peak:86.00M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:1 Mem:284.07M (Peak 284.07M) | Time:00:00.08 | Mem:84.29M, Peak:86.00M | Scene, ViewLayer | Loading denoising kernels (may take a few minutes the first time)
+Fra:1 Mem:284.07M (Peak 284.07M) | Time:00:00.08 | Mem:84.29M, Peak:86.00M | Scene, ViewLayer | Sample 0/16
+Fra:1 Mem:343.89M (Peak 343.89M) | Time:00:00.32 | Remaining:00:03.59 | Mem:143.95M, Peak:143.95M | Scene, ViewLayer | Sample 1/16
+Fra:1 Mem:369.02M (Peak 406.70M) | Time:00:06.16 | Mem:143.95M, Peak:143.95M | Scene, ViewLayer | Sample 16/16
+Fra:1 Mem:369.02M (Peak 406.70M) | Time:00:06.16 | Mem:143.95M, Peak:143.95M | Scene, ViewLayer | Finished
+Saved: '/Users/Admin/Desktop/gta-wh/yellow-crane-tower-refined-20261007/stages/roof.png'
+Time: 00:06.30 (Saving: 00:00.12)
+
+{"at": "2026-10-07T17:55:22+08:00", "phase": "完成 roof", "seconds": 7.72, "render_seconds": 6.306, "scene": "roof.blend"}
+STAGE_COMPLETE roof
+
+Blender quit

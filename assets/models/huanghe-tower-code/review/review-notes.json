@@ -1,0 +1,35 @@
+{
+  "review_type": "human-readable AI visual observations, not formal pipeline acceptance",
+  "evidence": [
+    "screenshots/03-final-front.png",
+    "screenshots/03-final-quarter.png",
+    "screenshots/03-final-back.png",
+    "screenshots/photo-final-sheet.png",
+    "screenshots/video-20s.png",
+    "screenshots/video-45s.png"
+  ],
+  "improvements": [
+    "Regular octagon replaced by chamfered square",
+    "Five roof bands have four cardinal gable pavilions each",
+    "Terracotta rails and columns, muted green beam strips, tile flutes and entry canopy",
+    "Raised wing corners and roof-aligned gable-front panel profiles",
+    "Instanced components grouped per level; intermediate 299064 triangles reduced to final 109560"
+  ],
+  "remaining": [
+    "Roof corner ornament, painted patterns and full bracket systems are simplified",
+    "Only total height is anchored to published dimensions; plan widths/depths and hidden faces are inferred",
+    "Camera was visually matched, not calibrated to photo",
+    "Main photograph has vegetation and a partially cropped base; deterministic mask comparison is not an accepted fidelity score"
+  ],
+  "skill_pipeline": {
+    "strict_spec_validation": "PASS",
+    "reference_admission": "ADMITTED",
+    "tier1_diagnostic": "FAILED",
+    "full_eight_pass_acceptance": false,
+    "reason": "Original-photo mask, framing and scale checks failed; map-stripped evidence absent. Do not claim the img2threejs full gated workflow is complete."
+  },
+  "review_contracts_read": [
+    "grimoire/review/gates_reference.md",
+    "grimoire/review/self_correction.md"
+  ]
+}

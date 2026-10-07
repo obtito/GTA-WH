@@ -1,0 +1,11 @@
+{
+  "stage": "structure",
+  "mesh_objects": 356,
+  "vertices": 462020,
+  "faces": 427850,
+  "unpacked_images": [],
+  "linked_libraries": 0,
+  "packed_fonts": 1,
+  "geometry_finite": true,
+  "top_z": 53.46979904174805
+}

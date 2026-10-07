@@ -1,8 +1,16 @@
 // 地标几何高度校验:node 里直接构建 three 几何,对照 data.js 实测 heightM
 // 用法: node tools/heights.mjs
-import * as THREE from '../vendor/three.module.js';
-import { buildLandmarks } from '../js/landmarks.js';
-import { buildBridges, bridgeHeightAt } from '../js/bridges.js';
+import { register } from 'node:module';
+const threeURL = new URL('../vendor/three.module.js', import.meta.url).href;
+register('data:text/javascript,' + encodeURIComponent(`
+  export async function resolve(specifier, context, next) {
+    if (specifier === 'three') return { url: ${JSON.stringify(threeURL)}, shortCircuit: true };
+    return next(specifier, context);
+  }
+`), import.meta.url);
+const [THREE, { buildLandmarks }, { buildBridges, bridgeHeightAt }] = await Promise.all([
+  import('three'), import('../js/landmarks.js'), import('../js/bridges.js'),
+]);
 import { toV2 } from '../js/geo.js';
 
 let pass = 0, fail = 0;
@@ -17,6 +25,13 @@ for (const sub of group.children) {
   box.setFromObject(sub);
   const h = box.max.y - box.min.y;
   const ref = lm.heightM;
+  // 江滩是沿岸步道，heightM 用于镜头取景，不代表建筑实测高度。
+  if (lm.model === 'jiangtan') {
+    ok(Number.isFinite(h) && h > 0 && h <= ref,
+      `${lm.name} 构件高度 ${h.toFixed(1)} m 在 ${ref} m 取景范围内`);
+    console.log(`  ${Number.isFinite(h) && h > 0 && h <= ref ? '✓' : '✗'} ${lm.name} 构件 ${h.toFixed(1)} m / 取景范围 ${ref} m`);
+    continue;
+  }
   const dev = Math.abs(h - ref) / ref;
   const mark = dev < 0.25 ? '✓' : '✗';
   if (dev < 0.25) pass++;

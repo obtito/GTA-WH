@@ -1,0 +1,74 @@
+{
+  "purpose": "Real-photo comparison for independent Yellow Crane Tower V2 exterior refinement",
+  "retrieved_on": "2026-10-07",
+  "timezone": "Asia/Shanghai",
+  "reference_images_were_visually_inspected": true,
+  "license_note": "Official news/government photographs. No Creative Commons license was verified. Retain the source and photographer credits when identifying these references.",
+  "priority_references": [
+    {
+      "file": "wuhan-nao-20250417-01.jpg",
+      "view": "Nearly frontal, low viewpoint, evening illumination",
+      "photographer": "NAO",
+      "publisher": "Wuhan Municipal People's Government, Japanese edition",
+      "photo_date": "2025-04-17",
+      "source_page": "https://japanese.wuhan.gov.cn/wh_rywz01/wh_rywz012/202508/t20250801_2628422.shtml",
+      "image_url": "https://japanese.wuhan.gov.cn/wh_rywz01/wh_rywz012/202508/W020250801793054774067.jpg",
+      "use_for": ["frontal massing", "upper and entrance plaque locations", "ground-floor portico", "continuous eave curvature", "balcony fretwork"],
+      "caution": "Warm evening lights alter color appearance; use the daylight aerial image for materials. The front top plaque uses traditional characters in right-to-left reading order; the ground-floor front plaque is 气吞云梦."
+    },
+    {
+      "file": "xinhua-aerial-20240601.jpg",
+      "view": "Close elevated oblique view of the entire modern tower",
+      "photographer": "程敏 / Cheng Min",
+      "publisher": "新华社 / Xinhua",
+      "photo_date": "2024-06-01",
+      "source_page": "https://www.news.cn/photo/20240619/3965db886c5f487bacf62f53e4ce4382/c.html",
+      "image_url": "https://www.news.cn/photo/20240619/3965db886c5f487bacf62f53e4ce4382/202406193965db886c5f487bacf62f53e4ce4382_20240619931408ed128d4591803345504e2dd7c0.jpg",
+      "use_for": ["brown-red balcony railings", "open columned galleries", "projecting central bays and recessed corners", "wide ground-floor roof", "ochre clay-glaze roof color", "crown side integration", "real terrace geometry"],
+      "caution": "The face visible most directly is not the front: its plaque reads 楚天极目."
+    },
+    {
+      "file": "xinhua-crown-20240601.jpg",
+      "view": "Vertical top-down aerial view",
+      "photographer": "程敏 / Cheng Min",
+      "publisher": "新华社 / Xinhua",
+      "photo_date": "2024-06-01",
+      "source_page": "https://www.news.cn/photo/20240619/3965db886c5f487bacf62f53e4ce4382/c.html",
+      "image_url": "https://www.news.cn/photo/20240619/3965db886c5f487bacf62f53e4ce4382/202406193965db886c5f487bacf62f53e4ce4382_20240619f9197a39702f449582bf2a4bfcb8696b.jpg",
+      "use_for": ["four main diagonal crown ridges", "central crown slope layout", "four embedded hipped-gable dormers", "relative ridge widths", "finial plan and color", "overall roof silhouette"]
+    }
+  ],
+  "additional_context": [
+    {
+      "file": "xinhua-aerial-20230614.jpg",
+      "view": "Distant elevated city context",
+      "photographer": "伍志尊 / Wu Zhizun",
+      "publisher": "新华社 / Xinhua",
+      "photo_date": "2023-06-14",
+      "source_page": "https://www.news.cn/photo/20240619/3965db886c5f487bacf62f53e4ce4382/c.html",
+      "image_url": "https://www.news.cn/photo/20240619/3965db886c5f487bacf62f53e4ce4382/202406193965db886c5f487bacf62f53e4ce4382_2024061984e01eeda15c4cfda12da5377590f71a.jpg"
+    },
+    {
+      "file": "xinhua-aerial-20240603.jpg",
+      "view": "Elevated front oblique approach with neighboring pavilions",
+      "photographer": "程敏 / Cheng Min",
+      "publisher": "新华社 / Xinhua",
+      "photo_date": "2024-06-03",
+      "source_page": "https://www.news.cn/photo/20240619/3965db886c5f487bacf62f53e4ce4382/c.html",
+      "image_url": "https://www.news.cn/photo/20240619/3965db886c5f487bacf62f53e4ce4382/202406193965db886c5f487bacf62f53e4ce4382_20240619abcc35fe11064a7181513c78e45ad707.jpg"
+    }
+  ],
+  "structural_text_sources": [
+    {
+      "publisher": "湖北省住房和城乡建设厅",
+      "url": "https://zjt.hubei.gov.cn/bmdt/ztzl/hbcjda/gzdt_7471/201910/t20191028_79891.shtml",
+      "supports": "Five levels, 51.4 m total height, folded square plan, 60 upturned corners."
+    },
+    {
+      "publisher": "武汉出版社",
+      "title": "黄鹤楼沧桑，第九章 百废待兴建新楼",
+      "url": "https://www.whcbs.com/Upload/BookReadFile/202004/5b46c3b00ef94c85a1065fb4138effbc/OPS/chapter009.html",
+      "supports": "Three-part massing: first floor 30 m square and 12.3 m high; second to fourth floor 22 m square; top floor 18 m square; 12 eave corners per level; four hipped-gable dormers around the central pyramidal crown."
+    }
+  ]
+}

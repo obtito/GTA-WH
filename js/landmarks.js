@@ -1,4 +1,4 @@
-// 地标层:16 处武汉地标精建(程序化)
+// 地标层：17 处武汉地标，采用共享构件的程序化表现
 // 高度口径:各构建器总高 ≈ data.js 的 heightM(供自动校验)
 import * as THREE from 'three';
 import { toV2, bearingToRot, makeRandom } from './geo.js';
@@ -6,6 +6,9 @@ import { LANDMARKS } from './data.js';
 import { mat, put, UNIT, instancedBoxes, registerEnv } from './lib.js';
 import { terrainHeight } from './world.js';
 import { chineseHall, storiedPavilion, hipRoof, gableRoof, pedestal } from './arch.js';
+import { localSite, facade, entranceSteps, plaque, dryBuilding, tileMaterial } from './landmark-details.js';
+import { landmarkAnchor } from './sites.js';
+import { waterAt } from './water-mask.js';
 
 /* ============ 地标占地(供城市生成排他) ============
  * 单一事实来源迁到 js/sites.js(烘焙工具/程序化城市/运行时共用),
@@ -35,7 +38,7 @@ function mkHuangelou(g, x, z, ground, rot) {
     finial: true,
     postColor: '#8e2f22',
     wallColor: '#d8cdb8',
-    roofColor: '#dcae32',
+    roofColor: '#a87330',
     stoneColor: '#cfc9b8',
     bays: 7,
   });
@@ -44,14 +47,14 @@ function mkHuangelou(g, x, z, ground, rot) {
   g.add(tower);
 
   // 夜间金色泛光(黄色琉璃屋面自发光)
-  const gold = new THREE.Color('#dcae32');
+  const gold = new THREE.Color('#a87330');
   tower.traverse((o) => {
     if (o.isMesh && o.material?.color) {
       const c = o.material.color;
       if (Math.abs(c.r - gold.r) < 0.02 && Math.abs(c.g - gold.g) < 0.02 && Math.abs(c.b - gold.b) < 0.02) {
         o.material = o.material.clone();
         o.material.emissive = new THREE.Color('#7a5510');
-        o.material.userData.nightGlow = 1.4;
+        o.material.userData.nightGlow = .12;
       }
     }
   });
@@ -59,27 +62,25 @@ function mkHuangelou(g, x, z, ground, rot) {
 
 /* ==================== 2. 龟山电视塔 ==================== */
 function mkTvtower(g, x, z, ground) {
-  const white = mat('#dfe2e4', { rough: 0.6, env: 0.6 });
-  // 塔身:束腰混凝土桅杆(分段圆柱,微收分)
-  const segs = [
-    [9.5, 0, 22], [7.5, 22, 52], [5.8, 74, 46], [4.4, 120, 14],
-  ];
-  let y = ground;
-  for (const [r, dy, h] of segs) {
-    put(g, UNIT.cyl, white, { pos: [x, y + dy, z], scale: [r * 2, h, r * 2] });
+  const site = localSite(g, x, z, ground);
+  const white = mat('#cfd3d1', { rough: .78, env: .35 });
+  const shaft = new THREE.LatheGeometry([[10,0],[8,22],[6,74],[4.4,128],[3.5,150],[2.5,196]].map(p=>new THREE.Vector2(...p)), 32);
+  const body = new THREE.Mesh(shaft, white); body.name = 'continuous-tower-shaft'; site.add(body);
+  put(site, UNIT.cyl, mat('#8c9290', { rough: .9 }), { scale: [29, 1.2, 29] });
+  const profile = [[7,127],[12.5,129],[14,131],[14,137],[11,141],[5,145]];
+  site.add(new THREE.Mesh(new THREE.LatheGeometry(profile.map(p=>new THREE.Vector2(...p)), 48), white));
+  const glass = mat('#3c5966', { rough: .4, metal: .18 });
+  site.add(new THREE.Mesh(new THREE.CylinderGeometry(14.08,14.08,3.6,48,1,true), glass));
+  site.children.at(-1).position.y = 134;
+  const frames = [];
+  for (let i=0;i<32;i++) {
+    const a=i*Math.PI/16;
+    frames.push({x:Math.sin(a)*14.15,z:Math.cos(a)*14.15,y:132.2,w:.22,h:3.6,d:.3,rot:a});
   }
-  // 观光球(塔身 128 m 处)
-  const podY = ground + 128;
-  put(g, UNIT.cyl, white, { pos: [x, podY, z], scale: [26, 9, 26] });
-  put(g, UNIT.cyl, mat('#3d6b8f', { rough: 0.3, metal: 0.5, env: 1.2 }), { pos: [x, podY + 4.5, z], scale: [22, 1.2, 22] });
-  put(g, UNIT.cyl, white, { pos: [x, podY + 9, z], scale: [19, 3, 19] });
-  // 天线桅杆(红白段)
-  const mast = mat('#c8ccd2', { metal: 0.5, rough: 0.4 });
-  const red = mat('#b03030', { rough: 0.6 });
-  put(g, UNIT.cyl, mast, { pos: [x, ground + 174, z], scale: [5, 40, 5] });
-  for (let i = 0; i < 5; i++) {
-    put(g, UNIT.cyl, i % 2 ? red : mast, { pos: [x, ground + 196 + i * 5, z], scale: [2.2 - i * 0.3, 5, 2.2 - i * 0.3] });
-  }
+  site.add(instancedBoxes(frames,white));
+  for (let i=0;i<6;i++) put(site,UNIT.cyl,mat(i%2?'#a4473e':'#d0d1cc',{rough:.75}),{
+    pos:[0,196+i*4,0],scale:[2.3-i*.31,4,2.3-i*.31]});
+  entranceSteps(site,12,7,1.2,14.5);
 }
 
 /* ==================== 3. 晴川阁 ==================== */
@@ -99,212 +100,189 @@ function mkQingchuan(g, x, z, ground, rot) {
   pav.position.set(x, ground, z);
   pav.rotation.y = rot;
   g.add(pav);
-  // 禹功矶驳岸 + 矮墙
-  const wall = mat('#b8b2a2', { rough: 0.95 });
-  put(g, UNIT.box, wall, { pos: [x, ground + 1.5, z], scale: [34, 3, 0.8], rot });
+  const court=localSite(g,x,z,ground,rot);
+  entranceSteps(court,10,5,1.2,8);
+  plaque(court,'晴川阁',4,.9,0,5.4,5.7);
+  for(const xx of [-15,15])put(court,UNIT.box,mat('#b8b2a2',{rough:.95}),{pos:[xx,0,-2],scale:[.7,1.2,25]});
 }
 
 /* ==================== 4. 江汉关大楼 ==================== */
 function mkJianghanguan(g, x, z, ground, rot) {
-  const stone = mat('#c9c2ae', { rough: 0.85 });
-  const stoneDark = mat('#a89f8a', { rough: 0.9 });
-  // 主体 4 层(40×22×24)+ 阁楼层
-  put(g, UNIT.box, stone, { pos: [x, ground + 12, z], scale: [40, 24, 22], rot });
-  put(g, UNIT.box, stoneDark, { pos: [x, ground + 24.5, z], scale: [41.5, 3, 23.5], rot });
-  // 立面柱廊(两层,10 开间)
-  const cols = [];
-  const cRad = 0.8;
-  for (let i = 0; i < 11; i++) {
-    const off = -19 + i * 3.8;
-    const wx = Math.cos(rot) * off, wz = Math.sin(rot) * off;
-    cols.push({ x: x + wx + Math.sin(rot) * 11.2, z: z + wz + Math.cos(rot) * 11.2, y: ground, w: cRad * 2, h: 22, d: cRad * 2 });
-    cols.push({ x: x + wx - Math.sin(rot) * 11.2, z: z + wz - Math.cos(rot) * 11.2, y: ground, w: cRad * 2, h: 22, d: cRad * 2 });
+  const site = localSite(g,x,z,ground,rot);
+  const stone = mat('#c2b9a4',{rough:.9}), trim=mat('#d7cebb',{rough:.85});
+  put(site,UNIT.box,stone,{scale:[40,24,22]});
+  facade(site,{w:40,d:22,h:24,floors:4,bays:10,trim:'#d7cebb'});
+  for (const y of [0,6,18,24]) put(site,UNIT.box,trim,{pos:[0,y,0],scale:[41.5,.5,23.5]});
+  const cols=[];
+  for(const side of [-1,1]) for(let i=0;i<11;i++) cols.push({x:-19+i*3.8,z:side*12,y:.5,w:.7,h:22.8,d:.7});
+  site.add(instancedBoxes(cols,trim));
+  put(site,UNIT.box,mat('#47514e',{rough:.85}),{pos:[0,24.5,0],scale:[39,1.5,21]});
+  put(site,UNIT.box,stone,{pos:[0,26,0],scale:[9,12,9]});
+  for(const y of [26,28,36.5,38]) put(site,UNIT.box,trim,{pos:[0,y,0],scale:[10,.5,10]});
+  const dial=mat('#e0d9c7',{rough:.82,emissive:'#70654b',emissiveIntensity:0}).clone();
+  dial.userData.nightGlow=.75;
+  const dark=mat('#313733',{rough:.9});
+  for(const a of [0,Math.PI/2,Math.PI,-Math.PI/2]) {
+    const face=localSite(site,Math.sin(a)*4.64,Math.cos(a)*4.64,32.5,a);
+    face.name='clock-face';
+    face.add(new THREE.Mesh(new THREE.CircleGeometry(2.3,48),dial));
+    face.add(new THREE.Mesh(new THREE.TorusGeometry(2.35,.15,6,48),trim));
+    for(let i=0;i<12;i++) {
+      const angle=i*Math.PI/6;
+      put(face,UNIT.box,dark,{pos:[Math.sin(angle)*1.93,Math.cos(angle)*1.93-.12,.06],scale:[.11,.26,.05],rotZ:-angle});
+    }
+    put(face,UNIT.box,dark,{pos:[0,0,.13],scale:[.14,1.65,.08],rotZ:-Math.PI/3});
+    put(face,UNIT.box,dark,{pos:[0,0,.16],scale:[.2,1.15,.08],rotZ:Math.PI/4});
+    put(face,UNIT.sphere,dark,{pos:[0,0,.22],scale:[.25,.25,.12]});
   }
-  const colMesh = instancedBoxes(cols, mat('#d8d2c0', { rough: 0.8 }), { uvU: 8, uvV: 8 });
-  if (colMesh) g.add(colMesh);
-  // 钟楼(方形塔 + 白盘 + 尖顶)
-  const towerBase = ground + 26;
-  put(g, UNIT.box, stone, { pos: [x, towerBase + 5, z], scale: [9, 10, 9], rot });
-  // 钟面(四面)
-  const dial = mat('#f2efe6', { rough: 0.5, emissive: '#6a5a30', emissiveIntensity: 0 });
-  const hands = mat('#222222');
-  for (const a of [0, Math.PI / 2, Math.PI, -Math.PI / 2]) {
-    const dx = Math.sin(rot + a) * 4.8, dz = Math.cos(rot + a) * 4.8;
-    const face = put(g, UNIT.box, dial, { pos: [x + dx, towerBase + 6.5, z + dz], scale: [5.2, 5.2, 0.4], rot: rot + a });
-    face.userData.nightGlow = 1.2;
-    put(g, UNIT.box, hands, { pos: [x + dx * 1.05, towerBase + 6.8, z + dz * 1.05], scale: [0.35, 2.2, 0.3], rot: rot + a, rotX: 0 });
-    put(g, UNIT.box, hands, { pos: [x + dx * 1.05, towerBase + 6.1, z + dz * 1.05], scale: [0.3, 1.4, 0.3], rot: rot + a });
-  }
-  put(g, UNIT.box, stone, { pos: [x, towerBase + 11.5, z], scale: [7, 3, 7], rot });
-  put(g, UNIT.cone4, mat('#3f4a44', { rough: 0.7 }), { pos: [x, towerBase + 14, z], scale: [7.5, 6, 7.5], rot: Math.PI / 4 + rot });
-  put(g, UNIT.cyl, hands, { pos: [x, towerBase + 20.3, z], scale: [0.24, 1.6, 0.24] });
+  put(site,UNIT.box,stone,{pos:[0,38.5,0],scale:[7,1.5,7]});
+  put(site,UNIT.cone4,mat('#49534d',{rough:.84}),{pos:[0,40,0],scale:[8.5,5,8.5],rot:Math.PI/4});
+  put(site,UNIT.cyl,dark,{pos:[0,45,0],scale:[.18,1.3,.18]});
+  entranceSteps(site,12,5,.8,12.5);
+  plaque(site,'江汉关',7,.9,0,5.1,12.1);
 }
 
 /* ==================== 5. 江汉路步行街(入口牌坊 + 铜像) ==================== */
 function mkJianghanlu(g, x, z, ground, rot) {
-  const gold = mat('#c9a227', { metal: 0.6, rough: 0.35, env: 1.0 });
-  const red = mat('#9a3324', { rough: 0.8 });
-  // 四柱三门牌坊
-  for (const off of [-14, -4.5, 4.5, 14]) {
-    const wx = Math.cos(rot) * off, wz = Math.sin(rot) * off;
-    put(g, UNIT.cyl, red, { pos: [x + wx, ground, z + wz], scale: [1.6, 11, 1.6] });
+  // Historic shop fronts frame a pedestrian lane rather than an invented monumental gateway.
+  for(let i=-8;i<=8;i++) for(const side of [-1,1]) {
+    const along=i*23,off=side*25;
+    const px=x+Math.cos(rot)*along+Math.sin(rot)*off,pz=z-Math.sin(rot)*along+Math.cos(rot)*off;
+    if(!dryBuilding(px,pz,21,16,rot))continue;
+    const h=12+(Math.abs(i)%3)*2.5,site=localSite(g,px,pz,groundAt(px,pz),rot);
+    put(site,UNIT.box,mat(i%2?'#a3765f':'#b8ae96',{rough:.91}),{scale:[21,h,16]});
+    facade(site,{w:21,d:16,h,floors:3,bays:5,trim:'#d6cbb4'});
+    put(site,UNIT.box,mat('#766951',{rough:.88}),{pos:[0,h,0],scale:[22,.5,17]});
+    put(site,UNIT.box,mat('#454b47',{rough:.9}),{pos:[0,3.5,-side*8.6],scale:[18,.3,1.6]});
   }
-  for (const [hgt, len] of [[10.2, 34], [12.5, 24]]) {
-    put(g, UNIT.box, gold, { pos: [x, ground + hgt, z], scale: [len, 1.4, 1.8], rot });
-  }
-  put(g, UNIT.box, gold, { pos: [x, ground + 14, z], scale: [26, 2.6, 2.2], rot });
-  // 铜像
-  const bronze = mat('#7a6a4a', { metal: 0.7, rough: 0.4, env: 1.0 });
-  put(g, UNIT.cyl, bronze, { pos: [x + Math.cos(rot) * 8, ground, z + Math.sin(rot) * 8], scale: [3, 2.4, 3] });
-  put(g, UNIT.sphere, bronze, { pos: [x + Math.cos(rot) * 8, ground + 3.4, z + Math.sin(rot) * 8], scale: [1.4, 2.0, 1.4] });
+  const site=localSite(g,x,z,ground,rot);
+  plaque(site,'江汉路步行街',10,1.1,0,4.3,0);
+  for(const xx of [-6,6]) put(site,UNIT.cyl,mat('#585b50',{rough:.84}),{pos:[xx,0,0],scale:[.22,5.6,.22]});
+  // Seated bronze figure: body, head and limbs form one supported silhouette.
+  const bronze=mat('#6f684b',{rough:.7,metal:.38});
+  put(site,UNIT.box,mat('#9c9482',{rough:.9}),{pos:[8,0,0],scale:[3,.45,1.3]});
+  put(site,UNIT.cyl,bronze,{pos:[8,.45,0],scale:[.75,1.3,.6]});
+  put(site,UNIT.sphere,bronze,{pos:[8,1.9,0],scale:[.48,.6,.48]});
+  for(const dx of [-.25,.25]) put(site,UNIT.box,bronze,{pos:[8+dx,.45,.45],scale:[.2,.7,.22]});
 }
 
 /* ==================== 6. 汉口江滩(堤 + 芦苇 + 灯柱) ==================== */
 function mkJiangtan(g, x, z, ground) {
-  const rand = makeRandom(4321);
-  const leveeMat = mat('#b0a890', { rough: 0.95 });
-  const pathMat = mat('#a8a498', { rough: 0.95 });
-  // 堤顶步道(长 1400 m,顺江弧线)
-  const rot = bearingToRot(38);
-  const len = 1400;
-  for (let i = 0; i < 46; i++) {
-    const t = (i / 45 - 0.5) * len;
-    const cx = x + Math.cos(rot) * t;
-    const cz = z - Math.sin(rot) * t * 0.42;
-    const curve = Math.sin(t / len * Math.PI) * 60;
-    put(g, UNIT.box, leveeMat, {
-      pos: [cx + Math.sin(rot) * curve, ground + 1.4, cz + Math.cos(rot) * curve],
-      scale: [12, 2.8, 34], rot: rot + t * 0.0002,
-    });
-    if (i % 2 === 0) {
-      put(g, UNIT.box, pathMat, {
-        pos: [cx + Math.sin(rot) * (curve - 18), ground + 0.1, cz + Math.cos(rot) * (curve - 18)],
-        scale: [4, 0.24, 34], rot: rot + t * 0.0002,
-      });
+  const rot=bearingToRot(128),len=1400;
+  const paving=mat('#a39e8d',{rough:.96}),rail=mat('#606b63',{rough:.8});
+  const railItems=[],benches=[],points=[];
+  for(let i=0;i<46;i++) {
+    const along=(i/45-.5)*len;
+    const cx=x+Math.cos(rot)*along,cz=z-Math.sin(rot)*along;
+    let shore=null;
+    // Walk across the bank normal until the visible river begins, then retreat by the full path width.
+    for(let off=-600;off<=1600;off+=10) {
+      if(waterAt(cx+Math.sin(rot)*off,cz+Math.cos(rot)*off)){shore=off;break;}
     }
-    // 灯柱
-    if (i % 3 === 0) {
-      put(g, UNIT.cyl, mat('#4d5256', { metal: 0.4 }), {
-        pos: [cx + Math.sin(rot) * curve + 7, ground + 2.8, cz + Math.cos(rot) * curve + 7],
-        scale: [0.5, 5, 0.5],
-      });
+    if(shore===null)continue;
+    for(let k=0;k<=36;k++) {
+      const off=shore-20-k*10,px=cx+Math.sin(rot)*off,pz=cz+Math.cos(rot)*off;
+      if(dryBuilding(px,pz,34,20,rot)){points.push([px,pz]);break;}
     }
   }
-  // 芦苇荡
-  const reedItems = [];
-  for (let i = 0; i < 620; i++) {
-    const t = (rand() - 0.5) * len;
-    const off = (rand() - 0.5) * 90;
-    const cx = x + Math.cos(rot) * t + Math.sin(rot) * off;
-    const cz = z - Math.sin(rot) * t * 0.42 + Math.cos(rot) * off;
-    reedItems.push({ x: cx, z: cz, y: ground, w: 0.5 + rand() * 0.7, h: 2.2 + rand() * 2.4, d: 0.5 + rand() * 0.7, rot: rand() * 3.14, tint: ['#b8a45e', '#c4b26a', '#a89a52'][(rand() * 3) | 0] });
+  if(points.length)g.userData.anchor=points[Math.floor(points.length/2)];
+  // Connect adjacent stations with aligned strips, removing the stepped box edges.
+  for(let i=1;i<points.length;i++) {
+    const a=points[i-1],b=points[i],length=Math.hypot(b[0]-a[0],b[1]-a[1]);
+    if(length>55)continue;
+    const angle=Math.atan2(a[1]-b[1],b[0]-a[0]);
+    const px=(a[0]+b[0])/2,pz=(a[1]+b[1])/2,yy=groundAt(px,pz);
+    if(!dryBuilding(px,pz,length+.2,12,angle))continue;
+    const path=put(g,UNIT.box,paving,{pos:[px,yy,pz],scale:[length+.2,.22,12],rot:angle});
+    path.name='dry-promenade';
+    const n=Math.ceil(length/5);
+    for(let j=0;j<=n;j++) {
+      const along=(j/n-.5)*length;
+      railItems.push({x:px+Math.cos(angle)*along+Math.sin(angle)*5.5,
+        z:pz-Math.sin(angle)*along+Math.cos(angle)*5.5,y:yy+.22,w:.12,h:1.1,d:.12});
+    }
+    railItems.push({x:px+Math.sin(angle)*5.5,z:pz+Math.cos(angle)*5.5,y:yy+1.27,w:length,h:.12,d:.12,rot:angle});
+    if(i%3===0) {
+      const bx=px-Math.sin(angle)*4,bz=pz-Math.cos(angle)*4;
+      benches.push({x:bx,z:bz,y:yy+.3,w:3,h:.45,d:.7,rot:angle});
+      put(g,UNIT.cyl,rail,{pos:[bx+2,yy,bz],scale:[.2,5,.2]});
+      put(g,UNIT.sphere,mat('#d2c7a8',{rough:.8}),{pos:[bx+2,yy+5,bz],scale:[.6,.5,.6]});
+    }
   }
-  const reeds = instancedBoxes(reedItems, mat('#ffffff', { rough: 1 }), { uvU: 4, uvV: 4 });
-  if (reeds) g.add(reeds);
+  if(railItems.length)g.add(instancedBoxes(railItems,rail));
+  if(benches.length)g.add(instancedBoxes(benches,mat('#7b654e',{rough:.93})));
 }
 
 /* ==================== 7. 湖北省博物馆 ==================== */
 function mkMuseum(g, x, z, ground, rot) {
-  const stone = mat('#cfc8b6', { rough: 0.85 });
-  // 高台
-  put(g, UNIT.box, stone, { pos: [x, ground, z], scale: [150, 3.4, 76], rot });
-  // 主馆(楚风大坡顶)
-  const main = new THREE.Group();
-  const bodyMat = mat('#5d6a66', { rough: 0.35, metal: 0.3, env: 0.9 });   // 玻璃幕墙
-  put(main, UNIT.box, bodyMat, { pos: [0, 1.7, 0], scale: [64, 20, 34] });
-  const roof = gableRoof({ w: 74, d: 44, rise: 9, color: '#3c4642', ridgeColor: '#2c3430', segX: 16, segZ: 14 });
-  roof.position.y = 21.7;
-  main.add(roof);
-  // 编钟纹檐口(金线)
-  put(main, UNIT.box, mat('#c9a227', { metal: 0.6, rough: 0.3 }), { pos: [0, 20.6, 0], scale: [70, 1.2, 40] });
-  main.position.set(x, ground + 3.4, z);
-  main.rotation.y = rot + Math.PI / 2;
-  g.add(main);
-  // 两侧翼馆
-  for (const side of [-1, 1]) {
-    const wx = Math.sin(rot + Math.PI / 2) * 52 * side;
-    const wz = Math.cos(rot + Math.PI / 2) * 52 * side;
-    put(g, UNIT.box, stone, { pos: [x + wx, ground + 3.4, z + wz], scale: [42, 12, 26], rot: rot + Math.PI / 2 });
-    const r2 = gableRoof({ w: 46, d: 30, rise: 4.5, color: '#3c4642', segX: 12, segZ: 10 });
-    r2.position.set(x + wx, ground + 15.4, z + wz);
-    r2.rotation.y = rot + Math.PI / 2;
-    g.add(r2);
+  const site=localSite(g,x,z,ground,rot+Math.PI/2);
+  const stone=mat('#c6bda7',{rough:.9}), glass=mat('#405956',{rough:.48,metal:.12});
+  put(site,UNIT.box,stone,{scale:[150,3.4,76]});
+  for(const side of [-1,0,1]) {
+    const w=side?34:64,d=side?28:34,h=side?12:20,cx=side*53;
+    const block=localSite(site,cx,0,3.4);
+    put(block,UNIT.box,side?stone:glass,{scale:[w,h,d]});
+    facade(block,{w,d,h,floors:side?2:3,bays:side?6:10,trim:'#aaa68f'});
+    const roof=gableRoof({w:w+8,d:d+10,rise:side?4.5:9,color:'#454b43',ridgeColor:'#303831'});
+    roof.position.y=h;block.add(roof);
+    put(block,UNIT.box,mat('#8b805e',{rough:.82}),{pos:[0,h-.6,0],scale:[w+3,.6,d+3]});
   }
-  // 前广场编钟阵列(三排青铜钟)
-  const bronze = mat('#6f7a4a', { metal: 0.65, rough: 0.4, env: 1.0 });
-  const bells = [];
-  for (let row = 0; row < 3; row++) {
-    for (let i = 0; i < 7 - row; i++) {
-      const off = (i - (6 - row) / 2) * 3.4;
-      const depth = 14 + row * 4;
-      const wx = Math.cos(rot) * off + Math.sin(rot) * depth;
-      const wz = -Math.sin(rot) * off + Math.cos(rot) * depth;
-      const s = 1.5 - row * 0.22;
-      bells.push({ x: x + wx, z: z + wz, y: ground + 2.2, w: s * 2, h: s * 2.6, d: s * 1.4 });
-    }
+  entranceSteps(site,26,12,3.4,38);
+  plaque(site,'湖北省博物馆',15,1.5,0,18.4,17.2);
+  // A small suspended bronze-bell display in the forecourt.
+  const bronze=mat('#69735b',{metal:.3,rough:.72}),frame=mat('#514436',{rough:.85});
+  for(const xx of [-12,12]) put(site,UNIT.box,frame,{pos:[xx,3.4,29],scale:[.5,4.6,.5]});
+  put(site,UNIT.box,frame,{pos:[0,7.7,29],scale:[25,.5,.6]});
+  for(let i=0;i<9;i++) {
+    put(site,UNIT.cyl,frame,{pos:[(i-4)*2.5,6.5,29],scale:[.12,1.2,.12]});
+    put(site,UNIT.cyl,bronze,{pos:[(i-4)*2.5,4.8,29],scale:[1.2,1.9,.9]});
   }
-  const bellMesh = instancedBoxes(bells, bronze, { uvU: 4, uvV: 4 });
-  if (bellMesh) g.add(bellMesh);
 }
 
 /* ==================== 8. 楚河汉街 ==================== */
 function mkHanjie(g, x, z, ground, rot) {
-  const rand = makeRandom(2026);
-  const brick = mat('#a45c48', { rough: 0.9 });
-  const stone = mat('#cfc4ac', { rough: 0.9 });
-  const trim = mat('#efe8d8', { rough: 0.85 });
-  const len = 1500;
-  // 沿楚河南岸一排民国街屋
-  const items = [];
-  for (let d = -len / 2; d < len / 2; d += 34) {
-    const jit = (rand() - 0.5) * 8;
-    const h = 10 + rand() * 10;
-    const wx = Math.cos(rot) * (d + jit), wz = -Math.sin(rot) * (d + jit);
-    const px = x + wx + Math.sin(rot) * -34;      // 南岸(楚河以南)
-    const pz = z + wz + Math.cos(rot) * -34;
-    items.push({ x: px, z: pz, y: ground, w: 26, h, d: 20, rot: rot + (rand() - 0.5) * 0.05, tint: rand() > 0.5 ? '#a45c48' : '#cfc4ac' });
-  }
-  const row = instancedBoxes(items, mat('#ffffff', { rough: 0.9 }), { uvU: 26, uvV: 14 });
-  if (row) g.add(row);
-  // 汉街牌坊(两端)
-  const gold = mat('#c9a227', { metal: 0.5, rough: 0.4 });
-  for (const side of [-1, 1]) {
-    const wx = Math.cos(rot) * (len / 2 * side), wz = -Math.sin(rot) * (len / 2 * side);
-    const gx = x + wx + Math.sin(rot) * -20, gz = z + wz + Math.cos(rot) * -20;
-    for (const o of [-9, 9]) {
-      put(g, UNIT.cyl, mat('#9a3324'), {
-        pos: [gx + Math.cos(rot) * o, ground, gz - Math.sin(rot) * o], scale: [1.4, 13, 1.4],
-      });
+  const rand=makeRandom(2026),len=1500;
+  for(let along=-len/2;along<len/2;along+=34) {
+    let px,pz,off=-34,found=false;
+    for(let k=0;k<=5;k++) {
+      off=-34-k*12;px=x+Math.cos(rot)*along+Math.sin(rot)*off;pz=z-Math.sin(rot)*along+Math.cos(rot)*off;
+      if(dryBuilding(px,pz,26,20,rot)){found=true;break;}
     }
-    put(g, UNIT.box, gold, { pos: [gx, ground + 12, gz], scale: [24, 1.6, 1.8], rot });
-    put(g, UNIT.box, gold, { pos: [gx, ground + 15, gz], scale: [18, 2.4, 2], rot });
+    if(!found)continue;
+    const h=11+rand()*7,site=localSite(g,px,pz,groundAt(px,pz),rot);
+    put(site,UNIT.box,mat(rand()>.5?'#a16952':'#bfb59c',{rough:.93}),{scale:[26,h,20]});
+    facade(site,{w:26,d:20,h,floors:3,bays:6,trim:'#d8ccb4'});
+    put(site,UNIT.box,mat('#847a67',{rough:.88}),{pos:[0,h,0],scale:[27,.6,21]});
+    put(site,UNIT.box,mat('#424c48',{rough:.85}),{pos:[0,3.3,10.7],scale:[24,.25,1.8]});
+    if(Math.round(along/34)%5===0)plaque(site,'楚河汉街',7,.9,0,3.6,10.2);
   }
 }
 
 /* ==================== 9. 汉秀剧场(红灯笼) ==================== */
 function mkLantern(g, x, z, ground) {
-  const red = mat('#b02a20', { rough: 0.55, emissive: '#7a1408', emissiveIntensity: 0 });
-  red.userData.nightGlow = 2.2;
-  const gold = mat('#c9a227', { metal: 0.7, rough: 0.3, env: 1.2 });
-  // 基座
-  put(g, UNIT.cyl, mat('#8d9095', { rough: 0.8 }), { pos: [x, ground, z], scale: [96, 6, 96] });
-  // 灯笼主体(球)
-  const R = 45;
-  const ball = put(g, UNIT.sphere, red, { pos: [x, ground + 6 + R, z], scale: [R * 2, R * 1.7, R * 2] });
-  ball.castShadow = true;
-  // 竖向骨架(灯笼骨;UNIT.box 底原点,注意从球心向下半高起算)
-  const ribMat = mat('#8f1e14', { rough: 0.6 });
-  for (let i = 0; i < 16; i++) {
-    const a = (i / 16) * Math.PI * 2;
-    put(g, UNIT.box, ribMat, {
-      pos: [x + Math.cos(a) * R * 0.99, ground + 6 + R - R * 0.86, z + Math.sin(a) * R * 0.99],
-      scale: [1.4, R * 1.72, 2.4], rot: -a,
-    });
+  const site=localSite(g,x,z,ground);
+  const red=mat('#9b3429',{rough:.72,emissive:'#641d11',emissiveIntensity:0});
+  red.userData.nightGlow=.6;
+  const rib=mat('#663126',{rough:.79}),rim=mat('#8f7955',{metal:.15,rough:.76});
+  put(site,UNIT.cyl,mat('#898b85',{rough:.92}),{scale:[96,6,96]});
+  const profile=[[34,6],[38,12],[43,26],[45,43],[44,59],[40,73],[33,84]];
+  const body=new THREE.Mesh(new THREE.LatheGeometry(profile.map(p=>new THREE.Vector2(...p)),64),red);
+  body.name='lantern-envelope';site.add(body);
+  for(let i=0;i<32;i++) {
+    const a=i*Math.PI/16;
+    const pts=profile.map(([r,y])=>new THREE.Vector3(Math.sin(a)*(r+.35),y,Math.cos(a)*(r+.35)));
+    site.add(new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts),24,.38,5,false),rib));
   }
-  // 上下金色箍
-  for (const dy of [R * 0.85, -R * 0.85]) {
-    put(g, UNIT.cyl, gold, { pos: [x, ground + 6 + R + dy, z], scale: [R * 1.45, 2.6, R * 1.45] });
+  for(const [r,y] of [[34,7],[43.8,30],[44.4,55],[33,84]]) {
+    const band=new THREE.Mesh(new THREE.TorusGeometry(r,.65,6,64),rim);band.rotation.x=Math.PI/2;band.position.y=y;site.add(band);
   }
+  put(site,UNIT.cyl,rim,{pos:[0,84,0],scale:[67,2.2,67]});
+  put(site,UNIT.cyl,mat('#51433a',{rough:.87}),{pos:[0,86.2,0],scale:[58,3.8,58]});
+  const entry=localSite(site,0,35.4,6);
+  put(entry,UNIT.box,mat('#344951',{rough:.4,metal:.12}),{scale:[28,7,.5]});
+  facade(entry,{w:28,d:.7,h:7,floors:1,bays:8,trim:'#b8a485'});
+  plaque(entry,'汉秀剧场',11,1.2,0,7.4,.7);
+  entranceSteps(site,28,8,6,48);
 }
 
 /* ==================== 10. 武汉绿地中心(475 m) ==================== */
@@ -324,13 +302,14 @@ function mkGreenland(g, x, z, ground, rot) {
   // 塔冠天线
   put(g, UNIT.cyl, mat('#8d949a', { metal: 0.6, rough: 0.3 }), { pos: [x, ground + 466, z], scale: [1.6, 10, 1.6] });
   // 裙房
-  put(g, UNIT.box, mat('#b9c4c9', { rough: 0.4, metal: 0.3 }), { pos: [x, ground, z], scale: [110, 18, 90], rot });
+  put(g, UNIT.box, mat('#b9c4c9', { rough: 0.6, metal: 0.15 }), { pos: [x, ground, z], scale: [68, 18, 56], rot });
+  const podium=localSite(g,x,z,ground,rot);
+  facade(podium,{w:68,d:56,h:18,floors:3,bays:12,trim:'#8d9b9e',glass:'#4d6570'});
 }
 
 /* ==================== 11. 武汉大学(老斋舍 + 樱顶老图书馆) ==================== */
 function mkWhu(g, x, z, ground, rot) {
   const wall = mat('#c9bda8', { rough: 0.9 });
-  const roofGreen = mat('#2f5a45', { rough: 0.65, env: 0.5 });
   // 依山而上的三进老斋舍(台阶两侧)
   const stepD = 60;
   for (let i = 0; i < 3; i++) {
@@ -340,19 +319,24 @@ function mkWhu(g, x, z, ground, rot) {
       const bx = x + Math.sin(rot) * (-stepD * i) + ox;
       const bz = z + Math.cos(rot) * (-stepD * i) + oz;
       put(g, UNIT.box, wall, { pos: [bx, gy, bz], scale: [16, 11, 46], rot });
-      put(g, UNIT.box, roofGreen, { pos: [bx, gy + 11.6, bz], scale: [18, 1.6, 48], rot });
+      const detail=localSite(g,bx,bz,gy,rot);
+      facade(detail,{w:16,d:46,h:11,floors:3,bays:4,trim:'#b0a18a'});
+      const roof=hipRoof({w:48,d:18,rise:2.4,ridgeLen:30,color:'#3f5b46',ridgeColor:'#3c4536',segX:10,segZ:14});
+      roof.rotation.y=Math.PI/2;
+      roof.position.y=11;detail.add(roof);
     }
   }
-  // 百级台阶
-  const steps = [];
-  for (let i = 0; i < 30; i++) {
-    const gy = terrainHeight(x + Math.sin(rot) * (-stepD * i / 29 * 2), z + Math.cos(rot) * (-stepD * i / 29 * 2));
-    steps.push({ x: x + Math.sin(rot) * (-stepD * i / 29 * 2), z: z + Math.cos(rot) * (-stepD * i / 29 * 2), y: gy, w: 14, h: 1.2, d: 3.4, rot });
-  }
-  const sm = instancedBoxes(steps, mat('#b8b2a2', { rough: 0.95 }), { uvU: 8, uvV: 3 });
-  if (sm) g.add(sm);
-  // 樱顶老图书馆(山顶,绿瓦四方攒尖)
+  // A continuous supported stair flight connects the dormitories and library terrace.
   const topY = Math.max(terrainHeight(x + Math.sin(rot) * (-stepD * 2.2), z + Math.cos(rot) * (-stepD * 2.2)), ground + 12);
+  const steps = [], count = 80, length = 120;
+  for (let i=0;i<count;i++) {
+    const t=(i+.5)/count,px=x-Math.sin(rot)*length*t,pz=z-Math.cos(rot)*length*t;
+    const terrain=terrainHeight(px,pz),top=ground+.25+(topY+4-ground-.25)*(i+1)/count;
+    const bottom=Math.min(terrain,ground);
+    steps.push({x:px,z:pz,y:bottom,w:14,h:Math.max(.25,top-bottom),d:length/count+.015,rot});
+  }
+  g.add(instancedBoxes(steps,mat('#b8b2a2',{rough:.95})));
+  // 樱顶老图书馆
   const libX = x + Math.sin(rot) * (-stepD * 2.2);
   const libZ = z + Math.cos(rot) * (-stepD * 2.2);
   const lib = chineseHall({
@@ -364,6 +348,7 @@ function mkWhu(g, x, z, ground, rot) {
   });
   lib.position.set(libX, topY, libZ);
   lib.rotation.y = rot;
+  plaque(lib,'武汉大学',5,.9,0,11.3,11.8);
   g.add(lib);
 }
 
@@ -372,6 +357,7 @@ function mkChutiantai(g, x, z, ground, rot) {
   // 高台 + 三层楼阁
   const plat = pedestal(38, 30, 8, '#b8b2a2');
   plat.position.set(x, ground, z);
+  plat.rotation.y=rot;
   g.add(plat);
   const pav = storiedPavilion({
     floors: [{ w: 24, d: 17, h: 7 }, { w: 20, d: 14, h: 6 }, { w: 16, d: 11, h: 5.5 }],
@@ -386,106 +372,80 @@ function mkChutiantai(g, x, z, ground, rot) {
     bays: 5,
   });
   pav.position.set(x, ground + 8, z);
+  pav.rotation.y=rot;
+  plaque(pav,'楚天台',5,1,0,5.4,9);
   g.add(pav);
+  const court=localSite(g,x,z,ground,rot);entranceSteps(court,15,16,8,15.2);
 }
 
 /* ==================== 13. 光谷广场·星河 ==================== */
 function mkXinghe(g, x, z, ground) {
-  const silver = mat('#c8ccd4', { metal: 0.85, rough: 0.25, env: 1.5 });
-  // 数条空间曲线拱(星河漩涡)
-  const rand = makeRandom(77);
-  for (let i = 0; i < 6; i++) {
-    const h = 16 + rand() * 19;
-    const span = 60 + rand() * 70;
-    const a = rand() * Math.PI * 2;
-    const pts = [];
-    for (let k = 0; k <= 20; k++) {
-      const t = k / 20 - 0.5;
-      pts.push(new THREE.Vector3(
-        x + Math.cos(a) * span * t + Math.sin(a) * t * 18,
-        ground + Math.cos(t * Math.PI) * h,
-        z - Math.sin(a) * span * t + Math.cos(a) * t * 18,
-      ));
+  const site=localSite(g,x,z,ground);
+  const silver=mat('#a8afae',{metal:.58,rough:.42,env:.75});
+  put(site,UNIT.cyl,mat('#8d9090',{rough:.94}),{scale:[190,.8,190]});
+  const plinth=new THREE.Mesh(new THREE.TorusGeometry(67,.55,6,80),mat('#b5b3a7',{rough:.9}));
+  plinth.rotation.x=Math.PI/2;plinth.position.y=.85;site.add(plinth);
+  for(let i=0;i<5;i++) {
+    const pts=[];
+    for(let k=0;k<=48;k++) {
+      const t=k/48,a=i*Math.PI*2/5+t*Math.PI*1.35,r=64-45*Math.sin(t*Math.PI);
+      pts.push(new THREE.Vector3(Math.cos(a)*r,.8+34.2*Math.sin(t*Math.PI),Math.sin(a)*r));
     }
-    const curve = new THREE.CatmullRomCurve3(pts);
-    const tube = new THREE.Mesh(new THREE.TubeGeometry(curve, 40, 0.55 + rand() * 0.5, 6, false), silver);
-    tube.castShadow = true;
-    g.add(tube);
+    const ribbon=new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts),64,.8,8,false),silver);
+    ribbon.name='spiral-sculpture';site.add(ribbon);
   }
-  // 环岛转盘(大圆盘下沉广场)
-  put(g, UNIT.cyl, mat('#8d9095', { rough: 0.9 }), { pos: [x, ground + 0.4, z], scale: [190, 0.8, 190] });
 }
 
 /* ==================== 14. 归元寺 ==================== */
 function mkGuiyuan(g, x, z, ground, rot) {
-  // 大雄宝殿(歇山)
-  const hall = chineseHall({
-    w: 26, d: 18, pedestalH: 2.4, bodyH: 8.5, roofRise: 6,
-    roofType: 'gable-hip',
-    stoneColor: '#cfc9b8', postColor: '#8e2f22', wallColor: '#d8cdb8',
-    roofColor: '#3a4045', ridgeColor: '#2c3430',
-    bays: 5, dougongTier: 2,
-  });
-  hall.position.set(x + Math.sin(rot) * 60, Math.max(terrainHeight(x + Math.sin(rot) * 60, z + Math.cos(rot) * 60), 0), z + Math.cos(rot) * 60);
-  hall.rotation.y = rot + Math.PI / 2;
-  g.add(hall);
-  // 藏经阁(双檐两层)
-  const pav = storiedPavilion({
-    floors: [{ w: 16, d: 12, h: 5.5 }, { w: 13, d: 10, h: 4.5 }],
-    eaveW: 19, topRoof: 5, topType: 'gable-hip',
-    postColor: '#8e2f22', wallColor: '#d8cdb8', roofColor: '#3a4045', stoneColor: '#cfc9b8', bays: 5,
-  });
-  pav.position.set(x - Math.sin(rot) * 40, Math.max(terrainHeight(x - Math.sin(rot) * 40, z - Math.cos(rot) * 40), 0), z - Math.cos(rot) * 40);
-  pav.rotation.y = rot + Math.PI / 2;
-  g.add(pav);
-  // 罗汉堂(长堂)
-  put(g, UNIT.box, mat('#c9bda8', { rough: 0.9 }), {
-    pos: [x + Math.sin(rot + Math.PI / 2) * 70, ground, z + Math.cos(rot + Math.PI / 2) * 70],
-    scale: [14, 8, 40], rot: rot + Math.PI / 2,
-  });
-  const roofR = gableRoof({ w: 16, d: 44, rise: 3.4, color: '#3a4045' });
-  roofR.position.set(x + Math.sin(rot + Math.PI / 2) * 70, ground + 8, z + Math.cos(rot + Math.PI / 2) * 70);
-  roofR.rotation.y = rot + Math.PI / 2;
-  g.add(roofR);
-  // 山门 + 围墙
-  const gate = chineseHall({
-    w: 12, d: 6, pedestalH: 1, bodyH: 5, roofRise: 3.2,
-    roofType: 'gable', stoneColor: '#cfc9b8', postColor: '#8e2f22', wallColor: '#d8cdb8',
-    roofColor: '#3a4045', bays: 3, dougongTier: 1, rails: false,
-  });
-  gate.position.set(x, ground, z);
-  gate.rotation.y = rot + Math.PI / 2;
-  g.add(gate);
-  const wallMat = mat('#c9a06a', { rough: 0.95 });
-  put(g, UNIT.box, wallMat, { pos: [x + Math.sin(rot + Math.PI / 2) * 110, ground + 1.6, z], scale: [220, 3.2, 0.8], rot });
-  put(g, UNIT.box, wallMat, { pos: [x - Math.sin(rot + Math.PI / 2) * 110, ground + 1.6, z], scale: [220, 3.2, 0.8], rot });
+  const site=localSite(g,x,z,ground,rot);
+  const stone=mat('#c8bea6',{rough:.92});
+  put(site,UNIT.box,stone,{scale:[104,.35,132]});
+  const hall=chineseHall({w:26,d:18,pedestalH:2.4,bodyH:8.5,roofRise:6,roofType:'gable-hip',
+    stoneColor:'#cfc9b8',postColor:'#8e2f22',wallColor:'#d8cdb8',roofColor:'#3a4045',bays:5});
+  hall.position.set(0,.35,-42);site.add(hall);
+  const pav=storiedPavilion({floors:[{w:16,d:12,h:5.5},{w:13,d:10,h:4.5}],eaveW:19,topRoof:5,
+    topType:'gable-hip',finial:false,postColor:'#8e2f22',wallColor:'#d8cdb8',roofColor:'#3a4045',bays:5});
+  pav.position.set(-32,.35,-8);site.add(pav);
+  const side=localSite(site,34,-8,.35);
+  put(side,UNIT.box,stone,{scale:[14,8,40]});facade(side,{w:14,d:40,h:8,floors:1,bays:3});
+  const roof=gableRoof({w:18,d:44,rise:3.4,color:'#3a4045'});roof.position.y=8;side.add(roof);
+  const gate=chineseHall({w:18,d:7,pedestalH:1,bodyH:5,roofRise:3.2,roofType:'gable',rails:false,
+    wallColor:'#d8cdb8',roofColor:'#3a4045',bays:3});gate.position.set(0,.35,56);site.add(gate);
+  plaque(gate,'归元禅寺',5,1,0,5.8,4.2);
+  for(const xx of [-51,51]) put(site,UNIT.box,stone,{pos:[xx,.35,0],scale:[.8,3.2,132]});
+  put(site,UNIT.box,stone,{pos:[0,.35,-65],scale:[104,3.2,.8]});
+  for(const xx of [-32,32]) put(site,UNIT.box,stone,{pos:[xx,.35,65],scale:[39,3.2,.8]});
+  const bronze=mat('#65664b',{rough:.7,metal:.3});
+  put(site,UNIT.cyl,bronze,{pos:[0,.35,0],scale:[3.6,1.8,3.6]});
+  put(site,UNIT.cyl,bronze,{pos:[0,2.15,0],scale:[4.4,.3,4.4]});
+  entranceSteps(site,16,7,2.75,-29);
 }
 
 /* ==================== 15. 古琴台 ==================== */
 function mkGuqintai(g, x, z, ground, rot) {
-  // 六角亭(知音亭)
-  const plat = pedestal(18, 14, 1.6, '#cfc9b8');
-  plat.position.set(x, ground, z);
-  g.add(plat);
-  const hex = new THREE.Group();
-  const colMat = mat('#8e2f22', { rough: 0.8 });
-  for (let i = 0; i < 6; i++) {
-    const a = (i / 6) * Math.PI * 2;
-    put(hex, UNIT.cyl, colMat, { pos: [Math.cos(a) * 4.4, 1.6, Math.sin(a) * 4.4], scale: [0.7, 4.6, 0.7] });
+  const site=localSite(g,x,z,ground,rot);
+  site.add(pedestal(18,14,1.6,'#cfc9b8'));
+  const wood=mat('#813b2c',{rough:.87});
+  for(let i=0;i<6;i++) {
+    const a=i*Math.PI/3;
+    put(site,UNIT.cyl,wood,{pos:[Math.cos(a)*4.4,1.6,Math.sin(a)*4.4],scale:[.7,4.6,.7]});
   }
-  const roofGeo = new THREE.ConeGeometry(6.8, 3.2, 6);
-  const roof = new THREE.Mesh(roofGeo, mat('#3a4045', { rough: 0.7 }));
-  roof.position.y = 8.2;
-  roof.castShadow = true;
-  hex.add(roof);
-  put(hex, UNIT.sphere, mat('#c9a227', { metal: 0.6 }), { pos: [0, 9.9, 0], scale: [1.2, 1.2, 1.2] });
-  hex.position.set(x, ground, z);
-  g.add(hex);
-  // 琴台(石案)
-  put(g, UNIT.box, mat('#b8b2a2', { rough: 0.95 }), { pos: [x + 10, ground + 1.8, z], scale: [3, 0.6, 1.2], rot });
-  // 碑廊
-  put(g, UNIT.box, mat('#c9a06a', { rough: 0.95 }), { pos: [x - 14, ground + 1.4, z + 8], scale: [24, 2.8, 0.6], rot: rot + 0.4 });
-  put(g, UNIT.box, mat('#c9a06a', { rough: 0.95 }), { pos: [x - 14, ground + 1.4, z - 8], scale: [24, 2.8, 0.6], rot: rot + 0.4 });
+  const positions=[],uvs=[],indices=[],rings=10;
+  for(let j=0;j<=rings;j++) for(let i=0;i<=6;i++) {
+    const t=j/rings,r=6.8*(1-t),a=i*Math.PI/3;
+    const yy=6.2+2.65*Math.pow(t,1.65)+.36*Math.pow(1-t,8);
+    positions.push(Math.cos(a)*r,yy,Math.sin(a)*r);uvs.push(Math.cos(a)*r/.75,Math.sin(a)*r/1.6);
+    if(j<rings&&i<6){const p=j*7+i;indices.push(p,p+8,p+7,p,p+1,p+8);}
+  }
+  const geo=new THREE.BufferGeometry();geo.setAttribute('position',new THREE.Float32BufferAttribute(positions,3));
+  geo.setAttribute('uv',new THREE.Float32BufferAttribute(uvs,2));geo.setIndex(indices);geo.computeVertexNormals();
+  site.add(new THREE.Mesh(geo,tileMaterial('#424740')));
+  put(site,UNIT.sphere,mat('#89754b',{rough:.8}),{pos:[0,8.9,0],scale:[.35,.35,.35]});
+  put(site,UNIT.box,wood,{pos:[0,6,4.5],scale:[8.7,.3,.35]});plaque(site,'古琴台',2.8,.7,0,5.3,4.72);
+  put(site,UNIT.box,mat('#b8b2a2',{rough:.95}),{pos:[0,1.6,0],scale:[3,.7,1.2]});
+  for(const xx of [-1,1]) put(site,UNIT.box,wood,{pos:[xx,1.6,0],scale:[.25,.7,1]});
+  entranceSteps(site,8,4,1.6,7.2);
 }
 
 /* ==================== 16. 昙华林(教堂 + 老宅) ==================== */
@@ -499,8 +459,12 @@ function mkTanhualin(g, x, z, ground, rot) {
   roofC.position.y = 9;
   church.add(roofC);
   put(church, UNIT.box, cw, { pos: [0, 0, 13], scale: [7, 15, 7] });
-  put(church, UNIT.cone4, mat('#4a4440'), { pos: [0, 17.5, 13], scale: [8, 7, 8], rot: Math.PI / 4 });
+  put(church, UNIT.cone4, mat('#4a4440'), { pos: [0, 15, 13], scale: [8, 7, 8], rot: Math.PI / 4 });
   put(church, UNIT.box, mat('#5a5248'), { pos: [0, 22.4, 13], scale: [0.5, 2.5, 0.5] });
+  facade(church,{w:10,d:22,h:9,floors:1,bays:3,trim:'#b9ae97'});
+  const belfry=localSite(church,0,13,0);
+  facade(belfry,{w:7,d:7,h:15,floors:3,bays:2,trim:'#c5baa4'});
+  put(church,UNIT.box,mat('#524941'),{pos:[0,23.3,13],scale:[2,.3,.5]});
   church.position.set(x, ground, z);
   church.rotation.y = rot;
   g.add(church);
@@ -511,6 +475,7 @@ function mkTanhualin(g, x, z, ground, rot) {
     const side = i % 2 ? 1 : -1;
     const px = x + Math.cos(rot) * d + Math.sin(rot) * side * 26;
     const pz = z - Math.sin(rot) * d + Math.cos(rot) * side * 26;
+    if(!dryBuilding(px,pz,20,16,rot))continue;
     items.push({
       x: px, z: pz, y: Math.max(terrainHeight(px, pz), 0), w: 18, h: 6 + rand() * 5, d: 14,
       rot: rot + (rand() - 0.5) * 0.1,
@@ -519,6 +484,12 @@ function mkTanhualin(g, x, z, ground, rot) {
   }
   const houses = instancedBoxes(items, mat('#ffffff', { rough: 0.95 }), { uvU: 18, uvV: 8 });
   if (houses) g.add(houses);
+  for(const house of items) {
+    const detail=localSite(g,house.x,house.z,house.y,house.rot);
+    facade(detail,{w:18,d:14,h:house.h,floors:2,bays:4,trim:'#bdb19b'});
+    const roof=gableRoof({w:20,d:16,rise:2,color:'#56554b',segX:8,segZ:6});roof.position.y=house.h;detail.add(roof);
+    put(detail,UNIT.box,mat('#655642'),{pos:[0,2.8,7.5],scale:[16,.2,1.2]});
+  }
 }
 
 /* ==================== 17. 辛亥革命红楼 ==================== */
@@ -545,11 +516,18 @@ function mkHonglou(g, x, z, ground, rot) {
   put(g, UNIT.box, mat('#8a3526'), {
     pos: [x + Math.sin(rot) * 9, ground + 10, z + Math.cos(rot) * 9], scale: [32, 1.4, 5], rot,
   });
+  const center=localSite(g,x,z,ground,rot);
+  facade(center,{w:40,d:16,h:11,floors:2,bays:10,trim:'#d4c8b0'});
+  plaque(center,'武昌起义纪念馆',10,1.1,0,9,11.7);
+  entranceSteps(center,20,6,1,11.7);
   // 两侧翼楼
   for (const side of [-1, 1]) {
     put(g, UNIT.box, red, {
       pos: [x + Math.cos(rot) * 34 * side, ground, z - Math.sin(rot) * 34 * side], scale: [24, 9, 13], rot,
     });
+    const wing=localSite(g,x+Math.cos(rot)*34*side,z-Math.sin(rot)*34*side,ground,rot);
+    facade(wing,{w:24,d:13,h:9,floors:2,bays:6,trim:'#d4c8b0'});
+    const roof=hipRoof({w:26,d:15,rise:3,ridgeLen:14,color:'#713d2c',segX:10,segZ:8});roof.position.y=9;wing.add(roof);
   }
 }
 
@@ -580,13 +558,19 @@ export function buildLandmarks() {
   for (const lm of LANDMARKS) {
     const fn = BUILDERS[lm.model];
     if (!fn) continue;
-    const [x, z] = toV2(lm.lon, lm.lat);
+    const [x, z] = landmarkAnchor(lm);
     const ground = groundAt(x, z);
     const rot = lm.params?.rot != null ? bearingToRot(lm.params.rot) : 0;
     const sub = new THREE.Group();
     sub.name = 'lm:' + lm.id;
     sub.userData.lm = lm;
+    sub.userData.anchor = [x,z];
+    sub.userData.viewRotation = rot + (lm.model === 'museum' ? Math.PI / 2 : 0);
     fn(sub, x, z, ground, rot);
+    sub.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true;}});
+    sub.updateWorldMatrix(true,true);
+    const bounds=new THREE.Box3().setFromObject(sub);
+    sub.userData.bounds={min:bounds.min.toArray(),max:bounds.max.toArray()};
     group.add(sub);
   }
   return {

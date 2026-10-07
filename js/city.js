@@ -8,6 +8,8 @@ import { loadMergedGLB, loadGLB } from './assets.js';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { terrainHeight } from './world.js';
 
+import { footprintOverlapsWater } from './water-mask.js';
+
 const RIVER_PTS = toV2List(RIVER.pts);
 const BRANCH_PTS = RIVER.branches.map((b) => ({ hw: b.halfWidth, pts: toV2List(b.pts) }));
 const LAKE_POLYS = LAKES.map((l) => toV2List(l.pts));
@@ -18,6 +20,8 @@ const ROAD_LINES = ROADS.map((r) => ({ w: r.w, pts: toV2List(r.pts) }));
  * 横插进路面("路穿楼");现在把体块半径计入避让。 */
 function blocked(x, z, exclusions, osmBox, rad = 0, corridors = null) {
   if (osmBox && x >= osmBox.minX && x <= osmBox.maxX && z >= osmBox.minZ && z <= osmBox.maxZ) return true;
+  const r = Math.max(rad, 0.1);
+  if (footprintOverlapsWater([[x-r,z-r],[x+r,z-r],[x+r,z+r],[x-r,z+r]])) return true;
   if (distToPolyline(x, z, RIVER_PTS) < RIVER.halfWidth * 1.35 + rad) return true;
   for (const b of BRANCH_PTS) if (distToPolyline(x, z, b.pts) < b.hw + 20 + rad) return true;
   for (const p of LAKE_POLYS) if (pointInPolygon(x, z, p)) return true;

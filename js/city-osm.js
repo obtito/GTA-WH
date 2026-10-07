@@ -1,37 +1,14 @@
 // OSM 真实城市:建筑轮廓挤出 + 真实路网(data/osm/,Overpass ODbL)
 // 建筑按 tags 分材质桶,挤出侧面(世界坐标 UV → 窗格立面)+ 屋顶三角化,合成 4 个大 Mesh
 import * as THREE from 'three';
-import { toV2, makeRandom, pointInPolygon } from './geo.js';
-import { RIVER, LAKES } from './data.js';
+import { toV2, makeRandom } from './geo.js';
 import { mat, loadTexture, ribbonGeometry, registerEnv, makeFacadeTexture, makeWindowTexture } from './lib.js';
-import { terrainHeight } from './world.js';
-
-const RIVER_PTS_LNGLAT = RIVER.pts;
-const LAKE_LNGLAT = LAKES.map((l) => l.pts);
-
-/** 快速水域判定(lon/lat 域,粗查:点在江线折线带内或湖内) */
-function wetLL(lon, lat) {
-  // 长江/汉江:点到折线距离 < 半宽(度近似:0.006/0.0016)
-  for (const [pts, hwDeg] of [[RIVER_PTS_LNGLAT, 0.0058], [RIVER.branches[0].pts, 0.0016]]) {
-    for (let i = 1; i < pts.length; i++) {
-      const [ax, aLat] = pts[i - 1], [bx, bLat] = pts[i];
-      const dx = bx - ax, dLat = bLat - aLat;
-      const l2 = dx * dx + dLat * dLat || 1e-12;
-      let t = ((lon - ax) * dx + (lat - aLat) * dLat) / l2;
-      t = Math.max(0, Math.min(1, t));
-      if (Math.hypot(lon - ax - dx * t, lat - aLat - dLat * t) < hwDeg) return true;
-    }
-  }
-  for (const lake of LAKE_LNGLAT) {
-    let inside = false;
-    for (let i = 0, j = lake.length - 1; i < lake.length; j = i++) {
-      const [xi, yi] = lake[i], [xj, yj] = lake[j];
-      if ((yi > lat) !== (yj > lat) && lon < ((xj - xi) * (lat - yi)) / (yj - yi) + xi) inside = !inside;
-    }
-    if (inside) return true;
-  }
-  return false;
-}
+import { terrainHeight, registerRoadDecks } from './world.js';
+import { CollisionGrid } from './collision.js';
+import { footprintOverlapsWater } from './water-mask.js';
+import { bridgeHeightAt } from './bridges.js';
+import { resample } from './geo.js';
+import { roadWidth, isBridgeRoad } from './road-layout.js';
 
 /** 多边形面积(鞋带,场景米)与抽稀 */
 function polyArea(pts) {
@@ -170,7 +147,7 @@ export async function buildOsmCity(buildings) {
     if (Math.abs(first[0] - last[0]) > 1e-6 || Math.abs(first[1] - last[1]) > 1e-6) ring.push(first.slice());
     if (ring.length < 4) continue;
     // 水上建筑跳过(轮渡码头等)
-    if (wetLL(g[0][0], g[0][1])) continue;
+    if (footprintOverlapsWater(ring.map(([lon, lat]) => toV2(lon, lat)))) continue;
     // 投影
     const pts = thinPts(ring.map(([lon, lat]) => toV2(lon, lat)), 40);
     if (pts.length < 4) continue;
@@ -287,9 +264,11 @@ export async function buildOsmCity(buildings) {
 /* ---------- OSM 路网 ----------
  * 旧版宽度整体偏大(如 motorway 48 m),路面带常压进沿街楼体 → "路穿楼";
  * 按车道数+硬路肩的真实口径收窄。 */
-const HW_W = { motorway: 40, trunk: 34, trunk_link: 16, primary: 28, primary_link: 14, secondary: 22, secondary_link: 12, tertiary: 16, tertiary_link: 10 };
-
-export function buildOsmRoads(roads) {
+export function buildOsmRoads(roads, boxes = null) {
+  const clearance = new CollisionGrid(40);
+  if (boxes) clearance.addRaw(boxes);
+  clearance.build();
+  let clipped = 0, duplicateCells = 0, waterCells = 0;
   const group = new THREE.Group();
   group.name = 'osm-roads';
   const centerlines = [];
@@ -297,41 +276,54 @@ export function buildOsmRoads(roads) {
     major: mat('#46494e', { rough: 0.94, env: 0.2 }),
     minor: mat('#4d5055', { rough: 0.95, env: 0.18 }),
   };
-  const geoms = { major: [], minor: [] };
+  const geoms = { major: [], minor: [], bridge: [] };
   for (const r of roads) {
     const hw = r.t?.highway;
-    if (!hw || !(hw in HW_W)) continue;
-    if (r.t?.tunnel) continue;                          // 隧道不画
-    const w = HW_W[hw];
-    const pts = r.g.map(([lon, lat]) => toV2(lon, lat));
+    const w = roadWidth(r.t);
+    if (w == null) continue;
+    if (r.t?.tunnel && r.t.tunnel !== 'no') continue;                          // 隧道不画
+    const raw = r.g.map(([lon, lat]) => toV2(lon, lat)).filter((p, i, a) => !i || Math.hypot(p[0] - a[i - 1][0], p[1] - a[i - 1][1]) > 0.1);
+    const pts = resample(raw, 8);
     if (pts.length < 2) continue;
     const cls = (hw.startsWith('trunk') || hw.startsWith('primary')) ? 'major' : 'minor';
-    // 贴地:桥 tag 抬 6.5m;贴水无桥段抬堤 1.1m(向邻点平滑);其余贴地形
-    const isBridge = !!r.t?.bridge;
-    const wet = pts.map((_, i) => (isBridge ? 0 : (wetLL(r.g[i][0], r.g[i][1]) ? 1 : 0)));
-    for (let pass = 0; pass < 3; pass++) {
-      const w2 = wet.slice();
-      for (let i = 0; i < wet.length; i++) {
-        const a = wet[i - 1] ?? 0, b = wet[i], c = wet[i + 1] ?? 0;
-        w2[i] = Math.max(b, (a + b + c) / 3);
-      }
-      for (let i = 0; i < wet.length; i++) wet[i] = Math.min(1, w2[i]);
-    }
-    const ys = pts.map(([x, z], i) => {
-      const th = Math.max(terrainHeight(x, z), 0);
-      return isBridge ? Math.max(th, 6.5) : th + wet[i] * 0.95;
-    });
+    // 普通道路贴陆地；跨水只允许明确的桥梁道路，禁止自动生成水上堤路。
+    const isBridge = isBridgeRoad(r.t);
+    const ys = pts.map(([x, z]) => (isBridge ? Math.max(terrainHeight(x, z), 6.5) : Math.max(terrainHeight(x, z), 0)) + 0.18);
     const geo = ribbonGeometry(pts, w, 0);
     const p = geo.attributes.position;
-    for (let i = 0; i < p.count; i++) p.setY(i, ys[Math.min(ys.length - 1, Math.floor(i / 2))] + 0.18);
-    geo.computeVertexNormals();
-    geoms[cls].push(geo);
-    if (w >= 16) centerlines.push({ name: r.t?.name || 'osm-road', w, pts, ys, major: cls === 'major' });
+    // Both road edges clear the sampled terrain; cut only cells conflicting with buildings.
+    for (let i = 0; i < pts.length; i++) {
+      ys[i] = Math.max(ys[i], terrainHeight(p.getX(i * 2), p.getZ(i * 2)) + 0.18, terrainHeight(p.getX(i * 2 + 1), p.getZ(i * 2 + 1)) + 0.18);
+      p.setY(i * 2, ys[i]); p.setY(i * 2 + 1, ys[i]);
+    }
+    const indices = [], runs = [];
+    let start = -1;
+    for (let i = 0; i < pts.length - 1; i++) {
+      const a = i * 2, b = a + 1, c = a + 2, d = a + 3;
+      const poly = [a, b, d, c].map(v => [p.getX(v), p.getZ(v)]);
+      const mx = (pts[i][0] + pts[i + 1][0]) / 2, mz = (pts[i][1] + pts[i + 1][1]) / 2;
+      const duplicatedBridge = isBridge && bridgeHeightAt(mx, mz) != null;
+      const wetCell = !isBridge && footprintOverlapsWater(poly);
+      const safe = !duplicatedBridge && !wetCell && !clearance.overlapsPolygon(poly, Math.min(ys[i], ys[i + 1]));
+      if (safe) { indices.push(a, c, b, b, c, d); if (start < 0) start = i; }
+      if (!safe || i === pts.length - 2) {
+        const end = safe ? i + 1 : i;
+        if (start >= 0 && end > start) runs.push({ name: r.t?.name || 'osm-road', w, pts: pts.slice(start, end + 1), ys: ys.slice(start, end + 1), major: cls === 'major', bridge: isBridge });
+        start = -1;
+      }
+      if (duplicatedBridge) duplicateCells++;
+      else if (wetCell) waterCells++;
+      else if (!safe) clipped++;
+    }
+    geo.setIndex(indices);
+    if (indices.length) { geo.computeVertexNormals(); geoms[isBridge ? 'bridge' : cls].push(geo); }
+    else geo.dispose();
+    centerlines.push(...runs);
   }
   for (const [cls, list] of Object.entries(geoms)) {
     if (!list.length) continue;
     // 合并同材质路网
-    let vp = 0, vi = 0;
+    let vp = 0;
     for (const g of list) vp += g.attributes.position.count;
     const pos = new Float32Array(vp * 3), uv = new Float32Array(vp * 2), nor = new Float32Array(vp * 3);
     const idx = new Uint32Array(vp * 3);
@@ -346,6 +338,7 @@ export function buildOsmRoads(roads) {
       }
       for (let i = 0; i < ix.length; i++) idx[io + i] = ix[i] + po;
       po += p.count; io += ix.length;
+      g.dispose();
     }
     const geo = new THREE.BufferGeometry();
     geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
@@ -353,11 +346,14 @@ export function buildOsmRoads(roads) {
     geo.setAttribute('uv', new THREE.BufferAttribute(uv, 2));
     geo.setIndex(new THREE.BufferAttribute(idx.subarray(0, io), 1));
     geo.computeBoundingSphere();
-    const mesh = new THREE.Mesh(geo, mats[cls]);
+    const mesh = new THREE.Mesh(geo, mats[cls === 'bridge' ? 'major' : cls]);
     mesh.name = 'osm-roads:' + cls;
+    mesh.userData.bridge = cls === 'bridge';
     mesh.receiveShadow = true;
     group.add(mesh);
   }
+  registerRoadDecks(centerlines);
+  console.log(`[GTA-WH] 道路净空:避让 ${clipped} 个建筑冲突单元,消除 ${duplicateCells} 个重复桥面单元,移除 ${waterCells} 个落水路面单元`);
   return { group, centerlines };
 }
 

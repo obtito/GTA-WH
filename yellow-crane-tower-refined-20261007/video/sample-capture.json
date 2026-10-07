@@ -1,0 +1,111 @@
+{
+  "started_at": "2026-10-07T09:55:55.083Z",
+  "completed_at": "2026-10-07T09:55:56.752Z",
+  "frames": 11,
+  "start_frame": 1,
+  "width": 1920,
+  "height": 1080,
+  "fps": 24,
+  "errors": [],
+  "snapshots": [
+    {
+      "frame": 1,
+      "time": 0,
+      "yaw": 0.55,
+      "split": 0,
+      "phase": 0,
+      "draw_calls": 284,
+      "triangles": 1166872
+    },
+    {
+      "frame": 73,
+      "time": 3,
+      "yaw": 1.06,
+      "split": 0,
+      "phase": 0,
+      "draw_calls": 284,
+      "triangles": 1166872
+    },
+    {
+      "frame": 145,
+      "time": 6,
+      "yaw": 1.57,
+      "split": 0,
+      "phase": 0,
+      "draw_calls": 284,
+      "triangles": 1166872
+    },
+    {
+      "frame": 265,
+      "time": 11,
+      "yaw": 2.42,
+      "split": 0,
+      "phase": 1,
+      "draw_calls": 662,
+      "triangles": 1406644
+    },
+    {
+      "frame": 409,
+      "time": 17,
+      "yaw": 3.4400000000000004,
+      "split": 0,
+      "phase": 2,
+      "draw_calls": 449,
+      "triangles": 3167848
+    },
+    {
+      "frame": 553,
+      "time": 23,
+      "yaw": 4.46,
+      "split": 0,
+      "phase": 3,
+      "draw_calls": 569,
+      "triangles": 1519600
+    },
+    {
+      "frame": 697,
+      "time": 29,
+      "yaw": 5.48,
+      "split": 0,
+      "phase": 3,
+      "draw_calls": 284,
+      "triangles": 1166872
+    },
+    {
+      "frame": 745,
+      "time": 31,
+      "yaw": 5.82,
+      "split": 1,
+      "phase": 3,
+      "draw_calls": 568,
+      "triangles": 2333744
+    },
+    {
+      "frame": 865,
+      "time": 36,
+      "yaw": 6.67,
+      "split": 1,
+      "phase": 3,
+      "draw_calls": 568,
+      "triangles": 2333744
+    },
+    {
+      "frame": 1009,
+      "time": 42,
+      "yaw": 7.69,
+      "split": 1,
+      "phase": 3,
+      "draw_calls": 568,
+      "triangles": 2333744
+    },
+    {
+      "frame": 1080,
+      "time": 44.958333333333336,
+      "yaw": 8.192916666666667,
+      "split": 1,
+      "phase": 3,
+      "draw_calls": 568,
+      "triangles": 2333744
+    }
+  ]
+}

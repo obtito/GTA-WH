@@ -222,11 +222,20 @@ export function ribbonGeometry(points, width, y = 0.02, uvScale = 0.05) {
   }
   for (let i = 0; i < n; i++) {
     const prev = points[Math.max(0, i - 1)], next = points[Math.min(n - 1, i + 1)];
-    let dx = next[0] - prev[0], dz = next[1] - prev[1];
-    const len = Math.hypot(dx, dz) || 1; dx /= len; dz /= len;
+    const here = points[i];
+    let ax = here[0] - prev[0], az = here[1] - prev[1];
+    let bx = next[0] - here[0], bz = next[1] - here[1];
+    if (i === 0) { ax = bx; az = bz; }
+    if (i === n - 1) { bx = ax; bz = az; }
+    const al = Math.hypot(ax, az) || 1, bl = Math.hypot(bx, bz) || 1;
+    ax /= al; az /= al; bx /= bl; bz /= bl;
+    let nx = -az - bz, nz = ax + bx;
+    const nl = Math.hypot(nx, nz);
+    if (nl < 0.001) { nx = -bz; nz = bx; } else { nx /= nl; nz /= nl; }
     const w = typeof width === 'function' ? width(n > 1 ? i / (n - 1) : 0) : width;
-    pos.push(points[i][0] - dz * w * 0.5, y, points[i][1] + dx * w * 0.5);
-    pos.push(points[i][0] + dz * w * 0.5, y, points[i][1] - dx * w * 0.5);
+    const miter = Math.min(1.5, 1 / Math.max(0.2, nx * -bz + nz * bx)) * w * 0.5;
+    pos.push(here[0] + nx * miter, y, here[1] + nz * miter);
+    pos.push(here[0] - nx * miter, y, here[1] - nz * miter);
     const u = cum[i] * uvScale;
     uv.push(u, 0, u, 1);
     if (i < n - 1) {
@@ -387,6 +396,17 @@ export function mergeStaticMeshes(root, exclude = null) {
               g2.setAttribute('uv', new THREE.BufferAttribute(new Float32Array(n * 2), 2));
             }
             g2.applyMatrix4(tmpM.multiplyMatrices(inv, world));
+            if (c.instanceColor) {
+              const tint = new THREE.Color(); c.getColorAt(ii, tint);
+              const colors = new Float32Array(g2.attributes.position.count * 3);
+              for (let v = 0; v < colors.length; v += 3) {
+                const attr = g2.attributes.color, k = v / 3;
+                colors[v] = tint.r * (attr ? attr.getX(k) : 1);
+                colors[v + 1] = tint.g * (attr ? attr.getY(k) : 1);
+                colors[v + 2] = tint.b * (attr ? attr.getZ(k) : 1);
+              }
+              g2.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+            }
             b.list.push(g2);
           }
           base.dispose();
@@ -412,7 +432,14 @@ export function mergeStaticMeshes(root, exclude = null) {
     if (!b.list.length) continue;
     const geo = concatGeometries(b.list);
     for (const g of b.list) g.dispose();
-    const m = new THREE.Mesh(geo, b.material);
+    let material = b.material;
+    if (geo.attributes.color && !material.vertexColors) {
+      material = material.clone(); material.vertexColors = true;
+      // Clones keep night-glow and environment behaviour after batching.
+      delete material.userData.envRegistered;
+      registerEnv(material, b.material.userData.envBase ?? .5);
+    }
+    const m = new THREE.Mesh(geo, material);
     m.name = 'merged';
     m.castShadow = b.cast;
     m.receiveShadow = b.receive;
@@ -432,6 +459,7 @@ function concatGeometries(list) {
   const pos = new Float32Array(total * 3);
   const nor = new Float32Array(total * 3);
   const uv = new Float32Array(total * 2);
+  const color = list.some(g => g.attributes.color) ? new Float32Array(total * 3) : null;
   let vo = 0;
   for (const g of list) {
     const p = g.attributes.position, n = g.attributes.normal, t = g.attributes.uv;
@@ -441,6 +469,12 @@ function concatGeometries(list) {
       pos[o3] = p.getX(i); pos[o3 + 1] = p.getY(i); pos[o3 + 2] = p.getZ(i);
       nor[o3] = n.getX(i); nor[o3 + 1] = n.getY(i); nor[o3 + 2] = n.getZ(i);
       uv[o2] = t.getX(i); uv[o2 + 1] = t.getY(i);
+      if (color) {
+        const col = g.attributes.color;
+        color[o3] = col ? col.getX(i) : 1;
+        color[o3 + 1] = col ? col.getY(i) : 1;
+        color[o3 + 2] = col ? col.getZ(i) : 1;
+      }
     }
     vo += c;
   }
@@ -448,6 +482,7 @@ function concatGeometries(list) {
   geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
   geo.setAttribute('normal', new THREE.BufferAttribute(nor, 3));
   geo.setAttribute('uv', new THREE.BufferAttribute(uv, 2));
+  if (color) geo.setAttribute('color', new THREE.BufferAttribute(color, 3));
   geo.computeBoundingSphere();
   return geo;
 }

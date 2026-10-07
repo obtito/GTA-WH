@@ -2,10 +2,12 @@
 // 山体:旋转椭圆 + fbm 粗糙度的高度场(参考 GTA-NJ world.js,米制适配)
 import * as THREE from 'three';
 import {
-  toV2, toV2List, fbm, noise2, clamp, pointInPolygon, distToPolyline, smoothPolyline, resample, smoothstep as smooth,
+  toV2, toV2List, fbm, noise2, clamp, smoothPolyline, resample,
 } from './geo.js';
-import { RIVER, LAKES, MOUNTAINS, ROADS } from './data.js';
+import { LAKES, MOUNTAINS, ROADS } from './data.js';
 import { mat, ribbonGeometry, polygonGeometry, makeGroundTexture, registerEnv } from './lib.js';
+
+import { RIVER_SURFACE_POINTS, BRANCH_SURFACES, yangtzeWidth, footprintOverlapsWater } from './water-mask.js';
 
 /* ==================== 高度场 ==================== */
 
@@ -178,30 +180,20 @@ export function createWaterMaterial() {
 }
 
 /** 长江宽度沿程:鹦鹉洲段收窄,龙王庙交汇段最阔,天兴洲段再阔 */
-function yangtzeWidth(t) {
-  const base = RIVER.halfWidth * 2;             // 1120 m
-  return base * (
-    0.82
-    + 0.30 * Math.sin(Math.PI * clamp(t, 0, 1))                        // 中段(交汇附近)更阔
-    - 0.12 * Math.exp(-Math.pow((t - 0.33) / 0.06, 2))                 // 鹦鹉洲段收窄
-    + 0.06 * Math.sin(t * 21)
-  );
-}
-
 export function buildWater(material) {
   const group = new THREE.Group();
   group.name = 'water';
 
   // 主江:河床暗带(略宽) + 水面
-  const pts = smoothPolyline(toV2List(RIVER.pts), 8);
+  const pts = RIVER_SURFACE_POINTS;
   const bed = new THREE.Mesh(ribbonGeometry(pts, (t) => yangtzeWidth(t) + 60, 0.18), mat('#5d6650', { rough: 1 }));
   group.add(bed);
   const river = new THREE.Mesh(ribbonGeometry(pts, yangtzeWidth, 0.5), material);
   river.name = 'river';
   group.add(river);
 
-  for (const br of RIVER.branches) {
-    const bp = smoothPolyline(toV2List(br.pts), 8);
+  for (const br of BRANCH_SURFACES) {
+    const bp = br.points;
     const bedB = new THREE.Mesh(ribbonGeometry(bp, br.halfWidth * 2 + 24, 0.18), mat('#5d6650', { rough: 1 }));
     group.add(bedB);
     const bm = new THREE.Mesh(ribbonGeometry(bp, br.halfWidth * 2, 0.5), material);
@@ -223,23 +215,30 @@ export function buildWater(material) {
 
 /* ==================== 道路 ==================== */
 
-// 路面走廊注册表(供 ground.js 判定"堤式道路":贴江道路在水面上方行驶)
+// 可见路面走廊注册表：渲染路面、车辆落点和水域判定共用同一组有效路段。
 const ROAD_DECKS = [];
-/** 堤式道路高度(x,z 在路面走廊内时返回路面高度,否则 null) */
-export function roadHeightAt(x, z) {
+/** 重新注册可通行路段，包含坡道路面的实际高度。 */
+export function registerRoadDecks(lines) {
+  ROAD_DECKS.length = 0;
+  for (const l of lines) {
+    const xs = l.pts.map(p => p[0]), zs = l.pts.map(p => p[1]);
+    ROAD_DECKS.push({ ...l, minX: Math.min(...xs), maxX: Math.max(...xs), minZ: Math.min(...zs), maxZ: Math.max(...zs) });
+  }
+}
+export function roadHeightAt(x, z, entityY = Infinity) {
+  let best = Infinity, height = null;
   for (const d of ROAD_DECKS) {
-    if (x < d.minX - 40 || x > d.maxX + 40 || z < d.minZ - 40 || z > d.maxZ + 40) continue;
-    if (distToPolyline(x, z, d.pts) < d.w / 2 + 4) {
-      // 最近采样点的高度
-      let best = Infinity, bi = 0;
-      for (let i = 0; i < d.pts.length; i++) {
-        const dd = Math.hypot(x - d.pts[i][0], z - d.pts[i][1]);
-        if (dd < best) { best = dd; bi = i; }
-      }
-      return d.ys[bi];
+    if (x < d.minX - d.w || x > d.maxX + d.w || z < d.minZ - d.w || z > d.maxZ + d.w) continue;
+    for (let i = 1; i < d.pts.length; i++) {
+      const [ax, az] = d.pts[i - 1], [bx, bz] = d.pts[i];
+      const dx = bx - ax, dz = bz - az, l2 = dx * dx + dz * dz;
+      const t = l2 ? clamp(((x - ax) * dx + (z - az) * dz) / l2, 0, 1) : 0;
+      const dist = (x - ax - dx * t) ** 2 + (z - az - dz * t) ** 2;
+      const y = d.ys[i - 1] + (d.ys[i] - d.ys[i - 1]) * t;
+      if (dist <= (d.w / 2) ** 2 && dist < best && (!d.bridge || entityY > y - 2.5)) { best = dist; height = y; }
     }
   }
-  return null;
+  return height;
 }
 
 /** 返回 { group, centerlines } —— centerlines 供车流/寻路使用 */
@@ -247,60 +246,37 @@ export function buildRoads() {
   const group = new THREE.Group();
   group.name = 'roads';
   const centerlines = [];
-  const bedMat = mat('#6a6a5c', { rough: 1 });       // 路基(穿水段可见的堤)
-
   for (const r of ROADS) {
-    const raw = toV2List(r.pts);
-    const smoothPts = smoothPolyline(raw, 6);
-    const pts = resample(smoothPts, 30);
-
-    // 逐点判定是否在水上 → 抬成堤式路(向邻点平滑过渡,避免断坎)
-    const wet = pts.map(([x, z]) => isWaterXY(x, z) ? 1 : 0);
-    // 3 轮邻域扩散:水面段向两端各渐变 ~3 个采样点(90 m)
-    for (let pass = 0; pass < 3; pass++) {
-      const w2 = wet.slice();
-      for (let i = 0; i < wet.length; i++) {
-        const a = wet[i - 1] ?? 0, b = wet[i], c = wet[i + 1] ?? 0;
-        w2[i] = Math.max(b, (a + b + c) / 3);
+    const pts = resample(smoothPolyline(toV2List(r.pts), 6), 8);
+    const geo = ribbonGeometry(pts, r.w, 0), p = geo.attributes.position;
+    const ys = pts.map(([x, z], i) => Math.max(0, terrainHeight(x, z),
+      terrainHeight(p.getX(i * 2), p.getZ(i * 2)), terrainHeight(p.getX(i * 2 + 1), p.getZ(i * 2 + 1))) + 0.18);
+    for (let i = 0; i < pts.length; i++) { p.setY(i * 2, ys[i]); p.setY(i * 2 + 1, ys[i]); }
+    const indices = [];
+    let start = -1;
+    for (let i = 0; i < pts.length - 1; i++) {
+      const a = i * 2, b = a + 1, c = a + 2, d = a + 3;
+      const poly = [a, b, d, c].map(v => [p.getX(v), p.getZ(v)]);
+      const safe = !footprintOverlapsWater(poly);
+      if (safe) { indices.push(a, c, b, b, c, d); if (start < 0) start = i; }
+      if (!safe || i === pts.length - 2) {
+        const end = safe ? i + 1 : i;
+        if (start >= 0 && end > start) centerlines.push({ name: r.name, w: r.w, pts: pts.slice(start, end + 1), ys: ys.slice(start, end + 1), major: !!r.major });
+        start = -1;
       }
-      for (let i = 0; i < wet.length; i++) wet[i] = Math.min(1, w2[i]);
     }
-    const anyWater = wet.some((v) => v > 0.05);
-    // 顶点 y:地面 +0.15,水上再抬 0.95 ×(平滑权重)
-    const ys = pts.map((_, i) => {
-      const th = Math.max(terrainHeight(pts[i][0], pts[i][1]), 0);
-      return th + 0.15 + wet[i] * 0.95;
-    });
-    const setY = (geo, dy = 0) => {
-      const p = geo.attributes.position;
-      for (let i = 0; i < p.count; i++) p.setY(i, ys[Math.min(ys.length - 1, Math.floor(i / 2))] + dy);
-      geo.computeVertexNormals();
-      return geo;
-    };
-
-    if (anyWater) {
-      // 路基堤(比路面宽,沉到水下 1.3 m)
-      const bed = new THREE.Mesh(setY(ribbonGeometry(pts, r.w + 6, 0), -1.3), bedMat);
-      group.add(bed);
-    }
-    const mesh = new THREE.Mesh(setY(ribbonGeometry(pts, r.w, 0)), asphaltMatCache());
-    mesh.receiveShadow = true;
-    group.add(mesh);
-
-    // 中心虚线(主干道;抬高 0.14 m + polygonOffset,远处不再与路面 z-fighting)
+    if (!indices.length) { geo.dispose(); continue; }
+    geo.setIndex(indices); geo.computeVertexNormals();
+    const mesh = new THREE.Mesh(geo, asphaltMatCache());
+    mesh.receiveShadow = true; group.add(mesh);
     if (r.w >= 24) {
-      group.add(new THREE.Mesh(setY(ribbonGeometry(pts, 0.4, 0), 0.14), dashMatCache()));
-    }
-    centerlines.push({ name: r.name, w: r.w, pts, ys, major: !!r.major });
-    if (anyWater) {
-      let minX = Infinity, maxX = -Infinity, minZ = Infinity, maxZ = -Infinity;
-      for (const [x, z] of pts) {
-        minX = Math.min(minX, x); maxX = Math.max(maxX, x);
-        minZ = Math.min(minZ, z); maxZ = Math.max(maxZ, z);
-      }
-      ROAD_DECKS.push({ pts, ys, w: r.w, minX, maxX, minZ, maxZ });
+      const dash = ribbonGeometry(pts, 0.4, 0), dp = dash.attributes.position;
+      for (let i = 0; i < pts.length; i++) { dp.setY(i * 2, ys[i] + 0.14); dp.setY(i * 2 + 1, ys[i] + 0.14); }
+      dash.setIndex(indices); dash.computeVertexNormals();
+      group.add(new THREE.Mesh(dash, dashMatCache()));
     }
   }
+  registerRoadDecks(centerlines);
   return { group, centerlines };
 }
 
@@ -313,14 +289,3 @@ function dashMatCache() {
   if (!_dash) _dash = mat('#d8d8ce', { rough: 0.7, emissive: '#3a3a32', emissiveIntensity: 0.25 });
   return _dash;
 }
-
-/** 水域判定(world 内部用,避免与 ground.js 循环依赖) */
-function isWaterXY(x, z) {
-  if (distToPolyline(x, z, RIVER_PTS_V) < RIVER.halfWidth) return true;
-  for (const b of BRANCH_PTS_V) if (distToPolyline(x, z, b.pts) < b.hw) return true;
-  for (const p of LAKE_POLYS_V) if (pointInPolygon(x, z, p)) return true;
-  return false;
-}
-const RIVER_PTS_V = toV2List(RIVER.pts);
-const BRANCH_PTS_V = RIVER.branches.map((b) => ({ hw: b.halfWidth, pts: toV2List(b.pts) }));
-const LAKE_POLYS_V = LAKES.map((l) => toV2List(l.pts));
