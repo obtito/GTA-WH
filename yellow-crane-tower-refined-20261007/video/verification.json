@@ -1,0 +1,33 @@
+{
+  "verified_at": "2026-10-07T10:14:02.588984+00:00",
+  "validation_started_at": "2026-10-07T10:13:40.600048+00:00",
+  "source": "individually rendered WebGL PNGs from actual before/after GLB assets; semantic group transform and material interpolation between versions",
+  "interpolated_geometry_presentation": true,
+  "screen_recording": false,
+  "all_expected_pngs_opened": true,
+  "frame_count": 1080,
+  "stream": {
+    "programs": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "width": 1920,
+        "height": 1080,
+        "pix_fmt": "yuv420p",
+        "color_space": "bt709",
+        "color_transfer": "bt709",
+        "color_primaries": "bt709",
+        "r_frame_rate": "24/1",
+        "nb_frames": "1080"
+      }
+    ],
+    "format": {
+      "duration": "45.000000",
+      "size": "32668060"
+    }
+  },
+  "decode_returncode": 0,
+  "decode_stderr": "",
+  "sha256": "5918c7d12e8f02a1901431a10cad4db9d7ef5d7128016860e0a5a51d18e370d9",
+  "output": "/Users/Admin/Desktop/gta-wh/yellow-crane-tower-refined-20261007/优化过程.mp4"
+}

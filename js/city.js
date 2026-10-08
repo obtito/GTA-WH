@@ -9,6 +9,7 @@ import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { terrainHeight } from './world.js';
 
 import { footprintOverlapsWater } from './water-mask.js';
+import { planCampusSakura, buildSakuraGrove } from './sakura.js';
 
 const RIVER_PTS = toV2List(RIVER.pts);
 const BRANCH_PTS = RIVER.branches.map((b) => ({ hw: b.halfWidth, pts: toV2List(b.pts) }));
@@ -467,18 +468,9 @@ export async function buildTrees({ exclusions = [], seed = 4242, lines = null, b
     }
   }
 
-  // 2) 武大樱花(珞珈山周边一环,粉白)
-  {
-    const [cx, cz] = toV2(114.3660, 30.5360);
-    for (let i = 0; i < 260; i++) {
-      const a = rand() * Math.PI * 2;
-      const rr = 300 + Math.sqrt(rand()) * 650;
-      const x = cx + Math.cos(a) * rr, z = cz + Math.sin(a) * rr * 0.8;
-      if (nearBlocked(x, z)) continue;
-      if (terrainHeight(x, z) > 90) continue;
-      items.push({ x, z, y: terrainHeight(x, z), s: 0.7 + rand() * 0.4, t: rand(), c: rand(), sakura: true });
-    }
-  }
+  // Campus planting bypasses the campus's broad city-building exclusion, then checks
+  // actual roofs, stairs, visible water and road/building clearance per complete crown.
+  items.push(...planCampusSakura({blocked,roads:lines || ROAD_LINES}));
 
   // 3) 东湖绿带(湖岸内侧撒树)
   for (const lake of LAKE_POLYS) {
@@ -494,7 +486,7 @@ export async function buildTrees({ exclusions = [], seed = 4242, lines = null, b
   }
 
   /* ---- 几何升级:Kenney Nature Kit(CC0)真树 GLB 实例化 ----
-   * 布点逻辑(items)不变;常规树换真模型,樱花保留程序化粉冠(团状花云)。
+   * 常规树用真模型；武大樱花另用分枝、花簇与花瓣的共享实例批次。
    * 每型一次 InstancedMesh,整城 6 个 draw call。 */
   const TREE_FILES = [
     './assets/trees/tree_default.glb',
@@ -538,6 +530,8 @@ export async function buildTrees({ exclusions = [], seed = 4242, lines = null, b
   const sakuraItems = items.filter((it) => it.sakura);
   const greenItems = items.filter((it) => !it.sakura);
   const allMats = [];
+  const sakura = buildSakuraGrove(sakuraItems);
+  group.add(sakura.group);allMats.push(...sakura.mats);
 
   if (types.length) {
     const dummy = new THREE.Object3D();
@@ -550,7 +544,6 @@ export async function buildTrees({ exclusions = [], seed = 4242, lines = null, b
       const bucket = buckets[k];
       if (!bucket.length) return;
       const im = new THREE.InstancedMesh(tp.geo, tp.mat, bucket.length);
-      im.frustumCulled = false;
       im.castShadow = true;
       bucket.forEach((it, i) => {
         dummy.position.set(it.x, it.y, it.z);
@@ -563,55 +556,56 @@ export async function buildTrees({ exclusions = [], seed = 4242, lines = null, b
       });
       im.instanceMatrix.needsUpdate = true;
       if (im.instanceColor) im.instanceColor.needsUpdate = true;
+      // These trees never move: keep the six model batches, but let both the
+      // camera and shadow passes skip a whole batch outside their frustum.
+      im.computeBoundingSphere();
       group.add(im);
       allMats.push(tp.mat);
     });
-  } else {
-    // GLB 全挂(离线开发):常规树退回程序化,与樱花同管线
-    for (const it of greenItems) sakuraItems.push(it);
   }
 
-  // 樱花(以及 GLB 缺失时的兜底树):程序化干 + 粉团冠
-  const n = sakuraItems.length;
-  const trunkGeo = new THREE.CylinderGeometry(0.16, 0.26, 1, 6).translate(0, 0.5, 0);
-  const crownGeo = new THREE.IcosahedronGeometry(0.5, 0);
-  const trunkMat = new THREE.MeshStandardMaterial({ color: 0x6b5340, roughness: 1 });
-  const crownMat = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.95, flatShading: true });
-  registerEnv(trunkMat, 0.3);
-  registerEnv(crownMat, 0.42);
-  const trunk = new THREE.InstancedMesh(trunkGeo, trunkMat, n);
-  const crown = new THREE.InstancedMesh(crownGeo, crownMat, n);
-  trunk.frustumCulled = false; crown.frustumCulled = false;
+  // GLB 缺失时常规树仍有程序化兜底；樱花始终使用独立花树模型。
+  const n = types.length ? 0 : greenItems.length;
+  if (n) {
+    const trunkGeo = new THREE.CylinderGeometry(0.16, 0.26, 1, 6).translate(0, 0.5, 0);
+    const crownGeo = new THREE.IcosahedronGeometry(0.5, 0);
+    const trunkMat = new THREE.MeshStandardMaterial({ color: 0x6b5340, roughness: 1 });
+    const crownMat = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.95, flatShading: true });
+    registerEnv(trunkMat, 0.3);
+    registerEnv(crownMat, 0.42);
+    const trunk = new THREE.InstancedMesh(trunkGeo, trunkMat, n);
+    const crown = new THREE.InstancedMesh(crownGeo, crownMat, n);
 
-  const dummy = new THREE.Object3D();
-  const col = new THREE.Color();
-  const greens = ['#4b7a3c', '#568a41', '#3d6b34', '#6d9445', '#456f38'];
-  const pinks = ['#e8b4c8', '#f0c8d8', '#dd9ebc', '#f4d8e0'];
-  sakuraItems.forEach((it, i) => {
-    const h = 7 * it.s;
-    dummy.position.set(it.x, it.y, it.z);
-    dummy.rotation.set(0, it.t * 6.28, 0);
-    dummy.scale.set(it.s, h, it.s);
-    dummy.updateMatrix();
-    trunk.setMatrixAt(i, dummy.matrix);
+    const dummy = new THREE.Object3D();
+    const col = new THREE.Color();
+    const greens = ['#4b7a3c', '#568a41', '#3d6b34', '#6d9445', '#456f38'];
+    greenItems.forEach((it, i) => {
+      const h = 7 * it.s;
+      dummy.position.set(it.x, it.y, it.z);
+      dummy.rotation.set(0, it.t * 6.28, 0);
+      dummy.scale.set(it.s, h, it.s);
+      dummy.updateMatrix();
+      trunk.setMatrixAt(i, dummy.matrix);
 
-    const cr = (3.2 + it.c * 1.8) * it.s;
-    dummy.position.set(it.x, it.y + h * 0.92, it.z);
-    dummy.rotation.set(it.t, it.t * 3.3, it.t * 2.1);
-    dummy.scale.set(cr, cr * (0.85 + it.c * 0.4), cr);
-    dummy.updateMatrix();
-    crown.setMatrixAt(i, dummy.matrix);
-    const pal = it.sakura ? pinks : greens;
-    col.set(pal[(it.c * pal.length) | 0]).multiplyScalar(0.85 + it.t * 0.3);
-    crown.setColorAt(i, col);
-  });
-  trunk.instanceMatrix.needsUpdate = true;
-  crown.instanceMatrix.needsUpdate = true;
-  if (crown.instanceColor) crown.instanceColor.needsUpdate = true;
-  trunk.castShadow = crown.castShadow = true;
-  group.add(trunk, crown);
-  allMats.push(trunkMat, crownMat);
-  return { group, count: items.length, mats: allMats };
+      const cr = (3.2 + it.c * 1.8) * it.s;
+      dummy.position.set(it.x, it.y + h * 0.92, it.z);
+      dummy.rotation.set(it.t, it.t * 3.3, it.t * 2.1);
+      dummy.scale.set(cr, cr * (0.85 + it.c * 0.4), cr);
+      dummy.updateMatrix();
+      crown.setMatrixAt(i, dummy.matrix);
+      const pal = greens;
+      col.set(pal[(it.c * pal.length) | 0]).multiplyScalar(0.85 + it.t * 0.3);
+      crown.setColorAt(i, col);
+    });
+    trunk.instanceMatrix.needsUpdate = true;
+    crown.instanceMatrix.needsUpdate = true;
+    if (crown.instanceColor) crown.instanceColor.needsUpdate = true;
+    trunk.computeBoundingSphere(); crown.computeBoundingSphere();
+    trunk.castShadow = crown.castShadow = true;
+    group.add(trunk, crown);
+    allMats.push(trunkMat, crownMat);
+  }
+  return { group, count: items.length, mats: allMats, sakuraCount: sakura.count, update: sakura.update };
 }
 
 /* ============ 路灯(主干道,夜间点亮) ============ */

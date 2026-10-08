@@ -1,0 +1,10 @@
+{
+  "base": {"before":"四周多圈高退台","after":"低平石台、局部宽台阶与石栏；单独展示台","evidence":"references/xinhua-aerial-20240601.jpg"},
+  "massing": {"before":"首层与中层宽度相差较小，柱廊为切角八边形","after":"首层/中层/顶层参考宽度30/22/18米；四向抱厦凸出，短折边连接；暗木墙后退","evidence":"references/source-records.json"},
+  "roof": {"before":"径向起伏檐面与长金色尖杆","after":"弧面瓦壳、连续曲檐、短脊饰；四主坡与嵌入式宽抱厦组合","evidence":"references/xinhua-crown-20240601.jpg"},
+  "railings": {"before":"所有楼层为粗白石栏杆","after":"2至5层改赭红回纹木栏；首层开放；灰白石栏保留在基座","evidence":"references/xinhua-aerial-20240601.jpg"},
+  "materials": {"before":"金属感强的黄金瓦面","after":"低金属度、较高粗糙度的橙赭琉璃瓦；棕红木作、青绿额枋及铜宝顶","evidence":"references/xinhua-aerial-20240601.jpg"},
+  "plaques": {"before":"上下和四面均为黄鹤楼","after":"顶层正面黄鹤楼、可见侧面楚天极目、首层气吞云梦；传统右至左字序；未证实背/左面不虚构题字","evidence":"references/wuhan-nao-20250417-01.jpg"},
+  "video": {"duration_seconds":45,"fps":24,"width":1920,"height":1080,"story":"快速照片引入；整栋持续旋转中渐变；最后前后同步旋转","provenance":"真实V1/V2模型逐帧渲染；版本之间是演示插值，非实时操作录屏。"},
+  "limits": ["外观为照片参照的程序化艺术重建，非测绘复原", "深度、背面和部分雕饰为推断或简化", "斗拱、回纹和瓦件并未逐件复刻", "视频不声称顶点级拓扑对应或历史施工过程"]
+}

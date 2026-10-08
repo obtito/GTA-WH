@@ -1,5 +1,6 @@
 // Road widths and land corridors shared by the offline planner and scene builder.
-import { toV2, toLonLat, resample } from './geo.js';
+import { toV2, toLonLat, resample, distToPolyline } from './geo.js';
+import { BRIDGES } from './data.js';
 import { footprintOverlapsWater } from './water-mask.js';
 
 const WIDTHS = { motorway: 40, trunk: 34, trunk_link: 16, primary: 28, primary_link: 14, secondary: 22, secondary_link: 12, tertiary: 16, tertiary_link: 10 };
@@ -12,6 +13,26 @@ export function roadWidth(tags = {}) {
 export const isBridgeRoad = (tags = {}) => !!tags.bridge && tags.bridge !== 'no';
 export const BRIDGE_WIDTHS = { truss: 22, cablestayed: 26, suspension3: 30, arch: 22 };
 export const roadNodeFootprint = (p, radius) => Array.from({length: 8}, (_, i) => [p[0] + Math.cos(i * Math.PI / 4) * radius, p[1] + Math.sin(i * Math.PI / 4) * radius]);
+
+const bridgeName = name => String(name || '').normalize('NFKC').replace(/\s+/g, '');
+const LANDMARK_BRIDGE_ROADS = BRIDGES.map(bridge => {
+  const axis = bridge.axis.map(ll => toV2(...ll));
+  const length = Math.hypot(axis[1][0] - axis[0][0], axis[1][1] - axis[0][1]);
+  // Photo-based landmark axes and OSM lanes can be hundreds of metres apart.
+  // A bounded local corridor plus an exact name match avoids claiming nearby
+  // independent bridges, distant namesakes, or generic elevated roads.
+  return { id: bridge.id, name: bridgeName(bridge.name), axis, radius: Math.min(750, Math.max(120, length * .4)) };
+});
+
+/** Identity and local extent only; callers must also require an actual wet cell. */
+export function modeledBridgeRoadAt(tags = {}, x, z) {
+  if (!isBridgeRoad(tags)) return null;
+  const names = [tags.name, tags['name:zh']].flatMap(name => String(name || '').split(/[;；]/).map(bridgeName));
+  for (const bridge of LANDMARK_BRIDGE_ROADS) {
+    if (names.includes(bridge.name) && distToPolyline(x, z, bridge.axis) <= bridge.radius) return bridge.id;
+  }
+  return null;
+}
 
 // Some simplified bridge axes end in the rendered river. Extend those ramps to a dry landing.
 export function bridgeLanding(br, side) {

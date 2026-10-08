@@ -8,6 +8,7 @@ ref/
 .tmp_china_tower.*
 __pycache__/
 *.pyc
+/_verify/
 
 # Reproducible Blender exports and local video tooling; keep model sources in Git.
 /yellow-crane-tower-new-20261007/*.blend
@@ -19,3 +20,9 @@ __pycache__/
 /yellow-crane-tower-refined-20261007/video/vendor/
 /yellow-crane-tower-refined-20261007/video/three.tgz
 /yellow-crane-tower-refined-20261007/video/bin/
+/yellow-crane-tower-refined-20261007/video/continuous/
+/yellow-crane-tower-refined-20261007/video/连续旋转优化回放_离线.html
+/yellow-crane-tower-refined-20261007/assets/Songti-full.ttf
+/yellow-crane-tower-refined-20261007/assets/baseline.glb
+/yellow-crane-tower-refined-20261007/baseline/*.blend
+/yellow-crane-tower-refined-20261007/黄鹤楼_实景优化.blend

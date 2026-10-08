@@ -9,6 +9,7 @@ import { chineseHall, storiedPavilion, hipRoof, gableRoof, pedestal } from './ar
 import { localSite, facade, entranceSteps, plaque, dryBuilding, tileMaterial } from './landmark-details.js';
 import { landmarkAnchor } from './sites.js';
 import { waterAt } from './water-mask.js';
+import { buildWhuCampus } from './whu-campus.js';
 
 /* ============ 地标占地(供城市生成排他) ============
  * 单一事实来源迁到 js/sites.js(烘焙工具/程序化城市/运行时共用),
@@ -308,48 +309,8 @@ function mkGreenland(g, x, z, ground, rot) {
 }
 
 /* ==================== 11. 武汉大学(老斋舍 + 樱顶老图书馆) ==================== */
-function mkWhu(g, x, z, ground, rot) {
-  const wall = mat('#c9bda8', { rough: 0.9 });
-  // 依山而上的三进老斋舍(台阶两侧)
-  const stepD = 60;
-  for (let i = 0; i < 3; i++) {
-    const gy = terrainHeight(x + Math.sin(rot) * (-stepD * i), z + Math.cos(rot) * (-stepD * i));
-    for (const side of [-1, 1]) {
-      const ox = Math.cos(rot) * 21 * side, oz = -Math.sin(rot) * 21 * side;
-      const bx = x + Math.sin(rot) * (-stepD * i) + ox;
-      const bz = z + Math.cos(rot) * (-stepD * i) + oz;
-      put(g, UNIT.box, wall, { pos: [bx, gy, bz], scale: [16, 11, 46], rot });
-      const detail=localSite(g,bx,bz,gy,rot);
-      facade(detail,{w:16,d:46,h:11,floors:3,bays:4,trim:'#b0a18a'});
-      const roof=hipRoof({w:48,d:18,rise:2.4,ridgeLen:30,color:'#3f5b46',ridgeColor:'#3c4536',segX:10,segZ:14});
-      roof.rotation.y=Math.PI/2;
-      roof.position.y=11;detail.add(roof);
-    }
-  }
-  // A continuous supported stair flight connects the dormitories and library terrace.
-  const topY = Math.max(terrainHeight(x + Math.sin(rot) * (-stepD * 2.2), z + Math.cos(rot) * (-stepD * 2.2)), ground + 12);
-  const steps = [], count = 80, length = 120;
-  for (let i=0;i<count;i++) {
-    const t=(i+.5)/count,px=x-Math.sin(rot)*length*t,pz=z-Math.cos(rot)*length*t;
-    const terrain=terrainHeight(px,pz),top=ground+.25+(topY+4-ground-.25)*(i+1)/count;
-    const bottom=Math.min(terrain,ground);
-    steps.push({x:px,z:pz,y:bottom,w:14,h:Math.max(.25,top-bottom),d:length/count+.015,rot});
-  }
-  g.add(instancedBoxes(steps,mat('#b8b2a2',{rough:.95})));
-  // 樱顶老图书馆
-  const libX = x + Math.sin(rot) * (-stepD * 2.2);
-  const libZ = z + Math.cos(rot) * (-stepD * 2.2);
-  const lib = chineseHall({
-    w: 22, d: 22, pedestalH: 4, bodyH: 9, roofRise: 8,
-    roofType: 'hip', ridgeLen: 8, finial: true,
-    stoneColor: '#cfc9b8', postColor: '#8e2f22', wallColor: '#c9bda8',
-    roofColor: '#2f5a45', ridgeColor: '#24453a',
-    bays: 5, dougongTier: 2, segX: 12, segZ: 12,
-  });
-  lib.position.set(libX, topY, libZ);
-  lib.rotation.y = rot;
-  plaque(lib,'武汉大学',5,.9,0,11.3,11.8);
-  g.add(lib);
+function mkWhu(g, x, z) {
+  buildWhuCampus(g,x,z);
 }
 
 /* ==================== 12. 磨山楚天台 ==================== */

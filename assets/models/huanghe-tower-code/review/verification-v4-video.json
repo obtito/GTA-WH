@@ -1,0 +1,138 @@
+{
+  "verified_at": "2026-10-07T11:09:12.446788+00:00",
+  "video": {
+    "programs": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "width": 1920,
+        "height": 1080,
+        "pix_fmt": "yuv420p",
+        "color_space": "bt709",
+        "r_frame_rate": "24/1",
+        "nb_frames": "720"
+      }
+    ],
+    "format": {
+      "duration": "30.000000",
+      "size": "15590729"
+    }
+  },
+  "full_decode_errors": "",
+  "full_decode_returncode": 0,
+  "decoded_sample_seconds": [
+    0,
+    4.9,
+    10,
+    15.2,
+    20.5,
+    22,
+    27
+  ],
+  "model_hashes": [
+    {
+      "file": "assets/models/huanghe-tower-code/tower.js",
+      "sha256": "777846d0988e6df1101f55097d09a50d2d2f7100e70d6a5a69b8f0b5b1e8450f",
+      "unchanged": true
+    },
+    {
+      "file": "assets/models/huanghe-tower-code/review/baseline/tower.js",
+      "sha256": "0a340bb14d44db4514ba0ef13c3e2cb46cb44e5e3df21cbbfdb5bcff37bddcba",
+      "unchanged": true
+    },
+    {
+      "file": "assets/models/huanghe-tower-code/review/stages/02-detail/tower.js",
+      "sha256": "6ea220e4b22e203216b434231d177b5a59e53ff8a196c61b8ea0c0bdd345ffeb",
+      "unchanged": true
+    },
+    {
+      "file": "assets/models/huanghe-tower/huanghe-main-tower-lod2.glb",
+      "sha256": "369bb9d4fa200612f06a0c27ce0cdd0935a071738787ffcb29e1c8d3ffbbeda3",
+      "unchanged": true
+    }
+  ],
+  "file_sha256": "e99ea100e707e7a2026a2bbd8f90c3b7d1887ba03f214cf3e4064b1b1538dfbf",
+  "geometry_and_camera": {
+    "camera": [
+      {
+        "t": 18.999,
+        "yaw": 5.426101711413861,
+        "height": 38
+      },
+      {
+        "t": 19,
+        "yaw": 5.426387310746007,
+        "height": 38
+      },
+      {
+        "t": 19.001,
+        "yaw": 5.426672743534074,
+        "height": 38.00000000444222
+      },
+      {
+        "t": 21.999,
+        "yaw": 6.282400242159875,
+        "height": 49.99999999555778
+      },
+      {
+        "t": 22,
+        "yaw": 0,
+        "height": 50
+      },
+      {
+        "t": 22.001,
+        "yaw": 0.0007853981633984082,
+        "height": 50
+      },
+      {
+        "t": 30,
+        "yaw": 6.283185307179586,
+        "height": 50
+      }
+    ],
+    "finiteMorphs": true,
+    "layout": [
+      {
+        "time": 19,
+        "split": 0,
+        "orbit": {
+          "yaw": 5.426387310746007,
+          "height": 38
+        },
+        "stage": 3
+      },
+      {
+        "time": 20,
+        "split": 0.20987654320987653,
+        "orbit": {
+          "yaw": 5.6009202359454395,
+          "height": 40.51851851851852
+        },
+        "stage": 3
+      },
+      {
+        "time": 21,
+        "split": 0.7901234567901235,
+        "orbit": {
+          "yaw": 5.775453161144872,
+          "height": 47.48148148148148
+        },
+        "stage": 3
+      },
+      {
+        "time": 22,
+        "split": 1,
+        "orbit": {
+          "yaw": 0,
+          "height": 50
+        },
+        "stage": 3
+      }
+    ],
+    "width": 1920,
+    "height": 1080,
+    "fps": 24,
+    "duration": 30,
+    "errors": []
+  }
+}

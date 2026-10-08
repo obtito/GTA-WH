@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>绿皮列车 · 模型近景</title>
+<style>
+body{margin:0;background:#d7dedc;color:#263e35;font:14px system-ui}canvas{display:block}header{position:absolute;top:24px;left:28px;right:28px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}h1{font-size:21px;margin:0}nav{display:flex;gap:8px}button{padding:9px 16px;border:1px solid #687e71;border-radius:6px;background:#f1f3ed;color:#294539;cursor:pointer}button[aria-pressed=true]{background:#31574c;color:white}footer{position:absolute;bottom:24px;left:28px;color:#466052;font-size:13px}
+</style>
+<script type="importmap">{"imports":{"three":"../vendor/three.module.js","three/addons/":"../vendor/"}}</script>
+<header><h1>绿皮列车 · 模型近景</h1><nav><button id="head">车头近景</button><button id="coach">车厢细节</button><button id="consist">八节编组</button></nav></header>
+<footer>拖动旋转 · 滚轮缩放　|　车头 + 七节客车</footer>
+<script type="module">
+import * as THREE from 'three';
+import {OrbitControls} from 'three/addons/OrbitControls.js';
+import {buildTrainModels} from '../js/yangtze-train.js';
+const scene=new THREE.Scene();scene.background=new THREE.Color('#d7dedc');
+const renderer=new THREE.WebGLRenderer({antialias:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.15;document.body.append(renderer.domElement);
+const camera=new THREE.PerspectiveCamera(40,1,.1,1000),controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;controls.maxPolarAngle=Math.PI*.49;
+scene.add(new THREE.HemisphereLight('#eff7ff','#536449',2.2));
+const sun=new THREE.DirectionalLight('#fff2d7',3);sun.position.set(-25,40,25);sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);Object.assign(sun.shadow.camera,{left:-120,right:120,top:120,bottom:-120,far:160});sun.shadow.bias=-.00015;scene.add(sun);
+const floor=new THREE.Mesh(new THREE.PlaneGeometry(600,600),new THREE.MeshStandardMaterial({color:'#aab7a7',roughness:1}));floor.rotation.x=-Math.PI/2;floor.position.y=-.45;floor.receiveShadow=true;scene.add(floor);
+const models=buildTrainModels(),stock=new THREE.Group();scene.add(stock);
+for(let i=0;i<8;i++){const car=(i===0?models.locomotive:models.coach).clone();car.position.z=-i*24;stock.add(car);}
+const track=new THREE.Group();scene.add(track);
+const material=new THREE.MeshStandardMaterial({color:'#6b7270',metalness:.6,roughness:.5});
+for(const x of [-.7175,.7175]){const rail=new THREE.Mesh(new THREE.BoxGeometry(.14,.15,205),material);rail.position.set(x,-.075,-80);track.add(rail);}
+const ties=new THREE.InstancedMesh(new THREE.BoxGeometry(2.55,.14,.22),new THREE.MeshStandardMaterial({color:'#65675c',roughness:1}),126),tieMatrix=new THREE.Matrix4();
+for(let i=0;i<126;i++)ties.setMatrixAt(i,tieMatrix.makeTranslation(0,-.23,-180+i*1.6));ties.receiveShadow=true;ties.computeBoundingSphere();track.add(ties);
+const views={head:{target:[0,2,4],camera:[18,9.5,26]},coach:{target:[0,2,-24],camera:[22,10,-9]},consist:{target:[0,1.8,-80],camera:[120,55,50]}};
+let active='head';
+function view(id){active=id;const v=views[id];controls.target.fromArray(v.target);camera.position.fromArray(v.camera).sub(controls.target).multiplyScalar(Math.max(1,1.2/camera.aspect)).add(controls.target);for(const k of Object.keys(views))document.getElementById(k).setAttribute('aria-pressed',String(k===id));controls.update();}
+for(const id of Object.keys(views))document.getElementById(id).onclick=()=>view(id);
+function resize(){camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);view(active);}addEventListener('resize',resize);resize();view('head');
+renderer.setAnimationLoop(()=>{controls.update();renderer.render(scene,camera);});
+</script>
+</html>

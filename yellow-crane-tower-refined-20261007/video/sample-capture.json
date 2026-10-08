@@ -1,6 +1,6 @@
 {
-  "started_at": "2026-10-07T09:55:55.083Z",
-  "completed_at": "2026-10-07T09:55:56.752Z",
+  "started_at": "2026-10-07T10:08:11.521Z",
+  "completed_at": "2026-10-07T10:08:13.196Z",
   "frames": 11,
   "start_frame": 1,
   "width": 1920,
@@ -32,8 +32,8 @@
       "yaw": 1.57,
       "split": 0,
       "phase": 0,
-      "draw_calls": 284,
-      "triangles": 1166872
+      "draw_calls": 277,
+      "triangles": 864588
     },
     {
       "frame": 265,
@@ -41,8 +41,8 @@
       "yaw": 2.42,
       "split": 0,
       "phase": 1,
-      "draw_calls": 662,
-      "triangles": 1406644
+      "draw_calls": 679,
+      "triangles": 1167120
     },
     {
       "frame": 409,
@@ -50,8 +50,8 @@
       "yaw": 3.4400000000000004,
       "split": 0,
       "phase": 2,
-      "draw_calls": 449,
-      "triangles": 3167848
+      "draw_calls": 413,
+      "triangles": 2516464
     },
     {
       "frame": 553,
@@ -59,8 +59,8 @@
       "yaw": 4.46,
       "split": 0,
       "phase": 3,
-      "draw_calls": 569,
-      "triangles": 1519600
+      "draw_calls": 741,
+      "triangles": 1544304
     },
     {
       "frame": 697,
@@ -68,8 +68,8 @@
       "yaw": 5.48,
       "split": 0,
       "phase": 3,
-      "draw_calls": 284,
-      "triangles": 1166872
+      "draw_calls": 359,
+      "triangles": 979376
     },
     {
       "frame": 745,
@@ -77,8 +77,8 @@
       "yaw": 5.82,
       "split": 1,
       "phase": 3,
-      "draw_calls": 568,
-      "triangles": 2333744
+      "draw_calls": 643,
+      "triangles": 2146248
     },
     {
       "frame": 865,
@@ -86,8 +86,8 @@
       "yaw": 6.67,
       "split": 1,
       "phase": 3,
-      "draw_calls": 568,
-      "triangles": 2333744
+      "draw_calls": 643,
+      "triangles": 2146248
     },
     {
       "frame": 1009,
@@ -95,8 +95,8 @@
       "yaw": 7.69,
       "split": 1,
       "phase": 3,
-      "draw_calls": 568,
-      "triangles": 2333744
+      "draw_calls": 643,
+      "triangles": 2146248
     },
     {
       "frame": 1080,
@@ -104,8 +104,8 @@
       "yaw": 8.192916666666667,
       "split": 1,
       "phase": 3,
-      "draw_calls": 568,
-      "triangles": 2333744
+      "draw_calls": 643,
+      "triangles": 2146248
     }
   ]
 }

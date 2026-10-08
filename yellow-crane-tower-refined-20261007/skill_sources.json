@@ -1,0 +1,24 @@
+{
+  "img2threejs": {
+    "url": "https://github.com/img2threejs/img2threejs/blob/main/SKILL.md",
+    "applied": "真实照片分解、关键特征质量约定、分阶段渲染对照与视觉自校正",
+    "adaptation": "按用户的 Blender 交付要求，保留 Blender 几何源；未运行 Three.js factory/forge 专用自动门禁，不声称其通过。"
+  },
+  "threejs_geometry": {
+    "url": "https://github.com/CloudAI-X/threejs-skills/blob/main/skills/threejs-geometry/SKILL.md",
+    "applied": "自定义索引曲面、轮廓扫掠、重复构件及渲染语义分组"
+  },
+  "gpt_3d_modeling": {
+    "url": "https://github.com/grapeot/gpt_3d_skill/blob/master/skills/blender_modeling.md",
+    "applied": "可编辑源保护、分阶段版本、多角度检查、字体打包和保存后重载验证"
+  },
+  "gpt_3d_animation": {
+    "url": "https://github.com/grapeot/gpt_3d_skill/blob/master/skills/blender_animation.md",
+    "applied": "PNG序列、渲染基准、视频参数检查及全片解码验证",
+    "adaptation": "按用户后续指令，动画由 Three.js 对真实模型版本连续渲染，保留 Blender 为模型编辑源。"
+  },
+  "threejs_animation": {
+    "url": "https://github.com/CloudAI-X/threejs-skills/blob/main/skills/threejs-animation/SKILL.md",
+    "applied": "确定时间采样、统一单向旋转、smoothstep变换补间、语义组整体联动、前后同角度旋转"
+  }
+}

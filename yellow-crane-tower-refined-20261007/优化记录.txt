@@ -1,0 +1,67 @@
+黄鹤楼实景参照优化 · 交付记录
+
+完成时间：2026-10-07T18:24:30+08:00（Asia/Shanghai）
+独立目录：yellow-crane-tower-refined-20261007
+只使用本对话生成的 V1 模型及公开照片；原项目数据保持隔离，V1 原文件保留。
+
+交付
+黄鹤楼_实景优化.blend：可编辑 Blender 4.5 模型；材质、灯光、相机和字体已保存。
+优化过程.mp4：45秒，1920×1080，24fps，H.264；前段较快，整栋持续单向旋转，旋转中逐渐展示修改，末段同步旋转比较。
+优化前后对比.png：相同机位、完整楼体的 V1/V2 对比。
+实景_模型对照.png：新华社实景照片与 V2 对照，视角差异已注明。
+video/连续旋转优化回放_离线.html：模型、照片及运行时均内嵌，离线浏览器可打开。
+assets/refined.glb：最终几何交换文件。
+stages/：实际结构、屋顶阶段文件及渲染图；previews/：最终多角度检查图。
+deliverables.json：核心交付文件的大小与 SHA256。
+
+优化内容
+1. 加宽首层、收束顶部，按资料中30/22/18米的层间宽度关系调整；形成四向凸出中央开间及后退墙体。
+2. 2至5层白石栏改为赭红回纹木栏；首层开放柱廊；石栏保留于基座。
+3. 台基改为低平石台与局部台阶；减少多层高退台。
+4. 修正曲檐与冠顶：四主坡、嵌入式宽抱厦、短脊饰及铜色葫芦宝顶。
+5. 瓦面减弱金属感，调整橙赭琉璃瓦、棕红木作和青绿额枋。
+6. 牌匾改为传统字形及右至左次序，分别对应黄鹤楼、楚天极目、气吞云梦；未核实面不编造题字。
+7. 修复系统字体集合默认字面缺少繁体字的问题，将完整字面提取并打包；扩大相机构图以保留完整台基。
+
+实际耗时
+启动与技能检索：2026-10-07 16:55:06
+实景分析完成、开始结构修改：17:31:08
+最终模型与多角度检查完成：18:08:33
+模型阶段合计：1小时13分27秒（包含技能检索、运行环境准备、照片分析、建模和检查）。
+从结构修改开始到模型检查完成：37分25秒。
+视频1080张逐帧渲染：18:09:33至18:10:59，约85.6秒。
+视频编码及技术验证完成：18:14:02。
+交付检查完成：18:24:30
+本轮总墙钟时间：1小时29分24秒，包含下载、处理、校验和等待；并非纯建模计算时长。
+详细时间戳与每次渲染耗时：timeline.json、video/capture-report.json、video/verification.json。
+
+视频说明
+初始与最终画面来自真实 V1/V2 模型。中间为模型语义分组的变换、材质和可见性插值演示，不是实时操作录屏，也不声称逐顶点拓扑对应。结构、屋顶等真实修改阶段另保存在 stages/。
+
+验证
+重新打开最终 .blend：355个网格对象、498024顶点、420570面；无非有限几何、无外部链接库，字体已打包，牌匾均有有效字形网格。
+正面、侧面、背面、俯视、细节和完整透视图已检查。
+视频1080张PNG逐一读取通过，FFprobe参数正确，全片解码退出码0；浏览器连续播放至45秒结尾，无播放错误。
+离线HTML已断网检查。
+证据：logs/reloaded_final_validation.json、video/verification.json、video/playback-verification.json。
+
+技能的具体使用
+img2threejs：照片分解、特征约定、分阶段截图对比和修正。按用户指定的 Blender 交付适配；未运行其专用 Three.js forge 门禁，不声称通过。
+https://github.com/img2threejs/img2threejs/blob/main/SKILL.md
+threejs-geometry：索引曲面、轮廓和重复构件。
+https://github.com/CloudAI-X/threejs-skills/blob/main/skills/threejs-geometry/SKILL.md
+gpt_3d_skill：源文件保护、分阶段版本、多角度检查、资源打包、重新打开文件验证及视频验证。
+https://github.com/grapeot/gpt_3d_skill
+threejs-animation：统一时间采样、连续旋转、smoothstep补间、整体联动和同步对比。
+https://github.com/CloudAI-X/threejs-skills/blob/main/skills/threejs-animation/SKILL.md
+技能原文与适配细节分别保存在 skills/、video/threejs-animation-SKILL.md、skill_sources.json。
+
+实景来源
+新华社，程敏摄（2024-06-01），近景航拍与俯视冠顶。
+https://www.news.cn/photo/20240619/3965db886c5f487bacf62f53e4ce4382/c.html
+武汉市政府日文网站，NAO摄（2025-04-17），近正面晚景。
+https://japanese.wuhan.gov.cn/wh_rywz01/wh_rywz012/202508/t20250801_2628422.shtml
+其他结构资料与照片署名见 references/source-records.json。
+
+适用范围
+这是参考照片校正的程序化外观模型，非测绘复原；背面、内部、斗拱、雕饰与瓦件仍有推断或简化。实景照片不同于渲染相机角度，因此不以像素重合率声称还原精度。

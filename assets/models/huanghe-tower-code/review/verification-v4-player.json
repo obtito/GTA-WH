@@ -1,0 +1,19 @@
+{
+  "current": {
+    "duration": 30,
+    "width": 1920,
+    "height": 1080,
+    "source": "http://127.0.0.1:8140/assets/models/huanghe-tower-code/review/optimization-process-v4.mp4"
+  },
+  "previous": {
+    "source": "http://127.0.0.1:8140/assets/models/huanghe-tower-code/review/optimization-process-v3.mp4",
+    "download": "optimization-process-v3.mp4"
+  },
+  "restoredCurrent": true,
+  "playbackAdvanced": true,
+  "mobile": {
+    "scrollWidth": 390,
+    "width": 390
+  },
+  "errors": []
+}

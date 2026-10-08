@@ -1,0 +1,10 @@
+{
+  "verified_at": "2026-10-07T18:24:30+08:00",
+  "browser": "Codex in-app browser",
+  "video": "优化过程.mp4",
+  "duration": 45,
+  "currentTime": 45,
+  "ended": true,
+  "error": null,
+  "result": "连续播放至结尾；全片解码检查另见 verification.json"
+}

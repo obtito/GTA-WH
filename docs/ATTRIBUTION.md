@@ -25,6 +25,7 @@
 | `assets/npc/` + `assets/props/`(角色 / 街道小品) | [KayKit Character Pack](https://kaylousberg.com) & [City Builder Bits](https://kaylousberg.com) by Kay Lousberg | CC0 1.0 | 无需署名 |
 | `assets/cars/*.glb` + `Textures/colormap.png`(20 台车) | [Kenney Car Kit](https://kenney.nl/assets/car-kit),经 [shorepine/kenney](https://github.com/shorepine/kenney) 镜像 | **CC0 1.0** | 无需署名,仍致谢 Kenney |
 | `assets/trees/*.glb`(6 树型,93176 实例) | [Kenney Nature Kit](https://kenney.nl/assets/nature-kit),经 [shorepine/kenney](https://github.com/shorepine/kenney) 镜像 | **CC0 1.0** | 无需署名,仍致谢 Kenney |
+| 武汉大学樱顶 `js/whu-campus.js` / `js/whu-library.js` | 本项目独立程序化模型，外观参考武汉大学官方建筑介绍及实景照片，见 [还原说明](WHU.md) | 未导入外部模型、代码或照片贴图 | 实景参考来源：武汉大学新闻网 |
 
 ## 贴图 / 代码
 
@@ -34,6 +35,7 @@
 | `assets/textures/rough_concrete_*_2k.jpg` | [Poly Haven — rough_concrete](https://polyhaven.com/a/rough_concrete) | **CC0** | 无需署名 |
 | `vendor/three.module.js` / `GLTFLoader.js` / `DRACOLoader.js` / `utils/` | three.js r160 | MIT | Copyright © 2010-2024 three.js authors |
 | Draco 解码器 `assets/draco/` | [google/draco](https://github.com/google/draco) | Apache-2.0 | Copyright © 2017 Google Draco Authors |
+| 武大樱花 `js/sakura.js` | 本项目独立代码与像素纹理；设计参考 [Sakuragaoka Station](https://github.com/Kenton-GMI/sakuragaoka-station) 与 [Sakura Realm](https://github.com/Leonxlnx/sakura-realm)，见 [调研记录](SAKURA.md) | 参考项目均为 MIT；未复制其代码或资产 | 致谢 Sakuragaoka Station contributors 与 Leonxlnx |
 
 ## 新增资产守则
 

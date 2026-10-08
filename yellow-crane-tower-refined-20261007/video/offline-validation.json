@@ -1,0 +1,30 @@
+{
+  "verified_at": "2026-10-07T10:10:40.458Z",
+  "ready": true,
+  "groups": 12,
+  "images": [
+    {
+      "complete": true,
+      "width": 2820,
+      "height": 3013
+    },
+    {
+      "complete": true,
+      "width": 1002,
+      "height": 751
+    },
+    {
+      "complete": true,
+      "width": 1002,
+      "height": 751
+    }
+  ],
+  "timing": {
+    "started_at": "2026-10-07T16:55:06+08:00",
+    "as_of": "2026-10-07T18:08:33+08:00",
+    "elapsed_seconds": 4407
+  },
+  "external_network_requests": [],
+  "errors": [],
+  "opened_by": "file URL, network disabled"
+}

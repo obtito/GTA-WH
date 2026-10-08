@@ -1,827 +1,260 @@
-INFO Draco mesh compression is available, use library at /private/tmp/yellow-crane-refine-runtime/mount/Blender.app/Contents/Resources/4.5/scripts/addons_core/io_scene_gltf2/libextern_draco.dylib
-17:48:44 | INFO: Starting glTF 2.0 export
-17:48:45 | INFO: Extracting primitive: 黄鹤楼 / Raised lettering.005
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 黄鹤楼 / Raised lettering.006
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 黄鹤楼 / Raised lettering.007
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 黄鹤楼 / Raised lettering.008
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 黄鹤楼 / Raised lettering.009
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 00_Base/Terrace 0 mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 00_Base/Terrace 1 mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 00_Base/Terrace 2 mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 00_Base/Terrace 3 mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 00_Base/Terrace 4 mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 00_Base/Terrace 5 mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 00_Base/Terrace 6 mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 00_Base/Stairways mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 00_Base/Paving joints mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 00_Base/Terrace balusters mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 00_Base/Terrace capitals mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 00_Base/Terrace rails mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 00_Base/Terrace fretwork mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_01_balcony_slab mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_01_floor_edge mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_01_column_bases mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_01_vermilion_columns mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_01_column_neck_rings mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_01_bracket_blocks mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_01_bracket_arms mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_01_structural_beams mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_01_painted_fascia mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_01_fascia_gold_edges mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_01_fascia_inlay mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_01_cream_walls mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_01_window_infill mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_01_window_frames mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_01_window_lattice mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_01_window_lintels mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_01_window_sills mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_01_wall_stiles mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_01_entry_shadow mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_01_entry_frame mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_01_entry_lintel mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_01_rail_beams mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_01_rail_balusters mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_01_rail_posts mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_01_rail_caps mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 01_Roof/Glazed roof planes mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 01_Roof/Eave ridge mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 01_Roof/Dark eave fascia mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 01_Roof/Painted underside trim mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 01_Roof/Roof soffit mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 01_Roof/Round tile ribs mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 01_Roof/Tile courses mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 01_Roof/Hip ridge mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 01_Roof/Upturned corner tips mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 01_Roof/Ridge guardians mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 01_Roof/Glazed roof planes mesh.001
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_02_balcony_slab mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_02_floor_edge mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_02_column_bases mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_02_vermilion_columns mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_02_column_neck_rings mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_02_bracket_blocks mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_02_bracket_arms mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_02_structural_beams mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_02_painted_fascia mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_02_fascia_gold_edges mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_02_fascia_inlay mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_02_cream_walls mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_02_window_infill mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_02_window_frames mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_02_window_lattice mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_02_window_lintels mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_02_window_sills mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_02_wall_stiles mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_02_rail_beams mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_02_rail_balusters mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_02_rail_posts mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_02_rail_caps mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 02_Roof/Glazed roof planes mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 02_Roof/Eave ridge mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 02_Roof/Dark eave fascia mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 02_Roof/Painted underside trim mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 02_Roof/Roof soffit mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 02_Roof/Round tile ribs mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 02_Roof/Tile courses mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 02_Roof/Hip ridge mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 02_Roof/Upturned corner tips mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 02_Roof/Ridge guardians mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 02_Roof/Glazed roof planes mesh.001
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_03_balcony_slab mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_03_floor_edge mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_03_column_bases mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_03_vermilion_columns mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_03_column_neck_rings mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_03_bracket_blocks mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_03_bracket_arms mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_03_structural_beams mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_03_painted_fascia mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_03_fascia_gold_edges mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_03_fascia_inlay mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_03_cream_walls mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_03_window_infill mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_03_window_frames mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_03_window_lattice mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_03_window_lintels mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_03_window_sills mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_03_wall_stiles mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_03_rail_beams mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_03_rail_balusters mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_03_rail_posts mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_03_rail_caps mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 03_Roof/Glazed roof planes mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 03_Roof/Eave ridge mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 03_Roof/Dark eave fascia mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 03_Roof/Painted underside trim mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 03_Roof/Roof soffit mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 03_Roof/Round tile ribs mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 03_Roof/Tile courses mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 03_Roof/Hip ridge mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 03_Roof/Upturned corner tips mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 03_Roof/Ridge guardians mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 03_Roof/Glazed roof planes mesh.001
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_04_balcony_slab mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_04_floor_edge mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_04_column_bases mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_04_vermilion_columns mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_04_column_neck_rings mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_04_bracket_blocks mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_04_bracket_arms mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_04_structural_beams mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_04_painted_fascia mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_04_fascia_gold_edges mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_04_fascia_inlay mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_04_cream_walls mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_04_window_infill mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_04_window_frames mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_04_window_lattice mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_04_window_lintels mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_04_window_sills mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_04_wall_stiles mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_04_rail_beams mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_04_rail_balusters mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_04_rail_posts mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_04_rail_caps mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 04_Roof/Glazed roof planes mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 04_Roof/Eave ridge mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 04_Roof/Dark eave fascia mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 04_Roof/Painted underside trim mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 04_Roof/Roof soffit mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 04_Roof/Round tile ribs mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 04_Roof/Tile courses mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 04_Roof/Hip ridge mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 04_Roof/Upturned corner tips mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 04_Roof/Ridge guardians mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 04_Roof/Glazed roof planes mesh.001
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_05_balcony_slab mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_05_floor_edge mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_05_column_bases mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_05_vermilion_columns mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_05_column_neck_rings mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_05_bracket_blocks mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_05_bracket_arms mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_05_structural_beams mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_05_painted_fascia mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_05_fascia_gold_edges mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_05_fascia_inlay mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_05_cream_walls mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_05_window_infill mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_05_window_frames mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_05_window_lattice mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_05_window_lintels mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_05_window_sills mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_05_wall_stiles mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_05_rail_beams mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_05_rail_balusters mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_05_rail_posts mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: Floor_05_rail_caps mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 05_Roof/Glazed roof planes mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 05_Roof/Eave ridge mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 05_Roof/Dark eave fascia mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 05_Roof/Painted underside trim mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 05_Roof/Roof soffit mesh
-17:48:45 | INFO: Primitives created: 1
-17:48:45 | INFO: Extracting primitive: 05_Roof/Round tile ribs mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: 05_Roof/Tile courses mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: 05_Roof/Hip ridge mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: 05_Roof/Upturned corner tips mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: 05_Roof/Ridge guardians mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: 05_Roof/Glazed roof planes mesh.001
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: 06_Crown/Finial base mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: 06_Crown/Finial mast mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: 06_Crown/Finial jewels mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_1_Wall mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_1_Front_Recess mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_1_Columns mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_1_Column_Capitals mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_1_Column_Crossarms mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_1_Lintel mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_1_Lintel_Gold mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_1_Plaque mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_1_Plaque_Frame mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_1_Curved_Hip_Roof mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_1_Hip_Tile_Rolls mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_1_Hip_Tile_Joints mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_1_Eave_Edges mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_1_Eave_Gold mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_1_Hip_Ridges mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_1_Wing_Tips mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_1_Gables mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_1_Gable_Bargeboards mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_1_Gable_Timbers mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_1_Upper_Gable_Roof mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_1_Upper_Tile_Rolls mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_1_Upper_Eave mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_1_Main_Ridge mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_2_Wall mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_2_Front_Recess mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_2_Columns mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_2_Column_Capitals mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_2_Column_Crossarms mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_2_Lintel mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_2_Lintel_Gold mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_2_Plaque mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_2_Plaque_Frame mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_2_Curved_Hip_Roof mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_2_Hip_Tile_Rolls mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_2_Hip_Tile_Joints mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_2_Eave_Edges mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_2_Eave_Gold mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_2_Hip_Ridges mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_2_Wing_Tips mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_2_Gables mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_2_Gable_Bargeboards mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_2_Gable_Timbers mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_2_Upper_Gable_Roof mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_2_Upper_Tile_Rolls mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_2_Upper_Eave mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_2_Main_Ridge mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_3_Wall mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_3_Front_Recess mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_3_Columns mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_3_Column_Capitals mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_3_Column_Crossarms mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_3_Lintel mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_3_Lintel_Gold mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_3_Plaque mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_3_Plaque_Frame mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_3_Curved_Hip_Roof mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_3_Hip_Tile_Rolls mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_3_Hip_Tile_Joints mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_3_Eave_Edges mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_3_Eave_Gold mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_3_Hip_Ridges mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_3_Wing_Tips mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_3_Gables mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_3_Gable_Bargeboards mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_3_Gable_Timbers mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_3_Upper_Gable_Roof mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_3_Upper_Tile_Rolls mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_3_Upper_Eave mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_3_Main_Ridge mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_4_Wall mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_4_Front_Recess mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_4_Columns mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_4_Column_Capitals mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_4_Column_Crossarms mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_4_Lintel mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_4_Lintel_Gold mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_4_Plaque mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_4_Plaque_Frame mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_4_Curved_Hip_Roof mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_4_Hip_Tile_Rolls mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_4_Hip_Tile_Joints mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_4_Eave_Edges mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_4_Eave_Gold mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_4_Hip_Ridges mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_4_Wing_Tips mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_4_Gables mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_4_Gable_Bargeboards mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_4_Gable_Timbers mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_4_Upper_Gable_Roof mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_4_Upper_Tile_Rolls mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_4_Upper_Eave mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: Crown_Pavilion_4_Main_Ridge mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: 01_Plaque/Gold frame mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Extracting primitive: 01_Plaque/Dark lacquer mesh
-17:48:46 | INFO: Primitives created: 1
-17:48:46 | INFO: Finished glTF 2.0 export in 1.4093759059906006 s
 Blender 4.5.14 LTS (hash 62c1db4208e8 built 2026-09-15 01:30:44)
 Read blend: "/Users/Admin/Desktop/gta-wh/yellow-crane-tower-refined-20261007/baseline/黄鹤楼.blend"
-Fra:1 Mem:272.05M (Peak 277.59M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 00_Base/Terrace 0
-Fra:1 Mem:272.05M (Peak 277.59M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 00_Base/Terrace 1
-Fra:1 Mem:272.05M (Peak 277.59M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 00_Base/Terrace 5
-Fra:1 Mem:272.06M (Peak 277.59M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 00_Base/Stairways
-Fra:1 Mem:272.06M (Peak 277.59M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 00_Base/Terrace rails
-Fra:1 Mem:272.06M (Peak 277.59M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 00_Base/Terrace fretwork
-Fra:1 Mem:272.23M (Peak 277.59M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_01_balcony_slab
-Fra:1 Mem:272.32M (Peak 277.59M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_01_floor_edge
-Fra:1 Mem:272.32M (Peak 277.59M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_01_column_neck_rings
-Fra:1 Mem:272.33M (Peak 277.59M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_01_bracket_blocks
-Fra:1 Mem:272.33M (Peak 277.59M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_01_bracket_arms
-Fra:1 Mem:272.33M (Peak 277.59M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_01_structural_beams
-Fra:1 Mem:272.33M (Peak 277.59M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_01_painted_fascia
-Fra:1 Mem:272.41M (Peak 277.59M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_01_fascia_inlay
-Fra:1 Mem:272.43M (Peak 277.59M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_01_cream_walls
-Fra:1 Mem:272.50M (Peak 277.59M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_01_window_infill
-Fra:1 Mem:272.57M (Peak 277.59M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_01_window_frames
-Fra:1 Mem:272.62M (Peak 277.59M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_01_window_lattice
-Fra:1 Mem:272.63M (Peak 277.59M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_01_wall_stiles
-Fra:1 Mem:272.64M (Peak 277.59M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_01_entry_shadow
-Fra:1 Mem:272.66M (Peak 277.59M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_01_entry_frame
-Fra:1 Mem:272.73M (Peak 277.59M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_01_rail_beams
-Fra:1 Mem:272.72M (Peak 277.59M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_01_rail_balusters
-Fra:1 Mem:272.91M (Peak 277.59M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_01_rail_posts
-Fra:1 Mem:272.91M (Peak 277.59M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 01_Roof/Glazed roof planes
-Fra:1 Mem:272.96M (Peak 277.59M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 01_Roof/Eave ridge
-Fra:1 Mem:273.10M (Peak 277.59M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 01_Roof/Painted underside trim
-Fra:1 Mem:273.38M (Peak 277.59M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 01_Roof/Roof soffit
-Fra:1 Mem:273.57M (Peak 277.59M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 01_Roof/Round tile ribs
-Fra:1 Mem:276.20M (Peak 277.59M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 01_Roof/Tile courses
-Fra:1 Mem:278.17M (Peak 278.17M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 01_Roof/Hip ridge
-Fra:1 Mem:278.47M (Peak 278.47M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 01_Roof/Ridge guardians
-Fra:1 Mem:278.80M (Peak 278.80M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 01_Roof/Glazed roof planes.001
-Fra:1 Mem:279.16M (Peak 279.16M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_02_balcony_slab
-Fra:1 Mem:279.22M (Peak 279.22M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_02_floor_edge
-Fra:1 Mem:279.22M (Peak 279.22M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_02_column_bases
-Fra:1 Mem:279.22M (Peak 279.22M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_02_vermilion_columns
-Fra:1 Mem:279.52M (Peak 279.52M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_02_column_neck_rings
-Fra:1 Mem:279.52M (Peak 279.52M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_02_bracket_blocks
-Fra:1 Mem:279.61M (Peak 279.61M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_02_structural_beams
-Fra:1 Mem:279.75M (Peak 279.75M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_02_painted_fascia
-Fra:1 Mem:279.75M (Peak 279.75M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_02_fascia_inlay
-Fra:1 Mem:279.78M (Peak 279.78M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_02_cream_walls
-Fra:1 Mem:279.81M (Peak 279.81M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_02_window_infill
-Fra:1 Mem:279.88M (Peak 279.88M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_02_window_frames
-Fra:1 Mem:279.96M (Peak 279.96M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_02_window_lattice
-Fra:1 Mem:280.03M (Peak 280.03M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_02_window_lintels
-Fra:1 Mem:280.06M (Peak 280.06M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_02_window_sills
-Fra:1 Mem:280.08M (Peak 280.08M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_02_rail_beams
-Fra:1 Mem:280.09M (Peak 280.09M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_02_rail_caps
-Fra:1 Mem:280.14M (Peak 280.14M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 02_Roof/Glazed roof planes
-Fra:1 Mem:280.19M (Peak 280.19M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 02_Roof/Dark eave fascia
-Fra:1 Mem:280.95M (Peak 280.95M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 02_Roof/Painted underside trim
-Fra:1 Mem:280.95M (Peak 280.95M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 02_Roof/Roof soffit
-Fra:1 Mem:281.65M (Peak 281.65M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 02_Roof/Round tile ribs
-Fra:1 Mem:281.68M (Peak 281.68M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 02_Roof/Tile courses
-Fra:1 Mem:283.26M (Peak 283.26M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 02_Roof/Hip ridge
-Fra:1 Mem:283.26M (Peak 283.26M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 02_Roof/Ridge guardians
-Fra:1 Mem:283.94M (Peak 283.94M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 02_Roof/Glazed roof planes.001
-Fra:1 Mem:286.27M (Peak 286.27M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_03_floor_edge
-Fra:1 Mem:286.32M (Peak 286.32M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_03_column_bases
-Fra:1 Mem:286.35M (Peak 286.35M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_03_vermilion_columns
-Fra:1 Mem:286.40M (Peak 286.40M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_03_column_neck_rings
-Fra:1 Mem:286.68M (Peak 286.68M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_03_bracket_blocks
-Fra:1 Mem:286.71M (Peak 286.71M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_03_bracket_arms
-Fra:1 Mem:286.54M (Peak 286.71M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_03_structural_beams
-Fra:1 Mem:286.59M (Peak 286.71M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_03_fascia_inlay
-Fra:1 Mem:287.06M (Peak 287.06M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_03_cream_walls
-Fra:1 Mem:286.57M (Peak 287.06M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_03_window_infill
-Fra:1 Mem:286.63M (Peak 287.06M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_03_window_lattice
-Fra:1 Mem:286.68M (Peak 287.06M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_03_window_lintels
-Fra:1 Mem:286.69M (Peak 287.06M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_03_window_sills
-Fra:1 Mem:286.75M (Peak 287.06M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_03_wall_stiles
-Fra:1 Mem:286.78M (Peak 287.06M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_03_rail_beams
-Fra:1 Mem:286.78M (Peak 287.06M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_03_rail_posts
-Fra:1 Mem:286.92M (Peak 287.06M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_03_rail_caps
-Fra:1 Mem:286.93M (Peak 287.06M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 03_Roof/Glazed roof planes
-Fra:1 Mem:287.03M (Peak 287.06M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 03_Roof/Eave ridge
-Fra:1 Mem:287.57M (Peak 287.57M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 03_Roof/Dark eave fascia
-Fra:1 Mem:287.84M (Peak 287.84M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 03_Roof/Roof soffit
-Fra:1 Mem:287.84M (Peak 287.84M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 03_Roof/Round tile ribs
-Fra:1 Mem:288.14M (Peak 288.14M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 03_Roof/Tile courses
-Fra:1 Mem:288.35M (Peak 288.35M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 黄鹤楼 · 匾额.004
-Fra:1 Mem:288.37M (Peak 288.37M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 03_Roof/Upturned corner tips
-Fra:1 Mem:290.94M (Peak 290.94M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 03_Roof/Ridge guardians
-Fra:1 Mem:291.20M (Peak 291.20M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 03_Roof/Glazed roof planes.001
-Fra:1 Mem:291.29M (Peak 291.29M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_04_balcony_slab
-Fra:1 Mem:292.48M (Peak 292.48M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_04_floor_edge
-Fra:1 Mem:292.72M (Peak 292.72M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_04_column_bases
-Fra:1 Mem:292.99M (Peak 292.99M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_04_vermilion_columns
-Fra:1 Mem:293.02M (Peak 293.02M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_04_column_neck_rings
-Fra:1 Mem:293.09M (Peak 293.09M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_04_bracket_blocks
-Fra:1 Mem:293.17M (Peak 293.17M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_04_bracket_arms
-Fra:1 Mem:293.16M (Peak 293.17M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_04_structural_beams
-Fra:1 Mem:293.21M (Peak 293.21M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_04_painted_fascia
-Fra:1 Mem:293.24M (Peak 293.24M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_04_fascia_gold_edges
-Fra:1 Mem:293.24M (Peak 293.24M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_04_cream_walls
-Fra:1 Mem:293.26M (Peak 293.26M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_04_window_infill
-Fra:1 Mem:293.33M (Peak 293.33M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_04_window_frames
-Fra:1 Mem:293.37M (Peak 293.37M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_04_window_lattice
-Fra:1 Mem:293.57M (Peak 293.57M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_04_window_sills
-Fra:1 Mem:293.89M (Peak 293.89M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_04_rail_beams
-Fra:1 Mem:293.95M (Peak 293.95M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_04_rail_balusters
-Fra:1 Mem:294.57M (Peak 294.57M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_04_rail_posts
-Fra:1 Mem:294.68M (Peak 294.68M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 04_Roof/Eave ridge
-Fra:1 Mem:294.87M (Peak 294.87M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 04_Roof/Dark eave fascia
-Fra:1 Mem:296.44M (Peak 296.44M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 04_Roof/Roof soffit
-Fra:1 Mem:296.89M (Peak 296.89M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 04_Roof/Round tile ribs
-Fra:1 Mem:297.24M (Peak 297.24M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 04_Roof/Tile courses
-Fra:1 Mem:298.95M (Peak 298.95M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 04_Roof/Hip ridge
-Fra:1 Mem:302.55M (Peak 302.55M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 04_Roof/Upturned corner tips
-Fra:1 Mem:303.32M (Peak 303.32M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 04_Roof/Glazed roof planes.001
-Fra:1 Mem:303.46M (Peak 303.46M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_05_balcony_slab
-Fra:1 Mem:303.97M (Peak 303.97M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_05_vermilion_columns
-Fra:1 Mem:303.73M (Peak 303.97M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_05_column_neck_rings
-Fra:1 Mem:303.76M (Peak 303.97M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_05_bracket_blocks
-Fra:1 Mem:303.86M (Peak 303.97M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_05_bracket_arms
-Fra:1 Mem:303.95M (Peak 303.97M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_05_fascia_gold_edges
-Fra:1 Mem:304.01M (Peak 304.01M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_05_fascia_inlay
-Fra:1 Mem:304.01M (Peak 304.01M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_05_cream_walls
-Fra:1 Mem:304.02M (Peak 304.02M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_05_window_lattice
-Fra:1 Mem:304.07M (Peak 304.07M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_05_window_lintels
-Fra:1 Mem:304.12M (Peak 304.12M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_05_wall_stiles
-Fra:1 Mem:304.45M (Peak 304.45M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_05_rail_beams
-Fra:1 Mem:304.54M (Peak 304.54M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_05_rail_balusters
-Fra:1 Mem:304.72M (Peak 304.72M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_05_rail_posts
-Fra:1 Mem:304.76M (Peak 304.76M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 05_Roof/Glazed roof planes
-Fra:1 Mem:305.36M (Peak 305.36M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 05_Roof/Eave ridge
-Fra:1 Mem:305.14M (Peak 305.36M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 05_Roof/Dark eave fascia
-Fra:1 Mem:305.25M (Peak 305.36M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 05_Roof/Round tile ribs
-Fra:1 Mem:305.45M (Peak 305.45M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 05_Roof/Tile courses
-Fra:1 Mem:306.60M (Peak 306.60M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 05_Roof/Hip ridge
-Fra:1 Mem:307.24M (Peak 307.24M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 05_Roof/Upturned corner tips
-Fra:1 Mem:307.37M (Peak 307.37M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 05_Roof/Glazed roof planes.001
-Fra:1 Mem:307.50M (Peak 307.50M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Finial base
-Fra:1 Mem:307.66M (Peak 307.66M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Finial jewels
-Fra:1 Mem:307.75M (Peak 307.75M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_1_Wall
-Fra:1 Mem:307.77M (Peak 307.77M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_1_Column_Capitals
-Fra:1 Mem:307.77M (Peak 307.77M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_1_Column_Crossarms
-Fra:1 Mem:307.77M (Peak 307.77M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_1_Lintel
-Fra:1 Mem:307.77M (Peak 307.77M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_1_Plaque
-Fra:1 Mem:307.82M (Peak 307.82M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_1_Plaque_Frame
-Fra:1 Mem:308.25M (Peak 308.25M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_1_Hip_Tile_Rolls
-Fra:1 Mem:308.25M (Peak 308.25M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_1_Hip_Tile_Joints
-Fra:1 Mem:309.51M (Peak 309.51M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_1_Eave_Edges
-Fra:1 Mem:309.56M (Peak 309.56M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_1_Hip_Ridges
-Fra:1 Mem:309.84M (Peak 309.84M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_1_Wing_Tips
-Fra:1 Mem:309.84M (Peak 309.84M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_1_Gable_Bargeboards
-Fra:1 Mem:309.90M (Peak 309.90M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_1_Gable_Timbers
-Fra:1 Mem:310.36M (Peak 310.36M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_1_Upper_Gable_Roof
-Fra:1 Mem:310.93M (Peak 310.93M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_1_Upper_Tile_Rolls
-Fra:1 Mem:310.85M (Peak 310.93M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_1_Upper_Eave
-Fra:1 Mem:311.07M (Peak 311.07M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_1_Main_Ridge
-Fra:1 Mem:311.25M (Peak 311.25M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_2_Wall
-Fra:1 Mem:311.25M (Peak 311.25M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_2_Front_Recess
-Fra:1 Mem:311.25M (Peak 311.25M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_2_Column_Capitals
-Fra:1 Mem:311.25M (Peak 311.25M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_2_Column_Crossarms
-Fra:1 Mem:311.25M (Peak 311.25M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_2_Curved_Hip_Roof
-Fra:1 Mem:311.33M (Peak 311.33M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_2_Hip_Tile_Rolls
-Fra:1 Mem:311.33M (Peak 311.33M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_2_Eave_Edges
-Fra:1 Mem:311.63M (Peak 311.63M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_2_Eave_Gold
-Fra:1 Mem:311.72M (Peak 311.72M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_2_Hip_Ridges
-Fra:1 Mem:311.91M (Peak 311.91M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_2_Wing_Tips
-Fra:1 Mem:311.93M (Peak 311.93M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_2_Gables
-Fra:1 Mem:312.03M (Peak 312.03M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_2_Gable_Bargeboards
-Fra:1 Mem:312.03M (Peak 312.03M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_2_Gable_Timbers
-Fra:1 Mem:312.05M (Peak 312.05M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_2_Upper_Gable_Roof
-Fra:1 Mem:312.58M (Peak 312.58M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_2_Upper_Eave
-Fra:1 Mem:312.14M (Peak 312.58M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_2_Main_Ridge
-Fra:1 Mem:312.15M (Peak 312.58M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_3_Front_Recess
-Fra:1 Mem:312.18M (Peak 312.58M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_3_Column_Capitals
-Fra:1 Mem:312.22M (Peak 312.58M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_3_Column_Crossarms
-Fra:1 Mem:312.48M (Peak 312.58M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_3_Lintel
-Fra:1 Mem:312.50M (Peak 312.58M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_3_Lintel_Gold
-Fra:1 Mem:312.50M (Peak 312.58M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_3_Hip_Tile_Rolls
-Fra:1 Mem:312.50M (Peak 312.58M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_3_Eave_Edges
-Fra:1 Mem:312.50M (Peak 312.58M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_3_Eave_Gold
-Fra:1 Mem:312.51M (Peak 312.58M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_3_Hip_Ridges
-Fra:1 Mem:312.55M (Peak 312.58M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_3_Wing_Tips
-Fra:1 Mem:312.64M (Peak 312.64M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_3_Gables
-Fra:1 Mem:312.99M (Peak 312.99M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_3_Gable_Bargeboards
-Fra:1 Mem:313.10M (Peak 313.10M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_3_Gable_Timbers
-Fra:1 Mem:313.28M (Peak 313.28M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_3_Upper_Gable_Roof
-Fra:1 Mem:313.28M (Peak 313.28M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_3_Upper_Eave
-Fra:1 Mem:313.32M (Peak 313.32M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_3_Main_Ridge
-Fra:1 Mem:313.33M (Peak 313.33M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_4_Wall
-Fra:1 Mem:313.45M (Peak 313.45M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_4_Front_Recess
-Fra:1 Mem:313.35M (Peak 313.45M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_4_Column_Capitals
-Fra:1 Mem:313.35M (Peak 313.45M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_4_Column_Crossarms
-Fra:1 Mem:313.35M (Peak 313.45M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_4_Lintel_Gold
-Fra:1 Mem:313.36M (Peak 313.45M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_4_Plaque
-Fra:1 Mem:313.39M (Peak 313.45M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_4_Plaque_Frame
-Fra:1 Mem:313.41M (Peak 313.45M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_4_Curved_Hip_Roof
-Fra:1 Mem:313.70M (Peak 313.70M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_4_Hip_Tile_Rolls
-Fra:1 Mem:313.81M (Peak 313.81M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_4_Eave_Gold
-Fra:1 Mem:314.37M (Peak 314.37M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_4_Hip_Ridges
-Fra:1 Mem:314.37M (Peak 314.37M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_4_Wing_Tips
-Fra:1 Mem:314.51M (Peak 314.51M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_4_Gables
-Fra:1 Mem:314.42M (Peak 314.51M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_4_Gable_Timbers
-Fra:1 Mem:314.44M (Peak 314.51M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_4_Upper_Gable_Roof
-Fra:1 Mem:315.06M (Peak 315.06M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_4_Upper_Tile_Rolls
-Fra:1 Mem:315.13M (Peak 315.13M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 01_Plaque/Gold frame
-Fra:1 Mem:315.28M (Peak 315.28M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 01_Plaque/Dark lacquer
-Fra:1 Mem:315.75M (Peak 315.75M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 黄鹤楼 · 匾额
-Fra:1 Mem:320.66M (Peak 320.66M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 黄鹤楼 · 匾额.001
-Fra:1 Mem:325.57M (Peak 325.57M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 黄鹤楼 · 匾额.002
-Fra:1 Mem:330.48M (Peak 330.48M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 黄鹤楼 · 匾额.003
-Fra:1 Mem:335.39M (Peak 335.39M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Studio ground
-Fra:1 Mem:335.39M (Peak 335.39M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rim
-Fra:1 Mem:335.39M (Peak 335.39M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
-Fra:1 Mem:292.43M (Peak 335.39M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Waiting for render to start
-Fra:1 Mem:292.43M (Peak 335.39M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Scene
-Fra:1 Mem:292.43M (Peak 335.39M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Shaders
-Fra:1 Mem:292.43M (Peak 335.39M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
-Fra:1 Mem:292.52M (Peak 335.39M) | Time:00:00.09 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Procedurals
-Fra:1 Mem:292.52M (Peak 335.39M) | Time:00:00.09 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Background
-Fra:1 Mem:292.52M (Peak 335.39M) | Time:00:00.09 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Camera
-Fra:1 Mem:292.52M (Peak 335.39M) | Time:00:00.09 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Meshes Flags
-Fra:1 Mem:292.52M (Peak 335.39M) | Time:00:00.09 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Objects
-Fra:1 Mem:292.52M (Peak 335.39M) | Time:00:00.09 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
-Fra:1 Mem:292.59M (Peak 335.39M) | Time:00:00.09 | Mem:0.08M, Peak:0.08M | Scene, ViewLayer | Updating Particle Systems
-Fra:1 Mem:292.59M (Peak 335.39M) | Time:00:00.09 | Mem:0.08M, Peak:0.08M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
-Fra:1 Mem:292.59M (Peak 335.39M) | Time:00:00.09 | Mem:0.08M, Peak:0.08M | Scene, ViewLayer | Updating Meshes
-Fra:1 Mem:292.59M (Peak 335.39M) | Time:00:00.09 | Mem:0.08M, Peak:0.08M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
-Fra:1 Mem:292.59M (Peak 335.39M) | Time:00:00.09 | Mem:0.08M, Peak:0.08M | Scene, ViewLayer | Updating Mesh | Computing attributes
-Fra:1 Mem:299.91M (Peak 335.39M) | Time:00:00.09 | Mem:0.09M, Peak:0.09M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
-Fra:1 Mem:299.87M (Peak 335.39M) | Time:00:00.09 | Mem:7.36M, Peak:7.36M | Scene, ViewLayer | Updating Scene BVH | Building
-Fra:1 Mem:299.88M (Peak 335.39M) | Time:00:00.09 | Mem:7.36M, Peak:7.36M | Scene, ViewLayer | Updating Scene BVH | Building BVH
-Fra:1 Mem:299.88M (Peak 335.39M) | Time:00:00.09 | Mem:42.97M, Peak:42.97M | Scene, ViewLayer | Updating Scene BVH | Building BVH 0%
-Fra:1 Mem:299.88M (Peak 335.39M) | Time:00:00.21 | Mem:81.36M, Peak:116.97M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
-Fra:1 Mem:299.88M (Peak 335.39M) | Time:00:00.21 | Mem:81.36M, Peak:116.97M | Scene, ViewLayer | Updating Mesh | Computing normals
-Fra:1 Mem:332.22M (Peak 335.39M) | Time:00:00.22 | Mem:81.36M, Peak:116.97M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
-Fra:1 Mem:332.22M (Peak 335.39M) | Time:00:00.22 | Mem:113.71M, Peak:116.97M | Scene, ViewLayer | Updating Objects Flags
-Fra:1 Mem:332.22M (Peak 335.39M) | Time:00:00.22 | Mem:113.71M, Peak:116.97M | Scene, ViewLayer | Updating Primitive Offsets
-Fra:1 Mem:332.22M (Peak 335.39M) | Time:00:00.22 | Mem:113.71M, Peak:116.97M | Scene, ViewLayer | Updating Images
-Fra:1 Mem:332.22M (Peak 335.39M) | Time:00:00.22 | Mem:113.71M, Peak:116.97M | Scene, ViewLayer | Updating Camera Volume
-Fra:1 Mem:332.22M (Peak 335.39M) | Time:00:00.22 | Mem:113.71M, Peak:116.97M | Scene, ViewLayer | Updating Lookup Tables
-Fra:1 Mem:332.22M (Peak 335.39M) | Time:00:00.22 | Mem:113.79M, Peak:116.97M | Scene, ViewLayer | Updating Lights
-Fra:1 Mem:332.22M (Peak 335.39M) | Time:00:00.22 | Mem:113.79M, Peak:116.97M | Scene, ViewLayer | Updating Lights | Computing tree
-Fra:1 Mem:332.22M (Peak 335.39M) | Time:00:00.22 | Mem:113.79M, Peak:116.97M | Scene, ViewLayer | Updating Integrator
-Fra:1 Mem:332.22M (Peak 335.39M) | Time:00:00.22 | Mem:113.79M, Peak:116.97M | Scene, ViewLayer | Updating Film
-Fra:1 Mem:332.23M (Peak 335.39M) | Time:00:00.22 | Mem:113.71M, Peak:116.97M | Scene, ViewLayer | Updating Lookup Tables
-Fra:1 Mem:332.23M (Peak 335.39M) | Time:00:00.22 | Mem:113.80M, Peak:116.97M | Scene, ViewLayer | Updating Baking
-Fra:1 Mem:332.23M (Peak 335.39M) | Time:00:00.22 | Mem:113.80M, Peak:116.97M | Scene, ViewLayer | Updating Device | Writing constant memory
-Fra:1 Mem:332.24M (Peak 335.39M) | Time:00:00.22 | Mem:113.80M, Peak:116.97M | Scene, ViewLayer | Loading denoising kernels (may take a few minutes the first time)
-Fra:1 Mem:332.24M (Peak 335.39M) | Time:00:00.22 | Mem:113.80M, Peak:116.97M | Scene, ViewLayer | Sample 0/16
-Fra:1 Mem:392.06M (Peak 392.06M) | Time:00:01.19 | Remaining:00:14.44 | Mem:173.46M, Peak:173.46M | Scene, ViewLayer | Sample 1/16
-Fra:1 Mem:417.19M (Peak 454.87M) | Time:00:36.41 | Mem:173.46M, Peak:173.46M | Scene, ViewLayer | Sample 16/16
-Fra:1 Mem:417.19M (Peak 454.87M) | Time:00:36.41 | Mem:173.46M, Peak:173.46M | Scene, ViewLayer | Finished
+Fra:1 Mem:165.08M (Peak 168.51M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 00_Base/Terrace 0
+Fra:1 Mem:165.09M (Peak 168.51M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 00_Base/Paving joints
+Fra:1 Mem:165.09M (Peak 168.51M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 00_Base/Terrace balusters
+Fra:1 Mem:165.10M (Peak 168.51M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 00_Base/Terrace rails
+Fra:1 Mem:165.14M (Peak 168.51M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 00_Base/Terrace fretwork
+Fra:1 Mem:165.16M (Peak 168.51M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_01_floor_edge
+Fra:1 Mem:165.33M (Peak 168.51M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_01_column_bases
+Fra:1 Mem:165.40M (Peak 168.51M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_01_vermilion_columns
+Fra:1 Mem:165.62M (Peak 168.51M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_01_column_neck_rings
+Fra:1 Mem:165.65M (Peak 168.51M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_01_fascia_gold_edges
+Fra:1 Mem:165.69M (Peak 168.51M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_01_fascia_inlay
+Fra:1 Mem:165.75M (Peak 168.51M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_01_window_infill
+Fra:1 Mem:165.89M (Peak 168.51M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_01_window_frames
+Fra:1 Mem:165.93M (Peak 168.51M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_01_entry_shadow
+Fra:1 Mem:166.03M (Peak 168.51M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_01_entry_frame
+Fra:1 Mem:166.07M (Peak 168.51M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_01_entry_lintel
+Fra:1 Mem:166.12M (Peak 168.51M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_01_rail_beams
+Fra:1 Mem:166.19M (Peak 168.51M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_01_rail_posts
+Fra:1 Mem:166.51M (Peak 168.51M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_01_rail_caps
+Fra:1 Mem:166.57M (Peak 168.51M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 01_Roof/Eave ridge
+Fra:1 Mem:166.70M (Peak 168.51M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 01_Roof/Painted underside trim
+Fra:1 Mem:166.71M (Peak 168.51M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 01_Roof/Round tile ribs
+Fra:1 Mem:167.34M (Peak 168.51M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 01_Roof/Tile courses
+Fra:1 Mem:168.14M (Peak 168.51M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 01_Roof/Hip ridge
+Fra:1 Mem:170.27M (Peak 170.27M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 01_Roof/Upturned corner tips
+Fra:1 Mem:170.51M (Peak 170.51M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 01_Roof/Ridge guardians
+Fra:1 Mem:171.44M (Peak 171.44M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 01_Roof/Glazed roof planes.001
+Fra:1 Mem:171.51M (Peak 171.51M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_02_balcony_slab
+Fra:1 Mem:171.56M (Peak 171.56M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_02_floor_edge
+Fra:1 Mem:173.84M (Peak 173.84M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_02_column_bases
+Fra:1 Mem:174.26M (Peak 174.26M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_02_vermilion_columns
+Fra:1 Mem:174.24M (Peak 174.26M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_02_column_neck_rings
+Fra:1 Mem:174.42M (Peak 174.42M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_02_bracket_blocks
+Fra:1 Mem:174.98M (Peak 174.98M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_02_structural_beams
+Fra:1 Mem:175.08M (Peak 175.08M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_02_painted_fascia
+Fra:1 Mem:175.56M (Peak 175.56M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_02_cream_walls
+Fra:1 Mem:176.37M (Peak 176.37M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_02_window_infill
+Fra:1 Mem:176.39M (Peak 176.39M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_02_window_lattice
+Fra:1 Mem:177.06M (Peak 177.06M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_02_window_lintels
+Fra:1 Mem:177.11M (Peak 177.11M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_02_window_sills
+Fra:1 Mem:177.12M (Peak 177.12M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_02_wall_stiles
+Fra:1 Mem:177.33M (Peak 177.33M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_02_rail_beams
+Fra:1 Mem:177.51M (Peak 177.51M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_02_rail_posts
+Fra:1 Mem:177.53M (Peak 177.53M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 02_Roof/Glazed roof planes
+Fra:1 Mem:177.63M (Peak 177.63M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 02_Roof/Eave ridge
+Fra:1 Mem:179.18M (Peak 179.18M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 02_Roof/Dark eave fascia
+Fra:1 Mem:179.26M (Peak 179.26M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 02_Roof/Roof soffit
+Fra:1 Mem:181.00M (Peak 181.00M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 02_Roof/Round tile ribs
+Fra:1 Mem:182.52M (Peak 182.52M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 02_Roof/Tile courses
+Fra:1 Mem:182.98M (Peak 182.98M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 02_Roof/Hip ridge
+Fra:1 Mem:185.92M (Peak 185.92M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 02_Roof/Upturned corner tips
+Fra:1 Mem:189.62M (Peak 189.62M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 02_Roof/Ridge guardians
+Fra:1 Mem:189.66M (Peak 189.66M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 02_Roof/Glazed roof planes.001
+Fra:1 Mem:190.96M (Peak 190.96M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_03_balcony_slab
+Fra:1 Mem:191.09M (Peak 191.09M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_03_floor_edge
+Fra:1 Mem:191.35M (Peak 191.35M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_03_column_neck_rings
+Fra:1 Mem:192.27M (Peak 192.27M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_03_bracket_blocks
+Fra:1 Mem:192.29M (Peak 192.29M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_03_bracket_arms
+Fra:1 Mem:192.40M (Peak 192.40M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_03_structural_beams
+Fra:1 Mem:192.43M (Peak 192.43M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_03_fascia_gold_edges
+Fra:1 Mem:192.44M (Peak 192.44M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_03_fascia_inlay
+Fra:1 Mem:192.47M (Peak 192.47M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_03_cream_walls
+Fra:1 Mem:192.81M (Peak 192.81M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_03_window_infill
+Fra:1 Mem:192.83M (Peak 192.83M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_03_window_frames
+Fra:1 Mem:193.18M (Peak 193.18M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_03_window_lattice
+Fra:1 Mem:193.20M (Peak 193.20M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_03_window_sills
+Fra:1 Mem:193.24M (Peak 193.24M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_03_rail_beams
+Fra:1 Mem:193.59M (Peak 193.59M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_03_rail_posts
+Fra:1 Mem:194.29M (Peak 194.29M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_03_rail_caps
+Fra:1 Mem:194.45M (Peak 194.45M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 03_Roof/Glazed roof planes
+Fra:1 Mem:195.10M (Peak 195.10M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 03_Roof/Painted underside trim
+Fra:1 Mem:195.80M (Peak 195.80M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 03_Roof/Roof soffit
+Fra:1 Mem:196.09M (Peak 196.09M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 03_Roof/Round tile ribs
+Fra:1 Mem:197.32M (Peak 197.32M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 03_Roof/Tile courses
+Fra:1 Mem:199.06M (Peak 199.06M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 03_Roof/Hip ridge
+Fra:1 Mem:199.03M (Peak 199.06M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 03_Roof/Upturned corner tips
+Fra:1 Mem:200.57M (Peak 200.57M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 03_Roof/Glazed roof planes.001
+Fra:1 Mem:201.15M (Peak 201.15M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_04_balcony_slab
+Fra:1 Mem:201.52M (Peak 201.52M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_04_floor_edge
+Fra:1 Mem:201.59M (Peak 201.59M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_04_column_bases
+Fra:1 Mem:201.93M (Peak 201.93M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_04_column_neck_rings
+Fra:1 Mem:202.62M (Peak 202.62M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_04_bracket_blocks
+Fra:1 Mem:202.76M (Peak 202.76M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_04_bracket_arms
+Fra:1 Mem:202.99M (Peak 202.99M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_04_structural_beams
+Fra:1 Mem:203.53M (Peak 203.53M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_04_painted_fascia
+Fra:1 Mem:203.54M (Peak 203.54M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_04_cream_walls
+Fra:1 Mem:203.56M (Peak 203.56M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_04_window_infill
+Fra:1 Mem:203.68M (Peak 203.68M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_04_window_lattice
+Fra:1 Mem:203.72M (Peak 203.72M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_04_window_lintels
+Fra:1 Mem:203.80M (Peak 203.80M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_04_window_sills
+Fra:1 Mem:204.63M (Peak 204.63M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_04_wall_stiles
+Fra:1 Mem:204.73M (Peak 204.73M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_04_rail_beams
+Fra:1 Mem:205.42M (Peak 205.42M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_04_rail_balusters
+Fra:1 Mem:205.58M (Peak 205.58M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_04_rail_posts
+Fra:1 Mem:205.59M (Peak 205.59M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_04_rail_caps
+Fra:1 Mem:205.61M (Peak 205.61M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 04_Roof/Eave ridge
+Fra:1 Mem:205.89M (Peak 205.89M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 04_Roof/Round tile ribs
+Fra:1 Mem:205.96M (Peak 205.96M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 04_Roof/Tile courses
+Fra:1 Mem:209.61M (Peak 209.61M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 04_Roof/Hip ridge
+Fra:1 Mem:209.70M (Peak 209.70M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 黄鹤楼 · 匾额
+Fra:1 Mem:213.48M (Peak 213.48M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 04_Roof/Upturned corner tips
+Fra:1 Mem:213.48M (Peak 213.48M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 04_Roof/Ridge guardians
+Fra:1 Mem:214.72M (Peak 214.72M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 04_Roof/Glazed roof planes.001
+Fra:1 Mem:217.86M (Peak 217.86M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_05_balcony_slab
+Fra:1 Mem:218.47M (Peak 218.47M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_05_floor_edge
+Fra:1 Mem:219.22M (Peak 219.22M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_05_column_bases
+Fra:1 Mem:219.65M (Peak 219.65M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_05_vermilion_columns
+Fra:1 Mem:219.68M (Peak 219.68M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_05_column_neck_rings
+Fra:1 Mem:219.71M (Peak 219.71M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_05_bracket_blocks
+Fra:1 Mem:219.84M (Peak 219.84M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_05_bracket_arms
+Fra:1 Mem:220.46M (Peak 220.46M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_05_structural_beams
+Fra:1 Mem:220.47M (Peak 220.47M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_05_painted_fascia
+Fra:1 Mem:220.72M (Peak 220.72M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_05_fascia_gold_edges
+Fra:1 Mem:220.73M (Peak 220.73M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_05_fascia_inlay
+Fra:1 Mem:220.73M (Peak 220.73M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_05_cream_walls
+Fra:1 Mem:220.75M (Peak 220.75M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_05_window_frames
+Fra:1 Mem:221.61M (Peak 221.61M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_05_wall_stiles
+Fra:1 Mem:221.67M (Peak 221.67M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_05_rail_beams
+Fra:1 Mem:222.00M (Peak 222.00M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_05_rail_balusters
+Fra:1 Mem:222.32M (Peak 222.32M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_05_rail_posts
+Fra:1 Mem:222.74M (Peak 222.74M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Floor_05_rail_caps
+Fra:1 Mem:222.79M (Peak 222.79M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 05_Roof/Glazed roof planes
+Fra:1 Mem:222.86M (Peak 222.86M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 05_Roof/Eave ridge
+Fra:1 Mem:223.11M (Peak 223.11M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 05_Roof/Dark eave fascia
+Fra:1 Mem:223.19M (Peak 223.19M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 05_Roof/Painted underside trim
+Fra:1 Mem:223.30M (Peak 223.30M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 05_Roof/Roof soffit
+Fra:1 Mem:223.45M (Peak 223.45M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 05_Roof/Tile courses
+Fra:1 Mem:225.63M (Peak 225.63M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 05_Roof/Hip ridge
+Fra:1 Mem:225.63M (Peak 225.63M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 05_Roof/Upturned corner tips
+Fra:1 Mem:227.51M (Peak 227.51M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 05_Roof/Ridge guardians
+Fra:1 Mem:228.99M (Peak 228.99M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 05_Roof/Glazed roof planes.001
+Fra:1 Mem:229.27M (Peak 229.27M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Finial base
+Fra:1 Mem:230.01M (Peak 230.01M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Finial mast
+Fra:1 Mem:230.11M (Peak 230.11M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 06_Crown/Finial jewels
+Fra:1 Mem:230.41M (Peak 230.41M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_1_Wall
+Fra:1 Mem:230.42M (Peak 230.42M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_1_Front_Recess
+Fra:1 Mem:230.48M (Peak 230.48M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_1_Columns
+Fra:1 Mem:230.48M (Peak 230.48M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_1_Column_Capitals
+Fra:1 Mem:230.69M (Peak 230.69M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_1_Lintel_Gold
+Fra:1 Mem:230.76M (Peak 230.76M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_1_Lintel
+Fra:1 Mem:230.77M (Peak 230.77M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_1_Plaque
+Fra:1 Mem:231.34M (Peak 231.34M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_1_Plaque_Frame
+Fra:1 Mem:231.34M (Peak 231.34M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_1_Hip_Tile_Joints
+Fra:1 Mem:231.46M (Peak 231.46M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_1_Eave_Edges
+Fra:1 Mem:231.51M (Peak 231.51M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_1_Hip_Ridges
+Fra:1 Mem:231.70M (Peak 231.70M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_1_Wing_Tips
+Fra:1 Mem:232.42M (Peak 232.42M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_1_Gables
+Fra:1 Mem:232.97M (Peak 232.97M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_1_Gable_Timbers
+Fra:1 Mem:232.97M (Peak 232.97M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 黄鹤楼 · 匾额.001
+Fra:1 Mem:233.66M (Peak 233.66M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_1_Upper_Gable_Roof
+Fra:1 Mem:236.32M (Peak 236.32M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_1_Upper_Tile_Rolls
+Fra:1 Mem:237.38M (Peak 237.38M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_1_Upper_Eave
+Fra:1 Mem:237.66M (Peak 237.66M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_1_Main_Ridge
+Fra:1 Mem:237.73M (Peak 237.73M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_2_Wall
+Fra:1 Mem:238.25M (Peak 238.25M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_2_Front_Recess
+Fra:1 Mem:238.30M (Peak 238.30M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_2_Columns
+Fra:1 Mem:238.26M (Peak 238.30M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_2_Column_Capitals
+Fra:1 Mem:238.27M (Peak 238.30M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_2_Column_Crossarms
+Fra:1 Mem:238.27M (Peak 238.30M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_2_Plaque
+Fra:1 Mem:238.68M (Peak 238.68M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_2_Plaque_Frame
+Fra:1 Mem:238.47M (Peak 238.68M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_2_Curved_Hip_Roof
+Fra:1 Mem:238.68M (Peak 238.68M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_2_Hip_Tile_Joints
+Fra:1 Mem:238.86M (Peak 238.86M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_2_Eave_Edges
+Fra:1 Mem:239.42M (Peak 239.42M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_2_Eave_Gold
+Fra:1 Mem:239.48M (Peak 239.48M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_2_Hip_Ridges
+Fra:1 Mem:239.56M (Peak 239.56M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_2_Wing_Tips
+Fra:1 Mem:239.66M (Peak 239.66M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_2_Gables
+Fra:1 Mem:240.01M (Peak 240.01M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_2_Gable_Timbers
+Fra:1 Mem:240.11M (Peak 240.11M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_2_Upper_Gable_Roof
+Fra:1 Mem:240.12M (Peak 240.12M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_2_Upper_Tile_Rolls
+Fra:1 Mem:240.75M (Peak 240.75M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_2_Upper_Eave
+Fra:1 Mem:240.76M (Peak 240.76M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_3_Wall
+Fra:1 Mem:240.87M (Peak 240.87M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_3_Front_Recess
+Fra:1 Mem:240.90M (Peak 240.90M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_3_Column_Crossarms
+Fra:1 Mem:240.90M (Peak 240.90M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_3_Lintel
+Fra:1 Mem:240.91M (Peak 240.91M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_3_Lintel_Gold
+Fra:1 Mem:240.91M (Peak 240.91M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_3_Plaque
+Fra:1 Mem:240.91M (Peak 240.91M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_3_Plaque_Frame
+Fra:1 Mem:240.92M (Peak 240.92M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_3_Curved_Hip_Roof
+Fra:1 Mem:240.92M (Peak 240.92M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_3_Eave_Gold
+Fra:1 Mem:241.48M (Peak 241.48M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_3_Hip_Ridges
+Fra:1 Mem:241.73M (Peak 241.73M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_3_Wing_Tips
+Fra:1 Mem:241.79M (Peak 241.79M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_3_Gables
+Fra:1 Mem:241.92M (Peak 241.92M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_3_Gable_Bargeboards
+Fra:1 Mem:241.86M (Peak 241.92M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_3_Gable_Timbers
+Fra:1 Mem:242.08M (Peak 242.08M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_3_Upper_Gable_Roof
+Fra:1 Mem:242.15M (Peak 242.15M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_3_Upper_Tile_Rolls
+Fra:1 Mem:242.42M (Peak 242.42M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_3_Main_Ridge
+Fra:1 Mem:242.68M (Peak 242.68M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_4_Wall
+Fra:1 Mem:242.99M (Peak 242.99M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_4_Front_Recess
+Fra:1 Mem:243.11M (Peak 243.11M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_4_Columns
+Fra:1 Mem:243.11M (Peak 243.11M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_4_Column_Capitals
+Fra:1 Mem:243.18M (Peak 243.18M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_4_Column_Crossarms
+Fra:1 Mem:243.18M (Peak 243.18M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_4_Lintel
+Fra:1 Mem:243.18M (Peak 243.18M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_4_Lintel_Gold
+Fra:1 Mem:243.30M (Peak 243.30M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_4_Hip_Tile_Rolls
+Fra:1 Mem:243.54M (Peak 243.54M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_4_Hip_Tile_Joints
+Fra:1 Mem:243.78M (Peak 243.78M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_4_Eave_Gold
+Fra:1 Mem:244.39M (Peak 244.39M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_4_Hip_Ridges
+Fra:1 Mem:244.61M (Peak 244.61M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_4_Wing_Tips
+Fra:1 Mem:245.26M (Peak 245.26M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_4_Gables
+Fra:1 Mem:245.31M (Peak 245.31M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_4_Gable_Timbers
+Fra:1 Mem:245.31M (Peak 245.31M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_4_Upper_Gable_Roof
+Fra:1 Mem:245.31M (Peak 245.31M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_4_Upper_Tile_Rolls
+Fra:1 Mem:245.40M (Peak 245.40M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Crown_Pavilion_4_Main_Ridge
+Fra:1 Mem:245.40M (Peak 245.40M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 01_Plaque/Gold frame
+Fra:1 Mem:245.48M (Peak 245.48M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 01_Plaque/Dark lacquer
+Fra:1 Mem:246.44M (Peak 246.44M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 黄鹤楼 · 匾额.002
+Fra:1 Mem:251.35M (Peak 251.35M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | 黄鹤楼 · 匾额.003
+Fra:1 Mem:256.26M (Peak 256.26M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Studio ground
+Fra:1 Mem:256.26M (Peak 256.26M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Fill
+Fra:1 Mem:256.26M (Peak 256.26M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rim
+Fra:1 Mem:256.26M (Peak 256.26M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:1 Mem:213.34M (Peak 256.26M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Waiting for render to start
+Fra:1 Mem:213.34M (Peak 256.26M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Scene
+Fra:1 Mem:213.34M (Peak 256.26M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Shaders
+Fra:1 Mem:213.34M (Peak 256.26M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:213.43M (Peak 256.26M) | Time:00:00.02 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Procedurals
+Fra:1 Mem:213.43M (Peak 256.26M) | Time:00:00.02 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Background
+Fra:1 Mem:213.43M (Peak 256.26M) | Time:00:00.02 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Camera
+Fra:1 Mem:213.43M (Peak 256.26M) | Time:00:00.02 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Meshes Flags
+Fra:1 Mem:213.43M (Peak 256.26M) | Time:00:00.02 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Objects
+Fra:1 Mem:213.43M (Peak 256.26M) | Time:00:00.02 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:1 Mem:213.50M (Peak 256.26M) | Time:00:00.02 | Mem:0.08M, Peak:0.08M | Scene, ViewLayer | Updating Particle Systems
+Fra:1 Mem:213.50M (Peak 256.26M) | Time:00:00.02 | Mem:0.08M, Peak:0.08M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:213.50M (Peak 256.26M) | Time:00:00.02 | Mem:0.08M, Peak:0.08M | Scene, ViewLayer | Updating Meshes
+Fra:1 Mem:213.50M (Peak 256.26M) | Time:00:00.02 | Mem:0.08M, Peak:0.08M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:213.50M (Peak 256.26M) | Time:00:00.02 | Mem:0.08M, Peak:0.08M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:1 Mem:220.82M (Peak 256.26M) | Time:00:00.02 | Mem:0.09M, Peak:0.09M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:220.78M (Peak 256.26M) | Time:00:00.02 | Mem:7.36M, Peak:7.36M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:1 Mem:220.79M (Peak 256.26M) | Time:00:00.02 | Mem:7.36M, Peak:7.36M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:1 Mem:220.79M (Peak 256.26M) | Time:00:00.02 | Mem:42.97M, Peak:42.97M | Scene, ViewLayer | Updating Scene BVH | Building BVH 0%
+Fra:1 Mem:220.79M (Peak 256.26M) | Time:00:00.06 | Mem:81.36M, Peak:116.97M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:220.79M (Peak 256.26M) | Time:00:00.06 | Mem:81.36M, Peak:116.97M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:1 Mem:253.13M (Peak 256.26M) | Time:00:00.07 | Mem:81.36M, Peak:116.97M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:253.13M (Peak 256.26M) | Time:00:00.07 | Mem:113.71M, Peak:116.97M | Scene, ViewLayer | Updating Objects Flags
+Fra:1 Mem:253.13M (Peak 256.26M) | Time:00:00.07 | Mem:113.71M, Peak:116.97M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:1 Mem:253.13M (Peak 256.26M) | Time:00:00.07 | Mem:113.71M, Peak:116.97M | Scene, ViewLayer | Updating Images
+Fra:1 Mem:253.13M (Peak 256.26M) | Time:00:00.07 | Mem:113.71M, Peak:116.97M | Scene, ViewLayer | Updating Camera Volume
+Fra:1 Mem:253.13M (Peak 256.26M) | Time:00:00.07 | Mem:113.71M, Peak:116.97M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:253.13M (Peak 256.26M) | Time:00:00.07 | Mem:113.79M, Peak:116.97M | Scene, ViewLayer | Updating Lights
+Fra:1 Mem:253.13M (Peak 256.26M) | Time:00:00.07 | Mem:113.79M, Peak:116.97M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:1 Mem:253.13M (Peak 256.26M) | Time:00:00.07 | Mem:113.79M, Peak:116.97M | Scene, ViewLayer | Updating Integrator
+Fra:1 Mem:253.13M (Peak 256.26M) | Time:00:00.07 | Mem:113.79M, Peak:116.97M | Scene, ViewLayer | Updating Film
+Fra:1 Mem:253.14M (Peak 256.26M) | Time:00:00.07 | Mem:113.71M, Peak:116.97M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:253.14M (Peak 256.26M) | Time:00:00.07 | Mem:113.80M, Peak:116.97M | Scene, ViewLayer | Updating Baking
+Fra:1 Mem:253.14M (Peak 256.26M) | Time:00:00.07 | Mem:113.80M, Peak:116.97M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:1 Mem:253.15M (Peak 256.26M) | Time:00:00.07 | Mem:113.80M, Peak:116.97M | Scene, ViewLayer | Loading denoising kernels (may take a few minutes the first time)
+Fra:1 Mem:253.15M (Peak 256.26M) | Time:00:00.07 | Mem:113.80M, Peak:116.97M | Scene, ViewLayer | Sample 0/16
+Fra:1 Mem:312.97M (Peak 312.97M) | Time:00:00.29 | Remaining:00:03.38 | Mem:173.46M, Peak:173.46M | Scene, ViewLayer | Sample 1/16
+Fra:1 Mem:338.09M (Peak 375.78M) | Time:00:05.19 | Mem:173.46M, Peak:173.46M | Scene, ViewLayer | Sample 16/16
+Fra:1 Mem:338.09M (Peak 375.78M) | Time:00:05.19 | Mem:173.46M, Peak:173.46M | Scene, ViewLayer | Finished
 Saved: '/Users/Admin/Desktop/gta-wh/yellow-crane-tower-refined-20261007/stages/before.png'
-Time: 00:36.69 (Saving: 00:00.27)
+Time: 00:05.30 (Saving: 00:00.10)
 
-
-{"at": "2026-10-07T17:49:23+08:00", "phase": "V1同机位基线导出完成", "render_seconds": 36.693}
+{"at": "2026-10-07T18:07:17+08:00", "phase": "V1同机位基线导出完成", "render_seconds": 5.311}
 
 Blender quit

@@ -7,29 +7,35 @@ import { terrainHeight } from './world.js';
 
 /** 沿折线取点(含高度)与朝向 */
 function makeRunner(pts, yOf) {
-  const lens = [];
+  const segments = [];
   let total = 0;
   for (let i = 1; i < pts.length; i++) {
-    const d = Math.hypot(pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1]);
-    lens.push(d); total += d;
+    const [x, z] = pts[i - 1], dx = pts[i][0] - x, dz = pts[i][1] - z;
+    const length = Math.hypot(dx, dz);
+    if (length < 1e-6) continue;
+    segments.push({ x, z, dx, dz, length, start: total, end: total + length, ang: Math.atan2(dx, dz) });
+    total += length;
   }
   return {
     total,
-    at(t) {
-      let target = (((t % 1) + 1) % 1) * total;
-      for (let i = 0; i < lens.length; i++) {
-        if (target <= lens[i] || i === lens.length - 1) {
-          const f = lens[i] ? Math.min(1, target / lens[i]) : 0;
-          const [ax, az] = pts[i], [bx, bz] = pts[i + 1];
-          return {
-            x: ax + (bx - ax) * f, z: az + (bz - az) * f,
-            y: yOf ? yOf(ax + (bx - ax) * f, az + (bz - az) * f) : 0,
-            ang: Math.atan2(bx - ax, bz - az),
-          };
-        }
-        target -= lens[i];
+    at(t, out) {
+      if (!segments.length) {
+        out.x = pts[0][0]; out.z = pts[0][1]; out.y = 0; out.ang = 0;
+        return out;
       }
-      return { x: pts[0][0], z: pts[0][1], y: 0, ang: 0 };
+      const target = (((t % 1) + 1) % 1) * total;
+      // Each carriage samples a different position. Binary search avoids
+      // starting a scan at the first road segment for every carriage/frame.
+      let lo = 0, hi = segments.length - 1;
+      while (lo < hi) {
+        const mid = (lo + hi) >>> 1;
+        if (target <= segments[mid].end) hi = mid; else lo = mid + 1;
+      }
+      const seg = segments[lo], f = Math.min(1, (target - seg.start) / seg.length);
+      out.x = seg.x + seg.dx * f; out.z = seg.z + seg.dz * f;
+      out.y = yOf ? yOf(out.x, out.z) : 0;
+      out.ang = seg.ang;
+      return out;
     },
   };
 }
@@ -88,13 +94,14 @@ export function buildMetro() {
   group.add(trainG);
 
   const runner = makeRunner(pts, yOf);
+  const sample = {};
   let t = 0.12, dir = 1;
   function update(dt) {
     t += dir * dt * 0.008;                                 // 全程约 2 分钟
     if (t > 0.97) dir = -1;
     if (t < 0.03) dir = 1;
     for (let i = 0; i < cars; i++) {
-      const p = runner.at(t - i * 19.4 / runner.total * dir);
+      const p = runner.at(t - i * 19.4 / runner.total * dir, sample);
       trainG.children[i].position.set(p.x, DECK + 0.3, p.z);
       trainG.children[i].rotation.y = p.ang + (dir < 0 ? Math.PI : 0);
     }
@@ -131,12 +138,13 @@ export function buildFerry() {
   group.add(boat);
 
   const runner = makeRunner(line);
+  const sample = {};
   let t = 0, dir = 1;
   function update(dt) {
     t += dir * dt * 0.028;
     if (t > 1) dir = -1;
     if (t < 0) dir = 1;
-    const p = runner.at(t);
+    const p = runner.at(t, sample);
     boat.position.set(p.x, 0.4, p.z);
     boat.rotation.y = p.ang + (dir < 0 ? Math.PI : 0);
     // 轻微摇晃

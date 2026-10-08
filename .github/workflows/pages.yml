@@ -1,0 +1,43 @@
+name: Deploy Wuhan city to GitHub Pages
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/configure-pages@v5
+      - name: Prepare static site
+        run: |
+          mkdir -p _site/assets/models _site/data/osm
+          cp index.html _site/
+          cp -R css js vendor _site/
+          cp -R assets/cars assets/draco assets/npc assets/props assets/textures assets/trees _site/assets/
+          for model in huanghe-tower wuhan-center wuhan-ctf-finance wuhan-greenland-center wuhan-panhai-times wuhan-shipping-center; do
+            cp -R "assets/models/$model" _site/assets/models/
+          done
+          cp data/city.bin data/city-collision.bin data/city-meta.json _site/data/
+          cp data/osm/buildings.json data/osm/roads-land.json data/osm/roads.json _site/data/osm/
+          touch _site/.nojekyll
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

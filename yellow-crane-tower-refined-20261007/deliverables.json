@@ -1,0 +1,26 @@
+{
+  "黄鹤楼_实景优化.blend": {
+    "bytes": 22628514,
+    "sha256": "ee68da15e0b0381bcb107c91325530a9c39f62ecb1a60b519d8f3a2f5c84c4b4"
+  },
+  "优化过程.mp4": {
+    "bytes": 32668060,
+    "sha256": "5918c7d12e8f02a1901431a10cad4db9d7ef5d7128016860e0a5a51d18e370d9"
+  },
+  "优化前后对比.png": {
+    "bytes": 3339935,
+    "sha256": "30c9bdca082270b445c5c6e899635a0b906456ad85fc0de51e017c61ec7f9107"
+  },
+  "实景_模型对照.png": {
+    "bytes": 3947218,
+    "sha256": "4012be02c176f905027b393d8a2eb428715ff645988e0cfd523d9b95b8ed6c4e"
+  },
+  "assets/refined.glb": {
+    "bytes": 25563692,
+    "sha256": "ec6d409eed5beb55b0ef2d14b21253e1c6140cff7e4bca33f7e229433bff9342"
+  },
+  "video/连续旋转优化回放_离线.html": {
+    "bytes": 78605324,
+    "sha256": "e218939ef17092d00ad140bcc8c2e37de6387b8ae3e1ed793365a4498adc3ac0"
+  }
+}

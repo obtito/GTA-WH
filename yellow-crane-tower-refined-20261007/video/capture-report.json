@@ -1,0 +1,93 @@
+{
+  "started_at": "2026-10-07T10:09:33.572Z",
+  "completed_at": "2026-10-07T10:10:59.163Z",
+  "frames": 1080,
+  "start_frame": 1,
+  "width": 1920,
+  "height": 1080,
+  "fps": 24,
+  "errors": [],
+  "snapshots": [
+    {
+      "frame": 120,
+      "time": 4.958333333333333,
+      "yaw": 1.3929166666666668,
+      "split": 0,
+      "phase": 0,
+      "draw_calls": 291,
+      "triangles": 1469156
+    },
+    {
+      "frame": 240,
+      "time": 9.958333333333334,
+      "yaw": 2.242916666666667,
+      "split": 0,
+      "phase": 0,
+      "draw_calls": 679,
+      "triangles": 1167120
+    },
+    {
+      "frame": 360,
+      "time": 14.958333333333334,
+      "yaw": 3.0929166666666674,
+      "split": 0,
+      "phase": 1,
+      "draw_calls": 289,
+      "triangles": 895968
+    },
+    {
+      "frame": 480,
+      "time": 19.958333333333332,
+      "yaw": 3.942916666666667,
+      "split": 0,
+      "phase": 2,
+      "draw_calls": 285,
+      "triangles": 880544
+    },
+    {
+      "frame": 600,
+      "time": 24.958333333333332,
+      "yaw": 4.792916666666667,
+      "split": 0,
+      "phase": 3,
+      "draw_calls": 741,
+      "triangles": 1544304
+    },
+    {
+      "frame": 720,
+      "time": 29.958333333333332,
+      "yaw": 5.642916666666666,
+      "split": 0.4687680844907398,
+      "phase": 3,
+      "draw_calls": 926,
+      "triangles": 3313024
+    },
+    {
+      "frame": 840,
+      "time": 34.958333333333336,
+      "yaw": 6.492916666666667,
+      "split": 1,
+      "phase": 3,
+      "draw_calls": 643,
+      "triangles": 2146248
+    },
+    {
+      "frame": 960,
+      "time": 39.958333333333336,
+      "yaw": 7.342916666666667,
+      "split": 1,
+      "phase": 3,
+      "draw_calls": 643,
+      "triangles": 2146248
+    },
+    {
+      "frame": 1080,
+      "time": 44.958333333333336,
+      "yaw": 8.192916666666667,
+      "split": 1,
+      "phase": 3,
+      "draw_calls": 643,
+      "triangles": 2146248
+    }
+  ]
+}

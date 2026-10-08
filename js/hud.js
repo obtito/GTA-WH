@@ -95,12 +95,15 @@ export function initHUD({ onGoto, onToggleTour }) {
     $('#poiTags').innerHTML = (item.tags || []).map((t) => `<span>${t}</span>`).join('');
     $('#poiDesc').textContent = item.desc || '';
     $('#poiSpec').innerHTML = (item.spec || []).map(([k, v]) => `<tr><td>${k}</td><td>${v}</td></tr>`).join('');
+    $('#poiBankViews')?.classList.toggle('hidden',item.id!=='yangtzebridge');
     // 列表高亮
     listBody.querySelectorAll('.lm-item').forEach((r) => r.classList.toggle('active', r.dataset.id === id));
     if (fromClick && onGoto) onGoto(item);
   }
   $('#poiClose').addEventListener('click', () => $('#poiCard').classList.add('hidden'));
   $('#poiGoto').addEventListener('click', () => { if (activePOI && onGoto) onGoto(activePOI); });
+  for(const [id,bank] of [['poiHanyang',0],['poiWuchang',1]])
+    $('#'+id)?.addEventListener('click',()=>{if(activePOI?.id==='yangtzebridge'&&onGoto)onGoto(activePOI,{bank});});
 
   /* --- 任务 --- */
   let tourActive = false, tourStep = 0;
@@ -159,8 +162,15 @@ export function initHUD({ onGoto, onToggleTour }) {
 
   /* --- 小地图 --- */
   let zoom = 1;                                 // 1px = 20m;放大档 1px=80m→0.25
+  let previousMap = null;
   function drawMinimap(px, pz, heading, mode) {
     const size = minimap.width;
+    // In orbit mode the map often stays identical for minutes. Keep the
+    // existing pixels until the position, heading, size, zoom or visits change.
+    if (previousMap && previousMap.px === px && previousMap.pz === pz &&
+      previousMap.heading === heading && previousMap.mode === mode &&
+      previousMap.size === size && previousMap.zoom === zoom && previousMap.visits === visited.size) return;
+    previousMap = { px, pz, heading, mode, size, zoom, visits: visited.size };
     const ctx = mctx;
     ctx.clearRect(0, 0, size, size);
     if (!staticLayer) return;

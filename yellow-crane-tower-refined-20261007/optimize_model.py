@@ -111,7 +111,7 @@ def add_plaque(g,center,width,height,angle,text):
     return {'center':tuple(face+outward*.055),'width':width,'height':height,'angle':angle,'text':text}
 
 def text_objects(plaques,mats):
-    font=bpy.data.fonts.load('/System/Library/Fonts/Supplemental/Songti.ttc')
+    font=bpy.data.fonts.load(str(ROOT/'assets'/'Songti-full.ttf'))
     col=bpy.data.collections.get('05_Plaque')
     if not col:col=bpy.data.collections.new('05_Plaque');bpy.context.scene.collection.children.link(col)
     for item in plaques:
@@ -120,6 +120,10 @@ def text_objects(plaques,mats):
         curve.align_x='CENTER';curve.align_y='CENTER';curve.size=min(item['height']*.74,item['width']/len(item['text'])*.87)
         curve.extrude=.012;curve.bevel_depth=.003;curve.resolution_u=6;curve.materials.append(mats['gold'])
         ob=bpy.data.objects.new('匾额_'+item['text'],curve);col.objects.link(ob);ob.location=item['center'];ob.rotation_euler=(PI/2,0,item.get('angle',0))
+        bpy.context.view_layer.update()
+        width=max(p[0] for p in ob.bound_box)-min(p[0] for p in ob.bound_box)
+        height=max(p[1] for p in ob.bound_box)-min(p[1] for p in ob.bound_box)
+        if width>0 and height>0:curve.size*=min(item['width']*.88/width,item['height']*.83/height)
 
 def main():
     args=sys.argv[sys.argv.index('--')+1:] if '--' in sys.argv else []

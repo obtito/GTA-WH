@@ -6,6 +6,7 @@ import {
 } from './geo.js';
 import { LAKES, MOUNTAINS, ROADS } from './data.js';
 import { mat, ribbonGeometry, polygonGeometry, makeGroundTexture, registerEnv } from './lib.js';
+import { whuGroundGrade } from './whu-layout.js';
 
 import { RIVER_SURFACE_POINTS, BRANCH_SURFACES, yangtzeWidth, footprintOverlapsWater } from './water-mask.js';
 
@@ -33,7 +34,7 @@ export function terrainHeight(x, z) {
     const detail = 0.92 + 0.14 * noise2(x * 0.02, z * 0.02, m.seed + 5);
     h += fall * rough * detail * m.h;
   }
-  return h;
+  return whuGroundGrade(x,z,h);
 }
 
 export function mountains() { return mountainInfo; }
@@ -54,35 +55,71 @@ export function buildGround() {
 
 /* ==================== 山体 ==================== */
 
+const MOUNTAIN_SEGMENTS = 72;
+const mountainGeometryCache = new Map();
+
+/** Exact indexed surface used by the renderer; consumers must not mutate this geometry. */
+export function mountainSurfaceGeometry(id) {
+  if (mountainGeometryCache.has(id)) return mountainGeometryCache.get(id);
+  const mo = mountainInfo.find(m => m.id === id);
+  if (!mo) throw new Error(`Unknown mountain surface: ${id}`);
+  const sizeX = mo.rx * 2.3, sizeZ = mo.rz * 2.3;
+  const seg = MOUNTAIN_SEGMENTS;
+  const geo = new THREE.PlaneGeometry(sizeX, sizeZ, seg, seg).rotateX(-Math.PI / 2);
+  geo.rotateY(mo.rot);
+  geo.translate(mo.x, 0, mo.z);
+  const pos = geo.attributes.position;
+  const colors = new Float32Array(pos.count * 3);
+  const low = new THREE.Color('#4d6e3f'), mid = new THREE.Color('#3c5c31'), high = new THREE.Color('#6d6754');
+  let maxH = 0;
+  for (let i = 0; i < pos.count; i++) {
+    let h = terrainHeight(pos.getX(i), pos.getZ(i));
+    // 裙边下压:与地面 y=0 共面会 z-fighting 闪烁,裙边沉到地下
+    if (h < 0.05) h = -0.4;
+    pos.setY(i, h);
+    maxH = Math.max(maxH, h);
+  }
+  for (let i = 0; i < pos.count; i++) {
+    const t = clamp(pos.getY(i) / (maxH || 1), 0, 1);
+    const c = t < 0.72
+      ? low.clone().lerp(mid, t / 0.72)
+      : mid.clone().lerp(high, (t - 0.72) / 0.28);
+    colors[i * 3] = c.r; colors[i * 3 + 1] = c.g; colors[i * 3 + 2] = c.b;
+  }
+  geo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+  geo.computeVertexNormals();
+  mountainGeometryCache.set(id, geo);
+  return geo;
+}
+
+/** Visible ground height, interpolated on the same Float32 triangles as the mountain meshes. */
+export function terrainSurfaceHeight(x, z) {
+  let height = 0;
+  for (const mo of mountainInfo) {
+    const c = Math.cos(mo.rot), s = Math.sin(mo.rot), dx = x - mo.x, dz = z - mo.z;
+    const u = ((dx*c-dz*s)/(mo.rx*2.3)+.5)*MOUNTAIN_SEGMENTS;
+    const v = ((dx*s+dz*c)/(mo.rz*2.3)+.5)*MOUNTAIN_SEGMENTS;
+    if (u < 0 || v < 0 || u >= MOUNTAIN_SEGMENTS || v >= MOUNTAIN_SEGMENTS) continue;
+    const geometry = mountainSurfaceGeometry(mo.id), p = geometry.attributes.position, index = geometry.index;
+    const first = (Math.floor(v)*MOUNTAIN_SEGMENTS+Math.floor(u))*6;
+    for (let t=0;t<2;t++) {
+      const a=index.getX(first+t*3),b=index.getX(first+t*3+1),d=index.getX(first+t*3+2);
+      const ax=p.getX(a),az=p.getZ(a),bx=p.getX(b),bz=p.getZ(b),cx=p.getX(d),cz=p.getZ(d);
+      const determinant=(bz-cz)*(ax-cx)+(cx-bx)*(az-cz);
+      const wa=((bz-cz)*(x-cx)+(cx-bx)*(z-cz))/determinant;
+      const wb=((cz-az)*(x-cx)+(ax-cx)*(z-cz))/determinant, wc=1-wa-wb;
+      // A small tolerance accounts for Float32 world coordinates along a grid edge.
+      if (wa>=-1e-4 && wb>=-1e-4 && wc>=-1e-4) height=Math.max(height,wa*p.getY(a)+wb*p.getY(b)+wc*p.getY(d));
+    }
+  }
+  return height;
+}
+
 export function buildMountains() {
   const group = new THREE.Group();
   group.name = 'mountains';
   for (const mo of mountainInfo) {
-    const sizeX = mo.rx * 2.3, sizeZ = mo.rz * 2.3;
-    const seg = 72;
-    const geo = new THREE.PlaneGeometry(sizeX, sizeZ, seg, seg).rotateX(-Math.PI / 2);
-    geo.rotateY(mo.rot);
-    geo.translate(mo.x, 0, mo.z);
-    const pos = geo.attributes.position;
-    const colors = new Float32Array(pos.count * 3);
-    const low = new THREE.Color('#4d6e3f'), mid = new THREE.Color('#3c5c31'), high = new THREE.Color('#6d6754');
-    let maxH = 0;
-    for (let i = 0; i < pos.count; i++) {
-      let h = terrainHeight(pos.getX(i), pos.getZ(i));
-      // 裙边下压:与地面 y=0 共面会 z-fighting 闪烁,裙边沉到地下
-      if (h < 0.05) h = -0.4;
-      pos.setY(i, h);
-      maxH = Math.max(maxH, h);
-    }
-    for (let i = 0; i < pos.count; i++) {
-      const t = clamp(pos.getY(i) / (maxH || 1), 0, 1);
-      const c = t < 0.72
-        ? low.clone().lerp(mid, t / 0.72)
-        : mid.clone().lerp(high, (t - 0.72) / 0.28);
-      colors[i * 3] = c.r; colors[i * 3 + 1] = c.g; colors[i * 3 + 2] = c.b;
-    }
-    geo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-    geo.computeVertexNormals();
+    const geo = mountainSurfaceGeometry(mo.id);
     const material = new THREE.MeshStandardMaterial({
       color: 0xffffff, roughness: 1, metalness: 0, vertexColors: true, side: THREE.DoubleSide,
     });
@@ -90,6 +127,7 @@ export function buildMountains() {
     const mesh = new THREE.Mesh(geo, material);
     mesh.receiveShadow = true;
     mesh.castShadow = false;
+    mesh.name = `mountain:${mo.id}`;
     group.add(mesh);
   }
   return group;
@@ -100,6 +138,11 @@ export function buildMountains() {
 export function createWaterMaterial() {
   return new THREE.ShaderMaterial({
     fog: true,
+    // The river is only 0.5 m above a city-sized ground plane. Preserve its
+    // depth ordering at shallow bridge-view angles without disabling occlusion.
+    polygonOffset: true,
+    polygonOffsetFactor: -1,
+    polygonOffsetUnits: -1,
     uniforms: THREE.UniformsUtils.merge([
       THREE.UniformsLib.fog,
       {

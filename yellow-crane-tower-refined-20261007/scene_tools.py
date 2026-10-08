@@ -35,7 +35,7 @@ def setup_studio():
         else:data.angle=.18
         ob=bpy.data.objects.new(name,data);col.objects.link(ob);ob.location=loc;aim(ob,(0,0,23))
     data=bpy.data.cameras.new('Review camera');camera=bpy.data.objects.new('Review camera',data);col.objects.link(camera)
-    camera.location=(69,-110,66);aim(camera,(0,0,26));data.type='ORTHO';data.ortho_scale=67;scene.camera=camera
+    camera.location=(69,-110,66);aim(camera,(0,0,26));data.type='ORTHO';data.ortho_scale=75;scene.camera=camera
     scene.render.engine='CYCLES';scene.cycles.samples=20;scene.cycles.use_denoising=True
     scene.render.resolution_x=1200;scene.render.resolution_y=1400;scene.render.resolution_percentage=100
     scene.render.image_settings.file_format='PNG';scene.render.film_transparent=False
@@ -65,7 +65,7 @@ def render(path,view='hero',percent=70,samples=16):
     scene=bpy.context.scene;cam=scene.camera
     positions={'hero':(69,-110,66),'front':(0,-120,37),'side':(120,0,37),'rear':(0,120,37),'top':(55,-70,110),'detail':(35,-58,62)}
     target=(0,0,26) if view!='detail' else (0,0,41)
-    cam.location=positions[view];aim(cam,target);cam.data.ortho_scale=67 if view!='detail' else 28
+    cam.location=positions[view];aim(cam,target);cam.data.ortho_scale=75 if view!='detail' else 28
     scene.render.resolution_percentage=percent;scene.cycles.samples=samples;scene.render.filepath=str(path)
     start=time.monotonic();bpy.ops.render.render(write_still=True)
     return round(time.monotonic()-start,3)

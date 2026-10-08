@@ -1,5 +1,5 @@
 // OSM 真实城市:建筑轮廓挤出 + 真实路网(data/osm/,Overpass ODbL)
-// 建筑按 tags 分材质桶,挤出侧面(世界坐标 UV → 窗格立面)+ 屋顶三角化,合成 4 个大 Mesh
+// 建筑按 tags 分材质桶,完整三角面按地块分组,让主相机与阴影视锥剔除屏幕外街区。
 import * as THREE from 'three';
 import { toV2, makeRandom } from './geo.js';
 import { mat, loadTexture, ribbonGeometry, registerEnv, makeFacadeTexture, makeWindowTexture } from './lib.js';
@@ -8,7 +8,8 @@ import { CollisionGrid } from './collision.js';
 import { footprintOverlapsWater } from './water-mask.js';
 import { bridgeHeightAt } from './bridges.js';
 import { resample } from './geo.js';
-import { roadWidth, isBridgeRoad } from './road-layout.js';
+import { roadWidth, isBridgeRoad, modeledBridgeRoadAt } from './road-layout.js';
+import { addSpatialCityMeshes } from './spatial-geometry.js';
 
 /** 多边形面积(鞋带,场景米)与抽稀 */
 function polyArea(pts) {
@@ -50,21 +51,37 @@ function bucketOf(tags) {
   return 'concrete';
 }
 
+// 碰撞数据是可选资源:HTTP 错误、损坏内容和读取失败均不触发城市几何重建。
+async function loadCityCollisionBoxes() {
+  try {
+    const response = await fetch('./data/city-collision.bin');
+    if (!response.ok) return null;
+    const buffer = await response.arrayBuffer();
+    // 每个 OBB 是 7 个 float32;拒绝截断记录,避免污染空间哈希。
+    if (buffer.byteLength % (7 * Float32Array.BYTES_PER_ELEMENT) !== 0) return null;
+    const boxes = new Float32Array(buffer);
+    for (let i = 0; i < boxes.length; i++) {
+      if (!Number.isFinite(boxes[i])) return null;
+    }
+    return boxes;
+  } catch {
+    return null;
+  }
+}
+
 /**
  * 构建 OSM 真实城市
  * @param buildings [{t, g:[[lon,lat]…]}]
  * @returns { group, count }
  */
 export async function buildOsmCity(buildings) {
-  // 优先:构建期烘焙的 Overture 全量二进制(data/city.bin,零构建成本)
+  // 优先:构建期烘焙的 Overture 全量二进制,加载时划分可剔除的地块。
   try {
-    const [bin, meta, collBin] = await Promise.all([
+    const [bin, meta, boxes] = await Promise.all([
       fetch('./data/city.bin').then((r) => r.arrayBuffer()),
       fetch('./data/city-meta.json').then((r) => r.json()),
-      fetch('./data/city-collision.bin').then((r) => r.arrayBuffer())
-        .catch(() => null),      // 碰撞盒缺失降级为"无碰撞",不影响出图
+      loadCityCollisionBoxes(), // 碰撞盒缺失降级为"无碰撞",不影响出图
     ]);
-    const dv = new DataView(bin);
     let o = 0;
     const group = new THREE.Group();
     group.name = 'osm-city';
@@ -90,16 +107,11 @@ export async function buildOsmCity(buildings) {
       geo.setAttribute('uv', new THREE.BufferAttribute(uv, 2));
       geo.setAttribute('color', new THREE.BufferAttribute(col, 3, true));
       geo.setIndex(new THREE.BufferAttribute(idx, 1));
-      geo.computeBoundingSphere();
-      const mesh = new THREE.Mesh(geo, mats[k]);
-      mesh.name = 'bake:' + k;
-      mesh.castShadow = true;
-      mesh.receiveShadow = true;
-      mesh.material.side = THREE.DoubleSide;
-      group.add(mesh);
+      addSpatialCityMeshes(group, geo, mats[k], 'bake:' + k);
+      // Allow loading UI/input to paint between large material buckets, including background tabs.
+      await new Promise((resolve) => setTimeout(resolve, 0));
     }
-    const boxes = collBin ? new Float32Array(collBin) : null;
-    console.log(`[GTA-WH] 烘焙城市: ${meta.count} 栋(Overture,零拷贝),碰撞盒 ${boxes ? boxes.length / 7 : 0} 个`);
+    console.log(`[GTA-WH] 烘焙城市: ${meta.count} 栋, ${group.children.length} 个可剔除地块,碰撞盒 ${boxes ? boxes.length / 7 : 0} 个`);
     return {
       group, count: meta.count, mats: matList, boxes,
       setNight(kk) { for (const m of matList) m.emissiveIntensity = kk * 0.85; },
@@ -245,13 +257,8 @@ export async function buildOsmCity(buildings) {
     geo.setAttribute('uv', new THREE.Float32BufferAttribute(B.uv, 2));
     geo.setAttribute('color', new THREE.Float32BufferAttribute(B.col, 3));
     geo.setIndex(B.idx);
-    geo.computeBoundingSphere();
-    const mesh = new THREE.Mesh(geo, materials[key]);
-    mesh.name = 'osm:' + key;
-    mesh.castShadow = true;
-    mesh.receiveShadow = true;
-    mesh.material.side = THREE.DoubleSide;   // OSM 轮廓环绕方向不定,侧面双面
-    group.add(mesh);
+    addSpatialCityMeshes(group, geo, materials[key], 'osm:' + key);
+    await new Promise((resolve) => setTimeout(resolve, 0));
   }
   return {
     group, count, boxes: new Float32Array(coll),
@@ -302,8 +309,12 @@ export function buildOsmRoads(roads, boxes = null) {
       const a = i * 2, b = a + 1, c = a + 2, d = a + 3;
       const poly = [a, b, d, c].map(v => [p.getX(v), p.getZ(v)]);
       const mx = (pts[i][0] + pts[i + 1][0]) / 2, mz = (pts[i][1] + pts[i + 1][1]) / 2;
-      const duplicatedBridge = isBridge && bridgeHeightAt(mx, mz) != null;
-      const wetCell = !isBridge && footprintOverlapsWater(poly);
+      const crossesWater = footprintOverlapsWater(poly);
+      // Keep dry OSM approaches, but let the detailed landmark be the only
+      // crossing even where its simplified axis differs from the OSM lanes.
+      const duplicatedBridge = isBridge && (bridgeHeightAt(mx, mz) != null ||
+        (crossesWater && modeledBridgeRoadAt(r.t, mx, mz) != null));
+      const wetCell = !isBridge && crossesWater;
       const safe = !duplicatedBridge && !wetCell && !clearance.overlapsPolygon(poly, Math.min(ys[i], ys[i + 1]));
       if (safe) { indices.push(a, c, b, b, c, d); if (start < 0) start = i; }
       if (!safe || i === pts.length - 2) {

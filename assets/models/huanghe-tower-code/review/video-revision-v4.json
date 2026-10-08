@@ -1,0 +1,79 @@
+{
+  "revision": 4,
+  "started_utc": "2026-10-07T10:48:33+00:00",
+  "finished_utc": "2026-10-07T11:10:08.895950+00:00",
+  "elapsed_seconds": 1296,
+  "elapsed_label": "21 分 36 秒",
+  "timing_note": "Wall clock from recorded implementation marker; includes design, preview iterations, rendering and verification. Does not replace original modeling time.",
+  "requested_change": "参考另一个视频的风格改进过程视频",
+  "style_reference": {
+    "file": "yellow-crane-tower-refined-20261007/优化过程.mp4",
+    "resolution_basis": "The other video found in this workspace; source assumption stated to user.",
+    "applied": [
+      "Warm paper background #eae7de",
+      "Dark green Songti title #243734",
+      "Copper accents #a68150",
+      "Photo opening, single rotating hero, final split comparison",
+      "Soft warm/cool lighting and procedural contact shadow"
+    ],
+    "not_imported": "Reference model geometry or GLB assets"
+  },
+  "video": {
+    "file": "optimization-process-v4.mp4",
+    "durationSeconds": 30,
+    "width": 1920,
+    "height": 1080,
+    "fps": 24,
+    "frames": 720,
+    "codec": "H.264",
+    "sha256": "e99ea100e707e7a2026a2bbd8f90c3b7d1887ba03f214cf3e4064b1b1538dfbf",
+    "bytes": 15590729
+  },
+  "timeline": [
+    {
+      "start": 0,
+      "end": 2.9,
+      "stage": "实景照片开场，基线持续旋转"
+    },
+    {
+      "start": 2.4,
+      "end": 17.5,
+      "stage": "沿用 v3 连续几何渐变与细节融合"
+    },
+    {
+      "start": 17.5,
+      "end": 19,
+      "stage": "最终单塔展示"
+    },
+    {
+      "start": 19,
+      "end": 22,
+      "stage": "单塔平滑缩放与平移，基线渐显；标题错开淡入淡出"
+    },
+    {
+      "start": 22,
+      "end": 30,
+      "stage": "保留原同步共同旋转"
+    }
+  ],
+  "final_orbit": {
+    "preserved_from_v3": true,
+    "radius": 127,
+    "height": 50,
+    "target": [
+      0,
+      24,
+      0
+    ],
+    "radians_per_second": "π / 4",
+    "turns": 1
+  },
+  "model_geometry_changed": false,
+  "previous_video": "optimization-process-v3.mp4",
+  "verification": [
+    "verification-v4-video.json",
+    "verification-v4-render.json",
+    "verification-v4-player.json"
+  ],
+  "visual_check": "Decoded movie frames inspected at 0, 4.9, 10, 15.2, 20.5, 22 and 27 seconds; transition labels delayed to prevent overlap with finial."
+}

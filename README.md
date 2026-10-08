@@ -5,6 +5,8 @@
 
 无构建步骤、无 CDN 依赖 —— 任意静态服务器打开 `index.html` 即玩。
 
+公开网页：[https://obtito.github.io/GTA-WH/](https://obtito.github.io/GTA-WH/)。主分支更新后由 GitHub Actions 自动部署到 GitHub Pages；部署包只包含网页运行所需的模型、地图与脚本，不包含本地建模缓存。
+
 ```bash
 node tools/serve.mjs          # → http://localhost:8140/
 # 或 python -m http.server 8080
@@ -43,6 +45,7 @@ node tools/serve.mjs          # → http://localhost:8140/
 - **12 分区**:汉口里分红砖/江汉路民国/二七滨江天际线/武昌老城坡顶/光谷玻璃塔/武大绿瓦/青山红钢城…
 
 道路沿可见岸线重新规划，建筑与导入高楼按完整占地避让水域。五个外部高楼保留至少 10 米的岸线间距。
+武汉长江大桥按双层桥面、九孔八墩、灰石桥头堡细化，重复水上桥路已移除；[建模依据与验证](docs/YANGTZE-BRIDGE.md)。
 黄鹤楼游戏模型使用原有 GLB，屋顶为哑光赭金色；独立的代码建模备选版及对比视频在
 [`assets/models/huanghe-tower-code/`](assets/models/huanghe-tower-code/README.md)。
 Blender 建模源码也保留在 `yellow-crane-tower-new-20261007/` 和 `yellow-crane-tower-refined-20261007/`；
@@ -68,9 +71,18 @@ node tools/road-clearance.mjs                    # 道路水域净空、建筑�
 node tools/bridge-check.mjs                      # 五桥连续桥面与几何验证
 node tools/landmark-check.mjs                    # 17 个景点的结构、颜色与几何预算
 node tools/yellow-crane-check.mjs                # 独立黄鹤楼代码模型与原游戏模型隔离
+node tools/sakura-check.mjs                      # 武大樱花大道、完整花冠净空与性能预算
+node tools/campus-surface-check.mjs              # 步道与实际山体三角网格、路口接缝和树根贴地
+node tools/whu-check.mjs                         # 樱顶四院八天井、拱门贯通、阶梯与平台净空
+node tools/city-spatial-check.mjs                # 城市分区完整性、视锥剔除与阴影提交量
+node tools/city-loading-check.mjs                # 可选碰撞资源失败时保留城市模型
+node tools/actor-performance-check.mjs           # 行人动画降频、路线插值与小地图缓存
+node tools/frame-budget-check.mjs                # 自适应分辨率稳定性与恢复边界
 node tools/mapplot.mjs                           # 骨架平面真值图 PNG
 node tools/shot.mjs                              # 无头浏览器实测 + 5 视角截图
 ```
+
+GitHub 调试技能来源及本轮修复记录见 [SKILL-DIAGNOSTICS.md](docs/SKILL-DIAGNOSTICS.md)。
 
 ## 目录
 

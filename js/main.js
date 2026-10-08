@@ -9,6 +9,7 @@ import { buildOsmCity, buildOsmRoads, OSM_BOX } from './city-osm.js';
 import { buildLandmarks } from './landmarks.js';
 import { buildBridges } from './bridges.js';
 import { REAL_TOWERS, allExclusions, realTowerAnchor } from './sites.js';
+import { CHERRY_AVENUE } from './sakura.js';
 import { worldCollision } from './collision.js';
 import { createEnvironment } from './environment.js';
 import { initHUD } from './hud.js';
@@ -20,6 +21,7 @@ import { Game, MODE_NAME } from './game.js';
 import { setEnvIntensity, mergeStaticMeshes } from './lib.js';
 import { sunState, lerp, clamp, toV2, toLonLat } from './geo.js';
 import { BRIDGES } from './data.js';
+import { AdaptiveRenderScale } from './frame-budget.js';
 
 /* ==================== DOM ==================== */
 const $ = (s) => document.querySelector(s);
@@ -30,6 +32,7 @@ const elFps = $('#fpsVal');
 const elCoord = $('#coordVal');
 const elSpeed = $('#speedVal');
 const elSpeedBox = $('#speedBox');
+const timeSlider = $('#timeSlider');
 
 /* ==================== 全局 ==================== */
 let renderer, scene, camera, controls, sky, sunLight, hemi, moonLight, stars;
@@ -45,6 +48,7 @@ let game, hud;
 let env = null;
 let timeHours = 15, autoTime = false;
 let nightK = 0;
+let timeDirty = false, environmentDirty = false, lastTimeInput = -Infinity;
 const clock = new THREE.Clock();
 const BUILD_STAMP = new Date().toISOString().slice(11, 19);
 const BUILD_STEPS = [];
@@ -170,11 +174,12 @@ function applyTime(hours) {
   metro?.setNight(s.night);
   propsSys?.setNight(s.night);
 
-  scene.fog.color.copy(FOG_DAY.clone().lerp(FOG_NIGHT, clamp(s.night + s.dusk * 0.5, 0, 1)));
+  scene.fog.color.copy(FOG_DAY).lerp(FOG_NIGHT, clamp(s.night + s.dusk * 0.5, 0, 1));
   scene.fog.far = lerp(16000, 9000, s.night);
   setEnvIntensity(lerp(0.25, 1, clamp(s.day + s.dusk * 0.4, 0, 1)));
 
   $('#clockVal').textContent = `${String(Math.floor(hours) % 24).padStart(2, '0')}:${String(Math.floor((hours % 1) * 60)).padStart(2, '0')}`;
+  environmentDirty = true;
 }
 
 /* ==================== 构建 ==================== */
@@ -257,10 +262,10 @@ step('栽种行道树与樱花', async () => {
   trees = await buildTrees({
     exclusions: allExclusions(),
     lines: driveLines || null,
-    blocked: (x, z) => !worldCollision.free(x, z, 0, 1.5),   // 树不穿楼
+    blocked: (x, z, pad = 1.5) => !worldCollision.free(x, z, 0, pad),   // 树干与完整樱花树冠不穿楼
   });
   scene.add(trees.group);
-  console.log(`[GTA-WH] 树木: ${trees.count}`);
+  console.log(`[GTA-WH] 树木: ${trees.count}，武大樱花: ${trees.sakuraCount}`);
 });
 step('放行车流与路灯', async () => {
   cars = await buildCars(driveLines || roads.centerlines, 170);
@@ -291,16 +296,36 @@ step('放行车流与路灯', async () => {
 });
 step('装配玩法与 HUD', () => {
   hud = initHUD({
-    onGoto: (item) => {
+    onGoto: (item,view={}) => {
       // Frame the actual model and select a view clear of surrounding city buildings.
       game.setMode('orbit', true);
+      if(item.cat==='bridge'&&item.axis) {
+        const [ax,az]=toV2(...item.axis[0]),[bx,bz]=toV2(...item.axis[1]);
+        const length=Math.hypot(bx-ax,bz-az),dx=(bx-ax)/length,dz=(bz-az)/length;
+        if(item.id==='yangtzebridge'&&view.bank!=null) {
+          const bank=view.bank,dir=bank===0?-1:1,t=bank===0?.15:.85;
+          const roadX=ax+dx*(length*t+dir*90),roadZ=az+dz*(length*t+dir*90);
+          const route=bridges.group.getObjectByName('yb-rail-approaches')?.userData.routes.find(r=>r.side===bank);
+          const frame=route?.frames.find(f=>f.s>=150);
+          const x=frame?(roadX+frame.x)/2:roadX,z=frame?(roadZ+frame.z)/2:roadZ;
+          const distance=420*Math.max(1,.9/camera.aspect);
+          camera.position.set(x+dz*distance+dir*dx*130,165,z-dx*distance+dir*dz*130);
+          controls.target.set(x,14,z);controls.update();return;
+        }
+        const x=(ax+bx)/2,z=(az+bz)/2;
+        const distance=length/(2*Math.tan(THREE.MathUtils.degToRad(camera.fov/2))*Math.min(camera.aspect,1.8))*1.1;
+        camera.position.set(x-dz*distance+dx*length*0.16,item.deckH+distance*0.26,z+dx*distance+dz*length*0.16);
+        controls.target.set(x,item.deckH*0.58,z);
+        controls.update();
+        return;
+      }
       const h = item.heightM || 20;
       const sub = landmarks.group.getObjectByName('lm:' + item.id);
       const [x,z] = sub?.userData.anchor || toV2(item.lon,item.lat);
       const bounds = sub?.userData.bounds;
       const base = Math.max(terrainHeight(x,z),0);
       const street = ['jianghanlu','chuhehanjie','hankoujiangtan','tanhualin'].includes(item.id);
-      const span = bounds && !street ? Math.max(bounds.max[0]-bounds.min[0],bounds.max[2]-bounds.min[2]) : 90;
+      const span = item.id === 'whu' ? CHERRY_AVENUE.length : bounds && !street ? Math.max(bounds.max[0]-bounds.min[0],bounds.max[2]-bounds.min[2]) : 90;
       const portraitScale = Math.max(1, Math.min(2.2, .9 / camera.aspect));
       const dist = Math.max(h * 2.1, Math.min(span,250) * 1.15, 55) * portraitScale;
       const targetY = base + h * .43;
@@ -525,30 +550,60 @@ async function build() {
     loadBar.style.width = `${((i + 1) / BUILD_STEPS.length) * 100}%`;
   }
   applyTime(timeHours);
+  if (env) scene.environment = env.update(timeHours);
+  environmentDirty = false;
+  // Compile while the loading cover is still up, before the first camera drag.
+  loadText.textContent = '准备场景着色器……';
+  await renderer.compileAsync(scene, camera);
   $('#loading').classList.add('done');
   $('#buildStamp').textContent = 'build ' + BUILD_STAMP + (window.__hhltBadge ? ' | ' + window.__hhltBadge : '');
   hud.modeTip('按 2 驾车出发 · F 上下车 · 3 无人机 · 拖顶部滑杆调时间');
-  clock.getDelta();
-  requestAnimationFrame(animate);
+  animationReady = true;
+  resumeAnimation();
 }
 
 /* ==================== 主循环 ==================== */
 let fpsAcc = 0, fpsN = 0, hudAcc = 0, timeAcc = 0;
-let qualityAcc = 0, qualityFrames = 0;
 let renderScale = Math.min(devicePixelRatio, 1.5);
-const maxRenderScale = renderScale;
+const frameBudget = new AdaptiveRenderScale(renderScale);
+let animationReady = false, animationFrame = 0;
+
+function resumeAnimation() {
+  if (!animationReady || document.hidden || animationFrame) return;
+  clock.getDelta();
+  frameBudget.reset();
+  fpsAcc = fpsN = hudAcc = 0;
+  animationFrame = requestAnimationFrame(animate);
+}
+
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) {
+    cancelAnimationFrame(animationFrame);
+    animationFrame = 0;
+  } else resumeAnimation();
+});
 
 function animate() {
-  requestAnimationFrame(animate);
-  const dt = Math.min(clock.getDelta(), 0.1);
+  animationFrame = 0;
+  if (document.hidden) return;
+  animationFrame = requestAnimationFrame(animate);
+  const frameSeconds = clock.getDelta();
+  const dt = Math.min(frameSeconds, 0.1);
+
+  // Input events may arrive faster than rendering. Apply only the newest time
+  // once per frame; defer expensive PMREM baking until the slider settles.
+  if (timeDirty) { applyTime(timeHours); timeDirty = false; }
 
   if (autoTime) {
     timeHours = (timeHours + dt * 0.25) % 24;
-    $('#timeSlider').value = timeHours;
+    timeSlider.value = timeHours;
     timeAcc += dt;
     if (timeAcc >= 0.1) { applyTime(timeHours); timeAcc = 0; }
   }
-  if (env) scene.environment = env.update(timeHours);
+  if (env && environmentDirty && performance.now() - lastTimeInput >= 160) {
+    scene.environment = env.update(timeHours);
+    environmentDirty = false;
+  }
   if (waterMat) waterMat.uniforms.uTime.value += dt;
 
   // 玩法
@@ -564,26 +619,21 @@ function animate() {
   for (const u of bridges?.updates || []) u(dt);
   metro?.update(dt);
   ferry?.update(dt);
-  npcs?.update(dt);
+  npcs?.update(dt,camera);
 
   // 塔顶航空障碍灯闪烁
   if (beacon) beacon.visible = (clock.elapsedTime % 1.6) < 0.9;
 
   // 车流
   cars?.update(dt);
+  trees?.update(dt,camera.position);
 
   renderer.render(scene, camera);
-  // Adjust only after a sustained slow/fast window, avoiding per-frame resolution oscillation.
-  qualityAcc += dt; qualityFrames++;
-  if (qualityAcc >= 3) {
-    const fps = qualityFrames / qualityAcc;
-    const next = fps < 45 ? Math.max(0.75, renderScale - 0.15) : fps > 58 ? Math.min(maxRenderScale, renderScale + 0.1) : renderScale;
-    if (Math.abs(next - renderScale) > 0.01) { renderScale = next; renderer.setPixelRatio(renderScale); }
-    qualityAcc = 0; qualityFrames = 0;
-  }
+  const nextScale = frameBudget.sample(frameSeconds);
+  if (Math.abs(nextScale-renderScale) > .01) { renderScale=nextScale;renderer.setPixelRatio(renderScale); }
 
   // HUD(4 Hz)
-  hudAcc += dt; fpsAcc += dt; fpsN++;
+  hudAcc += dt; fpsAcc += frameSeconds; fpsN++;
   if (hudAcc > 0.25 && game?._pos) {
     hudAcc = 0;
     hud.drawMinimap(game._pos.x, game._pos.z, game._heading || 0, game.mode);
@@ -599,9 +649,10 @@ function animate() {
 }
 
 /* ==================== 交互 ==================== */
-$('#timeSlider').addEventListener('input', (e) => {
+timeSlider.addEventListener('input', (e) => {
   timeHours = +e.target.value;
-  applyTime(timeHours);
+  timeDirty = true;
+  lastTimeInput = performance.now();
 });
 window.addEventListener('keydown', (e) => {
   if (e.repeat || e.target.matches?.('input, textarea, select, [contenteditable]')) return;

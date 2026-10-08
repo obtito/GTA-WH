@@ -29,8 +29,54 @@ const bytes = readFileSync(new URL('../data/city-collision.bin', import.meta.url
 const boxes = new Float32Array(bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength));
 const { buildBridges } = await import('../js/bridges.js');
 buildBridges();
-const result = buildOsmRoads(roads, boxes);
 const { footprintOverlapsWater } = await import('../js/water-mask.js');
+// The two OSM carriageways diverge hundreds of metres from the simplified
+// landmark axis. They must not leave a second, low crossing beside the truss.
+const mainBridgeRoads = roads.filter(r => r.t?.name === '武汉长江大桥');
+assert.equal(mainBridgeRoads.length, 2, 'Exercise both real OSM bridge carriageways');
+const mainBridgeOnly = buildOsmRoads(mainBridgeRoads, boxes);
+for (const mesh of mainBridgeOnly.group.children) {
+  const p = mesh.geometry.attributes.position, idx = mesh.geometry.index.array;
+  for (let i = 0; i < idx.length; i += 3) {
+    const poly = Array.from(idx.slice(i, i + 3), v => [p.getX(v), p.getZ(v)]);
+    assert(!footprintOverlapsWater(poly), 'A duplicate low OSM Yangtze Bridge triangle remains over the river');
+  }
+}
+const { toV2 } = await import('../js/geo.js');
+const { roadNodeFootprint, roadWidth } = await import('../js/road-layout.js');
+for (const road of mainBridgeRoads) for (const ll of [road.g[0], road.g.at(-1)]) {
+  const p = toV2(...ll);
+  assert(!footprintOverlapsWater(roadNodeFootprint(p, roadWidth(road.t) / 2)), 'Regression endpoint lies on its original bank');
+  assert(mainBridgeOnly.centerlines.some(run => run.pts.some(q => Math.hypot(q[0]-p[0], q[1]-p[1]) < .001)),
+    'Removing duplicate river spans must preserve all four original dry OSM approach ends');
+}
+const wetTriangles = group => {
+  let count = 0;
+  for (const mesh of group.children) {
+    const p = mesh.geometry.attributes.position, idx = mesh.geometry.index.array;
+    for (let i = 0; i < idx.length; i += 3) {
+      if (footprintOverlapsWater(Array.from(idx.slice(i, i + 3), v => [p.getX(v), p.getZ(v)]))) count++;
+    }
+  }
+  return count;
+};
+// Mere proximity and bridge=yes must not erase an independent elevated road.
+const unrelatedRoads = mainBridgeRoads.map(r => ({ ...r, t: { ...r.t, name: '邻近独立高架' } }));
+const unrelated = buildOsmRoads(unrelatedRoads, boxes);
+assert(wetTriangles(unrelated.group) > 400, 'Unmatched neighboring bridge roads retain their own crossing');
+// Conversely, a matching name outside the corresponding landmark's locality
+// cannot claim an unrelated real bridge several kilometres downriver.
+const distantRoads = roads.filter(r => r.t?.name === '杨泗港长江大桥');
+assert(distantRoads.length > 0);
+const distant = buildOsmRoads(distantRoads, boxes);
+const namesake = buildOsmRoads(distantRoads.map(r => ({ ...r, t: { ...r.t, name: '武汉长江大桥' } })), boxes);
+assert(wetTriangles(distant.group) > 0, 'The distant control actually crosses the river');
+assert.equal(namesake.group.children.length, distant.group.children.length);
+namesake.group.children.forEach((mesh, i) => {
+  assert.deepEqual(mesh.geometry.index.array, distant.group.children[i].geometry.index.array, 'Distant namesake indices remain intact');
+  assert.deepEqual(mesh.geometry.attributes.position.array, distant.group.children[i].geometry.attributes.position.array, 'Distant namesake road geometry remains intact');
+});
+const result = buildOsmRoads(roads, boxes);
 const actual = new CollisionGrid(40); actual.addRaw(boxes); actual.build();
 let triangles = 0;
 for (const mesh of result.group.children) {

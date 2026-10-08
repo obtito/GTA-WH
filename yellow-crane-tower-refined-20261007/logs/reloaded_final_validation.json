@@ -1,0 +1,17 @@
+{
+  "stage": "reloaded_final",
+  "mesh_objects": 355,
+  "vertices": 498024,
+  "faces": 420570,
+  "unpacked_images": [],
+  "linked_libraries": 0,
+  "packed_fonts": 1,
+  "geometry_finite": true,
+  "top_z": 53.46979904174805,
+  "font_meshes": {
+    "樓鶴黃": 25144,
+    "目極天楚": 20328,
+    "夢雲吞氣": 23450
+  },
+  "reloaded_saved_blend": true
+}

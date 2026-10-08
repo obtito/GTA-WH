@@ -1,0 +1,121 @@
+{
+  "scene": "/Users/Admin/Desktop/gta-wh/yellow-crane-tower-refined-20261007/stages/roof.blend",
+  "plaques": [
+    {
+      "name": "匾额_樓鶴黃",
+      "text": "樓鶴黃",
+      "font": "//../../../../../../System/Library/Fonts/Supplemental/Songti.ttc",
+      "location": [
+        0.0,
+        -9.541666030883789,
+        43.03456497192383
+      ]
+    },
+    {
+      "name": "匾额_目極天楚",
+      "text": "目極天楚",
+      "font": "//../../../../../../System/Library/Fonts/Supplemental/Songti.ttc",
+      "location": [
+        9.541666030883789,
+        -5.842585513023092e-16,
+        43.03456497192383
+      ]
+    },
+    {
+      "name": "匾额_夢雲吞氣",
+      "text": "夢雲吞氣",
+      "font": "//../../../../../../System/Library/Fonts/Supplemental/Songti.ttc",
+      "location": [
+        0.0,
+        -15.625,
+        9.210604667663574
+      ]
+    }
+  ],
+  "glyphs": [
+    {
+      "character": "夢",
+      "font": "//../../../../../../System/Library/Fonts/Supplemental/Songti.ttc",
+      "vertices": 0,
+      "polygons": 0
+    },
+    {
+      "character": "雲",
+      "font": "//../../../../../../System/Library/Fonts/Supplemental/Songti.ttc",
+      "vertices": 0,
+      "polygons": 0
+    },
+    {
+      "character": "吞",
+      "font": "//../../../../../../System/Library/Fonts/Supplemental/Songti.ttc",
+      "vertices": 657,
+      "polygons": 659
+    },
+    {
+      "character": "氣",
+      "font": "//../../../../../../System/Library/Fonts/Supplemental/Songti.ttc",
+      "vertices": 0,
+      "polygons": 0
+    },
+    {
+      "character": "樓",
+      "font": "//../../../../../../System/Library/Fonts/Supplemental/Songti.ttc",
+      "vertices": 0,
+      "polygons": 0
+    },
+    {
+      "character": "鶴",
+      "font": "//../../../../../../System/Library/Fonts/Supplemental/Songti.ttc",
+      "vertices": 0,
+      "polygons": 0
+    },
+    {
+      "character": "黃",
+      "font": "//../../../../../../System/Library/Fonts/Supplemental/Songti.ttc",
+      "vertices": 0,
+      "polygons": 0
+    },
+    {
+      "character": "目",
+      "font": "//../../../../../../System/Library/Fonts/Supplemental/Songti.ttc",
+      "vertices": 272,
+      "polygons": 276
+    },
+    {
+      "character": "極",
+      "font": "//../../../../../../System/Library/Fonts/Supplemental/Songti.ttc",
+      "vertices": 0,
+      "polygons": 0
+    },
+    {
+      "character": "天",
+      "font": "//../../../../../../System/Library/Fonts/Supplemental/Songti.ttc",
+      "vertices": 478,
+      "polygons": 476
+    },
+    {
+      "character": "楚",
+      "font": "//../../../../../../System/Library/Fonts/Supplemental/Songti.ttc",
+      "vertices": 1171,
+      "polygons": 1167
+    },
+    {
+      "character": "黄",
+      "font": "//../../../../../../System/Library/Fonts/Supplemental/Songti.ttc",
+      "vertices": 813,
+      "polygons": 817
+    },
+    {
+      "character": "鹤",
+      "font": "//../../../../../../System/Library/Fonts/Supplemental/Songti.ttc",
+      "vertices": 1737,
+      "polygons": 1743
+    },
+    {
+      "character": "楼",
+      "font": "//../../../../../../System/Library/Fonts/Supplemental/Songti.ttc",
+      "vertices": 1168,
+      "polygons": 1168
+    }
+  ]
+}

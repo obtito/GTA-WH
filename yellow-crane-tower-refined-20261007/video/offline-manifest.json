@@ -1,0 +1,96 @@
+{
+  "output": "/Users/Admin/Desktop/gta-wh/yellow-crane-tower-refined-20261007/video/连续旋转优化回放_离线.html",
+  "bytes": 78605324,
+  "runtime": "Three.js 0.180.0; all modules and images embedded",
+  "assets": {
+    "baseline": "d34040f9c07f638463e6c5a26e122c9631e5a6b13a21bad82694c38cde775f0a",
+    "refined": "ec6d409eed5beb55b0ef2d14b21253e1c6140cff7e4bca33f7e229433bff9342"
+  },
+  "timeline": {
+    "timezone": "Asia/Shanghai",
+    "started_at": "2026-10-07T16:55:06+08:00",
+    "events": [
+      {
+        "at": "2026-10-07T16:55:06+08:00",
+        "phase": "启动与技能检索"
+      },
+      {
+        "at": "2026-10-07T17:31:08+08:00",
+        "phase": "实景分析完成；开始结构、屋顶与材质优化"
+      },
+      {
+        "at": "2026-10-07T17:49:23+08:00",
+        "phase": "V1同机位基线导出完成",
+        "render_seconds": 36.693
+      },
+      {
+        "at": "2026-10-07T17:53:01+08:00",
+        "phase": "开始生成 structure"
+      },
+      {
+        "at": "2026-10-07T17:53:20+08:00",
+        "phase": "完成 structure",
+        "seconds": 19.49,
+        "render_seconds": 14.216,
+        "scene": "structure.blend"
+      },
+      {
+        "at": "2026-10-07T17:55:14+08:00",
+        "phase": "开始生成 roof"
+      },
+      {
+        "at": "2026-10-07T17:55:22+08:00",
+        "phase": "完成 roof",
+        "seconds": 7.72,
+        "render_seconds": 6.306,
+        "scene": "roof.blend"
+      },
+      {
+        "at": "2026-10-07T18:02:17+08:00",
+        "phase": "开始生成 final"
+      },
+      {
+        "at": "2026-10-07T18:03:43+08:00",
+        "phase": "开始生成 final"
+      },
+      {
+        "at": "2026-10-07T18:03:58+08:00",
+        "phase": "完成 final",
+        "seconds": 15.08,
+        "render_seconds": 13.001,
+        "scene": "黄鹤楼_实景优化.blend"
+      },
+      {
+        "at": "2026-10-07T18:04:15+08:00",
+        "phase": "多角度渲染完成"
+      },
+      {
+        "at": "2026-10-07T18:06:39+08:00",
+        "phase": "开始生成 final"
+      },
+      {
+        "at": "2026-10-07T18:06:54+08:00",
+        "phase": "完成 final",
+        "seconds": 14.83,
+        "render_seconds": 12.358,
+        "scene": "黄鹤楼_实景优化.blend"
+      },
+      {
+        "at": "2026-10-07T18:07:11+08:00",
+        "phase": "多角度渲染完成"
+      },
+      {
+        "at": "2026-10-07T18:07:17+08:00",
+        "phase": "V1同机位基线导出完成",
+        "render_seconds": 5.311
+      },
+      {
+        "at": "2026-10-07T18:08:33+08:00",
+        "phase": "最终模型与多角度视觉检查完成；交接连续视频渲染"
+      }
+    ],
+    "updated_at": "2026-10-07T18:07:17+08:00",
+    "model_completed_at": "2026-10-07T18:08:33+08:00",
+    "model_wall_seconds": 4407.0
+  }
+}

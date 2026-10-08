@@ -1,1 +1,24 @@
-<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>黄鹤楼建模优化 · 过程视频</title><style>body{margin:0;background:#172b2b;color:#eaf0ee;font-family:-apple-system,"PingFang SC",sans-serif;padding:24px}main{max-width:1280px;margin:auto}h1{font-size:26px}video{width:100%;background:#101d1d;border-radius:12px}p{color:#adc7bb;font-size:15px}a{color:#f2e6bc}nav{display:flex;gap:24px}</style><main><h1>黄鹤楼 · 建模优化过程</h1><p>30 秒阶段回放：连续旋转 → 楼体与屋面渐变 → 细节逐渐融合 → 共同旋转检查</p><video controls playsinline preload="metadata" poster="screenshots/v3-video-20s.png" src="optimization-process-v3.mp4"></video><p>代码几何优化实际历时 15 分 18 秒。旧游戏模型保留；新版独立存放。尺寸和未见背面为参考推定。</p><nav><a href="../yellow-crane-share.html">打开离线前后对比</a><a href="optimization-process-v3.mp4" download>下载 MP4</a><a href="optimization-report.html">查看优化与时间记录</a></nav></main></html>
+<!doctype html>
+<html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>黄鹤楼 · 从代码到形制</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#eae7de;color:#243734;font-family:-apple-system,"PingFang SC",sans-serif;padding:32px 5vw 40px}main{max-width:1440px;margin:auto}.eyebrow{font-size:12px;letter-spacing:2px;color:#a68150}header{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:22px}h1{font:500 34px "Songti SC","STSong",serif;margin:14px 0 8px}p{font-size:14px;line-height:1.8;color:#758079;margin:0}video{width:100%;aspect-ratio:16/9;display:block;background:#eae7de;box-shadow:0 12px 42px #343b2d13}.versions{display:flex;gap:8px;white-space:nowrap}button{padding:10px 18px;border:1px solid #c9c7bb;color:#59675f;background:transparent;font:inherit;font-size:13px;cursor:pointer;border-radius:2px}button[aria-pressed=true]{background:#243734;border-color:#243734;color:#f4f1e8}button:focus-visible,a:focus-visible{outline:2px solid #a68150;outline-offset:4px}.info{display:flex;justify-content:space-between;gap:24px;padding:20px 0;border-bottom:1px solid #d0cec4}.facts{white-space:nowrap;color:#a68150}nav{display:flex;gap:24px;flex-wrap:wrap;padding-top:20px;font-size:14px}a{color:#576b5e;text-decoration-thickness:1px;text-underline-offset:5px}.credit{font-size:12px;margin-top:20px}@media(max-width:760px){body{padding:20px 16px}header,.info{display:block}h1{font-size:27px}.versions{margin-top:18px}.facts{margin-top:8px}nav{gap:16px}video{box-shadow:none}}
+</style>
+<main>
+<header><div><div class="eyebrow">YELLOW CRANE TOWER / CODE STUDY</div><h1>黄鹤楼 · 从代码到形制</h1><p id="description">实景开场 → 单塔连续演变 → 双塔同步旋转</p></div><div class="versions" aria-label="视频版本"><button type="button" data-version="4" aria-pressed="true">新版 · 米白风格</button><button type="button" data-version="3" aria-pressed="false">上一版 · 三列对照</button></div></header>
+<video id="film" controls playsinline preload="metadata" poster="screenshots/v4-preview-22s.png" src="optimization-process-v4.mp4"></video>
+<div class="info"><p>几何优化实际历时 <strong>15 分 18 秒</strong>。楼体与细节在旋转中逐渐演变，最后 8 秒保持同步旋转。<br>旧游戏模型保留，新版独立存放。</p><p class="facts" id="facts">30 秒 · 1920 × 1080 · 24 fps</p></div>
+<nav><a id="download" href="optimization-process-v4.mp4" download>下载当前 MP4</a><a href="../yellow-crane-share.html">交互式前后对比</a><a href="optimization-report.html">优化与时间记录</a><a href="../../../../yellow-crane-tower-refined-20261007/优化过程.mp4">本次风格参考片</a></nav>
+<p class="credit">实景照片：MonsieurRoi / CC BY-SA 3.0。尺寸和未见背面为参考推定；视频为保存建模阶段之间的演变回放。</p>
+</main>
+<script>
+const film=document.querySelector('#film');
+for(const button of document.querySelectorAll('[data-version]'))button.addEventListener('click',()=>{
+ const version=button.dataset.version;
+ for(const item of document.querySelectorAll('[data-version]'))item.setAttribute('aria-pressed',String(item===button));
+ film.pause();film.src=`optimization-process-v${version}.mp4`;film.poster=version==='4'?'screenshots/v4-preview-22s.png':'screenshots/v3-video-20s.png';film.load();
+ document.querySelector('#download').href=film.getAttribute('src');
+ document.querySelector('#description').textContent=version==='4'?'实景开场 → 单塔连续演变 → 双塔同步旋转':'照片、基线与迭代模型三列对照 · 连续渐变';
+ document.querySelector('#facts').textContent=version==='4'?'30 秒 · 1920 × 1080 · 24 fps':'30 秒 · 1280 × 720';
+});
+</script></html>
